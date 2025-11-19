@@ -69,7 +69,7 @@ export default function ResNav() {
         <div className="relative w-full">
             <Navbar>
                 {width > 1024 ? (
-                    <NavBody className="dark:border dark:bg-white/5">
+                    <NavBody className="dark:border">
                         <NavbarLogo source={source} />
                         <NavItems items={navItems} />
                         <div className="flex items-center gap-4">

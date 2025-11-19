@@ -16,7 +16,7 @@ export default function Home() {
       <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.png" src2={"/homePill.png"} icon={true} social={true} dwbtn={true} />
       <div className="bg-background">
 
-        <div className="min-h-screen bg-background">
+        <div className=" bg-background">
           {/* Reviews */}
           <div className="w-full bg-background py-10 flex flex-col justify-center items-center gap-6" id="icon-link">
             <h1 className="text-5xl font-bold text-center text-primary">
@@ -67,20 +67,20 @@ export default function Home() {
         </div>
 
         {/* How it works */}
-        <div className="md:mb-50 bg-background sm:pb-200 md:pb-0">
+        <div className="bg-background min-h-screen sm:mb-120 md:mb-50 mb-150">
           <h2 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10">La soluzione? Un parcheggio <span className="text-primary">Parkito!</span></h2>
           <ScrollStack className="bg-backround ">
             <ScrollStackItem itemClassName="flex md:flex-row flex-col p-8 bg-white dark:bg-accent rounded-lg justify-between mx-auto md:max-w-5xl w-full">
 
-              <div className="flex flex-col min-h-full md:w-[40%] p-4 justify-center">
+              <div className="flex flex-col min-h-full md:w-[30%] lg:w-[50%] md:w-[40%] p-4 justify-center items-start">
 
                 <h3 className="text-2xl w-full font-bold text-accent-foreground mb-4 uppercase">
                   Prepara un documento e
                 </h3>
-                <h2 className="text-4xl md:w-lg font-bold text-primary">
+                <h2 className="text-4xl lg:w-lg font-bold text-primary">
                   Prenota in anticipo direttamente dall&apos;app
                 </h2>
-                <p className="text-lg md:w-lg">Per poche ore o per più giorni, in base alle tue necessità e senza vincoli orari</p>
+                <p className="text-lg lg:w-lg">Per poche ore o per più giorni, in base alle tue necessità e senza vincoli orari</p>
 
               </div>
               <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg h-full md:w-[40%] mx-auto md:mx-0">
@@ -88,37 +88,39 @@ export default function Home() {
               </video>
 
             </ScrollStackItem>
-            <ScrollStackItem itemClassName="flex md:flex-row flex-col p-8 bg-white dark:bg-accent rounded-lg  mx-auto md:max-w-5xl w-full">
-              {width > 768 &&
+
+            <ScrollStackItem itemClassName="flex md:flex-row flex-col p-8 bg-white dark:bg-accent rounded-lg justify-between mx-auto md:max-w-5xl w-full">
+              {width >= 768 &&
                 <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg h-full md:w-[40%] mx-auto md:mx-0">
                   <source src={"/mappa-edited.mp4"} type="video/mp4" />
                 </video>}
 
-              <div className="flex flex-col min-h-full md:w-[40%] p-4 justify-center">
+              <div className="flex flex-col min-h-full  lg:w-[50%] md:w-[40%] p-4 justify-center items-end">
 
                 <h3 className="text-2xl w-full font-bold text-accent-foreground mb-4 uppercase">
                   Scegli tra più di 300 parcheggi
                 </h3>
-                <h2 className="text-4xl md:w-lg font-bold text-primary">
+                <h2 className="text-4xl lg:w-lg font-bold text-primary">
                   Un parcheggio privato a tua disposizione
                 </h2>
-                <p className="text-lg md:w-lg">Box, posti auto, silos: durante la sosta entri ed esci tutte le volte che vuoi</p>
+                <p className="text-lg lg:w-lg">Box, posti auto, silos: durante la sosta entri ed esci tutte le volte che vuoi</p>
               </div>
-              {width < 769 &&
+              {width < 768 &&
                 <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg h-full md:w-[40%] mx-auto md:mx-0">
                   <source src={"/mappa-edited.mp4"} type="video/mp4" />
                 </video>}
             </ScrollStackItem>
+
             <ScrollStackItem itemClassName="flex md:flex-row flex-col p-8 bg-white dark:bg-accent rounded-lg justify-between mx-auto md:max-w-5xl w-full">
-              <div className="flex flex-col min-h-full md:w-[40%] p-4 justify-center">
+              <div className="flex flex-col min-h-full  lg:w-[50%] md:w-[40%] p-4 justify-center items-start">
 
                 <h3 className="text-2xl w-full font-bold text-accent-foreground mb-4 uppercase">
                   accedi tramite l&apos;app
                 </h3>
-                <h2 className="text-4xl md:w-lg font-bold text-chart-5">
+                <h2 className="text-4xl lg:w-lg font-bold text-chart-5">
                   Massima sicurezza per la tua auto
                 </h2>
-                <p className="text-lg md:w-lg">I parcheggi sono verificati e in contesti tranquilli. Dimentica il caos di strisce blu e autorimesse.</p>
+                <p className="text-lg lg:w-lg">I parcheggi sono verificati e in contesti tranquilli. Dimentica il caos di strisce blu e autorimesse.</p>
 
               </div>
               <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg h-full md:w-[40%] mx-auto md:mx-0">

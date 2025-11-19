@@ -80,22 +80,32 @@ export default function page() {
                     </section>
                 </div>
             </div>
-
-            <div className="grid md:grid-cols-3 grid-cols-2 bg-linear-to-b from-chart-1 to-primary gap-8 w-[50%] mx-auto py-24 px-12 rounded-lg mb-24">
-                {team.map((member, idx) => (
-                    <div key={`team-member-${idx}`} className="flex flex-col items-center justify-center">
-                        <Avatar className="w-36 h-36">
-                            <AvatarImage src={member.image}></AvatarImage>
-                            <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                        </Avatar>
-                        <h2 className="text-2xl font-bold text-white">{member.name}</h2>
-                        <p className="text-xl mb-2 text-white">{member.role}</p>
-                        <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                            <Linkedin className="w-6 h-6 hover:opacity-70 cursor-pointer text-white" />
-                        </Link>
-                    </div>
-                ))}
+            <div className=" bg-linear-to-b from-chart-1 to-primary">
+                <div className="grid md:grid-cols-3 grid-cols-2 w-[50%] gap-8 mx-auto py-24 px-12 rounded-lg mb-24">
+                    {team.map((member, idx) => (
+                        <div key={`team-member-${idx}`} className="flex flex-col items-center justify-center">
+                            <Avatar className="w-36 h-36">
+                                <AvatarImage src={member.image}></AvatarImage>
+                                <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                            <h2 className="text-2xl font-bold text-white">{member.name}</h2>
+                            <p className="text-xl mb-2 text-white">{member.role}</p>
+                            <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                                <Linkedin className="w-6 h-6 hover:opacity-70 cursor-pointer text-white" />
+                            </Link>
+                        </div>
+                    ))}
+                </div>
             </div>
+
+            <div>
+                <h2 className="text-4xl font-bold text-center mb-12 text-primary">Powered By</h2>
+                <div className="flex flex-row items-center justify-center gap-16 mb-24">
+
+                </div>
+
+            </div>
+
         </>
     )
 }
