@@ -1,7 +1,5 @@
 "use client";
 
-import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -16,6 +14,10 @@ export default function LoginClient() {
 
     const handleLogin = async () => {
         try {
+            // dynamically import firebase only on the client
+            const { signInWithPopup } = await import("firebase/auth");
+            const { auth, provider } = await import("@/lib/firebase");
+
             const result = await signInWithPopup(auth, provider);
             const email = result.user.email || "";
 
