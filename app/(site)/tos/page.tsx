@@ -3,6 +3,12 @@ import fs from "fs";
 import path from "path";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Termini e Condizioni",
+    description: "Leggi i termini e condizioni di utilizzo dell'app Parkito.",
+};
 
 // Server component
 export default async function TermsPage() {

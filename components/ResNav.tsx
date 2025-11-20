@@ -42,21 +42,17 @@ export default function ResNav() {
             link: "/",
         },
         {
-            name: "Città",
-            link: "",
+            name: "Dove Siamo",
+            link: "/citta",
         },
-        // {
-        //     name: "Dove Siamo",
-        //     link: "/citta",
-        // },
         {
             name: "Diventa Host",
             link: "/host",
         },
-        {
-            name: "Cos'è Parkito",
-            link: "/about",
-        },
+        // {
+        //     name: "Cos'è Parkito",
+        //     link: "/about",
+        // },
         {
             name: "Blog",
             link: "/blog"

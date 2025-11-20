@@ -61,7 +61,7 @@ export default function Banner({ src, src2, title, subtitle, btn1, link1, text1,
                     </div>
                 </div>
                 <div className="relative flex justify-center  mt-12 md:mt-0">
-                    <Image src={src} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl w-[60em] " />
+                    <Image src={src} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl w-[50em] " />
                     <Image src={src2} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl absolute z-10 w-[25em] min-w-[50%] -right-10 md:-bottom-3 -bottom-2" />
 
                 </div>
@@ -112,8 +112,7 @@ export default function Banner({ src, src2, title, subtitle, btn1, link1, text1,
                             {title}
                         </h1>
                     </div>
-                    <p className="font-semibold text-center text-chart-3 text-lg mb-6">{subtitle}</p>
-
+                    <p className="font-semibold text-center text-chart-3 text-lg mb-2">{subtitle}</p>
                     <div className="flex justify-center gap-4 mt-4">
                         <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996">
                             <Image src="/applebtn.png" alt="App Store" width={150} height={50} />
@@ -122,7 +121,7 @@ export default function Banner({ src, src2, title, subtitle, btn1, link1, text1,
                             <Image src="/googlebtn.png" alt="Google Play" width={150} height={50} />
                         </Link>
                     </div>
-                    <Image src={src2} alt="App preview" width={1500} height={1800} className="mt-20 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%]" />
+
                 </div>
 
                 {/* Social icons */}

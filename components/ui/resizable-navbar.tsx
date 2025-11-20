@@ -51,6 +51,7 @@ interface MobileNavMenuProps {
   onClose: () => void;
 }
 
+
 export const Navbar = ({ children, className }: NavbarProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({
@@ -110,10 +111,18 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         className,
       )}
     >
-      {children}
+      {React.Children.map(children, (child) =>
+        React.isValidElement(child)
+          ? React.cloneElement(
+            child as React.ReactElement<{ visible?: boolean }>,
+            { visible }
+          )
+          : child
+      )}
     </motion.div>
   );
 };
+
 
 export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
@@ -178,7 +187,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         damping: 50,
       }}
       className={cn(
-        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-white dark:bg-black px-0 py-2 my-4 rounded-full border border-primary/10",
+        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-white dark:bg-black px-0 my-4 rounded-full border border-primary/10",
         visible && "bg-white/60 dark:bg-neutral-950/80",
         className,
       )}
@@ -195,7 +204,7 @@ export const MobileNavHeader = ({
   return (
     <div
       className={cn(
-        "flex w-full px-6 py-2 rounded-full flex-row items-center justify-between",
+        "flex w-full px-6 rounded-full flex-row items-center justify-between",
         className,
       )}
     >
@@ -243,18 +252,23 @@ export const MobileNavToggle = ({
   );
 };
 
-export const NavbarLogo = ({ source }: { source: string }) => {
+export const NavbarLogo = ({
+  source,
+  visible,
+}: {
+  source: string;
+  visible?: boolean;
+}) => {
+  const finalSrc = visible ? "/logo-cropped.png" : source;
+
   return (
-    <Link
-      href="/"
-      className="relative z-20 flex items-center py-1 "
-    >
+    <Link href="/" className="relative z-20 flex items-center py-1 ">
       <Image
-        src={source}
+        src={finalSrc}
         alt="logo"
         width={800}
-        height={400}
-        className="h-16 w-24 object-contain"
+        height={200}
+        className={`${visible ? 'h-16 w-14' : 'h-16 w-24'} object-contain`}
       />
     </Link>
   );

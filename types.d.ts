@@ -134,3 +134,9 @@ export type blogFaq = {
     city: string;
     faqs: FAQ[];
 };
+
+export type Team = {
+    name: string,
+    option: string[],
+    url: string,
+}

@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Linkedin } from "lucide-react";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -42,14 +43,21 @@ const team = [
     }
 ]
 
+export const metadata: Metadata = {
+    title: "Chi Siamo",
+    description: "Scopri di più su Parkito, la prima app per il Park Sharing in Italia.",
+};
+
 export default function page() {
     return (
         <>
             <div className="min-h-screen w-full flex flex-row items-center justify-between p-24">
-                <div className="text-center">
-                    <h1 className="w-[80%] text-7xl font-bold mb-4 text-primary">Chi siamo</h1>
-                    <section className="w-[80%] text-xl">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum iste consequatur incidunt similique dolor ea, rem, dicta unde sint et maiores dolorum. Magni, repellat! Magni alias ab eius. Nulla, consectetur.
+                <div className="text-center w-[60%] mx-auto">
+                    <h1 className="text-7xl font-bold mb-4 text-primary">La prima piattaforma
+                        <br />di Park Sharing in Italia!</h1>
+                    <section className="text-4xl">
+                        Parkito è la prima piattaforma di <span className="font-bold text-chart-2">Park Sharing</span> in Italia che rende il parcheggio facile, sicuro e sostenibile, riducendo traffico e stress urbano per una mobilità più intelligente.
+                        Ci occupiamo di creare parcheggi in zone dove non esistono senza ridurre ulteriormente il suolo pubblico, sfruttando le migliaia di <span className="font-bold text-chart-2">box e posti auto inutilizzati</span> in tutte le città.
                     </section>
                 </div>
 
@@ -63,20 +71,20 @@ export default function page() {
                 </div>
 
             </div>
-            <div className="min-h-screen w-full flex flex-row items-center justify-end p-24">
+            <div className="min-h-screen w-full flex flex-row items-center justify-between p-24">
                 <div>
                     <Image
-                        src="/home_image.png"
+                        src="/parking-parkito.webp"
                         alt="About Us Illustration"
                         width={400}
                         height={400}
                     />
                 </div>
 
-                <div className="text-center flex flex-col items-end justify-end">
-                    <h1 className="w-[80%] text-7xl font-bold mb-4 text-primary">Chi siamo</h1>
-                    <section className="w-[80%] text-xl">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum iste consequatur incidunt similique dolor ea, rem, dicta unde sint et maiores dolorum. Magni, repellat! Magni alias ab eius. Nulla, consectetur.
+                <div className="text-center w-[60%] mx-auto">
+                    <h1 className="text-7xl font-bold mb-4 text-primary">Il nostro obiettivo? </h1>
+                    <section className="text-4xl">
+                        Diventare la piattaforma di riferimento per una gestione intelligente e sostenibile degli spazi urbani, connettendo persone, luoghi e mobilità per città più vivibili e accessibili
                     </section>
                 </div>
             </div>
@@ -98,11 +106,15 @@ export default function page() {
                 </div>
             </div>
 
-            <div>
-                <h2 className="text-4xl font-bold text-center mb-12 text-primary">Powered By</h2>
-                <div className="flex flex-row items-center justify-center gap-16 mb-24">
-
-                </div>
+            <div className="">
+                <h2 className="text-4xl font-bold text-center mb-12 text-primary italic">Powered By</h2>
+                <Image
+                    src="/b4i-logo.png"
+                    alt="Politecnico di Milano Logo"
+                    width={550}
+                    height={550}
+                    className="mx-auto mb-10"
+                />
 
             </div>
 

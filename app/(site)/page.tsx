@@ -8,9 +8,19 @@ import Faq from "@/components/Faq";
 import Link from "next/link";
 import ScrollStack, { ScrollStackItem } from '@/components/ScrollStack';
 import { useWidth } from "@/hooks/useWidth";
+import { useEffect } from "react";
+
 
 export default function Home() {
   const width = useWidth();
+
+  useEffect(() => {
+    // Scroll to top on mount
+    document.title = "Home | Parkito - Parcheggi Privati in Condivisione";
+  }, []);
+
+
+
   return (
     <>
       <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.png" src2={"/homePill.png"} icon={true} social={true} dwbtn={true} />
@@ -22,9 +32,14 @@ export default function Home() {
             <h1 className="text-5xl font-bold text-center text-primary">
               Prova l&apos;esperienza Parkito
             </h1>
-            <p className="text-chart-2 font-semibold text-lg">
-              Oltre 10.000 utenti soddisfatti in tutta Italia
-            </p>
+            {
+              width > 640 ?
+                <p className="text-chart-2 font-semibold text-lg">
+                  Oltre 10.000 utenti soddisfatti in tutta Italia
+                </p> :
+                <Image src='/homePill.png' alt="App preview" width={1500} height={1800} className="mt-4 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%]" />
+
+            }
             <ReviewsList />
           </div>
 
@@ -72,7 +87,7 @@ export default function Home() {
           <ScrollStack className="bg-backround ">
             <ScrollStackItem itemClassName="flex md:flex-row flex-col p-8 bg-white dark:bg-accent rounded-lg justify-between mx-auto md:max-w-5xl w-full">
 
-              <div className="flex flex-col min-h-full md:w-[30%] lg:w-[50%] md:w-[40%] p-4 justify-center items-start">
+              <div className="flex flex-col min-h-full lg:w-[50%] md:w-[40%] p-4 justify-center items-start">
 
                 <h3 className="text-2xl w-full font-bold text-accent-foreground mb-4 uppercase">
                   Prepara un documento e
@@ -83,7 +98,7 @@ export default function Home() {
                 <p className="text-lg lg:w-lg">Per poche ore o per più giorni, in base alle tue necessità e senza vincoli orari</p>
 
               </div>
-              <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg h-full md:w-[40%] mx-auto md:mx-0">
+              <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg md:h-full md:w-[40%] mx-auto md:mx-0">
                 <source src={"/ricerca-edited.mp4"} type="video/mp4" />
               </video>
 
@@ -106,7 +121,7 @@ export default function Home() {
                 <p className="text-lg lg:w-lg">Box, posti auto, silos: durante la sosta entri ed esci tutte le volte che vuoi</p>
               </div>
               {width < 768 &&
-                <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg h-full md:w-[40%] mx-auto md:mx-0">
+                <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg md:h-full md:w-[40%] mx-auto md:mx-0">
                   <source src={"/mappa-edited.mp4"} type="video/mp4" />
                 </video>}
             </ScrollStackItem>
@@ -123,7 +138,7 @@ export default function Home() {
                 <p className="text-lg lg:w-lg">I parcheggi sono verificati e in contesti tranquilli. Dimentica il caos di strisce blu e autorimesse.</p>
 
               </div>
-              <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg h-full md:w-[40%] mx-auto md:mx-0">
+              <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg md:h-full md:w-[40%] mx-auto md:mx-0">
                 <source src={"/istruzioni-edited.mp4"} type="video/mp4" />
               </video>
             </ScrollStackItem>

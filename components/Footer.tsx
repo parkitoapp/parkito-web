@@ -72,9 +72,15 @@ export default function Footer() {
                                         Chi siamo
                                     </Link>
                                 </li>
-                                <li>Blog</li>
                                 <li>
-                                    Contatti
+                                    <Link href="/blog" title="Blog">
+                                        Blog
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/contatti" title="Contact Us">
+                                        Contatti
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
@@ -82,7 +88,7 @@ export default function Footer() {
                 </div>
 
                 <div className='w-full bg-white h-[0.01em] my-6' />
-                <p className='text-white text-center mt-2 font-bold'>© 2024 Parkito - All rights reserved</p>
+                <p className='text-white text-center mt-2 font-bold'>© 2026 Parkito - All rights reserved</p>
                 <ul className='flex flex-row gap-4 text-white justify-center mt-3 text-sm'>
                     <li>
                         <Link
