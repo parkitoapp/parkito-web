@@ -6,11 +6,12 @@
  */
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, ArrowLeftIcon } from "lucide-react";
 import { ErrorType } from "@/types";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
-export default function Error({ title, message, onClick }: ErrorType) {
+export default function Error({ title, message, onClick, src }: ErrorType) {
     return (
         <Alert variant="destructive" className="w-[50%]">
             <AlertTitle>
@@ -18,6 +19,9 @@ export default function Error({ title, message, onClick }: ErrorType) {
             </AlertTitle>
             <AlertDescription>{message}</AlertDescription>
             {onClick && <Button variant="destructive" className="mt-4" onClick={onClick}>Retry</Button>}
+            {src && <Button variant="destructive" className="mt-4" asChild>
+                <Link href={src}><ArrowLeftIcon className="inline" /> Torna indietro</Link>
+            </Button>}
         </Alert>
     )
 }

@@ -68,7 +68,7 @@ export default function Banner({ src, src2, title, subtitle, btn1, link1, text1,
                     </div>
                 </div>
                 <div className="relative flex justify-center  mt-12 md:mt-0">
-                    <Image src={src} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl w-[50em] " />
+                    <Image src={src} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl w-[50em] rounded-lg " />
                     <Image src={src2} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl absolute z-10 w-[25em] min-w-[50%] -right-10 md:-bottom-3 -bottom-2" />
 
                 </div>

@@ -6,21 +6,20 @@ import Error from "@/components/Error";
 import Loading from "@/components/Loading";
 import useSupabaseJson from "@/hooks/useSupabase";
 import { Parking } from "@/types";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { Card, CardFooter, CardTitle } from "@/components/ui/card";
 import { slugify } from '@/lib/slugify';
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function ParkingList({ city }: { city?: string }) {
-    const router = useRouter();
     const params = useParams();
 
     // Prefer explicit prop, else fallback to route param (client-side navigation)
     const routeSlug = typeof params?.slug === 'string' ? params.slug : undefined;
     const citySlug = city ?? routeSlug;
 
-    console.log("City param (prop):", city, "routeSlug:", routeSlug, "using:", citySlug);
+    // console.log("City param (prop):", city, "routeSlug:", routeSlug, "using:", citySlug);
 
     const { data: parkings, loading, error } = useSupabaseJson<Parking>(
         "parking_sheet_data",
@@ -28,15 +27,7 @@ export default function ParkingList({ city }: { city?: string }) {
     );
 
     if (loading) return <Loading />;
-    if (error) {
-        return (
-            <Error
-                message={error.message}
-                title="Parcheggio non trovato, torna indietro"
-                onClick={() => router.push("/citta")}
-            />
-        );
-    }
+    if (error) return <Error message={error.message} title="Parcheggio non trovato, torna indietro" src={`/citta/${city}`} />
 
     // Safety: hook might return undefined for 1 render
     const safeParkings = Array.isArray(parkings) ? parkings : [];
@@ -48,11 +39,12 @@ export default function ParkingList({ city }: { city?: string }) {
     });
 
     return (
-        <div>
-            <h1>Parkings in {citySlug}</h1>
-            {filtered.map((p) => (
-                <Card key={p.id} className="border shadow-md rounded-lg overflow-hidden bg-transparent hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg">
-                    {/* <Image
+        <div className="min-h-screen w-full px-8">
+            <h1 className="text-7xl font-bold text-chart-2">I migliori parcheggi di {citySlug}</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-10 py-10 h-full">
+                {filtered.map((p) => (
+                    <Card key={p.id} className="border shadow-md rounded-lg overflow-hidden bg-transparent hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg">
+                        {/* <Image
                         src={p.address}
                         alt={p.name}
                         width={400}
@@ -61,18 +53,20 @@ export default function ParkingList({ city }: { city?: string }) {
                     /> */}
 
 
-                    <CardFooter className="flex flex-row gap-2 items-center px-2 py-4 w-full">
-                        <CardTitle className="text-chart-2 text-xl items-center justify-start text-left w-full">{p.name}</CardTitle>
+                        <CardFooter className="flex flex-row gap-2 items-center justify-center  py-4 w-full px-10">
+                            <CardTitle className="text-chart-2 text-xl items-center justify-start text-left w-full">{p.name}</CardTitle>
+
+                            <Button variant="default" className=" p-6 rounded-lg" asChild>
+                                <Link href={`/citta/${slugify(p.city)}/${slugify(p.address)}`}>
+                                    Scopri i dettagli &rarr;
+                                </Link>
+                            </Button>
 
 
-                        <Link href={`/citta/${slugify(p.city)}/${slugify(p.address)}`}>
-                            Scopri i dettagli &rarr;
-                        </Link>
-
-
-                    </CardFooter>
-                </Card>
-            ))}
+                        </CardFooter>
+                    </Card>
+                ))}
+            </div>
         </div>
     );
 }

@@ -1,12 +1,12 @@
-"use client";
-
-import { useEffect, useState } from "react";
+"use client";;
 import useSupabaseJson from "@/hooks/useSupabase";
 import { Parking } from "@/types";
 import { slugify } from "@/lib/slugify";
 import Link from "next/link";
 import Loading from "./Loading";
 import Error from "./Error";
+import ReactMarkdown from "react-markdown";
+
 
 interface Props {
     citySlug: string;
@@ -60,7 +60,30 @@ export default function ParkingDetail({ citySlug, parkingAddress }: Props) {
                     <strong>Gestore:</strong> {parking.driver_name}
                 </p>
             )}
-            <p className="mb-4">{parking.description}</p>
+
+            <ReactMarkdown
+                components={{
+                    section: ({ children }) => (
+                        <p className="mb-4 text-gray-800 text-base leading-relaxed">{children}</p>
+                    ),
+                    a: ({ href, children }) => (
+                        <Link
+                            href={href || "#"}
+                            className="text-chart-1 hover:underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {children}
+                        </Link>
+                    ),
+                    h1: ({ children }) => <h1 className="text-5xl font-bold mt-10 mb-6 text-chart-2">{children}</h1>,
+                    h2: ({ children }) => <h2 className="text-3xl font-semibold mt-8 mb-4 text-chart-2">{children}</h2>,
+                    h3: ({ children }) => <h3 className="text-xl font-semibold mt-6 mb-3 text-chart-2">{children}</h3>,
+                    li: ({ children }) => <li className="ml-6 mb-2 list-disc">{children}</li>,
+                }}
+            >
+                {parking.description}
+            </ReactMarkdown>
 
             <Link href={`/citta/${citySlug}`} className="text-blue-600 underline">
                 Torna ai parcheggi di {parking.city}

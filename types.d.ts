@@ -133,6 +133,7 @@ export type ErrorType = {
     title: string,
     message: string,
     onClick?: () => void
+    src?: string,
 }
 
 export type blogFaq = {
