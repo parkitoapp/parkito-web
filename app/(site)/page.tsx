@@ -16,7 +16,7 @@ export default function Home() {
 
   useEffect(() => {
     // Scroll to top on mount
-    document.title = "Home | Parkito - Parcheggi Privati in Condivisione";
+    document.title = "Home | Parkito";
   }, []);
 
 
@@ -98,7 +98,7 @@ export default function Home() {
                 <p className="text-lg lg:w-lg">Per poche ore o per più giorni, in base alle tue necessità e senza vincoli orari</p>
 
               </div>
-              <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg md:h-full md:w-[40%] mx-auto md:mx-0">
+              <video autoPlay playsInline loop muted preload="auto" className=" bg-transparent rounded-lg md:h-full md:w-[40%] mx-auto md:mx-0">
                 <source src={"/ricerca-edited.mp4"} type="video/mp4" />
               </video>
 
@@ -106,7 +106,7 @@ export default function Home() {
 
             <ScrollStackItem itemClassName="flex md:flex-row flex-col p-8 bg-white dark:bg-accent rounded-lg justify-between mx-auto md:max-w-5xl w-full">
               {width >= 768 &&
-                <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg h-full md:w-[40%] mx-auto md:mx-0">
+                <video autoPlay playsInline loop muted preload="auto" className=" bg-transparent rounded-lg h-full md:w-[40%] mx-auto md:mx-0">
                   <source src={"/mappa-edited.mp4"} type="video/mp4" />
                 </video>}
 
@@ -121,7 +121,7 @@ export default function Home() {
                 <p className="text-lg lg:w-lg">Box, posti auto, silos: durante la sosta entri ed esci tutte le volte che vuoi</p>
               </div>
               {width < 768 &&
-                <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg md:h-full md:w-[40%] mx-auto md:mx-0">
+                <video autoPlay playsInline loop muted preload="auto" className=" bg-transparent rounded-lg md:h-full md:w-[40%] mx-auto md:mx-0">
                   <source src={"/mappa-edited.mp4"} type="video/mp4" />
                 </video>}
             </ScrollStackItem>
@@ -138,7 +138,7 @@ export default function Home() {
                 <p className="text-lg lg:w-lg">I parcheggi sono verificati e in contesti tranquilli. Dimentica il caos di strisce blu e autorimesse.</p>
 
               </div>
-              <video autoPlay playsInline loop muted className=" bg-transparent rounded-lg md:h-full md:w-[40%] mx-auto md:mx-0">
+              <video autoPlay playsInline loop muted preload="auto" className=" bg-transparent rounded-lg md:h-full md:w-[40%] mx-auto md:mx-0">
                 <source src={"/istruzioni-edited.mp4"} type="video/mp4" />
               </video>
             </ScrollStackItem>

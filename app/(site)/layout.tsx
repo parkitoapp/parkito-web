@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../globals.css";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { Inter_Tight } from "next/font/google";
 // import Nav from "@/components/Nav";
@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import ResNav from "@/components/ResNav";
 import Link from "next/link";
+import { Toaster } from "@/components/ui/sonner";
+import Head from "next/head";
 
 const interTight = Inter_Tight(
   {
@@ -26,14 +28,16 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-      </head>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+      </Head>
       <body
         className={`${interTight.className} antialiased `}
       >
@@ -52,6 +56,7 @@ export default function RootLayout({
           </main>
           <BackToTop />
           <Footer />
+          <Toaster richColors position="top-right" />
         </ThemeProvider>
       </body>
     </html >

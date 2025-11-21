@@ -135,8 +135,26 @@ export type blogFaq = {
     faqs: FAQ[];
 };
 
-export type Team = {
+export type TeamMember = {
+    id: string;
+    name: string;
+    url: string;
+    image: string;
+};
+
+export type SelectOption = {
+    label: string;
+    memberId: string;
+};
+
+export type Parking = {
+    id: number,
     name: string,
-    option: string[],
-    url: string,
+    address: string,
+    city: string,
+    vehicle_type: string,
+    parking_type: string,
+    driver_name: string,
+    description: string,
+
 }
