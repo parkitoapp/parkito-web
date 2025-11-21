@@ -1,5 +1,3 @@
-"use client";
-
 import Banner from "@/components/Banner";
 import ReviewsList from "@/components/ReviewsList";
 import Image from "next/image";
@@ -7,20 +5,12 @@ import { faq } from "@/data/faq";
 import Faq from "@/components/Faq";
 import Link from "next/link";
 import ScrollStack, { ScrollStackItem } from '@/components/ScrollStack';
-import { useWidth } from "@/hooks/useWidth";
-import { useEffect } from "react";
 
+export const metadata = {
+  title: 'Home',
+}
 
 export default function Home() {
-  const width = useWidth();
-
-  useEffect(() => {
-    // Scroll to top on mount
-    document.title = "Home | Parkito";
-  }, []);
-
-
-
   return (
     <>
       <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.png" src2={"/homePill.png"} icon={true} social={true} dwbtn={true} />
@@ -32,14 +22,12 @@ export default function Home() {
             <h1 className="text-5xl font-bold text-center text-primary">
               Prova l&apos;esperienza Parkito
             </h1>
-            {
-              width > 640 ?
-                <p className="text-chart-2 font-semibold text-lg">
-                  Oltre 10.000 utenti soddisfatti in tutta Italia
-                </p> :
-                <Image src='/homePill.png' alt="App preview" width={1500} height={1800} className="mt-4 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%]" />
-
-            }
+            <>
+              <p className="hidden sm:block text-chart-2 font-semibold text-lg">
+                Oltre 10.000 utenti soddisfatti in tutta Italia
+              </p>
+              <Image src='/homePill.png' alt="App preview" width={1500} height={1800} className="mt-4 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%] sm:hidden" />
+            </>
             <ReviewsList />
           </div>
 
@@ -105,11 +93,9 @@ export default function Home() {
             </ScrollStackItem>
 
             <ScrollStackItem itemClassName="flex md:flex-row flex-col p-8 bg-white dark:bg-accent rounded-lg justify-between mx-auto md:max-w-5xl w-full">
-              {width >= 768 &&
-                <video autoPlay playsInline loop muted preload="auto" className=" bg-transparent rounded-lg h-full md:w-[40%] mx-auto md:mx-0">
-                  <source src={"/mappa-edited.mp4"} type="video/mp4" />
-                </video>}
-
+              <video autoPlay playsInline loop muted preload="auto" className="hidden md:block bg-transparent rounded-lg h-full md:w-[40%] mx-auto md:mx-0">
+                <source src={"/mappa-edited.mp4"} type="video/mp4" />
+              </video>
               <div className="flex flex-col min-h-full  lg:w-[50%] md:w-[40%] p-4 justify-center items-end">
 
                 <h3 className="text-2xl w-full font-bold text-accent-foreground mb-4 uppercase">
@@ -120,10 +106,9 @@ export default function Home() {
                 </h2>
                 <p className="text-lg lg:w-lg">Box, posti auto, silos: durante la sosta entri ed esci tutte le volte che vuoi</p>
               </div>
-              {width < 768 &&
-                <video autoPlay playsInline loop muted preload="auto" className=" bg-transparent rounded-lg md:h-full md:w-[40%] mx-auto md:mx-0">
-                  <source src={"/mappa-edited.mp4"} type="video/mp4" />
-                </video>}
+              <video autoPlay playsInline loop muted preload="auto" className="md:hidden bg-transparent rounded-lg md:h-full md:w-[40%] mx-auto md:mx-0">
+                <source src={"/mappa-edited.mp4"} type="video/mp4" />
+              </video>
             </ScrollStackItem>
 
             <ScrollStackItem itemClassName="flex md:flex-row flex-col p-8 bg-white dark:bg-accent rounded-lg justify-between mx-auto md:max-w-5xl w-full">

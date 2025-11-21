@@ -13,6 +13,7 @@ import Faq from "@/components/Faq";
 import { FAQ } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { ChevronsLeft } from "lucide-react";
+import { Metadata } from "next";
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source: SanityImage) => builder.image(source).url();
@@ -23,6 +24,20 @@ type Props = {
     params: { slug: string } | Promise<{ slug: string }>;
 };
 
+// Generate dynamic metadata for each blog post (title from post)
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { slug } = await params;
+    const post = await getPost(slug);
+    if (!post) {
+        return {
+            title: 'Post not found',
+        };
+    }
+
+    return {
+        title: post.title,
+    };
+}
 
 // PortableText component mapping: ensure Sanity block headings get Tailwind styles
 const portableComponents = {

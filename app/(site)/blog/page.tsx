@@ -5,6 +5,8 @@ import Banner from "@/components/Banner";
 import { cities } from "@/data/cities";
 import BlogRender from "@/components/BlogRender";
 import { Metadata } from "next";
+
+
 export const metadata: Metadata = {
     title: "Blog",
     description: "Scopri il blog di Parkito dove puoi trovare risposta alle tue curiosità.",
