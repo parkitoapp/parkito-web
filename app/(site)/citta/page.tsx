@@ -3,6 +3,8 @@
  * Metadata includes title, keywords, and description for SEO.
  * Uses CityList component to render the list of cities.
  * @returns JSX.Element
+ * 
+ * app/citta/page.tsx
  */
 
 import { Metadata } from "next"

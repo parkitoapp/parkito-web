@@ -1,3 +1,5 @@
+//app/components/ParkingList.tsx
+
 "use client";
 
 import Error from "@/components/Error";
@@ -63,9 +65,10 @@ export default function ParkingList({ city }: { city?: string }) {
                         <CardTitle className="text-chart-2 text-xl items-center justify-start text-left w-full">{p.name}</CardTitle>
 
 
-                        <Button variant="default" className="p-0 mt-2" asChild>
-                            <Link href={p.address}>Scopri i migliori parcheggi a {p.name} &rarr;</Link>
-                        </Button>
+                        <Link href={`/citta/${slugify(p.city)}/${slugify(p.address)}`}>
+                            Scopri i dettagli &rarr;
+                        </Link>
+
 
                     </CardFooter>
                 </Card>

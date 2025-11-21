@@ -1,3 +1,5 @@
+// components/CityList.tsx
+
 "use client";
 
 import useSupabaseJson from "@/hooks/useSupabase";

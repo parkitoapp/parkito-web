@@ -1,7 +1,13 @@
+import ParkingDetail from "@/components/ParkingDetail";
 
+interface Params {
+    slug: string;
+    address: string;
+}
 
-export default function page() {
-    return (
-        <div>Address Page</div>
-    )
+// Server component
+export default async function ParkingDetailPage({ params }: { params: Promise<Params> }) {
+    const { slug, address } = await params; // <- unwrap the promise
+
+    return <ParkingDetail citySlug={slug} parkingAddress={address} />;
 }
