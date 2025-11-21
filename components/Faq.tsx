@@ -1,3 +1,10 @@
+/**
+ * Faq component to display a list of frequently asked questions.
+ * 
+ * @param {FaqProps} props - The properties including an array of FAQ items.
+ * @returns {JSX.Element} The rendered Faq component.
+ */
+
 import {
     Accordion,
     AccordionContent,

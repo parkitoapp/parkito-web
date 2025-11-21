@@ -1,3 +1,10 @@
+/**
+ * ContactFormClient component for user inquiries.
+ * Allows users to select a topic and contact the appropriate team member.
+ * 
+ * @returns {JSX.Element} The ContactFormClient component.
+ */
+
 "use client";
 
 import React, { useState } from 'react';

@@ -1,7 +1,13 @@
+/**
+ * Blog page displaying posts and a banner.
+ * Metadata includes title and description for SEO.
+ * Fetches blog posts and city filters to render the BlogRender component.
+ * @returns JSX.Element
+ */
+
 import { getPosts } from "@/lib/fetchPosts";
 import { BlogPost } from "@/types";
 import Banner from "@/components/Banner";
-
 import { cities } from "@/data/cities";
 import BlogRender from "@/components/BlogRender";
 import { Metadata } from "next";

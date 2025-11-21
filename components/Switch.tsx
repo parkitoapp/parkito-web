@@ -1,3 +1,10 @@
+/**
+ * ThemeSwitch component to toggle between light and dark themes.
+ * Utilizes next-themes for theme management and lucide-react for icons.
+ * 
+ * @returns {JSX.Element} The ThemeSwitch component.
+ */
+
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";

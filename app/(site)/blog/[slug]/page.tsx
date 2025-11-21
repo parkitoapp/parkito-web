@@ -1,3 +1,13 @@
+/**
+ * Dynamic blog post page.
+ * Fetches and displays a blog post based on the slug parameter.
+ * Generates dynamic metadata for each post.
+ * Renders content sections with PortableText and images.
+ * Includes author info, tags, and FAQs related to the post's city.
+ * @param params - Object containing the slug of the blog post.
+ * @returns JSX.Element
+ */
+
 import { getPost } from "@/lib/fetchPosts";
 import { PortableText } from "@portabletext/react";
 import imageUrlBuilder from "@sanity/image-url";

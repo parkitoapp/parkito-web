@@ -1,3 +1,11 @@
+/**
+ * Back to Top button component.
+ * Appears when the user scrolls down the page.
+ * Smoothly scrolls the user back to the top when clicked.
+ * 
+ * @returns {JSX.Element | null} The Back to Top button or null if not visible.
+ */
+
 'use client'
 
 import { useEffect, useState } from 'react'

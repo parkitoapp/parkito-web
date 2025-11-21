@@ -1,3 +1,10 @@
+/**
+ * Banner component used as hero
+ * param props - Banner properties including images, text, buttons, and options.
+ * @returns JSX.Element
+ * 
+ */
+
 "use client";
 
 import { useState, useEffect } from "react";

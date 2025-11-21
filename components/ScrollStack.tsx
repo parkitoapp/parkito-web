@@ -1,3 +1,10 @@
+/**
+ * ScrollStack component to create a scrollable stack of items with scaling and transformation effects.
+ * 
+ * @param {ScrollStackProps} props - The properties for configuring the ScrollStack behavior and appearance.
+ * @returns {JSX.Element} The ScrollStack component.
+ */
+
 "use client";
 
 import React, { ReactNode, useLayoutEffect, useRef, useCallback } from "react";

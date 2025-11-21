@@ -1,3 +1,11 @@
+/**
+ * BlogRender component to display and filter blog posts.
+ * Includes search functionality and city-based filtering.
+ * 
+ * @param {Props} props - The properties including blog posts and cities.
+ * @returns {JSX.Element} The rendered BlogRender component.
+ */
+
 'use client'
 
 import { Input } from "@/components/ui/input";

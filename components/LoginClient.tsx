@@ -1,10 +1,18 @@
+/**
+ * LoginClient component for user authentication.
+ * Allows users to sign in with their company account.
+ * Redirects to admin page upon successful login.
+ * Displays error messages for invalid accounts or login failures.
+ * 
+ * @returns {JSX.Element} The LoginClient component.
+ */
+
 "use client";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircle } from "lucide-react";
+import Error from "./Error";
 
 const COMPANY_DOMAIN = "parkito.app";
 
@@ -45,12 +53,7 @@ export default function LoginClient() {
                     Sign in with your company account
                 </Button>
                 {error && (
-                    <Alert variant="destructive" className="w-[50%]">
-                        <AlertTitle>
-                            <AlertCircle className="mr-2" /> Error
-                        </AlertTitle>
-                        <AlertDescription>{error}</AlertDescription>
-                    </Alert>
+                    <Error title="Login Error" message={error} />
                 )}
             </div>
         </div>

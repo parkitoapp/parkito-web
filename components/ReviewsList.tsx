@@ -1,45 +1,38 @@
+/**
+ * ReviewsList component to display a list of user reviews.
+ * Fetches reviews from a Supabase JSON source and displays them in a scrolling logo loop.
+ * Handles loading and error states appropriately.
+ * 
+ * @returns {JSX.Element} The ReviewsList component.
+ */
+
 "use client";
 
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabaseClient";
+
 import { formatDate } from "@/lib/formatDate";
 import { Spinner } from "@/components/ui/spinner";
 import { AppleReview } from "@/types";
 import ReviewCard from "./ReviewCard";
 import LogoLoop from "./LogoLoop";
+import useSupabaseJson from "@/hooks/useSupabase";
+import Error from "./Error";
 
 export default function ReviewsList() {
-    const [reviews, setReviews] = useState<AppleReview[]>([]);
-    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        async function fetchReviewsFromBucket() {
-            try {
-                const { data, error } = await supabase.storage
-                    .from("reviews")
-                    .download("reviews.json");
-
-                if (error) throw error;
-
-                const text = await data.text();
-                const json = JSON.parse(text);
-                console.log("Fetched reviews JSON:", json);
-
-                setReviews(json.ios || []);
-            } catch (err) {
-                console.error("Error fetching reviews from bucket:", err);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchReviewsFromBucket();
-    }, []);
+    const { data: reviews, loading, error, refetch } = useSupabaseJson<AppleReview>(
+        "reviews",
+        "reviews.json",
+        "ios"
+    );
 
     const reviewItems = reviews.map((r) => ({
         node: <ReviewCard key={r.id} name={r.attributes.authorName || "Utente"} rating={r.attributes.rating || 0} title={r.attributes.title || ""} body={r.attributes.body || ""} date={r.attributes.date ? formatDate(r.attributes.date) : ""} />
     }
     ))
+    if (error)
+        return (
+            <Error onClick={refetch} message={error.message} title="Errore di fetch delle reviews" />
+        );
 
     // const reviewItems = [
     //     {

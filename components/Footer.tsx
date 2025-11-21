@@ -1,4 +1,11 @@
-
+/**
+ * Footer component for the Parkito website.
+ * Includes company info, navigation links, social media icons, and legal links.
+ * Utilizes Next.js Image and Link components for optimized performance.
+ * Integrates Iubenda script for privacy and cookie policies.
+ * 
+ * @returns {JSX.Element} The Footer component.
+ */
 import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';

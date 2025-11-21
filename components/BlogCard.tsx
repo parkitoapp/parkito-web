@@ -1,3 +1,9 @@
+/**
+ * BlogCard component to display a blog post summary.
+ * @param {Partial<BlogPost>} props - The properties of the blog post.
+ * @returns {JSX.Element} The rendered BlogCard component.
+ */
+
 import { BlogPost } from "@/types";
 import { Card, CardFooter, CardTitle } from "./ui/card";
 import Image from "next/image";

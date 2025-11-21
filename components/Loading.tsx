@@ -1,3 +1,9 @@
+/**
+ * Loading component to indicate loading state.
+ * 
+ * @returns {JSX.Element} The Loading component.
+ */
+
 import { Spinner } from "@/components/ui/spinner"
 export default function Loading() {
     return (

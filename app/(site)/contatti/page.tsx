@@ -1,3 +1,9 @@
+/**
+ * Contacts page with a banner and contact form.
+ * Includes team member information and selectable options for contact reasons.
+ * @returns JSX.Element
+ */
+
 import Banner from '@/components/Banner'
 import ContactFormClient from '@/components/ContactFormClient'
 import { TeamMember, SelectOption } from '@/types';

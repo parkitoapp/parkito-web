@@ -1,3 +1,9 @@
+/**
+ * ResNav component for responsive navigation bar.
+ * 
+ * @returns {JSX.Element} The ResNav component.
+ */
+
 "use client";
 import {
     Navbar,

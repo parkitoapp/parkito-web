@@ -1,3 +1,11 @@
+/**
+ * CityDropdown component for selecting cities.
+ * Uses a dropdown menu to list cities and their sub-links.
+ * Highlights the active city based on the current pathname.
+ * 
+ * @returns {JSX.Element} The CityDropdown component.
+ */
+
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,

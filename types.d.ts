@@ -129,6 +129,11 @@ export type FAQ = {
     answer: string,
 }
 
+export type ErrorType = {
+    title: string,
+    message: string,
+    onClick?: () => void
+}
 
 export type blogFaq = {
     city: string;
@@ -156,5 +161,4 @@ export type Parking = {
     parking_type: string,
     driver_name: string,
     description: string,
-
 }
