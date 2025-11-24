@@ -25,7 +25,7 @@ export default function Faq({ items }: FaqProps) {
     if (!items?.length) return null;
 
     return (
-        <div className="w-full bg-background">
+        <div className="w-full bg-background rounded-lg">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center text-primary pt-10">FAQ</h1>
 
             <Accordion

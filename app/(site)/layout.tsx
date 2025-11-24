@@ -8,7 +8,7 @@ import BackToTop from "@/components/BackToTop";
 import ResNav from "@/components/ResNav";
 import Link from "next/link";
 import { Toaster } from "@/components/ui/sonner";
-import Head from "next/head";
+import Script from "next/script";
 
 const interTight = Inter_Tight(
   {
@@ -72,10 +72,42 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Head>
+      <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-      </Head>
+        <Script id="iubenda-config" strategy="beforeInteractive">
+          {`
+            var _iub = _iub || [];
+            _iub.csConfiguration = {
+              askConsentAtCookiePolicyUpdate: true,
+              cookiePolicyInOtherWindow: true,
+              floatingPreferencesButtonDisplay: "bottom-right",
+              hasEmailMarketing: false,
+              perPurposeConsent: true,
+              siteId: 2311382,
+              whitelabel: false,
+              cookiePolicyId: 94483316,
+              banner: {
+                acceptButtonDisplay: true,
+                closeButtonRejects: true,
+                customizeButtonDisplay: true,
+                explicitWithdrawal: true,
+                listPurposes: true,
+                position: "float-top-center",
+                showTitle: false
+              }
+            };
+            _iub.csLangConfiguration = {
+              it: { cookiePolicyId: 94483316 }
+            };
+          `}
+        </Script>
+
+        <Script
+          src="https://cs.iubenda.com/autoblocking/2311382.js"
+          strategy="beforeInteractive"
+        />
+      </head>
       <body
         className={`${interTight.className} antialiased `}
       >
@@ -96,6 +128,11 @@ export default function RootLayout({
           <Footer />
           <Toaster richColors position="top-right" />
         </ThemeProvider>
+        <Script
+          src="https://cdn.iubenda.com/cs/iubenda_cs.js"
+          strategy="afterInteractive"
+          async
+        />
       </body>
     </html >
   );

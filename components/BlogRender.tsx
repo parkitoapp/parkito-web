@@ -16,7 +16,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { SearchIcon } from "lucide-react";
-
+import { useSearchParams } from 'next/navigation';
 type Props = {
     posts: BlogPost[],
     cities: string[],
@@ -24,8 +24,16 @@ type Props = {
 
 export default function BlogRender({ posts, cities }: Props) {
 
+    const searchParams = useSearchParams();
     const [query, setQuery] = useState("");
-    const [selectedCity, setSelectedCity] = useState<string | null>(null);
+    const [selectedCity, setSelectedCity] = useState<string | null>(() => {
+        try {
+            return searchParams?.get('city') || null;
+        } catch (e) {
+            // ignore in environments where searchParams isn't available
+            return null;
+        }
+    });
 
     const handleSearch = (value: string) => {
         setQuery(value);
@@ -54,7 +62,7 @@ export default function BlogRender({ posts, cities }: Props) {
 
     return (
         <>
-            <div className="border-b border-b-gray-300">
+            <div className="border-b border-b-gray-300" id="blog">
                 <Label htmlFor="search" hidden aria-description="cerca un post">Cerca un post</Label>
                 <div className="flex flex-row gap-2 items-center">
                     <SearchIcon className="text-chart-2" />

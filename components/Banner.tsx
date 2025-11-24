@@ -79,12 +79,12 @@ export default function Banner({ src, src2, title, subtitle, btn1, link1, text1,
                 social && (
                     <ul className="absolute bottom-4 right-6 flex gap-4">
                         <li>
-                            <Link href="https://instagram.com" aria-label="instagram link">
+                            <Link href="https://www.instagram.com/parkito.app/" aria-label="instagram link">
                                 <Instagram className="text-primary hover:opacity-80 cursor-pointer" />
                             </Link>
                         </li>
                         <li>
-                            <Link href="https://linkedin.com" aria-label="linkedin link">
+                            <Link href="https://www.linkedin.com/company/parkito/" aria-label="linkedin link">
                                 <Linkedin className="text-primary hover:opacity-80 cursor-pointer" />
                             </Link>
                         </li>

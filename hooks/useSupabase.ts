@@ -4,11 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
 type Options = {
-    enabled?: boolean; // If false, skip fetch
-    ttlMs?: number;    // Cache TTL override
+    enabled?: boolean;
+    ttlMs?: number;
 };
 
-const DEFAULT_TTL = 7 * 24 * 60 * 60 * 1000; // 1 week
+const DEFAULT_TTL = 7 * 24 * 60 * 60 * 1000;
 
 export default function useSupabaseJson<T>(
     bucket: string,
@@ -33,25 +33,37 @@ export default function useSupabaseJson<T>(
 
             if (cached) {
                 const parsed = JSON.parse(cached);
-                const now = Date.now();
-                if (now - parsed.timestamp < ttlMs) {
-                    setData(key ? parsed.data[key] || [] : parsed.data || []);
+                if (Date.now() - parsed.timestamp < ttlMs) {
+                    console.log("Using cached:", parsed.data);
+                    setData(key ? parsed.data[key] || [] : parsed.data);
                     setLoading(false);
                     return;
                 }
             }
 
-            const { data: fileData, error } = await supabase.storage.from(bucket).download(file);
+            const { data: fileBlob, error } = await supabase.storage.from(bucket).download(file);
             if (error) throw error;
 
-            const text = await fileData.text();
+            const text = await fileBlob.text();
             const json = JSON.parse(text);
+
+            console.log("SUPABASE JSON FRESH:", json);
 
             localStorage.setItem(cacheKey, JSON.stringify({ data: json, timestamp: Date.now() }));
 
-            setData(key ? json[key] || [] : json || []);
+            if (key) {
+                if (!json[key]) {
+                    console.error(`Key "${key}" missing in JSON`, json);
+                    setData([]);
+                } else {
+                    setData(json[key]);
+                }
+            } else {
+                setData(json);
+            }
+
         } catch (err: unknown) {
-            console.error(`Error fetching ${file} from bucket:`, err);
+            console.error(`Error fetching ${file}`, err);
             setError(err instanceof Error ? err : new Error(String(err)));
             setData([]);
         } finally {

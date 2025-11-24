@@ -14,7 +14,7 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaWhatsapp } from 'react
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-linear-to-b from-chart-1 to-primary">
+        <footer className="w-full bg-linear-to-b from-chart-1 to-primary" aria-description='footer'>
             <div className="max-w-7xl mx-auto px-6 py-10 md:px-24 md:py-16">
                 <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-0">
                     {/* Left block: logo, description, company info */}
@@ -32,13 +32,33 @@ export default function Footer() {
                             </ul>
                         </div>
 
-                        <div className='flex items-center gap-4 my-4'>
-                            <FaLinkedin size={28} className="text-white" />
-                            <FaInstagram size={28} className="text-white" />
-                            <FaWhatsapp size={28} className="text-white" />
-                            <FaFacebook size={28} className="text-white" />
-                            <FaTiktok size={28} className="text-white" />
-                        </div>
+                        <ul className='flex items-center gap-4 my-4'>
+                            <li>
+                                <Link href='https://www.linkedin.com/company/parkito/' aria-description='link a linkedin' >
+                                    <FaLinkedin size={28} className="text-white" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href='https://www.instagram.com/parkito.app/' aria-description='link a instagram' >
+                                    <FaInstagram size={28} className="text-white" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href='https://wa.me/393520397705' aria-description='link a whatsapp'>
+                                    <FaWhatsapp size={28} className="text-white" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href='https://www.facebook.com/parkito.parking' aria-description='link a facebook'>
+                                    <FaFacebook size={28} className="text-white" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href='https://www.tiktok.com/@parkito.app?_t=ZN-90Ltjrdl2OJ&_r=1' aria-description='link a tiktok'>
+                                    <FaTiktok size={28} className="text-white" />
+                                </Link>
+                            </li>
+                        </ul>
 
                         <div className='flex flex-row gap-4 mt-4'>
                             <Link href="#">

@@ -15,7 +15,8 @@ import { AppleReview } from "@/types";
 import ReviewCard from "./ReviewCard";
 import LogoLoop from "./LogoLoop";
 import useSupabaseJson from "@/hooks/useSupabase";
-import Error from "./Error";
+import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
+import { InfoIcon } from "lucide-react";
 
 export default function ReviewsList() {
 
@@ -31,8 +32,20 @@ export default function ReviewsList() {
     ))
     if (error)
         return (
-            <Error onClick={refetch} message={error.message} title="Errore di fetch delle reviews" />
+            <Alert variant="default" className="w-[50%] mx-auto my-8 border-primary/50">
+                <AlertTitle className="flex items-center justify-center text-xl">
+                    <InfoIcon className="mr-2" /> Reviews are not available at the moment.
+                </AlertTitle>
+            </Alert>
         );
+
+    if (loading)
+        return (
+            <div className="flex flex-row gap-4 items-center justify-center text-muted-foreground font-bold text-2xl">
+                <Spinner className="w-6 h-6 inline" /> Loading reviews...
+            </div>
+        );
+
 
     // const reviewItems = [
     //     {
@@ -45,23 +58,6 @@ export default function ReviewsList() {
 
 
 
-    console.log("reviewItems: ", reviewItems)
-    console.log("reviews: ", reviews);
-
-
-    if (loading)
-        return (
-            <div className="flex flex-row gap-4 items-center justify-center text-muted-foreground font-bold text-2xl">
-                <Spinner className="w-6 h-6 inline" /> Loading reviews...
-            </div>
-        );
-
-    if (reviews.length === 0)
-        return (
-            <div className="flex flex-row items-center justify-center font-bold text-xl text-gray-500">
-                No reviews available.
-            </div>
-        );
 
     return (
         <div className="relative w-full overflow-hidden" aria-hidden="true">

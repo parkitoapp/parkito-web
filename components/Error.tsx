@@ -13,13 +13,13 @@ import Link from "next/link";
 
 export default function Error({ title, message, onClick, src }: ErrorType) {
     return (
-        <Alert variant="destructive" className="w-[50%]">
-            <AlertTitle>
-                <AlertCircle className="mr-2" /> Error {title}
+        <Alert variant="destructive" className="w-[50%] mx-auto my-8 flex flex-col">
+            <AlertTitle className="flex items-center justify-center text-xl">
+                <AlertCircle className="mr-2" /> Error: {title}
             </AlertTitle>
-            <AlertDescription>{message}</AlertDescription>
-            {onClick && <Button variant="destructive" className="mt-4" onClick={onClick}>Retry</Button>}
-            {src && <Button variant="destructive" className="mt-4" asChild>
+            <AlertDescription className="text-lg">{message}</AlertDescription>
+            {onClick && <Button variant="destructive" className="mt-4 p-4 w-10" onClick={onClick}>Retry</Button>}
+            {src && <Button variant="destructive" className="mt-4 p-4 w-full mx-auto" asChild>
                 <Link href={src}><ArrowLeftIcon className="inline" /> Torna indietro</Link>
             </Button>}
         </Alert>
