@@ -40,6 +40,12 @@ const team = [
         role: "Frontend Developer",
         image: "/orlando.webp",
         linkedin: "https://www.linkedin.com/in/orlando-v-m-ferazzani"
+    },
+    {
+        name: "Edoardo Pietrobono",
+        role: "Social Media Manager",
+        image: "/edoardo.webp",
+        linkedin: "https://www.linkedin.com/in/edoardo-pietrobono"
     }
 ]
 
@@ -89,20 +95,41 @@ export default function page() {
                 </div>
             </div>
             <div className=" bg-linear-to-b from-chart-1 to-primary">
-                <div className="grid md:grid-cols-3 grid-cols-2 w-[50%] gap-8 mx-auto py-24 px-12 rounded-lg mb-24">
-                    {team.map((member, idx) => (
-                        <div key={`team-member-${idx}`} className="flex flex-col items-center justify-center">
-                            <Avatar className="w-36 h-36">
-                                <AvatarImage src={member.image}></AvatarImage>
-                                <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                            </Avatar>
-                            <h2 className="text-2xl font-bold text-white">{member.name}</h2>
-                            <p className="text-xl mb-2 text-white">{member.role}</p>
-                            <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                                <Linkedin className="w-6 h-6 hover:opacity-70 cursor-pointer text-white" />
-                            </Link>
-                        </div>
-                    ))}
+                {/*
+                  Render team in rows. For md+ screens we want 3 columns; for smaller screens 2 columns.
+                  To center rows that have 1 or 2 members we chunk the list into groups of 3 and render
+                  each row as a responsive container: a 2-column grid on small screens and a centered
+                  flex row on md+ screens with the same gap. This avoids empty placeholders while
+                  keeping alignment and spacing consistent.
+                */}
+                <div className="mx-auto py-24 px-12 rounded-lg mb-24 max-w-6xl">
+                    {(() => {
+                        // filter out empty placeholders (members without a name)
+                        const items = team.filter(m => m && m.name && m.name.trim().length > 0);
+                        const chunkSize = 3;
+                        const rows: typeof items[] = [];
+                        for (let i = 0; i < items.length; i += chunkSize) {
+                            rows.push(items.slice(i, i + chunkSize));
+                        }
+
+                        return rows.map((row, rowIdx) => (
+                            <div key={`team-row-${rowIdx}`} className="grid grid-cols-2 gap-8 md:flex md:justify-center md:gap-8 mb-8">
+                                {row.map((member, idx) => (
+                                    <div key={`team-member-${rowIdx}-${idx}`} className="flex flex-col items-center justify-center">
+                                        <Avatar className="w-36 h-36">
+                                            <AvatarImage src={member.image} />
+                                            <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
+                                        </Avatar>
+                                        <h2 className="text-2xl font-bold text-white">{member.name}</h2>
+                                        <p className="text-xl mb-2 text-white">{member.role}</p>
+                                        <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                                            <Linkedin className="w-6 h-6 hover:opacity-70 cursor-pointer text-white" />
+                                        </Link>
+                                    </div>
+                                ))}
+                            </div>
+                        ));
+                    })()}
                 </div>
             </div>
 
