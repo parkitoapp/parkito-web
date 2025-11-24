@@ -1,6 +1,6 @@
 "use client";;
 import useSupabaseJson from "@/hooks/useSupabase";
-import { Parking } from "@/types";
+import { FAQ, Parking } from "@/types";
 import { slugify } from "@/lib/slugify";
 import Link from "next/link";
 import Loading from "./Loading";
@@ -13,21 +13,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import Image from "next/image";
 import Faq from "./Faq";
 import { blogFaqs } from "@/data/blogFaq";
-
-const parkingFaq = [
-    {
-        question: "Come posso prenotare un parcheggio?",
-        answer: "Puoi prenotare un parcheggio contattando direttamente il gestore tramite i recapiti forniti nella descrizione del parcheggio."
-    },
-    {
-        question: "Quali tipi di veicoli sono ammessi?",
-        answer: "I tipi di veicoli ammessi variano a seconda del parcheggio. Controlla la sezione 'Tipo di veicolo' per maggiori dettagli."
-    },
-    {
-        question: "Ci sono tariffe speciali per lunghi periodi di sosta?",
-        answer: "Alcuni parcheggi offrono tariffe scontate per soste prolungate. Ti consigliamo di contattare il gestore per informazioni specifiche."
-    }
-];
 
 
 interface Props {
@@ -69,6 +54,8 @@ export default function ParkingDetail({ citySlug, parkingAddress }: Props) {
                 </Alert>
             </div>
         );
+
+    const cityFaqs: FAQ[] = blogFaqs.find(f => parking.city.includes(f.city))?.faqs ?? [];
 
     return (
         <div className="flex flex-col w-full min-h-screen items-center justify-center pt-30">
@@ -168,7 +155,7 @@ export default function ParkingDetail({ citySlug, parkingAddress }: Props) {
                         </div>
                     </CardDescription>
                 </CardContent>
-                <Faq items={parkingFaq} />
+                <Faq items={cityFaqs} />
                 <Button variant="default" className="mt-10" asChild>
                     <Link href={`/citta/${citySlug}`} className="text-blue-600 underline m-2">
                         Torna ai parcheggi di {parking.city}

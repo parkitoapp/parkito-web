@@ -13,7 +13,7 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.png" src2={"/homePill.png"} icon={true} social={true} dwbtn={true} />
+      <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.webp" src2={"/homePill.webp"} icon={true} social={true} dwbtn={true} />
       <div className="bg-background">
 
         <div className=" bg-background">

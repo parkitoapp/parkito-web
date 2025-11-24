@@ -1,6 +1,6 @@
 export type BannerProps = {
     src: string,
-    src2: string;
+    src2?: string;
     title: string,
     subtitle?: string,
     dwbtn?: false | boolean,
@@ -162,4 +162,10 @@ export type Parking = {
     parking_type: string,
     driver_name: string,
     description: string,
+}
+
+export type Row = {
+    feature: string,
+    traditional: string,
+    parkito: string,
 }

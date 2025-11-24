@@ -6,7 +6,7 @@ optimize_video() {
     local input="$1"
     local filename=$(basename "$input")
     local name_no_ext="${filename%.*}"
-    local output="public/video_optimized/${name_no_ext}.mp4"
+    local output="public/${name_no_ext}_optimized.mp4"
     
     echo "Optimizing: $input -> $output"
     

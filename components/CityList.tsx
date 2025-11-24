@@ -55,7 +55,7 @@ export default function CityList() {
 
     // ---- RENDER ----
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-10 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-10 py-10 bg-background">
             {cities.map((city) => (
                 <Card key={city.id} className="border shadow-md rounded-lg overflow-hidden bg-transparent hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg">
                     <Image

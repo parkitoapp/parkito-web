@@ -39,7 +39,7 @@ export default function ParkingList({ city }: { city?: string }) {
     });
 
     return (
-        <div className="min-h-screen w-full px-8">
+        <div className="min-h-screen w-full px-8 bg-background">
             <h1 className="text-7xl font-bold text-chart-2">I migliori parcheggi di {citySlug}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-10 py-10 h-full">
                 {filtered.map((p) => (

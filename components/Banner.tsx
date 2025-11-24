@@ -10,12 +10,11 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { BannerProps } from "@/types";
-import { Button } from "./ui/button";
 import Link from "next/link";
 import { ArrowDown, Instagram, Linkedin } from "lucide-react";
 import { useWidth } from "@/hooks/useWidth";
 
-export default function Banner({ src, src2, title, subtitle, btn1, link1, text1, btn2, link2, text2, icon, social, dwbtn }: BannerProps) {
+export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn }: BannerProps) {
     const [mounted, setMounted] = useState(false);
     const width = useWidth();
 
@@ -35,10 +34,10 @@ export default function Banner({ src, src2, title, subtitle, btn1, link1, text1,
                     <div className="text-sm text-white rounded-full bg-secondary font-bold p-2 px-4">La prima app per il Park Sharing in Italia!</div>
                     <div className="relative w-full">
                         {/* desktop highlight behind the heading */}
-                        {/* <span
+                        <span
                             aria-hidden
                             className="absolute left-0 bottom-3 z-0 w-1/2 max-w-160 h-4 md:h-6 bg-lime-200  pointer-events-none"
-                        /> */}
+                        />
                         <h1 className="relative z-10 font-extrabold  lg:text-6xl  leading-tight text-primary ">{title}</h1>
                     </div>
                     <p className="text-xl md:text-2xl text-chart-3">{subtitle}</p>
@@ -54,22 +53,10 @@ export default function Banner({ src, src2, title, subtitle, btn1, link1, text1,
                         </div>
                     )}
 
-                    <div className="flex flex-row items-center justify-center gap-4">
-                        {btn1 && link1 && (
-                            <Button variant="default" className="mt-4 p-6 rounded-lg" asChild>
-                                <Link href={link1 ?? "/about"}>{text1 ?? "Scopri di più"}</Link>
-                            </Button>
-                        )}
-                        {btn2 && link2 && (
-                            <Button variant="outline" className="mt-4 p-6 rounded-lg" asChild>
-                                <Link href={link2 ?? "/contatti"}>{text2 ?? "Contattaci"}</Link>
-                            </Button>
-                        )}
-                    </div>
                 </div>
                 <div className="relative flex justify-center  mt-12 md:mt-0">
                     <Image src={src} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl w-[50em] rounded-lg " />
-                    <Image src={src2} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl absolute z-10 w-[25em] min-w-[50%] -right-10 md:-bottom-3 -bottom-2" />
+                    {src2 && <Image src={src2} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl absolute z-10 w-[25em] min-w-[50%] -right-10 md:-bottom-3 -bottom-2" />}
 
                 </div>
 
