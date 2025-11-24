@@ -1,7 +1,20 @@
-"use client"
+'use client' // Error boundaries must be Client Components
+import React from 'react';
+import Error from '@/components/Error';
 
-export default function globalError() {
+export default function GlobalError({
+    error,
+    reset,
+}: {
+    error: Error & { digest?: string }
+    reset: () => void
+}) {
     return (
-        <div>global-error</div>
+        // global-error must include html and body tags
+        <html>
+            <body>
+                <Error title={error.name} message={error.message} onClick={reset} />
+            </body>
+        </html>
     )
 }
