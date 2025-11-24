@@ -11,6 +11,8 @@ import Banner from "@/components/Banner";
 import { cities } from "@/data/cities";
 import BlogRender from "@/components/BlogRender";
 import { Metadata } from "next";
+import { Suspense } from "react";
+import Loading from "@/components/Loading";
 
 
 export const metadata: Metadata = {
@@ -29,7 +31,9 @@ export default async function BlogPage() {
             <Banner title="Scopri il blog di Parkito dove puoi trovare risposta alle tue curiosità" subtitle="Dai nostri parcheggi, alle attrazioni nei loro dintorni" src="/homePic.png" src2={"/homePill.png"} icon={true} social={true} dwbtn={true} />
             <div className="min-h-screen md:px-20 md:mt-10 flex flex-col bg-background w-full">
                 <h1 className="text-6xl font-bold mb-8 text-primary" id="icon-link">Blog</h1>
-                <BlogRender posts={posts} cities={cityFilter} />
+                <Suspense fallback={<Loading />}>
+                    <BlogRender posts={posts} cities={cityFilter} />
+                </Suspense>
             </div>
         </>
     );
