@@ -15,6 +15,7 @@ import { faq } from '@/data/faq'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { rows } from '@/data/rows'
+import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
 
 
 export default function page() {
@@ -30,7 +31,7 @@ export default function page() {
             <div className='min-h-96 bg-accent'>
                 <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10 text-primary">Perché scegliere Parkito:</h1>
                 <div className='md:grid md:grid-cols-2 flex flex-col gap-4 p-16'>
-                    <div className="bg-white rounded-lg flex flex-col items-center justify-start w-full">
+                    <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
                         <Image src={"/notif.webp"} alt="icona Disponibilità e prezzo" width={1300} height={1300} className='w-36 h-36 p-4' />
                         <div className='w-full p-6'>
                             <h2 className="text-2xl font-bold text-primary mt-4">Scegli la disponibilità e prezzo</h2>
@@ -38,35 +39,35 @@ export default function page() {
                                 Condividi il tuo parcheggio quando e a che prezzo vuoi con un calendario super flessibile
                             </p>
                         </div>
-                    </div>
-                    <div className="bg-white rounded-lg flex flex-col items-center justify-start w-full">
+                    </Card>
+                    <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
                         <Image src={"/star.webp"} alt="icona Disponibilità e prezzo" width={1300} height={1300} className='w-36 h-36 p-4' />
-                        <div className='w-full p-6'>
-                            <h2 className="text-2xl font-bold text-primary mt-4">100% Gratuito</h2>
-                            <p className="mt-2 w-[60%] text-left">
+                        <CardContent className='w-full p-6'>
+                            <CardTitle className="text-2xl font-bold text-primary mt-4">100% Gratuito</CardTitle>
+                            <CardDescription className="mt-2 w-[60%] text-left">
                                 Incassa sempre quello che chiedi, senza commissioni a carico
                                 tuo ed oneri burocratici
-                            </p>
-                        </div>
-                    </div>
-                    <div className="bg-white rounded-lg flex flex-col items-center justify-start w-full">
+                            </CardDescription>
+                        </CardContent>
+                    </Card>
+                    <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
                         <Image src={"/reload.webp"} alt="icona Disponibilità e prezzo" width={1300} height={1300} className='w-36 h-36 p-4' />
-                        <div className='w-full p-6'>
-                            <h2 className="text-2xl font-bold text-primary mt-4">Recedi quando vuoi</h2>
-                            <p className="mt-2 w-[60%] text-left">
+                        <CardContent className='w-full p-6'>
+                            <CardTitle className="text-2xl font-bold text-primary mt-4">Recedi quando vuoi</CardTitle>
+                            <CardDescription className="mt-2 w-[60%] text-left">
                                 In Parkito non esistono vincoli: sarai sempre libero di eliminare il tuo parcheggio
-                            </p>
-                        </div>
-                    </div>
-                    <div className="bg-white rounded-lg flex flex-col items-center justify-start w-full">
+                            </CardDescription>
+                        </CardContent>
+                    </Card>
+                    <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
                         <Image src={"/gold.webp"} alt="icona Disponibilità e prezzo" width={1300} height={1300} className='w-36 h-36 p-4' />
-                        <div className='w-full p-6'>
-                            <h2 className="text-2xl font-bold text-primary mt-4">Guadagna fino al 300%</h2>
-                            <p className="mt-2 w-[60%] text-left">
+                        <CardContent className='w-full p-6'>
+                            <CardTitle className="text-2xl font-bold text-primary mt-4">Guadagna fino al 300%</CardTitle>
+                            <CardDescription className="mt-2 w-[60%] text-left">
                                 Massimizza il tuo ritorno economico
-                            </p>
-                        </div>
-                    </div>
+                            </CardDescription>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
             <div className="bg-background min-h-screen sm:mb-120 md:mb-50 mb-150">
@@ -158,12 +159,12 @@ export default function page() {
             </div>
             <div>
                 <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center text-primary pt-10">Hai ancora dubbi?</h1>
-                <Table className='w-[60%] mx-auto'>
+                <Table className='w-[60%] mx-auto bg-card'>
                     <TableCaption>Motivi per cui siamo i migliori😎.</TableCaption>
                     <TableHeader>
                         <TableRow>
                             <TableHead></TableHead>
-                            <TableHead className='font-bold text-lg'>Affitti Tradizionali</TableHead>
+                            <TableHead className='font-bold text-lg text-foreground'>Affitti Tradizionali</TableHead>
                             <TableHead className='p-2'>
                                 <Image src="/logo-cropped.webp" width={50} height={50} className="object-contain mx-auto" alt="parkito-logo" />
                             </TableHead>
@@ -172,9 +173,9 @@ export default function page() {
                     <TableBody>
                         {rows.map((row, idx) => (
                             <TableRow key={idx}>
-                                <TableCell className="font-medium text-lg p-6">{row.feature}</TableCell>
-                                <TableCell className='p-6 text-lg'>{row.traditional}</TableCell>
-                                <TableCell className='p-6 text-lg'>{row.parkito}</TableCell>
+                                <TableCell className="font-medium text-lg p-6 text-foreground">{row.feature}</TableCell>
+                                <TableCell className='p-6 text-lg text-foreground'>{row.traditional}</TableCell>
+                                <TableCell className='p-6 text-lg text-foreground'>{row.parkito}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

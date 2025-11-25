@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function City() {
     return (
         <>
-            <Banner title="Dove siamo" subtitle="Scopri le città in cui Parkito è disponibile" src="/homePill.webp" src2="/homePill.webp" />
+            <Banner title="Dove siamo" subtitle="Scopri le città in cui Parkito è disponibile" src="/homePill.webp" src2="/homePill.webp" icon={true} social={true} dwbtn={true} />
             <CityList />
         </>
     )

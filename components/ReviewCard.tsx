@@ -8,9 +8,6 @@
 import { ReviewCardType } from "@/types";
 import {
     Card,
-    CardContent,
-    CardFooter,
-    CardHeader,
     CardTitle,
 } from "@/components/ui/card";
 import { FaStar, FaRegStar } from "react-icons/fa";
@@ -26,45 +23,9 @@ function formatDate(value: string | number) {
     }
 }
 
-// const colors = [
-//     "bg-red-500",
-//     "bg-green-500",
-//     "bg-blue-500",
-//     "bg-yellow-500",
-//     "bg-purple-500",
-//     "bg-pink-500",
-//     "bg-indigo-500",
-//     "bg-teal-500",
-//     "bg-orange-500",
-//     "bg-cyan-500",
-//     "bg-lime-500",
-//     "bg-emerald-500",
-//     "bg-fuchsia-500",
-//     "bg-violet-500",
-//     "bg-rose-500",
-//     "bg-sky-500",
-//     "bg-amber-500",
-//     "bg-gray-500",
-//     "bg-zinc-500",
-//     "bg-neutral-500",
-//     "bg-stone-500",
-//     "bg-slate-500",
-//     "bg-black",
-//     "bg-primary",
-// ];
-
 export default function ReviewCard({ name, title, rating, body, date }: ReviewCardType) {
     const numericRating = Number(rating) || 0;
     const stars = Array.from({ length: 5 }).map((_, i) => i < Math.round(numericRating));
-
-    // const hash = name
-    //     .split("")
-    //     .reduce((acc, char) => acc + char.charCodeAt(0), 0);
-
-    // const fallback = name.split(" ").map((n) => n[0]).slice(0, 2).join("").toUpperCase();
-
-    // const bgColor = colors[hash % colors.length];
-
 
 
 
@@ -82,7 +43,7 @@ export default function ReviewCard({ name, title, rating, body, date }: ReviewCa
                         ),
                     )}
                 </div>
-                <span className="text-sm text-muted-foreground ml-2">{numericRating.toFixed(1)}</span>
+                <span className="text-md text-gray-700 dark:text-gray-300 ml-2">{numericRating.toFixed(1)}</span>
             </div>
 
             {/* Title and body in the middle */}
@@ -92,7 +53,7 @@ export default function ReviewCard({ name, title, rating, body, date }: ReviewCa
             </div>
 
             {/* Author and date at the bottom */}
-            <div className="text-sm text-chart-2 font-semibold italic mt-4 text-right">
+            <div className="text-sm text-chart-4 font-semibold italic mt-4 text-right">
                 Da {name} · {formatDate(date)}
             </div>
         </Card>

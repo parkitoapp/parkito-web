@@ -31,6 +31,7 @@ export default function ThemeSwitch() {
             size={"icon"}
             className={`${twclass} hover:none`}
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            aria-label="Toggle Theme"
         >
             {theme === "light" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </Button>

@@ -55,7 +55,7 @@ export default function CityList() {
 
     // ---- RENDER ----
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-10 py-10 bg-background">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-10 py-10 bg-background" id="icon-link">
             {cities.map((city) => (
                 <Card key={city.id} className="border shadow-md rounded-lg overflow-hidden bg-transparent hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg">
                     <Image
@@ -68,7 +68,7 @@ export default function CityList() {
 
 
                     <CardFooter className="flex flex-row gap-2 items-center px-2 py-4 w-full">
-                        <CardTitle className="text-chart-2 text-xl items-center justify-start text-left w-full">{city.name}</CardTitle>
+                        <CardTitle className="text-chart-4 text-xl items-center justify-start text-left w-full">{city.name}</CardTitle>
 
 
                         <Button variant="default" className="p-0 mt-2" asChild>

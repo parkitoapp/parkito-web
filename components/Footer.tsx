@@ -10,14 +10,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaWhatsapp } from 'react-icons/fa';
-
+import FooterList from './FooterList';
 
 export default function Footer() {
+
+
     return (
-        <footer className="w-full bg-linear-to-b from-chart-1 to-primary" aria-description='footer'>
+        <footer className="w-full bg-linear-to-b from-chart-1 to-primary" aria-label='footer'>
             <div className="max-w-7xl mx-auto px-6 py-10 md:px-24 md:py-16">
                 <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-0">
-                    {/* Left block: logo, description, company info */}
+                    {/* Left block: logo, label, company info */}
                     <div className='flex-1 flex flex-col text-white font-semibold'>
                         <div className='flex items-center gap-4'>
                             <Image src="/parkito-pill.png" width={140} height={34} className="object-contain" alt="parkito-logo" />
@@ -34,39 +36,38 @@ export default function Footer() {
 
                         <ul className='flex items-center gap-4 my-4'>
                             <li>
-                                <Link href='https://www.linkedin.com/company/parkito/' aria-description='link a linkedin' >
+                                <Link href='https://www.linkedin.com/company/parkito/' aria-label='link a linkedin' >
                                     <FaLinkedin size={28} className="text-white" />
                                 </Link>
                             </li>
                             <li>
-                                <Link href='https://www.instagram.com/parkito.app/' aria-description='link a instagram' >
+                                <Link href='https://www.instagram.com/parkito.app/' aria-label='link a instagram' >
                                     <FaInstagram size={28} className="text-white" />
                                 </Link>
                             </li>
                             <li>
-                                <Link href='https://wa.me/393520397705' aria-description='link a whatsapp'>
+                                <Link href='https://wa.me/393520397705' aria-label='link a whatsapp'>
                                     <FaWhatsapp size={28} className="text-white" />
                                 </Link>
                             </li>
                             <li>
-                                <Link href='https://www.facebook.com/parkito.parking' aria-description='link a facebook'>
+                                <Link href='https://www.facebook.com/parkito.parking' aria-label='link a facebook'>
                                     <FaFacebook size={28} className="text-white" />
                                 </Link>
                             </li>
                             <li>
-                                <Link href='https://www.tiktok.com/@parkito.app?_t=ZN-90Ltjrdl2OJ&_r=1' aria-description='link a tiktok'>
+                                <Link href='https://www.tiktok.com/@parkito.app?_t=ZN-90Ltjrdl2OJ&_r=1' aria-label='link a tiktok'>
                                     <FaTiktok size={28} className="text-white" />
                                 </Link>
                             </li>
                         </ul>
 
                         <div className='flex flex-row gap-4 mt-4'>
-                            <Link href="#">
-                                <Image src="/applebtn.png" alt="App Store" width={130} height={42} />
+                            <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button">
+                                <Image src="/applebtn.webp" alt="App Store button" width={150} height={50} />
                             </Link>
-
-                            <Link href="#">
-                                <Image src="/googlebtn.png" alt="Google Play" width={130} height={42} />
+                            <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button">
+                                <Image src="/googlebtn.webp" alt="Google Play button" width={150} height={50} />
                             </Link>
                         </div>
                     </div>
@@ -76,19 +77,24 @@ export default function Footer() {
                         <div>
                             <h2 className='text-white font-bold text-lg md:text-2xl'>Guadagna con Parkito</h2>
                             <ul className='flex flex-col mt-4 text-white gap-2 text-sm'>
-                                <li>Diventa Host</li>
-                                <li>Dispositivi</li>
-                                <li>Per i condomini</li>
+                                <li>
+                                    <Link href={"/host"} title='diventa host' aria-label='diventa un host'>
+                                        Diventa Host
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href={"/devices"} title='devices' aria-label='dispositivi di accesso'>
+                                        Dispositivi
+                                    </Link>
+                                </li>
+                                {/* <li>Per i condomini</li> */}
                             </ul>
                         </div>
 
                         <div>
                             <h2 className='text-white font-bold text-lg md:text-2xl'>Città</h2>
-                            <ul className='flex flex-col mt-4 text-white gap-2 text-sm'>
-                                <li>Torino</li>
-                                <li>Milano</li>
-                                <li>Liguria</li>
-                            </ul>
+                            <FooterList />
+
                         </div>
 
                         <div>
@@ -169,6 +175,6 @@ export default function Footer() {
           })(window, document);`,
                 }}
             />
-        </footer>
+        </footer >
     )
 }

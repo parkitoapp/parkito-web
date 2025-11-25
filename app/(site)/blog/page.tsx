@@ -8,7 +8,6 @@
 import { getPosts } from "@/lib/fetchPosts";
 import { BlogPost } from "@/types";
 import Banner from "@/components/Banner";
-import { cities } from "@/data/cities";
 import BlogRender from "@/components/BlogRender";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -23,7 +22,6 @@ export const metadata: Metadata = {
 
 export default async function BlogPage() {
     const posts: BlogPost[] = await getPosts();
-    const cityFilter = cities.map((c) => c.subLinks ? c.subLinks.map((s) => s.name) : c.name).flat();
 
 
     return (
@@ -32,7 +30,7 @@ export default async function BlogPage() {
             <div className="min-h-screen md:px-20 md:mt-10 flex flex-col bg-background w-full">
                 <h1 className="text-6xl font-bold mb-8 text-primary" id="icon-link">Blog</h1>
                 <Suspense fallback={<Loading />}>
-                    <BlogRender posts={posts} cities={cityFilter} />
+                    <BlogRender posts={posts} />
                 </Suspense>
             </div>
         </>

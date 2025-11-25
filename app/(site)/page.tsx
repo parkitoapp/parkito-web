@@ -5,6 +5,7 @@ import { faq } from "@/data/faq";
 import Faq from "@/components/Faq";
 import Link from "next/link";
 import ScrollStack, { ScrollStackItem } from '@/components/ScrollStack';
+import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 
 export const metadata = {
   title: 'Home',
@@ -23,7 +24,7 @@ export default function Home() {
               Prova l&apos;esperienza Parkito
             </h1>
             <>
-              <p className="hidden sm:block text-chart-2 font-semibold text-lg">
+              <p className="hidden sm:block text-chart-4 font-semibold text-lg">
                 Oltre 10.000 utenti soddisfatti in tutta Italia
               </p>
               <Image src='/homePill.png' alt="App preview" width={1500} height={1800} className="mt-4 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%] sm:hidden" />
@@ -137,27 +138,38 @@ export default function Home() {
           <p className="text-xl w-[20%] mx-auto text-primary">E trasforma l&apos;esperienza del parcheggio in città con Parkito</p>
 
           <div className="flex flex-row w-full mx-auto items-center justify-center gap-4 mt-6">
-            <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button">
+            <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button" title="apple download button">
               <Image src="/applebtn.png" alt="App Store" width={150} height={50} />
             </Link>
-            <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button">
+            <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button" title="google download button">
               <Image src="/googlebtn.png" alt="Google Play" width={150} height={50} />
             </Link>
           </div>
           <div className="flex md:flex-row flex-col gap-8 items-center justify-center">
-            <div className="rounded-lg bg-white flex flex-col gap-4 w-70 h-35 items-center justify-center">
-              <h2 className="text-accent-foreground font-extrabold text-2xl">0</h2>
-              <p className="w-[80%] mx-auto text-primary text-lg font-semibold">Problemi di sicurezza registrati</p>
-            </div>
-            <div className="rounded-lg bg-white flex flex-col gap-4 w-70 h-35 items-center justify-center">
-              <h2 className="text-accent-foreground font-extrabold text-2xl">+ 300</h2>
-              <p className="w-[80%] mx-auto text-primary text-lg font-semibold">Parcheggi
-                prenotabili</p>
-            </div>
-            <div className="rounded-lg bg-white flex flex-col gap-4 w-70 h-35 items-center justify-center">
-              <h2 className="text-accent-foreground font-extrabold text-2xl">Infinite</h2>
-              <p className="w-[80%] mx-auto text-primary text-lg font-semibold">Ore risparmiate per cercare parcheggio</p>
-            </div>
+            <Card className="rounded-lg bg-card flex flex-col justify-between w-64 h-40 p-6">
+              <CardHeader>
+                <CardTitle className="text-accent-foreground font-extrabold text-2xl text-center">0</CardTitle>
+              </CardHeader>
+              <CardFooter>
+                <CardDescription className="w-[80%] mx-auto text-primary text-lg font-semibold text-center">Problemi di sicurezza registrati</CardDescription>
+              </CardFooter>
+            </Card>
+            <Card className="rounded-lg bg-card flex flex-col justify-between w-64 h-40 p-6">
+              <CardHeader>
+                <CardTitle className="text-accent-foreground font-extrabold text-2xl text-center">+ 300</CardTitle>
+              </CardHeader>
+              <CardFooter>
+                <CardDescription className="w-[80%] mx-auto text-primary text-lg font-semibold text-center">Parcheggi prenotabili</CardDescription>
+              </CardFooter>
+            </Card>
+            <Card className="rounded-lg bg-card flex flex-col justify-between w-64 h-40 p-6">
+              <CardHeader>
+                <CardTitle className="text-accent-foreground font-extrabold text-2xl text-center">Infinite</CardTitle>
+              </CardHeader>
+              <CardFooter>
+                <CardDescription className="w-[80%] mx-auto text-primary text-lg font-semibold text-center">Ore risparmiate a cercare parcheggio</CardDescription>
+              </CardFooter>
+            </Card>
           </div>
         </div>
 

@@ -95,7 +95,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                 />
 
                 <div className="relative mt-[40vh] bg-background w-full flex flex-col items-center justify-start p-8 rounded-t-[3rem] min-h-[60vh]">
-                    <div className="absolute -top-5 text-sm text-white rounded-full bg-secondary p-2 px-4">La prima app per il Park Sharing in Italia!</div>
+                    <div className="absolute -top-5 text-sm text-white rounded-full bg-accent-foreground p-2 px-4">La prima app per il Park Sharing in Italia!</div>
                     <div className="w-full h-full relative">
                         {/* <span
                             aria-hidden

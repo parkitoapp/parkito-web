@@ -62,8 +62,8 @@ export default function page() {
                     <h1 className="text-7xl font-bold mb-4 text-primary">La prima piattaforma
                         <br />di Park Sharing in Italia!</h1>
                     <section className="text-4xl">
-                        Parkito è la prima piattaforma di <span className="font-bold text-chart-2">Park Sharing</span> in Italia che rende il parcheggio facile, sicuro e sostenibile, riducendo traffico e stress urbano per una mobilità più intelligente.
-                        Ci occupiamo di creare parcheggi in zone dove non esistono senza ridurre ulteriormente il suolo pubblico, sfruttando le migliaia di <span className="font-bold text-chart-2">box e posti auto inutilizzati</span> in tutte le città.
+                        <p> Parkito è la prima piattaforma di <span className="font-bold text-chart-2">Park Sharing</span> in Italia che rende il parcheggio facile, sicuro e sostenibile, riducendo traffico e stress urbano per una mobilità più intelligente.
+                            Ci occupiamo di creare parcheggi in zone dove non esistono senza ridurre ulteriormente il suolo pubblico, sfruttando le migliaia di <span className="font-bold text-chart-2">box e posti auto inutilizzati</span> in tutte le città.</p>
                     </section>
                 </div>
 
@@ -90,7 +90,7 @@ export default function page() {
                 <div className="text-center w-[60%] mx-auto">
                     <h1 className="text-7xl font-bold mb-4 text-primary">Il nostro obiettivo? </h1>
                     <section className="text-4xl">
-                        Diventare la piattaforma di riferimento per una gestione intelligente e sostenibile degli spazi urbani, connettendo persone, luoghi e mobilità per città più vivibili e accessibili
+                        <p>Diventare la piattaforma di riferimento per una gestione intelligente e sostenibile degli spazi urbani, connettendo persone, luoghi e mobilità per città più vivibili e accessibili</p>
                     </section>
                 </div>
             </div>
