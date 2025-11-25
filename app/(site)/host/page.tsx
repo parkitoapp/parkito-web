@@ -70,7 +70,7 @@ export default function page() {
                     </Card>
                 </div>
             </div>
-            <div className="bg-background min-h-screen sm:mb-120 md:mb-50 mb-150">
+            <div className="bg-background min-h-screen sm:pb-120 md:pb-50 pb-150">
                 <h2 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10">La soluzione? Un parcheggio <span className="text-primary">Parkito!</span></h2>
                 <ScrollStack className="bg-backround ">
                     <ScrollStackItem itemClassName="flex md:flex-row flex-col p-8 bg-white dark:bg-accent rounded-lg justify-between mx-auto md:max-w-5xl w-full">
@@ -147,7 +147,7 @@ export default function page() {
                     </ScrollStackItem>
                 </ScrollStack>
             </div>
-            <div className='w-full bg-accent flex flex-col gap-6 py-10 px-4 mt-60'>
+            <div className='w-full bg-accent flex flex-col gap-6 py-10 px-4 md:pt-60'>
                 <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10 text-primary">Non puoi essere presente per l&apos;accoglienza?</h1>
                 <Image src="/access.webp" alt="icona Disponibilità e prezzo" width={1300} height={1300} className='mx-auto w-[50%] p-4' />
                 {/* <p className="text-center text-lg mx-auto w-[60%]">Nessun problema! Con Parkito puoi automatizzare l&apos;accesso al tuo parcheggio in pochi semplici passi, permettendo ai driver di entrare e uscire in completa autonomia tramite l&apos;app.</p> */}
@@ -157,7 +157,7 @@ export default function page() {
                     </Link>
                 </Button>
             </div>
-            <div>
+            <div className='bg-background'>
                 <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center text-primary pt-10">Hai ancora dubbi?</h1>
                 <Table className='w-[60%] mx-auto bg-card'>
                     <TableCaption>Motivi per cui siamo i migliori😎.</TableCaption>

@@ -1,10 +1,6 @@
-"use client";;
-import useSupabaseJson from "@/hooks/useSupabase";
+"use client";
 import { FAQ, Parking } from "@/types";
-import { slugify } from "@/lib/slugify";
 import Link from "next/link";
-import Loading from "./Loading";
-import Error from "./Error";
 import ReactMarkdown from "react-markdown";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { AlertCircleIcon, Book, Car, MapPlus, ParkingCircle, User, } from "lucide-react";
@@ -17,26 +13,10 @@ import { blogFaqs } from "@/data/blogFaq";
 
 interface Props {
     citySlug: string;
-    parkingAddress: string;
+    parking: Parking | null;
 }
 
-export default function ParkingDetail({ citySlug, parkingAddress }: Props) {
-    const { data: parkings, loading, error, refetch } = useSupabaseJson<Parking>(
-        "parking_sheet_data",
-        "parkings_data.json"
-    );
-
-    const parking = parkings
-        ? parkings.find(
-            (p) => slugify(p.city) === citySlug && slugify(p.address) === parkingAddress
-        ) || null
-        : null;
-
-    if (loading) return <Loading />;
-
-    if (error)
-        return <Error message={error.message} title="Errore nel fetch del parcheggio" onClick={refetch} />;
-
+export default function ParkingDetail({ citySlug, parking }: Props) {
     if (!parking)
         return (
             <div className="min-h-screen w-full flex flex-col items-center justify-center">
