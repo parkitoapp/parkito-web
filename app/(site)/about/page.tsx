@@ -136,7 +136,7 @@ export default function page() {
             <div className="">
                 <h2 className="text-4xl font-bold text-center mb-12 text-primary italic">Powered By</h2>
                 <Image
-                    src="/b4i-logo.png"
+                    src="/b4i-logo.webp"
                     alt="Politecnico di Milano Logo"
                     width={550}
                     height={550}

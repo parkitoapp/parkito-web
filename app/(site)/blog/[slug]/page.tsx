@@ -175,10 +175,10 @@ export default async function BlogPostPage({ params }: Props) {
                             {idx % 2 === 0 &&
                                 <div className="flex flex-row w-full mx-auto items-center justify-start gap-4 mt-16">
                                     <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button">
-                                        <Image src="/applebtn.png" alt="App Store" width={150} height={50} />
+                                        <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
                                     </Link>
                                     <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button">
-                                        <Image src="/googlebtn.png" alt="Google Play" width={150} height={50} />
+                                        <Image src="/googlebtn.webp" alt="Google Play" width={150} height={50} />
                                     </Link>
                                 </div>}
                         </section>

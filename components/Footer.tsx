@@ -22,7 +22,7 @@ export default function Footer() {
                     {/* Left block: logo, label, company info */}
                     <div className='flex-1 flex flex-col text-white font-semibold'>
                         <div className='flex items-center gap-4'>
-                            <Image src="/parkito-pill.png" width={140} height={34} className="object-contain" alt="parkito-logo" />
+                            <Image src="/parkito-pill.webp" width={140} height={34} className="object-contain" alt="parkito-logo" />
                             <p className='hidden md:block'>L&apos;app per il park sharing in Italia</p>
                         </div>
 

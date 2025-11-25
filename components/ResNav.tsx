@@ -39,7 +39,7 @@ export default function ResNav() {
 
     if (!mounted) return null; // or a placeholder
 
-    const source = resolvedTheme === "dark" ? "/logo-dark.png" : "/logo.png";
+    const source = resolvedTheme === "dark" ? "/logo-dark.webp" : "/logo.webp";
 
 
     const navItems = [

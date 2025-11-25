@@ -27,7 +27,7 @@ export default function Home() {
               <p className="hidden sm:block text-chart-4 font-semibold text-lg">
                 Oltre 10.000 utenti soddisfatti in tutta Italia
               </p>
-              <Image src='/homePill.png' alt="App preview" width={1500} height={1800} className="mt-4 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%] sm:hidden" />
+              <Image src='/homePill.webp' alt="App preview" width={1500} height={1800} className="mt-4 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%] sm:hidden" />
             </>
             <ReviewsList />
           </div>
@@ -41,25 +41,25 @@ export default function Home() {
               <div className="flex flex-col lg:grid lg:grid-cols-4 items-baseline gap-10">
 
                 <div className="flex flex-col w-50 bg-white p-4 rounded-xl">
-                  <Image src={"/headache.png"} alt="headache" width={1300} height={1300} />
+                  <Image src={"/headache.webp"} alt="headache" width={1300} height={1300} />
                   <p className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     Rischio di girare a vuoto per ore.
                   </p>
                 </div>
                 <div className="flex flex-col w-50 bg-white p-4 rounded-xl">
-                  <Image src={"/clock.png"} alt="headache" width={1300} height={1300} />
+                  <Image src={"/clock.webp"} alt="headache" width={1300} height={1300} />
                   <p className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     Nessuna garanzia sulla disponibilità.
                   </p>
                 </div>
                 <div className="flex flex-col w-50 bg-white p-4 rounded-xl">
-                  <Image src={"/light.png"} alt="headache" width={1300} height={1300} />
+                  <Image src={"/light.webp"} alt="headache" width={1300} height={1300} />
                   <p className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     Prezzi poco trasparenti
                   </p>
                 </div>
                 <div className="flex flex-col w-50 bg-white p-4 rounded-xl">
-                  <Image src={"/x.png"} alt="headache" width={1300} height={1300} />
+                  <Image src={"/x.webp"} alt="headache" width={1300} height={1300} />
                   <p className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     No H24 e niente sicurezza
                   </p>
@@ -139,10 +139,10 @@ export default function Home() {
 
           <div className="flex flex-row w-full mx-auto items-center justify-center gap-4 mt-6">
             <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button" title="apple download button">
-              <Image src="/applebtn.png" alt="App Store" width={150} height={50} />
+              <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
             </Link>
             <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button" title="google download button">
-              <Image src="/googlebtn.png" alt="Google Play" width={150} height={50} />
+              <Image src="/googlebtn.webp" alt="Google Play" width={150} height={50} />
             </Link>
           </div>
           <div className="flex md:flex-row flex-col gap-8 items-center justify-center">

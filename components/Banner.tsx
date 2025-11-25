@@ -45,10 +45,10 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                     {dwbtn && (
                         <div className="flex flex-row w-full mx-auto items-center justify-start gap-4 mt-6">
                             <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button">
-                                <Image src="/applebtn.png" alt="App Store" width={150} height={50} />
+                                <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
                             </Link>
                             <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button">
-                                <Image src="/googlebtn.png" alt="Google Play" width={150} height={50} />
+                                <Image src="/googlebtn.webp" alt="Google Play" width={150} height={50} />
                             </Link>
                         </div>
                     )}
@@ -109,10 +109,10 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                     <p className="font-semibold text-center text-chart-3 text-lg mb-2">{subtitle}</p>
                     <div className="flex justify-center gap-4 mt-4">
                         <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996">
-                            <Image src="/applebtn.png" alt="App Store" width={150} height={50} />
+                            <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
                         </Link>
                         <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it">
-                            <Image src="/googlebtn.png" alt="Google Play" width={150} height={50} />
+                            <Image src="/googlebtn.webp" alt="Google Play" width={150} height={50} />
                         </Link>
                     </div>
 
