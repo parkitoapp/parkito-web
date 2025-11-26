@@ -11,6 +11,7 @@ import { Card, CardFooter, CardTitle } from "@/components/ui/card";
 import { slugify } from '@/lib/slugify';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function ParkingList({ city }: { city?: string }) {
     const params = useParams();
@@ -41,22 +42,22 @@ export default function ParkingList({ city }: { city?: string }) {
     return (
         <div className="min-h-screen w-full px-8 bg-background">
             <h1 className="text-7xl font-bold text-chart-2">I migliori parcheggi di {citySlug}</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-10 py-10 h-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-10 h-full">
                 {filtered.map((p) => (
-                    <Card key={p.id} className="border shadow-md rounded-lg overflow-hidden bg-transparent hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg">
-                        {/* <Image
-                        src={p.address}
-                        alt={p.name}
-                        width={400}
-                        height={200}
-                        className="rounded-md w-full h-40 object-cover mb-3"
-                    /> */}
+                    <Card key={p.id} className="border shadow-md rounded-3xl overflow-hidden bg-card hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg min-w-[60%]">
+                        <Image
+                            src={p.image ? `/${p.image}.webp` : '/device.webp'}
+                            alt={p.name}
+                            width={400}
+                            height={200}
+                            className="rounded-md w-full h-40 object-cover mb-3"
+                        />
 
 
-                        <CardFooter className="flex flex-row gap-2 items-center justify-center  py-4 w-full px-10">
+                        <CardFooter className="flex flex-col md:flex-row gap-2 items-center justify-center  py-4 w-full px-10">
                             <CardTitle className="text-chart-2 text-xl items-center justify-start text-left w-full">{p.name}</CardTitle>
 
-                            <Button variant="default" className=" p-6 rounded-lg" asChild>
+                            <Button variant="default" className=" p-6 rounded-3xl" asChild>
                                 <Link href={`/citta/${slugify(p.city)}/${slugify(p.address)}`}>
                                     Scopri i dettagli &rarr;
                                 </Link>

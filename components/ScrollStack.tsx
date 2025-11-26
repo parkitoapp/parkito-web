@@ -1,5 +1,6 @@
 /**
  * ScrollStack component to create a scrollable stack of items with scaling and transformation effects.
+ * Optimized for performance using native scroll events with requestAnimationFrame throttling.
  * 
  * @param {ScrollStackProps} props - The properties for configuring the ScrollStack behavior and appearance.
  * @returns {JSX.Element} The ScrollStack component.
@@ -8,11 +9,17 @@
 "use client";
 
 import React, { ReactNode, useLayoutEffect, useRef, useCallback } from "react";
-import Lenis from "lenis";
 
 export interface ScrollStackItemProps {
   itemClassName?: string;
   children: ReactNode;
+}
+
+interface TransformState {
+  translateY: number;
+  scale: number;
+  rotation: number;
+  blur: number;
 }
 
 export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({
@@ -56,11 +63,11 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLElement[]>([]);
-  const lastTransformsRef = useRef(new Map<number, any>());
+  const lastTransformsRef = useRef(new Map<number, TransformState>());
   const stackCompletedRef = useRef(false);
   const animationFrameRef = useRef<number | null>(null);
-  const lenisRef = useRef<Lenis | null>(null);
   const isUpdatingRef = useRef(false);
+  const tickingRef = useRef(false);
 
   const parsePercentage = useCallback((value: string, height: number) => {
     return (parseFloat(value) / 100) * height;
@@ -150,6 +157,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     });
 
     isUpdatingRef.current = false;
+    tickingRef.current = false;
   }, [
     itemScale,
     itemStackDistance,
@@ -163,26 +171,16 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     onStackComplete,
   ]);
 
-  const setupLenis = useCallback(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      lerp: 0.1,
-      syncTouch: true,
-      syncTouchLerp: 0.075,
-    });
-
-    lenis.on("scroll", updateCardTransforms);
-
-    const raf = (time: number) => {
-      lenis.raf(time);
-      animationFrameRef.current = requestAnimationFrame(raf);
-    };
-    animationFrameRef.current = requestAnimationFrame(raf);
-    lenisRef.current = lenis;
+  const requestTick = useCallback(() => {
+    if (!tickingRef.current) {
+      tickingRef.current = true;
+      animationFrameRef.current = requestAnimationFrame(updateCardTransforms);
+    }
   }, [updateCardTransforms]);
+
+  const handleScroll = useCallback(() => {
+    requestTick();
+  }, [requestTick]);
 
   useLayoutEffect(() => {
     const container = containerRef.current;
@@ -196,16 +194,23 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       card.style.willChange = "transform, filter";
     });
 
-    setupLenis();
+    // Initial update
     updateCardTransforms();
 
+    // Add passive scroll listener for better performance
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+
     return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
       if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
-      if (lenisRef.current) lenisRef.current.destroy();
-      lastTransformsRef.current.clear();
+      // Capture ref value for cleanup
+      const lastTransforms = lastTransformsRef.current;
+      lastTransforms.clear();
       cardsRef.current = [];
     };
-  }, [itemDistance, setupLenis, updateCardTransforms]);
+  }, [itemDistance, updateCardTransforms, handleScroll]);
 
   return (
     <div ref={containerRef} className={`relative w-full ${className}`.trim()}>

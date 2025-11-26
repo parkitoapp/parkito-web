@@ -73,7 +73,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                 {
                     icon && (
                         <Link href="#icon-link" className="absolute bottom-4 left-1/2 transform -translate-x-1/2" aria-label="scroll down icon link">
-                            <ArrowDown className="animate-bounce text-primary opacity-70" />
+                            <ArrowDown className="animate-bounce text-primary opacity-70" size={36} />
                         </Link>
                     )
                 }
@@ -111,30 +111,30 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                 </div>
 
                 {/* Social icons */}
-                {social && (
-                    <ul className="absolute bottom-4 right-6 flex gap-4">
-                        <li>
-                            <Link href="https://instagram.com">
-                                <Instagram className="text-primary hover:opacity-80 cursor-pointer" />
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href="https://linkedin.com">
-                                <Linkedin className="text-primary hover:opacity-80 cursor-pointer" />
-                            </Link>
-                        </li>
-                    </ul>
-                )}
+                {
+                    social && (
+                        <ul className="absolute bottom-4 right-6 flex gap-4">
+                            <li>
+                                <Link href="https://www.instagram.com/parkito.app/" aria-label="instagram link">
+                                    <Instagram className="text-primary hover:opacity-80 cursor-pointer" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="https://www.linkedin.com/company/parkito/" aria-label="linkedin link">
+                                    <Linkedin className="text-primary hover:opacity-80 cursor-pointer" />
+                                </Link>
+                            </li>
+                        </ul>
+                    )
+                }
 
-                {/* Scroll-down icon */}
-                {icon && (
-                    <Link
-                        href="#icon-link"
-                        className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
-                    >
-                        <ArrowDown className="animate-bounce text-primary opacity-70" />
-                    </Link>
-                )}
+                {
+                    icon && (
+                        <Link href="#icon-link" className="absolute bottom-4 left-1/2 transform -translate-x-1/2" aria-label="scroll down icon link">
+                            <ArrowDown className="animate-bounce text-primary opacity-70" size={36} />
+                        </Link>
+                    )
+                }
             </div>
         </>
     );

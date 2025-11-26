@@ -1,5 +1,5 @@
 import "../globals.css";
-import { ThemeProvider } from "@/lib/theme-provider";
+import { ThemeProvider } from "@/hooks/theme-provider";
 // import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";

@@ -156,6 +156,7 @@ export type SelectOption = {
 export type Parking = {
     id: number,
     name: string,
+    image?: string,
     address: string,
     city: string,
     vehicle_type: string,

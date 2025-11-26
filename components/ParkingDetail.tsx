@@ -38,7 +38,7 @@ export default function ParkingDetail({ citySlug, parking }: Props) {
     const cityFaqs: FAQ[] = blogFaqs.find(f => parking.city.includes(f.city))?.faqs ?? [];
 
     return (
-        <div className="flex flex-col w-full min-h-screen items-center justify-center pt-30">
+        <div className="flex flex-col w-full min-h-screen items-center justify-center pt-30 px-2 mb-4">
             <Card className="px-10 py-10 max-w-7xl">
                 <CardHeader>
                     <CardTitle className="text-4xl font-bold mb-2 flex items-center gap-4 text-primary">

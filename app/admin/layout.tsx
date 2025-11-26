@@ -2,7 +2,7 @@ export const metadata = {
     title: 'Parkito Admin',
     description: 'Sanity Studio',
 }
-import { ThemeProvider } from "@/lib/theme-provider";
+import { ThemeProvider } from "@/hooks/theme-provider";
 import { AppSidebar } from '@/components/app-sidebar';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import '../globals.css';

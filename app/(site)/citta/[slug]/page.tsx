@@ -26,6 +26,8 @@ export default async function CityPage({ params }: Props) {
                 subtitle={`Scopri i migliori parcheggi a ${display} con Parkito`}
                 src={`/${citySlug.slug}.webp`}
                 src2={`/${citySlug.slug}.webp`}
+                icon={true}
+                social={true}
 
             />
             <ParkingList city={citySlug.slug} />
