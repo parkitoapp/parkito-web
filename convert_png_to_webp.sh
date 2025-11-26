@@ -56,6 +56,10 @@ convert_png() {
         total_original_size=$((total_original_size + original_size))
         total_optimized_size=$((total_optimized_size + optimized_size))
         count=$((count + 1))
+        
+        # Remove original file
+        rm "$input_file"
+        echo "  Removed original file: $input_file"
     else
         echo "  ERROR: Failed to convert $input_file"
     fi

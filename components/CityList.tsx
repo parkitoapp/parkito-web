@@ -1,77 +1,31 @@
-// components/CityList.tsx
-
-"use client";
-
-import useSupabaseJson from "@/hooks/useSupabase";
-import { Parking } from "@/types";
-import Loading from "./Loading";
-import Error from "./Error";
+import { CityType } from "@/lib/parking";
 import Image from "next/image";
 import { Card, CardFooter, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
-export interface CityType {
-    id: number;
-    name: string;
-    url: string;
-    image: string;
-}
-
-export default function CityList() {
-    const { data: parkings, loading, error, refetch } = useSupabaseJson<Parking>(
-        "parking_sheet_data",
-        "parkings_data.json",
-    );
-
-    if (loading) return <Loading />;
-    if (error)
-        return (
-            <Error
-                onClick={refetch}
-                message={error.message}
-                title="Errore di fetch dei parkings"
-            />
-        );
-    if (parkings.length === 0) return <div>No parkings available.</div>;
-
-    // ---- UNIQUE CITY EXTRACTION ----
-    const cityMap = new Map<string, Parking>();
-
-    for (const p of parkings) {
-        if (!cityMap.has(p.city)) {
-            cityMap.set(p.city, p); // first parking per city
-        }
-    }
-
-    const cities: CityType[] = Array.from(cityMap.entries()).map(
-        ([cityName, p]) => ({
-            id: p.id,
-            name: cityName,
-            url: `/citta/${cityName.toLowerCase()}`,
-            image: `/${cityName.toLowerCase()}.webp`, // your choice
-        })
-    );
+export default function CityList({ cities }: { cities: CityType[] }) {
+    if (cities.length === 0) return <div>No parkings available.</div>;
 
     // ---- RENDER ----
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-10 py-10 bg-background" id="icon-link">
             {cities.map((city) => (
-                <Card key={city.id} className="border shadow-md rounded-lg overflow-hidden bg-transparent hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg">
+                <Card key={city.id} className="border shadow-md overflow-hidden bg-card hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg rounded-3xl">
                     <Image
                         src={city.image}
                         alt={city.name}
                         width={400}
                         height={200}
-                        className="rounded-md w-full h-40 object-cover mb-3"
+                        className="rounded-t-3xl w-full h-40 object-cover mb-3"
                     />
 
 
-                    <CardFooter className="flex flex-row gap-2 items-center px-2 py-4 w-full">
-                        <CardTitle className="text-chart-4 text-xl items-center justify-start text-left w-full">{city.name}</CardTitle>
+                    <CardFooter className="flex flex-col xl:flex-row gap-2 items-center px-6 py-4 w-full">
+                        <CardTitle className="dark:text-chart-3 text-chart-4 text-xl items-center justify-start text-left w-full">{city.name}</CardTitle>
 
 
-                        <Button variant="default" className="p-0 mt-2" asChild>
+                        <Button variant="default" className="p-2 mt-2 rounded-2xl" asChild>
                             <Link href={city.url}>Scopri i migliori parcheggi a {city.name} &rarr;</Link>
                         </Button>
 

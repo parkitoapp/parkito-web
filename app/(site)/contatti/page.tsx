@@ -61,8 +61,7 @@ export default function Contacts() {
     return (
         <div>
             <Banner
-                src='/home_image.webp'
-                src2='/homePill.webp'
+                src='/contact.webp'
                 title='Dubbi, domande o perplessità?'
                 subtitle='Seleziona il tuo problema con il menù qua sotto e prenota la tua call con un membro del team Parkito!'
                 icon={true}

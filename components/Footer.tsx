@@ -16,7 +16,7 @@ export default function Footer() {
 
 
     return (
-        <footer className="w-full bg-linear-to-b from-chart-1 to-primary" aria-label='footer'>
+        <footer className="w-full dark:bg-sidebar-primary bg-primary" aria-label='footer'>
             <div className="max-w-7xl mx-auto px-6 py-10 md:px-24 md:py-16">
                 <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-0">
                     {/* Left block: logo, label, company info */}
@@ -121,7 +121,7 @@ export default function Footer() {
                 </div>
 
                 <div className='w-full bg-white h-[0.01em] my-6' />
-                <p className='text-white text-center mt-2 font-bold'>© 2026 Parkito - All rights reserved</p>
+                <p className='text-white text-center mt-2 font-bold'>© {new Date().getFullYear()} Parkito - All rights reserved</p>
                 <ul className='flex flex-row gap-4 text-white justify-center mt-3 text-sm'>
                     <li>
                         <Link

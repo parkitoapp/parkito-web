@@ -12,6 +12,7 @@ export const metadata = {
 }
 
 export default function Home() {
+
   return (
     <>
       <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.webp" src2={"/homePill.webp"} icon={true} social={true} dwbtn={true} />
@@ -24,7 +25,7 @@ export default function Home() {
               Prova l&apos;esperienza Parkito
             </h1>
             <>
-              <p className="hidden sm:block text-chart-4 font-semibold text-lg">
+              <p className="hidden sm:block text-chart-4 dark:text-chart-3 font-semibold text-lg">
                 Oltre 10.000 utenti soddisfatti in tutta Italia
               </p>
               <Image src='/homePill.webp' alt="App preview" width={1500} height={1800} className="mt-4 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%] sm:hidden" />
@@ -37,33 +38,42 @@ export default function Home() {
 
             <div className="w-full flex mx-auto flex-col min-h-80 bg-accent justify-center items-center py-10 px-16 text-white text-center rounded-t-3xl lg:rounded-none shadow-lg gap-5">
 
-              <h1 className="text-4xl flex flex-col font-bold mb-4 text-foreground">Trovare parcheggio in una città che non conosci? <span className="pb-2 border-b border-secondary text-secondary w-[5em]">Un incubo</span></h1>
+              <h1 className="text-4xl flex flex-col font-bold mb-4 text-foreground">Trovare parcheggio in una città che non conosci? <span className="pb-2 border-b border-secondary text-secondary dark:text-accent-foreground w-[5em]">Un incubo</span></h1>
               <div className="flex flex-col lg:grid lg:grid-cols-4 items-baseline gap-10">
 
-                <div className="flex flex-col w-50 bg-white p-4 rounded-xl">
-                  <Image src={"/headache.webp"} alt="headache" width={1300} height={1300} />
-                  <p className="text-md font-bold text-primary dark:text-chart-3 text-lg">
+                <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
+                  <CardHeader>
+                    <Image src={"/headache.webp"} alt="headache" width={1300} height={1300} />
+                  </CardHeader>
+
+                  <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     Rischio di girare a vuoto per ore.
-                  </p>
-                </div>
-                <div className="flex flex-col w-50 bg-white p-4 rounded-xl">
-                  <Image src={"/clock.webp"} alt="headache" width={1300} height={1300} />
-                  <p className="text-md font-bold text-primary dark:text-chart-3 text-lg">
+                  </CardTitle>
+                </Card>
+                <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
+                  <CardHeader>
+                    <Image src={"/clock.webp"} alt="headache" width={1300} height={1300} />
+                  </CardHeader>
+                  <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     Nessuna garanzia sulla disponibilità.
-                  </p>
-                </div>
-                <div className="flex flex-col w-50 bg-white p-4 rounded-xl">
-                  <Image src={"/light.webp"} alt="headache" width={1300} height={1300} />
-                  <p className="text-md font-bold text-primary dark:text-chart-3 text-lg">
+                  </CardTitle>
+                </Card>
+                <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
+                  <CardHeader>
+                    <Image src={"/light.webp"} alt="headache" width={1300} height={1300} />
+                  </CardHeader>
+                  <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     Prezzi poco trasparenti
-                  </p>
-                </div>
-                <div className="flex flex-col w-50 bg-white p-4 rounded-xl">
-                  <Image src={"/x.webp"} alt="headache" width={1300} height={1300} />
-                  <p className="text-md font-bold text-primary dark:text-chart-3 text-lg">
+                  </CardTitle>
+                </Card>
+                <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
+                  <CardHeader>
+                    <Image src={"/x.webp"} alt="headache" width={1300} height={1300} />
+                  </CardHeader>
+                  <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     No H24 e niente sicurezza
-                  </p>
-                </div>
+                  </CardTitle>
+                </Card>
 
               </div>
             </div>
@@ -118,7 +128,7 @@ export default function Home() {
                 <h3 className="text-2xl w-full font-bold text-accent-foreground mb-4 uppercase">
                   accedi tramite l&apos;app
                 </h3>
-                <h2 className="text-4xl lg:w-lg font-bold text-chart-5">
+                <h2 className="text-4xl lg:w-lg font-bold text-primary">
                   Massima sicurezza per la tua auto
                 </h2>
                 <p className="text-lg lg:w-lg">I parcheggi sono verificati e in contesti tranquilli. Dimentica il caos di strisce blu e autorimesse.</p>

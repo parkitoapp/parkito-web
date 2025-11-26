@@ -19,15 +19,15 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
             <div className="hidden min-[1241px]:flex relative text-white w-full md:h-screen h-svh items-center">
                 <div className="flex w-full flex-col md:flex-row items-center justify-between px-6 md:px-32 py-16">
 
-                    <div className="flex flex-col items-start justify-center text-left space-y-6 px-24">
-                        <div className="text-sm text-white rounded-full bg-secondary font-bold p-2 px-4">La prima app per il Park Sharing in Italia!</div>
+                    <div className="flex max-w-[60%] flex-col items-start justify-center text-left space-y-6 px-24">
+                        <div className="text-sm text-white rounded-full bg-green-800 font-bold p-2 px-4">La prima app per il Park Sharing in Italia!</div>
                         <div className="relative w-full">
                             {/* desktop highlight behind the heading */}
                             <span
                                 aria-hidden
-                                className="absolute left-0 bottom-3 z-0 w-1/2 max-w-160 h-4 md:h-6 bg-lime-200  pointer-events-none"
+                                className="absolute left-0 bottom-3 z-0 w-1/2 max-w-160 h-4 md:h-6 bg-lime-200 dark:bg-green-800 pointer-events-none"
                             />
-                            <h1 className="relative z-10 font-extrabold  lg:text-6xl  leading-tight text-primary ">{title}</h1>
+                            <h1 className="relative z-10 font-extrabold  lg:text-6xl  leading-tight text-primary">{title}</h1>
                         </div>
                         <p className="text-xl md:text-2xl text-chart-3">{subtitle}</p>
 
@@ -43,9 +43,11 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                         )}
 
                     </div>
-                    <div className="relative flex justify-center  mt-12 md:mt-0">
-                        <Image src={src} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl w-[50em] rounded-lg " />
-                        {src2 && <Image src={src2} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl absolute z-10 w-[25em] min-w-[50%] -right-10 md:-bottom-3 -bottom-2" />}
+                    <div className="relative flex justify-center w-[50%]  mt-12 md:mt-0">
+                        <Image src={src} alt="App preview" width={1500} height={1800} className="object-contain drop-shadow-2xl w-full rounded-lg " />
+
+                        {src2 &&
+                            <Image src={src2} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl absolute z-10 w-[15em] h-10 min-w-[50%] -right-10 md:-bottom-3 -bottom-2" />}
 
                     </div>
 

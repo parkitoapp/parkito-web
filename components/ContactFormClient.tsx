@@ -15,17 +15,14 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from '@/components/ui/textarea';
 import { Card } from "@/components/ui/card";
 import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaWhatsapp } from 'react-icons/fa';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { toast } from 'sonner';
 import type { TeamMember, SelectOption } from '@/types';
+import ContactForm from './ContactForm';
 
 type Props = {
     teamMembers: Record<string, TeamMember>;
@@ -37,33 +34,6 @@ export default function ContactFormClient({ teamMembers, selectOptions }: Props)
 
     const option = selectOptions.find(o => o.label === selectedOption);
     const member = option ? teamMembers[option.memberId] : null;
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const form = e.currentTarget;
-        const formData = new FormData(form);
-
-        try {
-            toast.loading("Invio in corso...");
-            const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(Object.fromEntries(formData)),
-            });
-
-            toast.dismiss();
-
-            if (!res.ok) throw new Error('Failed to send email');
-
-            toast.success("Email inviata correttamente!");
-            form.reset();
-            setSelectedOption("");
-        } catch (err) {
-            toast.dismiss();
-            console.error(err);
-            toast.error("Errore durante l'invio dell'email.");
-        }
-    };
 
     return (
         <div>
@@ -96,7 +66,7 @@ export default function ContactFormClient({ teamMembers, selectOptions }: Props)
                                 <div className="flex items-center gap-2">
                                     <span>Il tuo member sarà:</span>
                                     <Avatar className="w-10 h-10">
-                                        <AvatarImage src={member.image} />
+                                        <AvatarImage src={member.image} alt={`Avatar di ${member.name}`} />
                                         <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
                                     </Avatar>
                                     <span>{member.name}</span>
@@ -114,36 +84,9 @@ export default function ContactFormClient({ teamMembers, selectOptions }: Props)
                                 </Link>
                             </div>
                         ) : member && (member.id === "benedetta" || member.id === "davide") ? (
-                            <div className="p-4 bg-background rounded-lg border border-border shadow-soft">
-                                <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                                    <div className='flex flex-col md:grid md:grid-cols-2 gap-4'>
-                                        <div className='flex flex-col w-[60%] gap-4'>
-                                            <Label htmlFor='mail' className="text-foreground font-medium">La tua Email:</Label>
-                                            <Input id='mail' type='email' name="from" placeholder="Inserisci la tua email..." required />
-                                            <Label htmlFor='phone' className="text-foreground font-medium">Telefono:</Label>
-                                            <Input id='phone' type='tel' name="phone" placeholder="Inserisci il tuo numero di telefono..." />
-                                        </div>
-                                        <div className='flex flex-col w-[60%] gap-4'>
-                                            <Label htmlFor='name' className="text-foreground font-medium">Il tuo Nome:</Label>
-                                            <Input id='name' type='text' name="name" placeholder="Inserisci il tuo nome..." required />
-                                            <Label htmlFor='surname' className="text-foreground font-medium">Il tuo Cognome:</Label>
-                                            <Input id='surname' type='text' name="surname" placeholder="Inserisci il tuo cognome..." required />
-                                        </div>
-                                    </div>
-
-                                    <Textarea
-                                        name="body"
-                                        rows={6}
-                                        placeholder={`Scrivi qui il tuo messaggio a ${member.name}...`}
-                                        required
-                                    />
-                                    <Input type="hidden" name="subject" value={selectedOption} />
-
-                                    <Button type="submit" className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90">Invia Email</Button>
-                                </form>
-                            </div>
+                            <ContactForm member={member} selectedOption={selectedOption} />
                         ) : (
-                            <div className="rounded-lg overflow-hidden border border-border shadow-soft bg-background">
+                            <div className="rounded-lg overflow-hidden border border-border shadow-soft bg-primary">
                                 <iframe src={member?.url} className="w-full min-h-[30em]" title={`Prendi un appuntamento con ${member?.name}`} />
                             </div>
                         )}
@@ -154,12 +97,12 @@ export default function ContactFormClient({ teamMembers, selectOptions }: Props)
 
             <div className='h-50 w-full'>
                 <h3 className="text-xl font-semibold text-foreground mt-16 mb-4">Non hai tempo per una call?</h3>
-                <p className="text-muted-foreground mb-4">
-                    Contattaci direttamente via whatsapp a
-                    <Link href="mailto:" className="text-primary underline">
-                        <FaWhatsapp className="inline ml-2 mr-1" /> numero wa
-                    </Link>
-                </p>
+
+                <Link href="https://wa.me/393520397705" className="text-primarydark:text-white underline">
+                    <FaWhatsapp className="inline mr-2" size={32} />
+                    Contattaci direttamente via whatsapp
+                </Link>
+
             </div>
         </div>
     );

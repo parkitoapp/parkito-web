@@ -95,7 +95,7 @@ export default async function BlogPostPage({ params }: Props) {
 
                 {/* META */}
                 <div className="flex flex-col gap-4 mb-6">
-                    <Badge className="text-sm p-2 bg-white text-primary">
+                    <Badge className="p-2 bg-accent text-primary dark:text-white">
                         {new Date(post.publishedAt!).toLocaleDateString()}
                     </Badge>
                     <div className="flex items-center gap-4">
@@ -108,7 +108,7 @@ export default async function BlogPostPage({ params }: Props) {
 
                         <div>
                             <p className="font-medium">{post.author?.name}</p>
-                            <p className="text-sm text-gray-500">{post.author?.role}</p>
+                            <p className="text-sm text-primary">{post.author?.role}</p>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ export default async function BlogPostPage({ params }: Props) {
                     {post.tags?.map(tag => (
                         <Badge
                             key={tag}
-                            className="p-2"
+                            className="p-2 bg-accent text-primary dark:text-white"
                         >
                             {tag}
                         </Badge>
@@ -131,7 +131,7 @@ export default async function BlogPostPage({ params }: Props) {
                         <ul className="flex flex-col list-disc">
                             {post.content?.map(section => (
                                 <li key={section.id}>
-                                    <Link href={`#${section.id}`} className="text-blue-500 underline">
+                                    <Link href={`#${section.id}`} className="text-primary underline">
                                         {section.title}
                                     </Link>
                                 </li>

@@ -19,10 +19,17 @@ export async function POST(req: Request) {
         });
 
         await transporter.sendMail({
-            from: `"${name} ${surname}" <${from}>`,
-            to: "help@parkito.app",
-            subject,
-            text: `${body}\n\nTelefono: ${phone || "N/A"}`,
+            from: process.env.SMTP_USER, // Use authenticated SMTP user as sender
+            replyTo: `"${name} ${surname}" <${from}>`, // Set user's email as reply-to
+            to: process.env.RECEIVER_EMAIL,
+            subject: `Nuovo messaggio dal form di contatto: ${subject}`,
+            html: `
+        <h2>Nuovo messaggio da:</h2>
+        <p><b>Nome:</b> ${name} ${surname}</p>
+        <p><b>Email:</b> ${from}</p>
+        <p><b>Telefono:</b> ${phone}</p>
+        <p><b>Messaggio:</b><br/>${body}</p>
+        `,
         });
 
         return new Response(JSON.stringify({ success: true }), { status: 200 });

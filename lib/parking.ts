@@ -1,6 +1,8 @@
 import { supabase } from "@/lib/supabaseClient";
 import { Parking } from "@/types";
 import { slugify } from "@/lib/slugify";
+import fs from "fs";
+import path from "path";
 
 export async function getParkingData(): Promise<Parking[]> {
     try {
@@ -44,4 +46,40 @@ export async function getParking(citySlug: string, parkingAddress: string): Prom
     return parkings.find(
         (p) => slugify(p.city) === citySlug && slugify(p.address) === parkingAddress
     ) || null;
+}
+
+export interface CityType {
+    id: number;
+    name: string;
+    url: string;
+    image: string;
+}
+
+export async function getCities(): Promise<CityType[]> {
+    const parkings = await getParkingData();
+    const cityMap = new Map<string, Parking>();
+
+    for (const p of parkings) {
+        if (!cityMap.has(p.city)) {
+            cityMap.set(p.city, p); // first parking per city
+        }
+    }
+
+    // Check if image exists in public folder, otherwise use default
+    const publicDir = path.join(process.cwd(), "public");
+
+    return Array.from(cityMap.entries()).map(
+        ([cityName, p]) => {
+            const slug = slugify(cityName);
+            const imagePath = path.join(publicDir, `${slug}.webp`);
+            const hasImage = fs.existsSync(imagePath);
+
+            return {
+                id: p.id,
+                name: cityName,
+                url: `/citta/${slug}`,
+                image: hasImage ? `/${slug}.webp` : '/homePic.webp',
+            };
+        }
+    );
 }

@@ -53,7 +53,7 @@ export default function ReviewCard({ name, title, rating, body, date }: ReviewCa
             </div>
 
             {/* Author and date at the bottom */}
-            <div className="text-sm text-chart-4 font-semibold italic mt-4 text-right">
+            <div className="text-sm text-chart-4 dark:text-chart-3 font-semibold italic mt-4 text-right">
                 Da {name} · {formatDate(date)}
             </div>
         </Card>

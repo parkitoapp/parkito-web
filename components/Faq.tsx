@@ -37,9 +37,9 @@ export default function Faq({ items }: FaqProps) {
                     <AccordionItem
                         key={index}
                         value={`item-${index}`}
-                        className="flex flex-col border-none bg-white dark:bg-ring rounded-2xl px-8 w-full  py-2 hover:cursor-pointer"
+                        className="flex flex-col border-none bg-white dark:bg-accent rounded-2xl px-8 w-full  py-2 hover:cursor-pointer"
                     >
-                        <AccordionTrigger className="text-lg font-semibold text-primary dark:text-blue-200 flex flex-row items-center hover:cursor-pointer w-full">
+                        <AccordionTrigger className="text-lg font-semibold text-primary dark:text-white flex flex-row items-center hover:cursor-pointer w-full">
                             {item.question}
                         </AccordionTrigger>
                         <AccordionContent>{item.answer}</AccordionContent>
