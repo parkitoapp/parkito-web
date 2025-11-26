@@ -1,5 +1,5 @@
 "use client";
-import { FAQ, Parking } from "@/types";
+import { Parking } from "@/types";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
@@ -8,7 +8,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import Image from "next/image";
 import Faq from "./Faq";
-import { blogFaqs } from "@/data/blogFaq";
+import { parkingFaqs } from "@/data/parkingFaq";
 
 
 interface Props {
@@ -34,8 +34,6 @@ export default function ParkingDetail({ citySlug, parking }: Props) {
                 </Alert>
             </div>
         );
-
-    const cityFaqs: FAQ[] = blogFaqs.find(f => parking.city.includes(f.city))?.faqs ?? [];
 
     return (
         <div className="flex flex-col w-full min-h-screen items-center justify-center pt-30 px-2 mb-4">
@@ -135,7 +133,7 @@ export default function ParkingDetail({ citySlug, parking }: Props) {
                         </div>
                     </CardDescription>
                 </CardContent>
-                <Faq items={cityFaqs} />
+                <Faq items={parkingFaqs} />
                 <Button variant="default" className="mt-10" asChild>
                     <Link href={`/citta/${citySlug}`} className="text-blue-600 underline m-2">
                         Torna ai parcheggi di {parking.city}

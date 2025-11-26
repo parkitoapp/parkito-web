@@ -1,6 +1,7 @@
 /**
  * ScrollStack component to create a scrollable stack of items with scaling and transformation effects.
  * Optimized for performance using native scroll events with requestAnimationFrame throttling.
+ * Fixed flickering on mobile by throttling updates and minimizing heavy CSS filters.
  * 
  * @param {ScrollStackProps} props - The properties for configuring the ScrollStack behavior and appearance.
  * @returns {JSX.Element} The ScrollStack component.
@@ -66,7 +67,6 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const lastTransformsRef = useRef(new Map<number, TransformState>());
   const stackCompletedRef = useRef(false);
   const animationFrameRef = useRef<number | null>(null);
-  const isUpdatingRef = useRef(false);
   const tickingRef = useRef(false);
 
   const parsePercentage = useCallback((value: string, height: number) => {
@@ -80,9 +80,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   }, []);
 
   const updateCardTransforms = useCallback(() => {
-    if (!containerRef.current || !cardsRef.current.length || isUpdatingRef.current) return;
-
-    isUpdatingRef.current = true;
+    if (!containerRef.current || !cardsRef.current.length) return;
 
     const container = containerRef.current;
     const containerTop = container.getBoundingClientRect().top + window.scrollY;
@@ -111,7 +109,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       const rotation = rotationAmount ? i * rotationAmount * scaleProgress : 0;
 
       let blur = 0;
-      if (blurAmount) {
+      // Disable blur on mobile to prevent flickering
+      if (blurAmount && window.innerWidth > 768) {
         let topIdx = 0;
         for (let j = 0; j < cardsRef.current.length; j++) {
           const jTop = cardsRef.current[j].offsetTop;
@@ -135,10 +134,10 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
       if (
         !last ||
-        Math.abs(last.translateY - translateY) > 0.1 ||
+        Math.abs(last.translateY - translateY) > 0.5 ||
         Math.abs(last.scale - scale) > 0.001 ||
-        Math.abs(last.rotation - rotation) > 0.1 ||
-        Math.abs(last.blur - blur) > 0.1
+        Math.abs(last.rotation - rotation) > 0.5 ||
+        Math.abs(last.blur - blur) > 0.5
       ) {
         card.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale}) rotate(${rotation}deg)`;
         card.style.filter = blur ? `blur(${blur}px)` : "";
@@ -146,17 +145,15 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       }
 
       if (i === cardsRef.current.length - 1) {
-        const inside = isPinned;
-        if (inside && !stackCompletedRef.current) {
+        if (isPinned && !stackCompletedRef.current) {
           stackCompletedRef.current = true;
           onStackComplete?.();
-        } else if (!inside && stackCompletedRef.current) {
+        } else if (!isPinned && stackCompletedRef.current) {
           stackCompletedRef.current = false;
         }
       }
     });
 
-    isUpdatingRef.current = false;
     tickingRef.current = false;
   }, [
     itemScale,
@@ -171,20 +168,18 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     onStackComplete,
   ]);
 
-  const requestTick = useCallback(() => {
+  const handleScroll = useCallback(() => {
     if (!tickingRef.current) {
       tickingRef.current = true;
       animationFrameRef.current = requestAnimationFrame(updateCardTransforms);
     }
   }, [updateCardTransforms]);
 
-  const handleScroll = useCallback(() => {
-    requestTick();
-  }, [requestTick]);
-
   useLayoutEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+
+    container.style.willChange = "transform";
 
     const cards = Array.from(container.querySelectorAll(".scroll-stack-card")) as HTMLElement[];
     cardsRef.current = cards;
@@ -197,7 +192,6 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     // Initial update
     updateCardTransforms();
 
-    // Add passive scroll listener for better performance
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll, { passive: true });
 
@@ -205,9 +199,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
       if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
-      // Capture ref value for cleanup
-      const lastTransforms = lastTransformsRef.current;
-      lastTransforms.clear();
+      lastTransformsRef.current.clear();
       cardsRef.current = [];
     };
   }, [itemDistance, updateCardTransforms, handleScroll]);

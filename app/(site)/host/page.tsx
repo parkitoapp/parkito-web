@@ -199,11 +199,6 @@ export default function page() {
                         </Card>
                     </div>
                 </div>
-                <div className='min-h-80 bg-red-500' id='icon-link'>
-
-                    <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10">RECENSIONI</h1>
-
-                </div>
                 <div className='w-full bg-accent flex flex-col gap-6 py-10 px-4'>
                     <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center text-primary">Non puoi essere presente per l&apos;accoglienza?</h1>
                     <Image src="/access.webp" alt="icona Disponibilità e prezzo" width={1300} height={1300} className='mx-auto w-[50%] p-4' />
@@ -222,6 +217,11 @@ export default function page() {
                     <div className='md:hidden block'>
                         <MobileCompare rows={rows} />
                     </div>
+                </div>
+                <div className='min-h-80 bg-red-500' id='icon-link'>
+
+                    <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10">RECENSIONI</h1>
+
                 </div>
                 <Faq items={faq} />
             </div>
