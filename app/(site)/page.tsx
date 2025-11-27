@@ -52,7 +52,7 @@ export default function Home() {
                 </Card>
                 <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src={"/clock.webp"} alt="headache" width={1300} height={1300} className="md:w-50 w-40 mx-auto" />
+                    <Image src={"/clock.webp"} alt="orologio" width={1300} height={1300} className="md:w-50 w-40 mx-auto" />
                   </CardHeader>
                   <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     Nessuna garanzia sulla disponibilità.
@@ -60,7 +60,7 @@ export default function Home() {
                 </Card>
                 <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src={"/light.webp"} alt="headache" width={1300} height={1300} className="md:w-50 w-40 mx-auto" />
+                    <Image src={"/light.webp"} alt="luci" width={1300} height={1300} className="md:w-50 w-40 mx-auto" />
                   </CardHeader>
                   <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     Prezzi poco trasparenti
@@ -68,7 +68,7 @@ export default function Home() {
                 </Card>
                 <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src={"/x.webp"} alt="headache" width={1300} height={1300} className="md:w-50 w-40 mx-auto" />
+                    <Image src={"/x.webp"} alt="croce" width={1300} height={1300} className="md:w-50 w-40 mx-auto" />
                   </CardHeader>
                   <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     No H24 e niente sicurezza

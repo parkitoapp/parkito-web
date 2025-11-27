@@ -174,7 +174,7 @@ export default function page() {
                             </div>
                         </Card>
                         <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
-                            <Image src={"/star.webp"} alt="icona Disponibilità e prezzo" width={1300} height={1300} className='w-36 h-36 p-4' />
+                            <Image src={"/star.webp"} alt="icona stelle" width={1300} height={1300} className='w-36 h-36 p-4' />
                             <CardContent className='w-full p-6'>
                                 <CardTitle className="text-2xl font-bold text-primary mt-4">100% Gratuito</CardTitle>
                                 <CardDescription className="mt-2 w-[60%] text-left">
@@ -184,7 +184,7 @@ export default function page() {
                             </CardContent>
                         </Card>
                         <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
-                            <Image src={"/reload.webp"} alt="icona Disponibilità e prezzo" width={1300} height={1300} className='w-36 h-36 p-4' />
+                            <Image src={"/reload.webp"} alt="icona ricarica" width={1300} height={1300} className='w-36 h-36 p-4' />
                             <CardContent className='w-full p-6'>
                                 <CardTitle className="text-2xl font-bold text-primary mt-4">Recedi quando vuoi</CardTitle>
                                 <CardDescription className="mt-2 w-[60%] text-left">
@@ -193,7 +193,7 @@ export default function page() {
                             </CardContent>
                         </Card>
                         <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
-                            <Image src={"/gold.webp"} alt="icona Disponibilità e prezzo" width={1300} height={1300} className='w-36 h-36 p-4' />
+                            <Image src={"/gold.webp"} alt="icona oro" width={1300} height={1300} className='w-36 h-36 p-4' />
                             <CardContent className='w-full p-6'>
                                 <CardTitle className="text-2xl font-bold text-primary mt-4">Guadagna fino al 300%</CardTitle>
                                 <CardDescription className="mt-2 w-[60%] text-left">
@@ -205,7 +205,7 @@ export default function page() {
                 </div>
                 <div className='w-full bg-accent flex flex-col gap-6 py-10 px-4'>
                     <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center text-primary">Non puoi essere presente per l&apos;accoglienza?</h1>
-                    <Image src="/access.webp" alt="icona Disponibilità e prezzo" width={1300} height={1300} className='mx-auto w-[50%] p-4' />
+                    <Image src="/access.webp" alt="icona accesso" width={1300} height={1300} className='mx-auto w-[50%] p-4' />
                     {/* <p className="text-center text-lg mx-auto w-[60%]">Nessun problema! Con Parkito puoi automatizzare l&apos;accesso al tuo parcheggio in pochi semplici passi, permettendo ai driver di entrare e uscire in completa autonomia tramite l&apos;app.</p> */}
                     <Button variant={"default"} className="mx-auto rounded-full p-4" size={"lg"} asChild>
                         <Link href={"/devices"}>
@@ -222,11 +222,11 @@ export default function page() {
                         <MobileCompare rows={rows} />
                     </div>
                 </div>
-                <div className='min-h-80 bg-red-500' id='icon-link'>
+                {/* <div className='min-h-80 bg-red-500' id='icon-link'>
 
                     <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10">RECENSIONI</h1>
 
-                </div>
+                </div> */}
                 <Faq items={faq} />
             </div>
         </>

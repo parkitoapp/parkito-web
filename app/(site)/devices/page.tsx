@@ -28,7 +28,7 @@ export default function page() {
 
                             <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                                 <CardHeader>
-                                    <Image src={"/headache.webp"} alt="headache" width={1300} height={1300} />
+                                    <Image src={"/headache.webp"} alt="icona stress" width={1300} height={1300} />
                                 </CardHeader>
 
                                 <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
@@ -40,7 +40,7 @@ export default function page() {
                             </Card>
                             <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                                 <CardHeader>
-                                    <Image src={"/clock.webp"} alt="headache" width={1300} height={1300} />
+                                    <Image src={"/clock.webp"} alt="icona orologio" width={1300} height={1300} />
                                 </CardHeader>
                                 <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                                     Utenti Verificati
@@ -51,7 +51,7 @@ export default function page() {
                             </Card>
                             <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                                 <CardHeader>
-                                    <Image src={"/light.webp"} alt="headache" width={1300} height={1300} />
+                                    <Image src={"/light.webp"} alt="icona luci" width={1300} height={1300} />
                                 </CardHeader>
                                 <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                                     Accesso in autonomia

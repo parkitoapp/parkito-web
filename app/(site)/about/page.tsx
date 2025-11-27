@@ -85,7 +85,7 @@ export default function page() {
                 <div>
                     <Image
                         src="/parking-parkito.webp"
-                        alt="About Us Illustration"
+                        alt="Parkito app illustration"
                         width={400}
                         height={400}
                     />
@@ -141,7 +141,7 @@ export default function page() {
                 <h2 className="text-4xl font-bold text-center mb-12 text-primary italic">Powered By</h2>
                 <Image
                     src="/b4i-logo.webp"
-                    alt="Politecnico di Milano Logo"
+                    alt="Bocconi for Innovation Logo"
                     width={550}
                     height={550}
                     className="mx-auto mb-10"

@@ -14,7 +14,7 @@ export default function CityList({ cities }: { cities: CityType[] }) {
                 <Card key={city.id} className="border shadow-md overflow-hidden bg-card hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg rounded-3xl">
                     <Image
                         src={city.image}
-                        alt={city.name}
+                        alt={`Immagine per ${city.name}`}
                         width={400}
                         height={200}
                         className="rounded-t-3xl w-full h-40 object-cover mb-3"

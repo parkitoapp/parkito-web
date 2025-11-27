@@ -101,7 +101,7 @@ export default async function BlogPostPage({ params }: Props) {
                 {post.coverImage && (
                     <Image
                         src={urlFor(post.coverImage)!}
-                        alt={post.title}
+                        alt={`immagine per ${post.title}`}
                         className="w-[70%] mx-auto h-auto mb-8 rounded-lg"
                         width={1200}
                         height={1200}
@@ -183,7 +183,7 @@ export default async function BlogPostPage({ params }: Props) {
                                             <Image
                                                 key={i}
                                                 src={urlFor(img)!}
-                                                alt={`Image for ${section.title}`}
+                                                alt={`Immagine per ${section.title}`}
                                                 width={1200}
                                                 height={600}
                                                 className="rounded-lg"
