@@ -7,6 +7,7 @@
 import Banner from '@/components/Banner'
 import ContactFormClient from '@/components/ContactFormClient'
 import { TeamMember, SelectOption } from '@/types';
+import BC from '@/components/BC';
 
 export const metadata = {
     title: 'Contatti',
@@ -67,6 +68,9 @@ export default function Contacts() {
                 icon={true}
                 social={true}
             />
+            <div className="px-16 pt-8">
+                <BC />
+            </div>
             <div id='icon-link' className="bg-background mx-auto md:px-24 md:py-16">
                 <div className="w-full mx-auto">
                     <ContactFormClient teamMembers={teamMembers} selectOptions={selectOptions} />

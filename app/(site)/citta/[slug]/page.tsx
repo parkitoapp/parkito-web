@@ -1,5 +1,6 @@
 import Banner from "@/components/Banner";
 import ParkingList from "@/components/ParkingList";
+import BC from "@/components/BC";
 
 interface Props {
     params: { slug: string };
@@ -30,6 +31,9 @@ export default async function CityPage({ params }: Props) {
                 social={true}
 
             />
+            <div className="px-16 pt-8">
+                <BC title={display} />
+            </div>
             <ParkingList city={citySlug.slug} />
         </div>
     );

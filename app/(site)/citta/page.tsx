@@ -11,6 +11,7 @@ import { Metadata } from "next"
 import CityList from "@/components/CityList"
 import Banner from "@/components/Banner"
 import { getCities } from "@/lib/parking"
+import BC from "@/components/BC"
 
 export const metadata: Metadata = {
     title: 'Dove siamo',
@@ -23,6 +24,9 @@ export default async function City() {
     return (
         <>
             <Banner title="Dove siamo" subtitle="Scopri le città in cui Parkito è disponibile" src="/cities.webp" icon={true} social={true} dwbtn={true} />
+            <div className="px-16 pt-8">
+                <BC />
+            </div>
             <CityList cities={cities} />
         </>
     )

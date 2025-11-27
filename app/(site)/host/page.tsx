@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
 import TableCompare from '@/components/TableCompare'
 import MobileCompare from '@/components/MobileCompare'
+import BC from '@/components/BC'
 
 
 export default function page() {
@@ -17,6 +18,9 @@ export default function page() {
             <Banner title='Scarica Parkito e attiva il tuo parcheggio in 5 minuti.' subtitle='Condividi qualsiasi parcheggio, anche quelli condominiali.' src='/host.webp' dwbtn={true} icon={true} social={true}
             />
             <div className='bg-background'>
+                <div className="px-16 pt-8">
+                    <BC />
+                </div>
                 <div className=" min-h-screen sm:pb-120 md:pb-50 pb-150">
                     <h2 className="text-5xl font-extrabold mx-auto mb-4 px-4 text-center pt-10">La soluzione? Un parcheggio <span className="text-primary dark:text-ring">Parkito!</span></h2>
                     <ScrollStack className="bg-background">

@@ -2,6 +2,7 @@ import Banner from "@/components/Banner"
 import Image from "next/image"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import DeviceTabs from "@/components/DeviceTabs"
+import BC from "@/components/BC"
 
 
 export default function page() {
@@ -10,6 +11,9 @@ export default function page() {
             <Banner title="Automatizza l'accesso del tuo parcheggio, senza preoccupazioni, anche in condominio" subtitle="Compatibile con tutti i tipi di accesso e nessun permesso necessario" src="/device.webp" src2="/devicePill.webp" icon={true} social={true} dwbtn={true} />
 
             <div className="bg-background">
+                <div className="px-16 pt-8">
+                    <BC />
+                </div>
                 <div className="w-full mx-auto bg-background lg:pb-20" >
 
                     <div className="w-full flex mx-auto flex-col min-h-80 bg-accent justify-center items-center py-10 px-16 text-center rounded-t-3xl lg:rounded-none shadow-lg gap-5">

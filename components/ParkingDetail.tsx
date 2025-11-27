@@ -9,6 +9,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import Image from "next/image";
 import Faq from "./Faq";
 import { parkingFaqs } from "@/data/parkingFaq";
+import { fetchParkingPhoto } from "@/lib/fetchParkingPhoto";
+import { useEffect, useState } from "react";
+import { Spinner } from "./ui/spinner";
+import BC from "./BC";
 
 
 interface Props {
@@ -17,6 +21,19 @@ interface Props {
 }
 
 export default function ParkingDetail({ citySlug, parking }: Props) {
+    const [imageUrl, setImageUrl] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        async function loadImage() {
+            setIsLoading(true);
+            const url = await fetchParkingPhoto(parking?.id ?? 0);
+            setImageUrl(url);
+            setIsLoading(false);
+        }
+        loadImage();
+    }, [parking?.id]);
+
     if (!parking)
         return (
             <div className="min-h-screen w-full flex flex-col items-center justify-center">
@@ -37,6 +54,9 @@ export default function ParkingDetail({ citySlug, parking }: Props) {
 
     return (
         <div className="flex flex-col w-full min-h-screen items-center justify-center pt-30 px-2 mb-4">
+            <div className="w-full max-w-7xl px-4 mb-4">
+                <BC title={parking.address} />
+            </div>
             <Card className="px-10 py-10 max-w-7xl">
                 <CardHeader>
                     <CardTitle className="text-4xl font-bold mb-2 flex items-center gap-4 text-primary">
@@ -44,13 +64,15 @@ export default function ParkingDetail({ citySlug, parking }: Props) {
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="md:grid md:grid-cols-2 flex flex-col m-2">
-                    <Image
-                        src={'/torino.webp'}
+                    {isLoading ? <div className="w-full h-full bg-muted animate-pulse rounded-md mb-3 flex items-center justify-center" >
+                        <Spinner className="w-12 h-12 text-primary" /> Caricamento immagine...
+                    </div> : <Image
+                        src={imageUrl ?? '/device.webp'}
                         alt={parking.name}
                         width={500}
                         height={300}
                         className="rounded-md m-auto object-cover"
-                    />
+                    />}
                     <CardDescription>
 
                         <div className="flex md:flex-row flex-col w-full justify-evenly items-center mb-4 gap-2 mt-2">
@@ -123,7 +145,7 @@ export default function ParkingDetail({ citySlug, parking }: Props) {
                         >
                             {parking.description}
                         </ReactMarkdown>
-                        <div className="flex flex-row w-full mx-auto items-center justify-center gap-4 mt-6">
+                        <div className="flex flex-row w-full items-center justify-start gap-4 mt-6">
                             <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button">
                                 <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
                             </Link>

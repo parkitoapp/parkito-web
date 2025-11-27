@@ -12,6 +12,7 @@ import BlogRender from "@/components/BlogRender";
 import { Metadata } from "next";
 import { Suspense } from "react";
 import Loading from "@/components/Loading";
+import BC from "@/components/BC";
 
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default async function BlogPage() {
         <>
             <Banner title="Scopri il blog di Parkito dove puoi trovare risposta alle tue curiosità" subtitle="Dai nostri parcheggi, alle attrazioni nei loro dintorni" src="/blog.webp" icon={true} social={true} dwbtn={true} />
             <div className="min-h-screen md:px-20 md:mt-10 flex flex-col bg-background w-full">
+                <BC />
                 <h1 className="text-6xl font-bold mb-8 text-primary" id="icon-link">Blog</h1>
                 <Suspense fallback={<Loading />}>
                     <BlogRender posts={posts} />

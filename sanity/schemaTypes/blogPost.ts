@@ -126,6 +126,14 @@ export default defineType({
             options: { hotspot: true },
         }),
 
+        defineField({
+            name: "recap",
+            title: "In Breve",
+            type: "array",
+            of: [{ type: "block" }],
+            validation: (rule) => rule.required(),
+        }),
+
         // -------------------------
         // CONTENT SECTIONS
         // -------------------------

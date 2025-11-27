@@ -4,6 +4,7 @@ import path from "path";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import { Metadata } from "next";
+import BC from "@/components/BC";
 
 export const metadata: Metadata = {
     title: "Termini e Condizioni",
@@ -18,6 +19,7 @@ export default async function TermsPage() {
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-16 mt-20">
+            <BC />
             <h1 className="text-6xl font-bold mb-6 text-center text-primary">Termini e Condizioni</h1>
             <ReactMarkdown
                 components={{

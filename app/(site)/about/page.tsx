@@ -3,6 +3,7 @@ import { Linkedin } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import BC from "@/components/BC";
 
 const team = [
     {
@@ -57,6 +58,9 @@ export const metadata: Metadata = {
 export default function page() {
     return (
         <>
+            <div className="px-16 pt-8">
+                <BC />
+            </div>
             <div className="min-h-screen w-full flex flex-row items-center justify-between p-24">
                 <div className="text-center w-[60%] mx-auto">
                     <h1 className="text-7xl font-bold mb-4 text-primary">La prima piattaforma

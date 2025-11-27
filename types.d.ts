@@ -105,19 +105,20 @@ export type Block = {
 export type BlogPost = {
     _id: string;
     title: string;
-    slug: Slug;
-    publishedAt: string;
+    slug: { current: string };
+    publishedAt?: string;
     coverImage?: SanityImage;
-    tags: string[];
     author?: {
         name: string;
         role: string;
         image?: SanityImage;
     };
-    content: Section[];
+    tags: string[];
+    recap?: Block[]; // PortableText content for recap section
+    content?: ContentSection[];
 };
 
-export type Section = {
+export type ContentSection = {
     id: string;
     title: string;
     images?: SanityImage[];
@@ -156,7 +157,6 @@ export type SelectOption = {
 export type Parking = {
     id: number,
     name: string,
-    image?: string,
     address: string,
     city: string,
     vehicle_type: string,

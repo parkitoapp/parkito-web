@@ -14,7 +14,6 @@ import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 import { client } from "@/lib/sanity";
 import { SanityImage } from "@/types";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage, } from "@/components/ui/avatar"
 import { Card, CardTitle, CardContent } from "@/components/ui/card";
@@ -22,8 +21,11 @@ import { blogFaqs } from "@/data/blogFaq";
 import Faq from "@/components/Faq";
 import { FAQ } from "@/types";
 import { Badge } from "@/components/ui/badge";
-import { ChevronsLeft } from "lucide-react";
+import { ChevronsLeft, Search } from "lucide-react";
 import { Metadata } from "next";
+import Link from "next/link";
+import { parkingFaqs } from "@/data/parkingFaq";
+import BC from "@/components/BC";
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source: SanityImage) => builder.image(source).url();
@@ -68,6 +70,18 @@ const portableComponents = {
             <p className="text-base leading-relaxed my-3">{children}</p>
         ),
     },
+    marks: {
+        link: ({ children, value }: { children?: React.ReactNode, value?: { href: string } }) => (
+            <Link
+                href={value?.href || "#"}
+                className="text-chart-1 dark:text-ring underline hover:text-chart-2 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {children}
+            </Link>
+        ),
+    },
 };
 
 export default async function BlogPostPage({ params }: Props) {
@@ -79,15 +93,16 @@ export default async function BlogPostPage({ params }: Props) {
     return (
         <>
             <div className="mx-auto py-32 px-16">
+                <BC title={post.title} />
 
                 {/* TITLE */}
-                <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+                <h1 className="text-5xl font-bold my-4">{post.title}</h1>
                 {/* COVER IMAGE */}
                 {post.coverImage && (
                     <Image
                         src={urlFor(post.coverImage)!}
                         alt={post.title}
-                        className="w-full h-auto mb-8 rounded-lg"
+                        className="w-[70%] mx-auto h-auto mb-8 rounded-lg"
                         width={1200}
                         height={1200}
                     />
@@ -125,7 +140,7 @@ export default async function BlogPostPage({ params }: Props) {
                     ))}
                 </div>
 
-                <Card className="mb-12 w-[30%] p-4">
+                <Card className="mb-12 w-[30%] p-4 rounded-3xl">
                     <CardTitle>Indice dei contenuti</CardTitle>
                     <CardContent className="p-8 ">
                         <ul className="flex flex-col list-disc">
@@ -139,6 +154,16 @@ export default async function BlogPostPage({ params }: Props) {
                         </ul>
                     </CardContent>
                 </Card>
+
+                {/* RECAP SECTION */}
+                {post.recap && (
+                    <Card className="mb-12 p-6 rounded-3xl bg-muted max-w-4xl">
+                        <CardTitle className="mb-4"><Search className="mr-2 inline" size={20} /> In Breve</CardTitle>
+                        <CardContent className="prose">
+                            <PortableText value={post.recap} components={portableComponents} />
+                        </CardContent>
+                    </Card>
+                )}
 
                 {/* CONTENT SECTIONS */}
                 <div className="prose">
@@ -184,9 +209,11 @@ export default async function BlogPostPage({ params }: Props) {
                         </section>
                     ))}
                 </div>
-                {cityFaqs && (
+                {cityFaqs ?
                     <Faq items={cityFaqs} />
-                )}
+                    :
+                    <Faq items={parkingFaqs} />
+                }
                 <Button asChild className="mt-16">
                     <Link href="/blog"><ChevronsLeft className="inline" /> Torna al Blog</Link>
                 </Button>

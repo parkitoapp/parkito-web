@@ -1,27 +1,49 @@
-export const metadata = {
-    title: 'Parkito Admin',
-    description: 'Sanity Studio',
-}
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/hooks/useAuth";
 import { ThemeProvider } from "@/hooks/theme-provider";
 import { AppSidebar } from '@/components/app-sidebar';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import Loading from '@/components/Loading';
 import '../globals.css';
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <html lang="en" suppressHydrationWarning>
-            <body>
-                <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+const COMPANY_DOMAIN = "parkito.app";
 
-                    <SidebarProvider>
-                        <AppSidebar />
-                        <main className="w-full min-h-screen">
-                            <SidebarTrigger />
-                            {children}
-                        </main>
-                    </SidebarProvider>
-                </ThemeProvider>
-            </body>
-        </html>
-    )
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+    const { user, loading } = useAuth();
+    const router = useRouter();
+
+    // Redirect if not logged in
+    useEffect(() => {
+        if (!loading && !user) {
+            router.push("/login");
+        }
+    }, [user, loading, router]);
+
+    // Show loading state while checking auth OR if user is not authenticated (to prevent flash)
+    if (loading || !user) {
+        return <Loading />;
+    }
+
+    // Check if user has company email
+    if (!user.email?.endsWith(`@${COMPANY_DOMAIN}`)) {
+        return <Loading />; // Show loading while redirecting
+    }
+
+    // User is authenticated, show the admin layout
+    return (
+        <div>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                <SidebarProvider>
+                    <AppSidebar />
+                    <main className="w-full min-h-screen">
+                        <SidebarTrigger />
+                        {children}
+                    </main>
+                </SidebarProvider>
+            </ThemeProvider>
+        </div>
+    );
 }
