@@ -44,7 +44,7 @@ export default function page() {
                                 playsInline
                                 loop
                                 muted
-                                preload="auto"
+                                preload="metadata"
                                 className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0"
                             >
                                 <source src="/diventa-host-1.mp4" type="video/mp4" />
@@ -60,7 +60,7 @@ export default function page() {
                                 playsInline
                                 loop
                                 muted
-                                preload="auto"
+                                preload="metadata"
                                 className="hidden md:block w-full md:w-[40%] h-auto rounded-lg"
                             >
                                 <source src="/diventa-host-2.mp4" type="video/mp4" />
@@ -84,7 +84,7 @@ export default function page() {
                                 playsInline
                                 loop
                                 muted
-                                preload="auto"
+                                preload="metadata"
                                 className="md:hidden w-full h-auto rounded-lg mt-4"
                             >
                                 <source src="/diventa-host-2.mp4" type="video/mp4" />
@@ -111,7 +111,7 @@ export default function page() {
                                 playsInline
                                 loop
                                 muted
-                                preload="auto"
+                                preload="metadata"
                                 className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0"
                             >
                                 <source src="/diventa-host-3.mp4" type="video/mp4" />
@@ -127,7 +127,7 @@ export default function page() {
                                 playsInline
                                 loop
                                 muted
-                                preload="auto"
+                                preload="metadata"
                                 className="hidden md:block w-full md:w-[40%] h-auto rounded-lg"
                             >
                                 <source src="/diventa-host-2.mp4" type="video/mp4" />
@@ -151,7 +151,7 @@ export default function page() {
                                 playsInline
                                 loop
                                 muted
-                                preload="auto"
+                                preload="metadata"
                                 className="md:hidden w-full h-auto rounded-lg mt-4"
                             >
                                 <source src="/diventa-host-2.mp4" type="video/mp4" />

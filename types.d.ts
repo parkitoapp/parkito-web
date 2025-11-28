@@ -99,30 +99,32 @@ export type SanityImage = {
 
 export type Block = {
     _type: "block";
-    children: { _type: "span"; text: string }[];
+    children: { _type: "p"; text: string }[];
 };
 
 export type BlogPost = {
     _id: string;
     title: string;
     slug: { current: string };
-    publishedAt?: string;
-    coverImage?: SanityImage;
-    author?: {
+    publishedAt: string;
+    coverImage: SanityImage;
+    author: {
         name: string;
         role: string;
-        image?: SanityImage;
+        image: SanityImage;
     };
     tags: string[];
-    recap?: Block[]; // PortableText content for recap section
-    content?: ContentSection[];
+    recap: Block[]; // PortableText content for recap section
+    coverAlt: string;
+    intro: Block[];
+    content: ContentSection[];
 };
 
 export type ContentSection = {
-    id: string;
     title: string;
-    images?: SanityImage[];
+    image: SanityImage;
     body: Block[];
+    sectionAlt: string;
 };
 
 export type FAQ = {

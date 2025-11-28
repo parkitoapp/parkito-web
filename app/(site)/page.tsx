@@ -104,7 +104,7 @@ export default function Home() {
                 playsInline
                 loop
                 muted
-                preload="auto"
+                preload="metadata"
                 className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0"
               >
                 <source src="/ricerca-edited.mp4" type="video/mp4" />
@@ -120,7 +120,7 @@ export default function Home() {
                 playsInline
                 loop
                 muted
-                preload="auto"
+                preload="metadata"
                 className="hidden md:block w-full md:w-[40%] h-auto rounded-lg"
               >
                 <source src="/mappa-edited.mp4" type="video/mp4" />
@@ -144,7 +144,7 @@ export default function Home() {
                 playsInline
                 loop
                 muted
-                preload="auto"
+                preload="metadata"
                 className="md:hidden w-full h-auto rounded-lg mt-4"
               >
                 <source src="/mappa-edited.mp4" type="video/mp4" />
@@ -171,7 +171,7 @@ export default function Home() {
                 playsInline
                 loop
                 muted
-                preload="auto"
+                preload="metadata"
                 className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0"
               >
                 <source src="/istruzioni-edited.mp4" type="video/mp4" />

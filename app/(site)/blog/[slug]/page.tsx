@@ -102,7 +102,7 @@ export default async function BlogPostPage({ params }: Props) {
                 {post.coverImage && (
                     <Image
                         src={urlFor(post.coverImage)!}
-                        alt={`immagine per ${post.title}`}
+                        alt={post.coverAlt || `Immagine per ${post.title}`}
                         className="w-full h-auto mx-auto object-cover mb-8 rounded-lg"
                         width={1600}
                         height={900}
@@ -143,13 +143,19 @@ export default async function BlogPostPage({ params }: Props) {
                     </div>
                 </div>
 
+                {post.intro && (
+                    <div className="py-4 w-full">
+                        <PortableText value={post.intro} components={portableComponents} />
+                    </div>
+                )}
+
                 <Card className="mb-12 md:w-[30%] p-4 rounded-3xl">
                     <CardTitle>Indice dei contenuti</CardTitle>
                     <CardContent className="p-8 ">
                         <ul className="flex flex-col list-disc">
                             {post.content?.map(section => (
-                                <li key={section.id}>
-                                    <Link href={`#${section.id}`} className="text-primary underline">
+                                <li key={section.title.toLowerCase().replace(/\s/g, "-")}>
+                                    <Link href={`#${section.title.toLowerCase().replace(/\s/g, "-")}`} className="text-primary underline">
                                         {section.title}
                                     </Link>
                                 </li>
@@ -171,34 +177,33 @@ export default async function BlogPostPage({ params }: Props) {
                 {/* CONTENT SECTIONS */}
                 <div className="prose prose-img:max-w-none max-w-none">
                     {post.content?.map((section, idx) => (
+                        console.log(idx),
                         <section
-                            key={section.id}
-                            id={section.id} // anchor for ToC
+                            key={section.title.toLowerCase().replace(/\s/g, "-")}
+                            id={section.title.toLowerCase().replace(/\s/g, "-")} // anchor for ToC
                             className="mb-16"
                         >
                             <h2 className="text-chart-2 font-bold text-5xl">{section.title}</h2>
 
                             {/* Section images */}
-                            {section.images && (
+                            {section.image && (
                                 <div className="flex flex-col gap-4 my-4 not-prose">
-                                    {section.images.map((img, i) => (
-                                        <Image
-                                            key={i}
-                                            src={urlFor(img)!}
-                                            alt={`Immagine per ${section.title}`}
-                                            width={1200}
-                                            height={600}
-                                            className="w-full h-auto rounded-lg"
-                                        />
-                                    ))}
+                                    <Image
+                                        src={urlFor(section.image)!}
+                                        alt={section.sectionAlt || `Immagine per ${section.title}`}
+                                        width={1200}
+                                        height={600}
+                                        className="w-full h-auto rounded-lg"
+                                    />
                                 </div>
                             )}
+
 
                             {/* Body */}
                             <div className="py-4 w-full">
                                 <PortableText value={section.body} components={portableComponents} />
                             </div>
-                            {idx % 2 === 0 &&
+                            {(idx === 0 || idx === post.content!.length - 1) && (
                                 <div className="flex flex-row w-full mx-auto items-center justify-start gap-4 mt-16">
                                     <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button">
                                         <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
@@ -206,7 +211,7 @@ export default async function BlogPostPage({ params }: Props) {
                                     <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button">
                                         <Image src="/googlebtn.webp" alt="Google Play" width={150} height={50} />
                                     </Link>
-                                </div>}
+                                </div>)}
                         </section>
                     ))}
                 </div>

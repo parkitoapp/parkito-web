@@ -53,7 +53,7 @@ export default defineType({
     fields: [
         defineField({
             name: "title",
-            title: "Title",
+            title: "Titolo",
             type: "string",
             validation: (rule) => rule.required(),
         }),
@@ -71,7 +71,7 @@ export default defineType({
 
         defineField({
             name: "publishedAt",
-            title: "Published At",
+            title: "Data di pubblicazione",
             type: "datetime",
             initialValue: () => new Date().toISOString(),
         }),
@@ -95,35 +95,52 @@ export default defineType({
         // -------------------------
         defineField({
             name: "author",
-            title: "Author",
+            title: "Autore",
             type: "object",
             fields: [
                 defineField({
                     name: "name",
-                    title: "Name",
+                    title: "Nome",
                     type: "string",
                     validation: (rule) => rule.required(),
                 }),
                 defineField({
                     name: "role",
-                    title: "Role",
+                    title: "Ruolo",
                     type: "string",
                     validation: (rule) => rule.required(),
                 }),
                 defineField({
                     name: "image",
-                    title: "Image",
+                    title: "Immagine di autore",
                     type: "image",
                     options: { hotspot: true },
+                    validation: (rule) => rule.required(),
                 }),
             ],
         }),
 
         defineField({
             name: "coverImage",
-            title: "Cover Image",
+            title: "Immagine di copertina",
             type: "image",
             options: { hotspot: true },
+            validation: (rule) => rule.required(),
+        }),
+
+        defineField({
+            name: "coverAlt",
+            title: "Alt Text per copertina",
+            type: "string",
+            validation: (rule) => rule.required(),
+        }),
+
+        defineField({
+            name: "intro",
+            title: "Intro",
+            type: "array",
+            of: [{ type: "block" }],
+            validation: (rule) => rule.required(),
         }),
 
         defineField({
@@ -139,47 +156,38 @@ export default defineType({
         // -------------------------
         defineField({
             name: "content",
-            title: "Sections",
+            title: "Sezioni",
             type: "array",
             of: [
                 {
                     type: "object",
-                    title: "Section",
+                    title: "Sezione",
                     fields: [
-                        // **** ID FOR LINKING IN TOC ****
-                        defineField({
-                            name: "id",
-                            title: "Section ID",
-                            type: "string",
-                            description: "Auto-generato, da sostituire con il section title tutto minuscolo e - al posto degli spazi",
-                            initialValue: () => uuidv4(),
-                            validation: (rule) => rule.required(),
-                        }),
 
                         defineField({
                             name: "title",
-                            title: "Section Title",
+                            title: "Titolo",
                             type: "string",
                             validation: (rule) => rule.required(),
                         }),
 
                         // **** MULTIPLE IMAGES PER SECTION ****
                         defineField({
-                            name: "images",
-                            title: "Images",
-                            type: "array",
-                            of: [
-                                {
-                                    type: "image",
-                                    options: { hotspot: true },
-                                },
-                            ],
+                            name: "image",
+                            title: "Immagine di sezione",
+                            type: "image"
+                        }),
+
+                        defineField({
+                            name: "sectionAlt",
+                            title: "Alt Text per immagine di sezione",
+                            type: "string"
                         }),
 
                         // **** RICH TEXT BODY ****
                         defineField({
                             name: "body",
-                            title: "Body",
+                            title: "Corpo",
                             type: "array",
                             of: [{ type: "block" }],
                             validation: (rule) => rule.required(),

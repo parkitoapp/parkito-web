@@ -24,6 +24,8 @@ const nextConfig = {
   compress: true,
   // Production optimizations
   reactStrictMode: true,
+  // Use SWC for minification (faster and smaller bundles)
+  swcMinify: true,
 };
 
 module.exports = nextConfig;
