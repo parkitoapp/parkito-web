@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/c
 import TableCompare from '@/components/TableCompare'
 import MobileCompare from '@/components/MobileCompare'
 import BC from '@/components/BC'
+import LazyVideo from '@/components/LazyVideo'
 
 
 export default function page() {
@@ -39,32 +40,21 @@ export default function page() {
                                 </p>
                             </div>
 
-                            <video
-                                autoPlay
-                                playsInline
-                                loop
-                                muted
-                                preload="metadata"
+                            <LazyVideo
+                                src="/diventa-host-1.mp4"
                                 className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0"
-                            >
-                                <source src="/diventa-host-1.mp4" type="video/mp4" />
-                            </video>
+                            />
                         </ScrollStackItem>
 
                         {/* ITEM 2 */}
                         <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-white dark:bg-accent rounded-lg justify-between w-full max-w-full md:max-w-5xl mx-auto">
 
                             {/* Desktop video */}
-                            <video
-                                autoPlay
-                                playsInline
-                                loop
-                                muted
-                                preload="metadata"
+                            {/* Desktop video */}
+                            <LazyVideo
+                                src="/diventa-host-2.mp4"
                                 className="hidden md:block w-full md:w-[40%] h-auto rounded-lg"
-                            >
-                                <source src="/diventa-host-2.mp4" type="video/mp4" />
-                            </video>
+                            />
 
                             <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-end text-right md:text-right">
                                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
@@ -79,16 +69,11 @@ export default function page() {
                             </div>
 
                             {/* Mobile video */}
-                            <video
-                                autoPlay
-                                playsInline
-                                loop
-                                muted
-                                preload="metadata"
+                            {/* Mobile video */}
+                            <LazyVideo
+                                src="/diventa-host-2.mp4"
                                 className="md:hidden w-full h-auto rounded-lg mt-4"
-                            >
-                                <source src="/diventa-host-2.mp4" type="video/mp4" />
-                            </video>
+                            />
                         </ScrollStackItem>
 
                         {/* ITEM 3 */}
@@ -106,32 +91,21 @@ export default function page() {
                                 </p>
                             </div>
 
-                            <video
-                                autoPlay
-                                playsInline
-                                loop
-                                muted
-                                preload="metadata"
+                            <LazyVideo
+                                src="/diventa-host-3.mp4"
                                 className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0"
-                            >
-                                <source src="/diventa-host-3.mp4" type="video/mp4" />
-                            </video>
+                            />
                         </ScrollStackItem>
 
                         {/* ITEM 4 */}
                         <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-white dark:bg-accent rounded-lg justify-between w-full max-w-full md:max-w-5xl mx-auto">
 
                             {/* Desktop video */}
-                            <video
-                                autoPlay
-                                playsInline
-                                loop
-                                muted
-                                preload="metadata"
+                            {/* Desktop video */}
+                            <LazyVideo
+                                src="/diventa-host-2.mp4"
                                 className="hidden md:block w-full md:w-[40%] h-auto rounded-lg"
-                            >
-                                <source src="/diventa-host-2.mp4" type="video/mp4" />
-                            </video>
+                            />
 
                             <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-end text-right">
                                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
@@ -146,16 +120,11 @@ export default function page() {
                             </div>
 
                             {/* Mobile video */}
-                            <video
-                                autoPlay
-                                playsInline
-                                loop
-                                muted
-                                preload="metadata"
+                            {/* Mobile video */}
+                            <LazyVideo
+                                src="/diventa-host-2.mp4"
                                 className="md:hidden w-full h-auto rounded-lg mt-4"
-                            >
-                                <source src="/diventa-host-2.mp4" type="video/mp4" />
-                            </video>
+                            />
 
                         </ScrollStackItem>
                     </ScrollStack>

@@ -5,6 +5,7 @@ import { faq } from "@/data/faq";
 import Faq from "@/components/Faq";
 import Link from "next/link";
 import ScrollStack, { ScrollStackItem } from '@/components/ScrollStack';
+import LazyVideo from '@/components/LazyVideo';
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 
 export const metadata = {
@@ -99,32 +100,21 @@ export default function Home() {
                 </p>
               </div>
 
-              <video
-                autoPlay
-                playsInline
-                loop
-                muted
-                preload="metadata"
+              <LazyVideo
+                src="/ricerca-edited.mp4"
                 className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0"
-              >
-                <source src="/ricerca-edited.mp4" type="video/mp4" />
-              </video>
+              />
             </ScrollStackItem>
 
             {/* ITEM 2 */}
             <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-white dark:bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
 
               {/* Desktop video */}
-              <video
-                autoPlay
-                playsInline
-                loop
-                muted
-                preload="metadata"
+              {/* Desktop video */}
+              <LazyVideo
+                src="/mappa-edited.mp4"
                 className="hidden md:block w-full md:w-[40%] h-auto rounded-lg"
-              >
-                <source src="/mappa-edited.mp4" type="video/mp4" />
-              </video>
+              />
 
               <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-end text-right">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
@@ -139,16 +129,11 @@ export default function Home() {
               </div>
 
               {/* Mobile video */}
-              <video
-                autoPlay
-                playsInline
-                loop
-                muted
-                preload="metadata"
+              {/* Mobile video */}
+              <LazyVideo
+                src="/mappa-edited.mp4"
                 className="md:hidden w-full h-auto rounded-lg mt-4"
-              >
-                <source src="/mappa-edited.mp4" type="video/mp4" />
-              </video>
+              />
             </ScrollStackItem>
 
             {/* ITEM 3 */}
@@ -166,16 +151,10 @@ export default function Home() {
                 </p>
               </div>
 
-              <video
-                autoPlay
-                playsInline
-                loop
-                muted
-                preload="metadata"
+              <LazyVideo
+                src="/istruzioni-edited.mp4"
                 className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0"
-              >
-                <source src="/istruzioni-edited.mp4" type="video/mp4" />
-              </video>
+              />
             </ScrollStackItem>
           </ScrollStack>
 

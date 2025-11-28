@@ -76,6 +76,20 @@ export default defineType({
             initialValue: () => new Date().toISOString(),
         }),
 
+        defineField({
+            name: "metatitle",
+            title: "Meta Title",
+            type: "string",
+            validation: (rule) => rule.required(),
+        }),
+
+        defineField({
+            name: "metadescription",
+            title: "Meta Description",
+            type: "string",
+            validation: (rule) => rule.required(),
+        }),
+
         // -------------------------
         // TAGS
         // -------------------------

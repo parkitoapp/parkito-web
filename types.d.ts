@@ -105,6 +105,8 @@ export type Block = {
 export type BlogPost = {
     _id: string;
     title: string;
+    metatitle: string;
+    metadescription: string;
     slug: { current: string };
     publishedAt: string;
     coverImage: SanityImage;
