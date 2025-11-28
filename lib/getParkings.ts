@@ -5,8 +5,7 @@ export async function getParkingsFromBucket(bucket = 'parking_sheet_data', file 
     try {
         const { data: fileData, error } = await supabase.storage.from(bucket).download(file);
         if (error) {
-            console.error('Error downloading parkings JSON from bucket:', error);
-            return [];
+            throw new Error(`Error downloading parkings JSON from bucket: ${error}`);
         }
 
         const text = await fileData.text();
@@ -21,7 +20,6 @@ export async function getParkingsFromBucket(bucket = 'parking_sheet_data', file 
 
         return [];
     } catch (err) {
-        console.error('Error reading parkings JSON:', err);
-        return [];
+        throw new Error(`Error reading parkings JSON: ${err}`);
     }
 }

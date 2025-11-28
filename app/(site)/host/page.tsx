@@ -21,7 +21,7 @@ export default function page() {
                 <div className="px-16 pt-8">
                     <BC />
                 </div>
-                <div className=" min-h-screen sm:pb-120 md:pb-50 pb-150">
+                <div className=" min-h-screen sm:pb-120 md:pb-60 lg:pb-60">
                     <h2 className="text-5xl font-extrabold mx-auto mb-4 px-4 text-center pt-10">La soluzione? Un parcheggio <span className="text-primary dark:text-ring">Parkito!</span></h2>
                     <ScrollStack className="bg-background">
                         {/* ITEM 1 */}
@@ -165,7 +165,7 @@ export default function page() {
                     <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10 text-primary">Perché scegliere <span className="text-primary dark:text-ring">Parkito:</span></h1>
                     <div className='md:grid md:grid-cols-2 flex flex-col gap-4 p-16'>
                         <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
-                            <Image src={"/notif.webp"} alt="icona Disponibilità e prezzo" width={1300} height={1300} className='w-36 h-36 p-4' />
+                            <Image src="/notif.webp" alt="icona Disponibilità e prezzo" width={200} height={200} sizes="144px" className='w-36 h-36 p-4' />
                             <div className='w-full p-6'>
                                 <h2 className="text-2xl font-bold text-primary mt-4">Scegli la disponibilità e prezzo</h2>
                                 <p className="mt-2 w-[60%] text-left">
@@ -174,7 +174,7 @@ export default function page() {
                             </div>
                         </Card>
                         <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
-                            <Image src={"/star.webp"} alt="icona stelle" width={1300} height={1300} className='w-36 h-36 p-4' />
+                            <Image src="/star.webp" alt="icona stelle" width={200} height={200} sizes="144px" className='w-36 h-36 p-4' />
                             <CardContent className='w-full p-6'>
                                 <CardTitle className="text-2xl font-bold text-primary mt-4">100% Gratuito</CardTitle>
                                 <CardDescription className="mt-2 w-[60%] text-left">
@@ -184,7 +184,7 @@ export default function page() {
                             </CardContent>
                         </Card>
                         <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
-                            <Image src={"/reload.webp"} alt="icona ricarica" width={1300} height={1300} className='w-36 h-36 p-4' />
+                            <Image src="/reload.webp" alt="icona ricarica" width={200} height={200} sizes="144px" className='w-36 h-36 p-4' />
                             <CardContent className='w-full p-6'>
                                 <CardTitle className="text-2xl font-bold text-primary mt-4">Recedi quando vuoi</CardTitle>
                                 <CardDescription className="mt-2 w-[60%] text-left">
@@ -193,7 +193,7 @@ export default function page() {
                             </CardContent>
                         </Card>
                         <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
-                            <Image src={"/gold.webp"} alt="icona oro" width={1300} height={1300} className='w-36 h-36 p-4' />
+                            <Image src="/gold.webp" alt="icona oro" width={200} height={200} sizes="144px" className='w-36 h-36 p-4' />
                             <CardContent className='w-full p-6'>
                                 <CardTitle className="text-2xl font-bold text-primary mt-4">Guadagna fino al 300%</CardTitle>
                                 <CardDescription className="mt-2 w-[60%] text-left">
@@ -205,7 +205,7 @@ export default function page() {
                 </div>
                 <div className='w-full bg-accent flex flex-col gap-6 py-10 px-4'>
                     <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center text-primary">Non puoi essere presente per l&apos;accoglienza?</h1>
-                    <Image src="/access.webp" alt="icona accesso" width={1300} height={1300} className='mx-auto w-[50%] p-4' />
+                    <Image src="/access.webp" alt="icona accesso" width={600} height={600} sizes="(max-width: 768px) 90vw, 50vw" className='mx-auto w-[50%] p-4' />
                     {/* <p className="text-center text-lg mx-auto w-[60%]">Nessun problema! Con Parkito puoi automatizzare l&apos;accesso al tuo parcheggio in pochi semplici passi, permettendo ai driver di entrare e uscire in completa autonomia tramite l&apos;app.</p> */}
                     <Button variant={"default"} className="mx-auto rounded-full p-4" size={"lg"} asChild>
                         <Link href={"/devices"}>

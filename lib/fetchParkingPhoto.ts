@@ -12,11 +12,10 @@ export async function fetchParkingPhoto(parkingId: number): Promise<string> {
         try {
             const response = await fetch(data.publicUrl, { method: 'HEAD' });
             if (response.ok) {
-                console.log(`Found image: ${data.publicUrl}`);
                 return data.publicUrl;
             }
         } catch (error) {
-            console.error(`Failed to fetch image: ${error}`);
+            throw new Error(`Failed to fetch image: ${error}`);
         }
     }
 
@@ -28,11 +27,10 @@ export async function fetchParkingPhoto(parkingId: number): Promise<string> {
         try {
             const response = await fetch(data.publicUrl, { method: 'HEAD' });
             if (response.ok) {
-                console.log(`Found fallback image: ${data.publicUrl}`);
                 return data.publicUrl;
             }
         } catch (error) {
-            console.error(`Failed to fetch fallback image: ${error}`);
+            throw new Error(`Failed to fetch fallback image: ${error}`);
         }
     }
 

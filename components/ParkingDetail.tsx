@@ -13,6 +13,7 @@ import { fetchParkingPhoto } from "@/lib/fetchParkingPhoto";
 import { useEffect, useState } from "react";
 import { Spinner } from "./ui/spinner";
 import BC from "./BC";
+import { Skeleton } from "./ui/skeleton";
 
 
 interface Props {
@@ -64,9 +65,7 @@ export default function ParkingDetail({ citySlug, parking }: Props) {
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="md:grid md:grid-cols-2 flex flex-col m-2">
-                    {isLoading ? <div className="w-full h-full bg-muted animate-pulse rounded-md mb-3 flex items-center justify-center" >
-                        <Spinner className="w-12 h-12 text-primary" /> Caricamento immagine...
-                    </div> : <Image
+                    {isLoading ? <Skeleton className="w-full h-full min-h-75 bg-black/40 rounded-md mb-3 flex items-center justify-center animate-pulse" /> : <Image
                         src={imageUrl ?? '/device.webp'}
                         alt={`Copertina per ${parking.name}`}
                         width={500}

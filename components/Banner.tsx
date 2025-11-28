@@ -44,10 +44,10 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
 
                     </div>
                     <div className="relative flex justify-center w-[50%]  mt-12 md:mt-0">
-                        <Image src={src} alt="App preview" width={1500} height={1800} className="object-contain drop-shadow-2xl w-full rounded-lg " />
+                        <Image src={src} alt="App preview" width={800} height={960} sizes="(max-width: 1240px) 0px, 50vw" priority className="object-contain drop-shadow-2xl w-full rounded-lg " />
 
                         {src2 &&
-                            <Image src={src2} alt="App preview" width={500} height={800} className="object-contain drop-shadow-2xl absolute z-10 w-[15em] h-10 min-w-[50%] -right-10 md:-bottom-3 -bottom-2" />}
+                            <Image src={src2} alt="App preview" width={400} height={640} sizes="(max-width: 1240px) 0px, 240px" className="object-contain drop-shadow-2xl absolute z-10 w-[15em] h-10 min-w-[50%] -right-10 md:-bottom-3 -bottom-2" />}
 
                     </div>
 

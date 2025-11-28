@@ -24,10 +24,12 @@ export default async function City() {
     return (
         <>
             <Banner title="Dove siamo" subtitle="Scopri le città in cui Parkito è disponibile" src="/cities.webp" icon={true} social={true} dwbtn={true} />
-            <div className="px-16 pt-8">
-                <BC />
+            <div className="bg-background">
+                <div className="px-16 pt-8">
+                    <BC />
+                </div>
+                <CityList cities={cities} />
             </div>
-            <CityList cities={cities} />
         </>
     )
 }

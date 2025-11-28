@@ -29,8 +29,8 @@ export default function ContactForm({ member, selectedOption }: { member: TeamMe
             // setSelectedOption("");
         } catch (err) {
             toast.dismiss();
-            console.error(err);
-            toast.error("Errore durante l'invio dell'email.");
+            // console.error(err);
+            toast.error(`Errore durante l'invio dell'email: ${err}`);
         }
     };
     return (

@@ -14,7 +14,7 @@ export default function ParkingsList(items: { items: Parking[] }) {
 
             <div className="flex-1 overflow-auto min-h-full">
                 <AnimatedList
-                    // items={listItems}
+                    items={listItems}
                     onItemSelect={(item, index) => console.log(item, index)}
                     showGradients={true}
                     enableArrowNavigation={true}

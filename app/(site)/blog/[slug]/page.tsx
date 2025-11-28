@@ -92,8 +92,9 @@ export default async function BlogPostPage({ params }: Props) {
 
     return (
         <>
-            <div className="mx-auto py-32 px-16">
+            <div className="mx-auto py-32 px-6 md:px-16">
                 <BC title={post.title} />
+
 
                 {/* TITLE */}
                 <h1 className="text-5xl font-bold my-4">{post.title}</h1>
@@ -102,14 +103,16 @@ export default async function BlogPostPage({ params }: Props) {
                     <Image
                         src={urlFor(post.coverImage)!}
                         alt={`immagine per ${post.title}`}
-                        className="w-[70%] mx-auto h-auto mb-8 rounded-lg"
-                        width={1200}
-                        height={1200}
+                        className="w-full h-auto mx-auto object-cover mb-8 rounded-lg"
+                        width={1600}
+                        height={900}
+                        sizes="100vw"
                     />
+
                 )}
 
                 {/* META */}
-                <div className="flex flex-col gap-4 mb-6">
+                <div className="flex flex-col gap-4 mb-6 h-full">
                     <Badge className="p-2 bg-accent text-primary dark:text-white">
                         {new Date(post.publishedAt!).toLocaleDateString()}
                     </Badge>
@@ -125,22 +128,22 @@ export default async function BlogPostPage({ params }: Props) {
                             <p className="font-medium">{post.author?.name}</p>
                             <p className="text-sm text-primary">{post.author?.role}</p>
                         </div>
+
+                    </div>
+                    {/* TAGS */}
+                    <div className="flex items-center gap-2 mb-6">
+                        {post.tags?.map(tag => (
+                            <Badge
+                                key={tag}
+                                className="p-2 bg-accent text-primary dark:text-white"
+                            >
+                                {tag}
+                            </Badge>
+                        ))}
                     </div>
                 </div>
 
-                {/* TAGS */}
-                <div className="flex items-center gap-2 mb-6">
-                    {post.tags?.map(tag => (
-                        <Badge
-                            key={tag}
-                            className="p-2 bg-accent text-primary dark:text-white"
-                        >
-                            {tag}
-                        </Badge>
-                    ))}
-                </div>
-
-                <Card className="mb-12 w-[30%] p-4 rounded-3xl">
+                <Card className="mb-12 md:w-[30%] p-4 rounded-3xl">
                     <CardTitle>Indice dei contenuti</CardTitle>
                     <CardContent className="p-8 ">
                         <ul className="flex flex-col list-disc">
@@ -166,7 +169,7 @@ export default async function BlogPostPage({ params }: Props) {
                 )}
 
                 {/* CONTENT SECTIONS */}
-                <div className="prose">
+                <div className="prose prose-img:max-w-none max-w-none">
                     {post.content?.map((section, idx) => (
                         <section
                             key={section.id}
@@ -177,20 +180,18 @@ export default async function BlogPostPage({ params }: Props) {
 
                             {/* Section images */}
                             {section.images && (
-                                <>
-                                    <div className="flex flex-col gap-4 my-4">
-                                        {section.images.map((img, i) => (
-                                            <Image
-                                                key={i}
-                                                src={urlFor(img)!}
-                                                alt={`Immagine per ${section.title}`}
-                                                width={1200}
-                                                height={600}
-                                                className="rounded-lg"
-                                            />
-                                        ))}
-                                    </div>
-                                </>
+                                <div className="flex flex-col gap-4 my-4 not-prose">
+                                    {section.images.map((img, i) => (
+                                        <Image
+                                            key={i}
+                                            src={urlFor(img)!}
+                                            alt={`Immagine per ${section.title}`}
+                                            width={1200}
+                                            height={600}
+                                            className="w-full h-auto rounded-lg"
+                                        />
+                                    ))}
+                                </div>
                             )}
 
                             {/* Body */}

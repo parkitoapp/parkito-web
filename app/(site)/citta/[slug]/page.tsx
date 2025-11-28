@@ -9,7 +9,7 @@ interface Props {
 export default async function CityPage({ params }: Props) {
     const citySlug = await params;
 
-    console.log("Rendering CityPage for:", citySlug);
+    // console.log("Rendering CityPage for:", citySlug);
     function titleizeSlug(slug?: string) {
         if (!slug) return "";
         return slug

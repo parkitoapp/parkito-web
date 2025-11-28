@@ -28,7 +28,7 @@ export default function Home() {
               <p className="hidden sm:block text-chart-4 dark:text-chart-3 font-semibold text-lg">
                 Oltre 10.000 utenti soddisfatti in tutta Italia
               </p>
-              <Image src='/homePill.webp' alt="App preview" width={1500} height={1800} className="mt-4 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%] sm:hidden" />
+              <Image src='/homePill.webp' alt="App preview" width={800} height={960} sizes="(max-width: 640px) 400px, 800px" className="mt-4 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%] sm:hidden px-4" />
             </>
             <ReviewsList />
           </div>
@@ -43,7 +43,7 @@ export default function Home() {
 
                 <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src={"/headache.webp"} alt="headache" width={1300} height={1300} className="md:w-50 w-40 mx-auto" />
+                    <Image src="/headache.webp" alt="headache" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" className="md:w-50 w-40 mx-auto" />
                   </CardHeader>
 
                   <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
@@ -52,7 +52,7 @@ export default function Home() {
                 </Card>
                 <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src={"/clock.webp"} alt="orologio" width={1300} height={1300} className="md:w-50 w-40 mx-auto" />
+                    <Image src="/clock.webp" alt="orologio" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" className="md:w-50 w-40 mx-auto" />
                   </CardHeader>
                   <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     Nessuna garanzia sulla disponibilità.
@@ -60,7 +60,7 @@ export default function Home() {
                 </Card>
                 <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src={"/light.webp"} alt="luci" width={1300} height={1300} className="md:w-50 w-40 mx-auto" />
+                    <Image src="/light.webp" alt="luci" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" className="md:w-50 w-40 mx-auto" />
                   </CardHeader>
                   <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     Prezzi poco trasparenti
@@ -68,7 +68,7 @@ export default function Home() {
                 </Card>
                 <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src={"/x.webp"} alt="croce" width={1300} height={1300} className="md:w-50 w-40 mx-auto" />
+                    <Image src="/x.webp" alt="croce" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" className="md:w-50 w-40 mx-auto" />
                   </CardHeader>
                   <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     No H24 e niente sicurezza
@@ -81,7 +81,7 @@ export default function Home() {
         </div>
 
         {/* How it works */}
-        <div className="bg-background min-h-screen sm:mb-120 md:mb-50 mb-150">
+        <div className="bg-background min-h-screen sm:pb-120 md:pb-70 lg:pb-70">
           <h2 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10">La soluzione? Un parcheggio <span className="text-primary">Parkito!</span></h2>
           <ScrollStack className="bg-background">
             {/* ITEM 1 */}

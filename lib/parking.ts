@@ -11,8 +11,7 @@ export async function getParkingData(): Promise<Parking[]> {
             .download("parkings_data.json");
 
         if (error) {
-            console.error("Error downloading parking data:", error);
-            return [];
+            throw new Error(`Error downloading parking data: ${error}`);
         }
 
         const text = await fileBlob.text();
@@ -28,8 +27,7 @@ export async function getParkingData(): Promise<Parking[]> {
 
         return json as Parking[];
     } catch (error) {
-        console.error("Error fetching parking data:", error);
-        return [];
+        throw new Error(`Error fetching parking data: ${error}`);
     }
 }
 

@@ -45,7 +45,7 @@ export default function BC({ title }: BCProps) {
     });
 
     return (
-        <Breadcrumb className="w-full p-4">
+        <Breadcrumb className="w-full">
             <BreadcrumbList>
                 {/* Home link */}
                 <BreadcrumbItem className="text-xl">

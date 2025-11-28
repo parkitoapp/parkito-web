@@ -100,18 +100,17 @@ export default function RootLayout({
 
                 <Script
                     src="https://cs.iubenda.com/autoblocking/2311382.js"
-                    strategy="beforeInteractive"
+                    strategy="afterInteractive"
                 />
             </head>
             <body className={`${interTight.className} bg-background min-h-screen`}>
-                <main>
-                    {children}
-                </main>
                 <Script
                     src="https://cdn.iubenda.com/cs/iubenda_cs.js"
                     strategy="afterInteractive"
-                    async
                 />
+                <main>
+                    {children}
+                </main>
             </body>
         </html>
     )

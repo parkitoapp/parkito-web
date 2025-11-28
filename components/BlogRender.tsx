@@ -72,24 +72,26 @@ export default function BlogRender({ posts }: Props) {
 
     return (
         <>
-            <div className="border-b border-b-gray-300" id="blog">
+            <div id="blog">
                 <Label htmlFor="search" hidden>
                     Cerca un post
                 </Label>
-                <div className="flex flex-row gap-2 items-center">
+                <div className="flex flex-row gap-2 items-center px-4">
                     <SearchIcon className="text-chart-2" />
                     <Input
                         value={query}
                         onChange={(e) => handleSearch(e.target.value)}
                         type="search"
                         placeholder="Cerca un post"
-                        className="w-[40%] p-4 my-10 bg-white rounded-full placeholder:text-muted-foreground focus:border focus:border-chart-2 focus:ring-chart-2"
+                        className="w-full md:w-[40%] p-4 my-10 bg-white rounded-full placeholder:text-muted-foreground focus:border focus:border-chart-2 focus:ring-chart-2"
                         id="search"
                     />
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 md:flex md:flex-row gap-4 my-10">
+            <div className="border-b border-b-gray-300 mx-4" />
+
+            <div className="grid grid-cols-2 md:flex md:flex-row gap-4 my-10 px-4">
                 <Button
                     onClick={handleFilter(null)}
                     className={`px-2 text-lg rounded-full hover:cursor-pointer ${selectedCity === null ? 'bg-chart-1 text-white' : ''

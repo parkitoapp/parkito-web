@@ -34,7 +34,6 @@ export default function useSupabaseJson<T>(
             if (cached) {
                 const parsed = JSON.parse(cached);
                 if (Date.now() - parsed.timestamp < ttlMs) {
-                    console.log("Using cached:", parsed.data);
                     setData(key ? parsed.data[key] || [] : parsed.data);
                     setLoading(false);
                     return;
@@ -47,14 +46,14 @@ export default function useSupabaseJson<T>(
             const text = await fileBlob.text();
             const json = JSON.parse(text);
 
-            console.log("SUPABASE JSON FRESH:", json);
 
             localStorage.setItem(cacheKey, JSON.stringify({ data: json, timestamp: Date.now() }));
 
             if (key) {
                 if (!json[key]) {
-                    console.error(`Key "${key}" missing in JSON`, json);
+
                     setData([]);
+                    throw new Error(`Key "${key}" missing in JSON`);
                 } else {
                     setData(json[key]);
                 }
@@ -63,7 +62,6 @@ export default function useSupabaseJson<T>(
             }
 
         } catch (err: unknown) {
-            console.error(`Error fetching ${file}`, err);
             setError(err instanceof Error ? err : new Error(String(err)));
             setData([]);
         } finally {
