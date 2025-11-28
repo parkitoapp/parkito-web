@@ -9,6 +9,7 @@ export async function getPosts(): Promise<BlogPost[]> {
             slug,
             publishedAt,
             coverImage,
+            altCoverImage,
             tags,
             author {
                 name,
@@ -27,7 +28,10 @@ export async function getPost(slug: string): Promise<BlogPost | null> {
             title,
             slug,
             publishedAt,
+            metatitle,
+            metadescription,
             coverImage,
+            coverAlt,
             tags,
             author {
                 name,
@@ -38,8 +42,9 @@ export async function getPost(slug: string): Promise<BlogPost | null> {
             content[]{
                 id,
                 title,
-                images[],
-                body
+                image,
+                body, 
+                sectionAlt
             }
         }
         `,

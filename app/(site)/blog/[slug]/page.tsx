@@ -103,10 +103,10 @@ export default async function BlogPostPage({ params }: Props) {
                 {post.coverImage && (
                     <Image
                         src={urlFor(post.coverImage)!}
-                        alt={post.coverAlt || `Immagine per ${post.title}`}
+                        alt={post.coverAlt}
                         className="w-full h-auto mx-auto object-cover mb-8 rounded-lg"
-                        width={1600}
-                        height={900}
+                        width={800}
+                        height={600}
                         sizes="100vw"
                     />
 
@@ -191,7 +191,7 @@ export default async function BlogPostPage({ params }: Props) {
                                 <div className="flex flex-col gap-4 my-4 not-prose">
                                     <Image
                                         src={urlFor(section.image)!}
-                                        alt={section.sectionAlt || `Immagine per ${section.title}`}
+                                        alt={section.sectionAlt}
                                         width={1200}
                                         height={600}
                                         className="w-full h-auto rounded-lg"

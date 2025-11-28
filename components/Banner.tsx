@@ -81,10 +81,15 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
 
             {/* Mobile/Tablet View (max-width: 1240px) */}
             <div className="flex min-[1241px]:hidden relative w-full flex-col overflow-visible">
-                <div
-                    className="fixed top-0 left-0 w-full h-[50vh] -z-10 bg-cover bg-center"
-                    style={{ backgroundImage: `url('${src}')` }}
-                />
+                <div className="fixed top-0 left-0 w-full h-[50vh] -z-10">
+                    <Image
+                        src={src}
+                        alt="Background"
+                        fill
+                        priority
+                        className="object-cover object-center"
+                    />
+                </div>
 
                 <div className="relative mt-[40vh] bg-background w-full flex flex-col items-center justify-start p-8 rounded-t-[3rem] min-h-[60vh]">
                     <div className="absolute -top-5 text-sm text-white rounded-full bg-accent-foreground p-2 px-4">La prima app per il Park Sharing in Italia!</div>
