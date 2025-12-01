@@ -1,5 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import {
   motion,
@@ -126,6 +127,14 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
 
 export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
+  const pathname = usePathname();
+
+  const activeIdx = items.findIndex((item) => {
+    if (item.link === "/") {
+      return pathname === "/";
+    }
+    return pathname?.startsWith(item.link);
+  });
 
   return (
     <motion.div
@@ -153,7 +162,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
             key={`link-${idx}`}
             href={item.link}
           >
-            {hovered === idx && (
+            {(hovered === idx || (hovered === null && activeIdx === idx)) && (
               <motion.div
                 layoutId="hovered"
                 className="absolute inset-0 h-full w-full px-2 rounded-full bg-chart-1/40 "
