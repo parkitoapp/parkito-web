@@ -66,20 +66,59 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-
-  { console.log("segment", process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY) }
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
 
-        <Script id="segment-analytics" strategy="beforeInteractive">
+        <Script id="segment-official" strategy="beforeInteractive">
           {`
-            !function(){var i="analytics",analytics=window[i]=window[i]||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked = !0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware","register"];analytics.factory=function(e){return function(){if(window[i].initialized)return window[i][e].apply(window[i],arguments);var n=Array.prototype.slice.call(arguments);if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){var c=document.querySelector("link[rel='canonical']");n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,p:location.pathname,u:location.href,s:location.search,t:document.title,r:document.referrer})}n.unshift(e);analytics.push(n);return analytics}};for(var n=0;n<analytics.methods.length;n++){var key=analytics.methods[n];analytics[key]=analytics.factory(key)}analytics.load=function(key,n){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute("data-global-segment-analytics-key",i);t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r);analytics._loadOptions=n};analytics._writeKey="${process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY}";;analytics.SNIPPET_VERSION="5.2.0";
-            analytics.load("${process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY}");
-            analytics.page();
-            }}();
-          `}
+          !function(){
+            var i="analytics",analytics=window[i]=window[i]||[];
+            if(!analytics.initialize){
+              if(analytics.invoked){
+                window.console&&console.error&&console.error("Segment snippet incluso due volte.");
+              } else {
+                analytics.invoked=!0;
+                analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview",
+                "identify","reset","group","track","ready","alias","debug","page","screen","once",
+                "off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId",
+                "addDestinationMiddleware","register"];
+                analytics.factory=function(e){
+                  return function(){
+                    if(window[i].initialized) return window[i][e].apply(window[i],arguments);
+                    var n=Array.prototype.slice.call(arguments);
+                    if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){
+                      var c=document.querySelector("link[rel='canonical']");
+                      n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,
+                      p:location.pathname,u:location.href,s:location.search,
+                      t:document.title,r:document.referrer});
+                    }
+                    n.unshift(e);
+                    analytics.push(n);
+                    return analytics
+                  }
+                };
+                for(var n=0;n<analytics.methods.length;n++){
+                  var key=analytics.methods[n];
+                  analytics[key]=analytics.factory(key)
+                }
+                analytics.load=function(key,n){
+                  var t=document.createElement("script");
+                  t.type="text/javascript";t.async=!0;
+                  t.setAttribute("data-global-segment-analytics-key",i);
+                  t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
+                  var r=document.getElementsByTagName("script")[0];
+                  r.parentNode.insertBefore(t,r);
+                  analytics._loadOptions=n
+                };
+                analytics._writeKey="${process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY}";
+                analytics.SNIPPET_VERSION="5.2.0";
+                analytics.load("${process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY}");
+                analytics.page();
+              }    
+            }
+          }();
+        `}
         </Script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -88,32 +127,29 @@ export default function RootLayout({
         {/* ---------------- IUBENDA ---------------- */}
         <Script id="iubenda-config" strategy="afterInteractive">
           {`
-    var _iub = _iub || [];
-    _iub.csConfiguration = {
-      askConsentAtCookiePolicyUpdate: true,
-      cookiePolicyInOtherWindow: true,
-      cookiePolicyUrl: "https://www.iubenda.com/privacy-policy/94483316/cookie-policy",
-      floatingPreferencesButtonDisplay: "bottom-left",
-      hasEmailMarketing: false,
-      perPurposeConsent: true,
-      siteId: 2311382,
-      whitelabel: false,
-      cookiePolicyId: 94483316,
-      consentOnContinuedBrowsing: false,
-      cookieDomain: "parkito.netlify.app",
-      banner: {
-        acceptButtonDisplay: true,
-        closeButtonRejects: true,
-        customizeButtonDisplay: true,
-        explicitWithdrawal: true,
-        listPurposes: true,
-        position: "float-top-center",
-        showTitle: false
-      }
-    };
-    _iub.csLangConfiguration = {
-      it: { cookiePolicyId: 94483316 }
-    };
+        var _iub = _iub || [];
+  _iub.csConfiguration = {
+    "askConsentAtCookiePolicyUpdate": true,
+    "cookiePolicyInOtherWindow": true,
+    "floatingPreferencesButtonDisplay": "bottom-left",
+    "hasEmailMarketing": false,
+    "perPurposeConsent": true,
+    "siteId": 2311382,
+    "whitelabel": false,
+    "cookiePolicyId": 94483316,
+    "lang": "it",
+    "banner": {
+      "acceptButtonDisplay": true,
+      "closeButtonRejects": true,
+      "customizeButtonDisplay": true,
+      "explicitWithdrawal": true,
+      "listPurposes": true,
+      "position": "float-top-center",
+      "showTitle": false
+    }
+  };
+
+
   `}
         </Script>
         <Script
