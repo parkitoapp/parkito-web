@@ -100,6 +100,7 @@ export default function RootLayout({
       whitelabel: false,
       cookiePolicyId: 94483316,
       consentOnContinuedBrowsing: false,
+      cookieDomain: "parkito.netlify.app",
       banner: {
         acceptButtonDisplay: true,
         closeButtonRejects: true,
