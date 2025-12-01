@@ -82,7 +82,7 @@ export default function Home() {
         </div>
 
         {/* How it works */}
-        <div className="bg-background min-h-screen sm:pb-120 md:pb-70 lg:pb-70">
+        <div className="bg-background min-h-screen">
           <h2 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10">La soluzione? Un parcheggio <span className="text-primary">Parkito!</span></h2>
           <ScrollStack className="bg-background">
             {/* ITEM 1 */}

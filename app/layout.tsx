@@ -74,9 +74,9 @@ export default function RootLayout({
                     {`
             var _iub = _iub || [];
             _iub.csConfiguration = {
-              askConsentAtCookiePolicyUpdate: true,
+              askConsentAtCookiePolicyUpdate: false,
               cookiePolicyInOtherWindow: true,
-              floatingPreferencesButtonDisplay: "bottom-right",
+              floatingPreferencesButtonDisplay: "bottom-left",
               hasEmailMarketing: false,
               perPurposeConsent: true,
               siteId: 2311382,
