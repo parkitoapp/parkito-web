@@ -100,16 +100,12 @@ export default function Home() {
                 </p>
               </div>
 
-              <LazyVideo
-                src="/ricerca-edited.mp4"
-                className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0"
-              />
+              <LazyVideo src="/ricerca-edited.mp4" className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0" />
             </ScrollStackItem>
 
             {/* ITEM 2 */}
             <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-white dark:bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
 
-              {/* Desktop video */}
               {/* Desktop video */}
               <LazyVideo
                 src="/mappa-edited.mp4"
@@ -128,7 +124,6 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Mobile video */}
               {/* Mobile video */}
               <LazyVideo
                 src="/mappa-edited.mp4"

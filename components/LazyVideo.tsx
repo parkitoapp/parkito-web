@@ -1,48 +1,50 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from "react";
 
 interface LazyVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
     src: string;
     type?: string;
 }
 
-const LazyVideo: React.FC<LazyVideoProps> = ({ src, type = "video/mp4", className, ...props }) => {
+const LazyVideo: React.FC<LazyVideoProps> = ({
+    src,
+    type = "video/mp4",
+    className,
+    ...props
+}) => {
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [isInView, setIsInView] = useState(false);
+    const [hasLoadedSource, setHasLoadedSource] = useState(false);
 
     useEffect(() => {
+        const el = videoRef.current;
+        if (!el) return;
+
         const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setIsInView(true);
-                        videoRef.current?.play().catch(() => {
-                            // Auto-play was prevented
-                        });
-                    } else {
-                        setIsInView(false);
-                        videoRef.current?.pause();
-                    }
-                });
+            entries => {
+                const entry = entries[0];
+
+                // First time in view → load source
+                if (entry.isIntersecting && !hasLoadedSource) {
+                    setHasLoadedSource(true);
+                }
+
+                // Control playback only when source is loaded
+                if (entry.isIntersecting) {
+                    el.play().catch(() => { });
+                } else {
+                    el.pause();
+                }
             },
             {
-                threshold: 0.2, // Trigger when 20% of the video is visible
-                rootMargin: "50px" // Start loading a bit before it comes into view
+                threshold: 0.2,
+                rootMargin: "100px",
             }
         );
 
-        const currentVideoRef = videoRef.current;
-        if (currentVideoRef) {
-            observer.observe(currentVideoRef);
-        }
-
-        return () => {
-            if (currentVideoRef) {
-                observer.unobserve(currentVideoRef);
-            }
-        };
-    }, []);
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, [hasLoadedSource]);
 
     return (
         <video
@@ -54,7 +56,7 @@ const LazyVideo: React.FC<LazyVideoProps> = ({ src, type = "video/mp4", classNam
             loop
             {...props}
         >
-            {isInView && <source src={src} type={type} />}
+            {hasLoadedSource && <source src={src} type={type} />}
         </video>
     );
 };

@@ -114,7 +114,7 @@ export default function ParkingDetail({ citySlug, parking }: Props) {
                             </div>
                             <div className="flex flex-col items-center justify-center gap-2 mb-2 w-full">
                                 <div className="flex gap-2 items-center w-full justify-center">
-                                    <Image src="/host.webp" alt="Host" width={40} height={40} />
+                                    <Image src="/hostIcon.webp" alt="Host" width={40} height={40} />
                                     <p className="font-bold text-primary">Host: </p>
                                 </div>
                                 <p className="text-foreground">{parking.driver_name ?? "Non specificato"}</p>
