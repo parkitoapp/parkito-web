@@ -11,6 +11,7 @@ import Image from "next/image";
 import { BannerProps } from "@/types";
 import Link from "next/link";
 import { ArrowDown, Instagram, Linkedin } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn }: BannerProps) {
     return (
@@ -57,9 +58,13 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                     social && (
                         <ul className="absolute bottom-4 right-6 flex gap-4">
                             <li>
-                                <Link href="https://www.instagram.com/parkito.app/" aria-label="instagram link">
-                                    <Instagram className="text-primary hover:opacity-80 cursor-pointer" />
-                                </Link>
+                                <Button variant="ghost" asChild>
+
+                                    <Link href="https://www.instagram.com/parkito.app/" aria-label="instagram link">
+                                        <Instagram className="text-primary hover:opacity-80 cursor-pointer" />
+                                    </Link>
+                                </Button>
+
                             </li>
                             <li>
                                 <Link href="https://www.linkedin.com/company/parkito/" aria-label="linkedin link">
