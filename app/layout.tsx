@@ -3,6 +3,7 @@ import "@/app/globals.css"
 import { Inter_Tight } from "next/font/google"
 import { Metadata } from "next";
 import Script from "next/script";
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 const interTight = Inter_Tight(
   {
@@ -70,26 +71,6 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <Script id="segment-analytics" strategy="beforeInteractive">
-          {`
-    !function(){
-      var analytics=window.analytics=window.analytics||[];
-      if(!analytics.initialize){
-        if(analytics.invoked){ window.console && console.error && console.error("Segment snippet included twice."); return; }
-        analytics.invoked=!0;
-        analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","screen","once","off","on"];
-        analytics.factory=function(method){ return function(){ var args=Array.prototype.slice.call(arguments); args.unshift(method); analytics.push(args); return analytics; }; };
-        for(var i=0;i<analytics.methods.length;i++){ var key=analytics.methods[i]; analytics[key]=analytics.factory(key); }
-        analytics.load=function(key){ var script=document.createElement("script"); script.type="text/javascript"; script.async=!0; script.src="https://cdn.segment.com/analytics.js/v1/"+key+"/analytics.min.js"; var first=document.getElementsByTagName("script")[0]; first.parentNode.insertBefore(script,first); };
-        analytics._writeKey="${process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY}";
-        analytics.SNIPPET_VERSION="5.2.1";
-        analytics.load("${process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY}");
-      }
-    }();
-  `}
-        </Script>
-
-
         {/* ---------------- SEGMENT ---------------- */}
         <Script id="segment-analytics" strategy="beforeInteractive">
           {`
@@ -118,10 +99,6 @@ export default function RootLayout({
         </Script>
 
         {/* ---------------- IUBENDA ---------------- */}
-        <Script
-          src="https://cdn.iubenda.com/cs/iubenda_cs.js"
-          strategy="beforeInteractive"
-        />
         <Script id="iubenda-config" strategy="beforeInteractive">
           {`
             var _iub = _iub || [];
@@ -135,7 +112,7 @@ export default function RootLayout({
               siteId: 2311382,
               whitelabel: false,
               cookiePolicyId: 94483316,
-              consentOnContinuedBrowsing: true,
+              consentOnContinuedBrowsing: false,
               banner: {
                 acceptButtonDisplay: true,
                 closeButtonRejects: true,
@@ -151,17 +128,23 @@ export default function RootLayout({
             };
           `}
         </Script>
-      </head>
-      <body className={`${interTight.className} bg-background min-h-screen`}>
-
         <Script
           src="https://cs.iubenda.com/autoblocking/2311382.js"
-          strategy="afterInteractive"
+          strategy="beforeInteractive"
         />
+        <Script
+          src="https://cdn.iubenda.com/cs/iubenda_cs.js"
+          strategy="beforeInteractive"
+        />
+
+      </head>
+      {/* <GoogleTagManager gtmId="" /> */}
+      <body className={`${interTight.className} bg-background min-h-screen`}>
 
         <main>
           {children}
         </main>
+        {/* <GoogleAnalytics id="" /> */}
       </body>
     </html>
   )

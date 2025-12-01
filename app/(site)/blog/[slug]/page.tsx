@@ -71,6 +71,17 @@ const portableComponents = {
             <p className="text-base leading-relaxed my-3">{children}</p>
         ),
     },
+    list: {
+        bullet: ({ children }: { children?: React.ReactNode }) => (
+            <ul className="list-disc list-inside my-3 ml-4">{children}</ul>
+        ),
+        number: ({ children }: { children?: React.ReactNode }) => (
+            <ol className="list-decimal list-inside my-3 ml-4">{children}</ol>
+        ),
+    },
+    listItem: ({ children }: { children?: React.ReactNode }) => (
+        <li className="my-1">{children}</li>
+    ),
     marks: {
         link: ({ children, value }: { children?: React.ReactNode, value?: { href: string } }) => (
             <Link
@@ -104,10 +115,10 @@ export default async function BlogPostPage({ params }: Props) {
                     <Image
                         src={urlFor(post.coverImage)!}
                         alt={post.coverAlt}
-                        className="w-full h-auto mx-auto object-cover mb-8 rounded-lg"
-                        width={800}
-                        height={600}
-                        sizes="100vw"
+                        className="w-[70%] mx-auto object-cover mb-8 rounded-lg"
+                        width={500}
+                        height={400}
+                    // sizes="100vw"
                     />
 
                 )}
@@ -192,9 +203,9 @@ export default async function BlogPostPage({ params }: Props) {
                                     <Image
                                         src={urlFor(section.image)!}
                                         alt={section.sectionAlt}
-                                        width={1200}
-                                        height={600}
-                                        className="w-full h-auto rounded-lg"
+                                        width={500}
+                                        height={400}
+                                        className="w-[70%] h-auto rounded-lg"
                                     />
                                 </div>
                             )}
