@@ -128,26 +128,8 @@ export default function RootLayout({
         <Script id="iubenda-config" strategy="afterInteractive">
           {`
         var _iub = _iub || [];
-  _iub.csConfiguration = {
-    "askConsentAtCookiePolicyUpdate": true,
-    "cookiePolicyInOtherWindow": true,
-    "floatingPreferencesButtonDisplay": "bottom-left",
-    "hasEmailMarketing": false,
-    "perPurposeConsent": true,
-    "siteId": 2311382,
-    "whitelabel": false,
-    "cookiePolicyId": 94483316,
-    "lang": "it",
-    "banner": {
-      "acceptButtonDisplay": true,
-      "closeButtonRejects": true,
-      "customizeButtonDisplay": true,
-      "explicitWithdrawal": true,
-      "listPurposes": true,
-      "position": "float-top-center",
-      "showTitle": false
-    }
-  };
+_iub.csConfiguration = {"askConsentAtCookiePolicyUpdate":true,"cookiePolicyInOtherWindow":true,"enableRemoteConsent":true,"floatingPreferencesButtonDisplay":"bottom-left","hasEmailMarketing":false,"perPurposeConsent":true,"siteId":2311382,"whitelabel":false,"cookiePolicyId":94483316,"banner":{"acceptButtonDisplay":true,"closeButtonRejects":true,"customizeButtonDisplay":true,"explicitWithdrawal":true,"listPurposes":true,"position":"float-top-center","showTitle":true}};
+_iub.csLangConfiguration = {"it":{"cookiePolicyId":94483316}};
 
 
   `}
