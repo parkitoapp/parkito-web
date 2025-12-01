@@ -123,7 +123,7 @@ export default function RootLayout({
                     {`
             var _iub = _iub || [];
             _iub.csConfiguration = {
-              askConsentAtCookiePolicyUpdate: false,
+              askConsentAtCookiePolicyUpdate: true,
               cookiePolicyInOtherWindow: true,
               floatingPreferencesButtonDisplay: "bottom-left",
               hasEmailMarketing: false,
