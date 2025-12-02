@@ -91,7 +91,7 @@ export default function BlogRender({ posts }: Props) {
 
             <div className="border-b border-b-gray-300 mx-4" />
 
-            <div className="grid grid-cols-2 md:flex md:flex-row gap-4 my-10 px-4">
+            <div className="grid grid-cols-2 md:flex md:flex-row gap-4 my-10 px-4 overflow-x-auto w-[50%] mx-auto">
                 <Button
                     onClick={handleFilter(null)}
                     className={`px-2 text-lg rounded-full hover:cursor-pointer ${selectedCity === null ? 'bg-chart-1 text-white' : ''
@@ -112,7 +112,7 @@ export default function BlogRender({ posts }: Props) {
                 ))}
             </div>
 
-            <div className="flex flex-col md:grid md:grid-cols-2 lg:grid lg:grid-cols-4 gap-16 justify-center items-center ">
+            <div className="flex flex-col md:grid md:grid-cols-2 lg:grid lg:grid-cols-4 gap-16 justify-center items-center mb-10">
                 {result.map((post, idx) => (
                     <Link key={idx} href={`/blog/${post.slug.current}`}>
                         <BlogCard

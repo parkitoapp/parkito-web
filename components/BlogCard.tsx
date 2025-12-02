@@ -7,15 +7,18 @@
 import { BlogPost } from "@/types";
 import { Card, CardFooter, CardTitle } from "./ui/card";
 import Image from "next/image";
-import imageUrlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder as imageUrlBuilder } from "@sanity/image-url";
 import { client } from "@/lib/sanity";
 import { SanityImage } from "@/types";
 import { Badge } from "./ui/badge";
+import { formatDate } from "@/lib/formatDate";
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source: SanityImage) => builder.image(source).url();
 
 export default function BlogCard({ title, coverImage, publishedAt, tags }: Partial<BlogPost>) {
+
+    const postedAt = formatDate(publishedAt!);
     return (
         // make the card rounded with overflow-hidden so the image sits flush at the top
         <Card className="border-transparent shadow-none rounded-3xl overflow-hidden bg-card hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg">
@@ -29,7 +32,7 @@ export default function BlogCard({ title, coverImage, publishedAt, tags }: Parti
                         height={200}
                     />
                     <Badge className="text-sm absolute top-2 left-2 p-2 bg-accent text-primary dark:text-white">
-                        {new Date(publishedAt!).toLocaleDateString()}
+                        {postedAt}
                     </Badge>
                 </>
             )}

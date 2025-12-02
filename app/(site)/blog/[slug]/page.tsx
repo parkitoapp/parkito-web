@@ -10,7 +10,7 @@
 
 import { getPost } from "@/lib/fetchPosts";
 import { PortableText } from "@portabletext/react";
-import imageUrlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder as imageUrlBuilder } from "@sanity/image-url";
 import Image from "next/image";
 import { client } from "@/lib/sanity";
 import { SanityImage } from "@/types";
