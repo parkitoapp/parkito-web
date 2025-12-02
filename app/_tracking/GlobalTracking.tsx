@@ -3,6 +3,19 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
+// Extend Window interface for analytics
+declare global {
+    interface Window {
+        analytics?: {
+            track: (event: string, properties?: Record<string, unknown>) => void;
+            page: (name: string, properties?: Record<string, unknown>) => void;
+        };
+        mixpanel?: {
+            track: (event: string, properties?: Record<string, unknown>) => void;
+        };
+    }
+}
+
 type AnalyticsPageData = {
     url: string;
     title: string;
@@ -129,7 +142,7 @@ export default function GlobalTracking() {
             [25, 50, 75, 100].forEach((p) => {
                 if (scrolled >= p && !scrollTracked[p]) {
                     scrollTracked[p] = true;
-                    window.analytics.track("Scroll Depth Reached", {
+                    window.analytics?.track("Scroll Depth Reached", {
                         percent: p,
                         path: pathname,
                         title: document.title,
@@ -146,7 +159,7 @@ export default function GlobalTracking() {
             setTimeout(() => {
                 if (!trackedTimes[seconds]) {
                     trackedTimes[seconds] = true;
-                    window.analytics.track("Time on Page", {
+                    window.analytics?.track("Time on Page", {
                         seconds,
                         path: pathname,
                         title: document.title,

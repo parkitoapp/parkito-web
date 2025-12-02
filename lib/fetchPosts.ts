@@ -38,6 +38,7 @@ export async function getPost(slug: string): Promise<BlogPost | null> {
                 role,
                 image
             },
+            intro,
             recap,
             content[]{
                 id,

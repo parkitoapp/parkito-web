@@ -3,8 +3,8 @@ import "@/app/globals.css"
 import { Inter_Tight } from "next/font/google"
 import { Metadata } from "next";
 import Script from "next/script";
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import GlobalTracking from "./_tracking/GlobalTracking";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const interTight = Inter_Tight(
   {
@@ -126,7 +126,7 @@ export default function RootLayout({
         <meta charSet="utf-8" />
 
         {/* ---------------- IUBENDA ---------------- */}
-        <Script id="iubenda-config" strategy="afterInteractive">
+        <Script id="iubenda-config" strategy="lazyOnload">
           {`
         var _iub = _iub || [];
 _iub.csConfiguration = {"askConsentAtCookiePolicyUpdate":true,"cookiePolicyInOtherWindow":true,"enableRemoteConsent":true,"floatingPreferencesButtonDisplay":"bottom-left","hasEmailMarketing":false,"perPurposeConsent":true,"siteId":2311382,"whitelabel":false,"cookiePolicyId":94483316,"banner":{"acceptButtonDisplay":true,"closeButtonRejects":true,"customizeButtonDisplay":true,"explicitWithdrawal":true,"listPurposes":true,"position":"float-top-center","showTitle":true}};
@@ -137,11 +137,11 @@ _iub.csLangConfiguration = {"it":{"cookiePolicyId":94483316}};
         </Script>
         <Script
           src="https://cs.iubenda.com/autoblocking/2311382.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script
           src="https://cdn.iubenda.com/cs/iubenda_cs.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
 
 
@@ -152,7 +152,7 @@ _iub.csLangConfiguration = {"it":{"cookiePolicyId":94483316}};
         <main>
           {children}
         </main>
-        {/* <GoogleAnalytics id="" /> */}
+        <GoogleAnalytics gaId="G-W2851M0TEF" />
         <GlobalTracking />
       </body>
     </html>

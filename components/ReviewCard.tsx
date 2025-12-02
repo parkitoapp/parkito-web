@@ -10,7 +10,7 @@ import {
     Card,
     CardTitle,
 } from "@/components/ui/card";
-import { FaStar, FaRegStar } from "react-icons/fa";
+import { Star } from 'lucide-react';
 // import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 // import { useMemo } from "react";
 
@@ -36,11 +36,11 @@ export default function ReviewCard({ name, title, rating, body, date }: ReviewCa
             <div className="flex items-center mb-2">
                 <div className="flex items-center">
                     {stars.map((filled, i) =>
-                        filled ? (
-                            <FaStar key={i} className="text-yellow-400 w-6 h-6" />
-                        ) : (
-                            <FaRegStar key={i} className="text-yellow-300/60 w-6 h-6" />
-                        ),
+                        <Star
+                            key={i}
+                            className={filled ? "text-yellow-400 w-6 h-6" : "text-yellow-300/60 w-6 h-6"}
+                            fill={filled ? "currentColor" : "none"}
+                        />
                     )}
                 </div>
                 <span className="text-md text-gray-700 dark:text-gray-300 ml-2">{numericRating.toFixed(1)}</span>

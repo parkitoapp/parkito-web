@@ -103,6 +103,8 @@ export default async function BlogPostPage({ params }: Props) {
     if (!post) return <div>Post not found</div>;
     const cityFaqs: FAQ[] | undefined = blogFaqs.find(f => post.tags.includes(f.city))?.faqs;
 
+    console.log("intro", post.intro)
+
     return (
         <>
             <div className="mx-auto py-32 px-6 md:px-16">
@@ -110,7 +112,7 @@ export default async function BlogPostPage({ params }: Props) {
 
 
                 {/* TITLE */}
-                <h1 className="text-5xl font-bold my-4">{post.title}</h1>
+                <h1 className="text-3xl md:text-5xl font-bold my-4">{post.title}</h1>
                 {/* COVER IMAGE */}
                 {post.coverImage && (
                     <Image
@@ -206,7 +208,7 @@ export default async function BlogPostPage({ params }: Props) {
                                         alt={section.sectionAlt}
                                         width={500}
                                         height={400}
-                                        className="w-[70%] h-auto rounded-lg"
+                                        className="w-[50%] h-auto rounded-lg"
                                     />
                                 </div>
                             )}
