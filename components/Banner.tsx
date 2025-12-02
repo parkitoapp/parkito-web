@@ -11,6 +11,7 @@ import Image from "next/image";
 import { BannerProps } from "@/types";
 import Link from "next/link";
 import { ArrowDown, Instagram, Linkedin } from "lucide-react";
+
 import DownloadButtons from "./DownloadButtons";
 
 export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn }: BannerProps) {
@@ -105,13 +106,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                     <p className="font-semibold text-center text-chart-3 text-lg mb-2">{subtitle}</p>
                     <div className="flex justify-center gap-4 mt-4">
 
-                        <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996">
-                            <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
-                        </Link>
-
-                        <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it">
-                            <Image src="/googlebtn.webp" alt="Google Play" width={150} height={50} />
-                        </Link>
+                        <DownloadButtons />
                     </div>
 
                 </div>
