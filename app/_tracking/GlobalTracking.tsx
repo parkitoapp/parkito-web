@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 type AnalyticsPageData = {
     url: string;
@@ -39,7 +39,6 @@ export default function GlobalTracking() {
     };
 
     const pathname = usePathname() || "/";
-    const searchParams = useSearchParams();
 
     /* ------------------------
        DOWNLOAD CLICK TRACKING
@@ -111,7 +110,7 @@ export default function GlobalTracking() {
 
         if (window.analytics?.page) window.analytics.page("Page View", pageData as Record<string, unknown>);
         if (window.mixpanel?.track) window.mixpanel.track("Page View", pageData as Record<string, unknown>);
-    }, [pathname, searchParams]);
+    }, [pathname]);
 
     /* ------------------------
        SCROLL DEPTH + TIME ON PAGE
