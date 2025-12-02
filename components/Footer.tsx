@@ -11,6 +11,7 @@ import Link from 'next/link';
 import Script from 'next/script';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok, FaWhatsapp } from 'react-icons/fa';
 import FooterList from './FooterList';
+import DownloadButtons from './DownloadButtons';
 
 export default function Footer() {
 
@@ -63,12 +64,7 @@ export default function Footer() {
                         </ul>
 
                         <div className='flex flex-row gap-4 mt-4'>
-                            <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button">
-                                <Image src="/applebtn.webp" alt="App Store button" width={150} height={50} />
-                            </Link>
-                            <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button">
-                                <Image src="/googlebtn.webp" alt="Google Play button" width={150} height={50} />
-                            </Link>
+                            <DownloadButtons />
                         </div>
                     </div>
 

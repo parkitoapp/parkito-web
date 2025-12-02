@@ -19,10 +19,10 @@ import { Card } from "@/components/ui/card";
 import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Link from 'next/link';
-import Image from 'next/image';
 import { FaWhatsapp } from 'react-icons/fa';
 import type { TeamMember, SelectOption } from '@/types';
 import ContactForm from './ContactForm';
+import DownloadButtons from './DownloadButtons';
 
 type Props = {
     teamMembers: Record<string, TeamMember>;
@@ -76,12 +76,7 @@ export default function ContactFormClient({ teamMembers, selectOptions }: Props)
 
                         {member && member.id === "parkito" ? (
                             <div className="flex flex-row w-full mx-auto items-center justify-center gap-4 mt-6">
-                                <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button">
-                                    <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
-                                </Link>
-                                <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button">
-                                    <Image src="/googlebtn.webp" alt="Google Play" width={150} height={50} />
-                                </Link>
+                                <DownloadButtons />
                             </div>
                         ) : member && (member.id === "benedetta" || member.id === "davide") ? (
                             <ContactForm member={member} selectedOption={selectedOption} />

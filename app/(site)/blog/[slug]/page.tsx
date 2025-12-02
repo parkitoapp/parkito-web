@@ -26,6 +26,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { parkingFaqs } from "@/data/parkingFaq";
 import BC from "@/components/BC";
+import DownloadButtons from "@/components/DownloadButtons";
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source: SanityImage) => builder.image(source).url();
@@ -217,12 +218,7 @@ export default async function BlogPostPage({ params }: Props) {
                             </div>
                             {(idx === 0 || idx === post.content!.length - 1) && (
                                 <div className="flex flex-row w-full mx-auto items-center justify-start gap-4 mt-16">
-                                    <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button">
-                                        <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
-                                    </Link>
-                                    <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button">
-                                        <Image src="/googlebtn.webp" alt="Google Play" width={150} height={50} />
-                                    </Link>
+                                    <DownloadButtons />
                                 </div>)}
                         </section>
                     ))}

@@ -11,9 +11,9 @@ import Faq from "./Faq";
 import { parkingFaqs } from "@/data/parkingFaq";
 import { fetchParkingPhoto } from "@/lib/fetchParkingPhoto";
 import { useEffect, useState } from "react";
-import { Spinner } from "./ui/spinner";
 import BC from "./BC";
 import { Skeleton } from "./ui/skeleton";
+import DownloadButtons from "./DownloadButtons";
 
 
 interface Props {
@@ -145,12 +145,7 @@ export default function ParkingDetail({ citySlug, parking }: Props) {
                             {parking.description}
                         </ReactMarkdown>
                         <div className="flex flex-row w-full items-center justify-start gap-4 mt-6">
-                            <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button">
-                                <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
-                            </Link>
-                            <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button">
-                                <Image src="/googlebtn.webp" alt="Google Play" width={150} height={50} />
-                            </Link>
+                            <DownloadButtons />
                         </div>
                     </CardDescription>
                 </CardContent>

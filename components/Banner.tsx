@@ -11,6 +11,7 @@ import Image from "next/image";
 import { BannerProps } from "@/types";
 import Link from "next/link";
 import { ArrowDown, Instagram, Linkedin } from "lucide-react";
+import DownloadButtons from "./DownloadButtons";
 
 export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn }: BannerProps) {
     return (
@@ -33,12 +34,8 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
 
                         {dwbtn && (
                             <div className="flex flex-row w-full mx-auto items-center justify-start gap-4 mt-6">
-                                <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button">
-                                    <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
-                                </Link>
-                                <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button">
-                                    <Image src="/googlebtn.webp" alt="Google Play" width={150} height={50} />
-                                </Link>
+                                <DownloadButtons />
+
                             </div>
                         )}
 
@@ -79,10 +76,10 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                         </Link>
                     )
                 }
-            </div>
+            </div >
 
             {/* Mobile/Tablet View (max-width: 1240px) */}
-            <div className="flex min-[1241px]:hidden relative w-full flex-col overflow-visible">
+            <div className="flex min-[1241px]:hidden relative w-full flex-col overflow-visible" >
                 <div className="fixed top-0 left-0 w-full h-[50vh] -z-10">
                     <Image
                         src={src}
@@ -144,7 +141,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                         </Link>
                     )
                 }
-            </div>
+            </div >
         </>
     );
 }

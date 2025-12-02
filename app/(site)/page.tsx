@@ -3,10 +3,10 @@ import ReviewsList from "@/components/ReviewsList";
 import Image from "next/image";
 import { faq } from "@/data/faq";
 import Faq from "@/components/Faq";
-import Link from "next/link";
 import ScrollStack, { ScrollStackItem } from '@/components/ScrollStack';
 import LazyVideo from '@/components/LazyVideo';
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import DownloadButtons from "@/components/DownloadButtons";
 
 export const metadata = {
   title: 'Home',
@@ -162,12 +162,7 @@ export default function Home() {
           <p className="text-xl md:w-[20%] mx-auto text-primary">E trasforma l&apos;esperienza del parcheggio in città con Parkito</p>
 
           <div className="flex flex-row w-full mx-auto items-center justify-center gap-4 mt-6">
-            <Link href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996" aria-label="apple download button" title="apple download button">
-              <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
-            </Link>
-            <Link href="https://play.google.com/store/apps/details?id=it.autoindabox.mobile&hl=it" aria-label="android download button" title="google download button">
-              <Image src="/googlebtn.webp" alt="Google Play" width={150} height={50} />
-            </Link>
+            <DownloadButtons />
           </div>
           <div className="flex md:flex-row flex-col gap-8 items-center justify-center">
             <Card className="rounded-lg bg-card flex flex-col justify-between w-64 h-40 p-6">
