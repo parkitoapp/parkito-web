@@ -1,41 +1,93 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+
+/* ----------------------------------------------------
+   INTERFACES
+-----------------------------------------------------*/
+interface AnalyticsPageData {
+    url: string;
+    title: string;
+    path: string;
+    referrer: string | null;
+    timestamp: string;
+    device_type: "mobile" | "desktop";
+    session_id?: string;
+    [key: string]: string | number | boolean | null | undefined;
+}
+
+interface DownloadClickData {
+    store: string;
+    position: string;
+    [key: string]: string;
+}
+
+/* ----------------------------------------------------
+   HELPERS
+-----------------------------------------------------*/
+function getPagePosition(): string {
+    const path = window.location.pathname;
+
+    if (path === "/" || path === "/home") return "home";
+    if (path.includes("/blog")) return "blog";
+    if (path.includes("/faq")) return "faq";
+    if (path.includes("/diventare-host")) return "diventare-host";
+    if (path.includes("/torino")) return "torino";
+    if (path.includes("/milano")) return "milano";
+    if (path.includes("/bonassola")) return "bonassola";
+    if (path.includes("/la-spezia")) return "la-spezia";
+    if (path.includes("/levanto")) return "levanto";
+
+    return "unknown";
+}
 
 export default function GlobalTracking() {
-    /* ----------------------------------------------------
-       PAGE POSITION HELPER (equivalent to original logic)
-    -----------------------------------------------------*/
-    function getPagePosition() {
-        const path = window.location.pathname;
-        if (path === "/" || path === "/home") return "home";
-        if (path.includes("/blog")) return "blog";
-        if (path.includes("/faq")) return "faq";
-        if (path.includes("/diventare-host")) return "diventare-host";
-        if (path.includes("/torino")) return "torino";
-        if (path.includes("/milano")) return "milano";
-        if (path.includes("/bonassola")) return "bonassola";
-        if (path.includes("/la-spezia")) return "la spezia";
-        if (path.includes("/levanto")) return "levanto";
-        return "unknown";
-    }
+    const pathname = usePathname();
 
     /* ----------------------------------------------------
-       DOWNLOAD CLICK TRACKING
+       PAGEVIEW ON ROUTE CHANGE
     -----------------------------------------------------*/
     useEffect(() => {
-        const els = document.querySelectorAll("[data-download-store]");
+        if (!window.analytics || !window.mixpanel) return;
 
-        els.forEach((el) => {
-            el.addEventListener("click", () => {
-                const store = el.getAttribute("data-download-store");
-                const position = getPagePosition();
+        const data: AnalyticsPageData = {
+            url: window.location.href,
+            title: document.title,
+            path: pathname,
+            referrer: document.referrer || null,
+            timestamp: new Date().toISOString(),
+            device_type: window.innerWidth < 768 ? "mobile" : "desktop",
+        };
 
-                if (window.analytics && typeof window.analytics.track === "function") {
-                    window.analytics.track("downloadapp_clicked", { store, position });
-                }
-            });
-        });
+        window.analytics.page("Page View", data);
+        window.mixpanel.track("Page View", data);
+    }, [pathname]);
+
+    /* ----------------------------------------------------
+       DOWNLOAD BUTTON CLICK TRACKING (delegated)
+    -----------------------------------------------------*/
+    useEffect(() => {
+        function delegatedClick(e: MouseEvent) {
+            const target = e.target as HTMLElement | null;
+            if (!target) return;
+
+            const el = target.closest("[data-download-store]") as HTMLElement | null;
+            if (!el) return;
+
+            const store = el.getAttribute("data-download-store") || "unknown";
+            const position = getPagePosition();
+
+            const payload: DownloadClickData = {
+                store,
+                position,
+            };
+
+            window.analytics?.track("downloadapp_clicked", payload);
+        }
+
+        document.addEventListener("click", delegatedClick);
+        return () => document.removeEventListener("click", delegatedClick);
     }, []);
 
     /* ----------------------------------------------------
@@ -92,12 +144,11 @@ export default function GlobalTracking() {
     }, []);
 
     /* ----------------------------------------------------
-       MIXPANEL + SESSION + PAGEVIEW + LEAVE + BOUNCE
+       MIXPANEL INIT + SESSION + LEAVE/Bounce tracking
     -----------------------------------------------------*/
     useEffect(() => {
         if (!window.mixpanel || !window.mixpanel.init) return;
 
-        // INIT
         window.mixpanel.init("5ed105d86e532a4a699024cb9425d966", {
             record_sessions_percent: 100,
             record_heatmap_data: true,
@@ -106,7 +157,6 @@ export default function GlobalTracking() {
 
         window.mixpanel.track_pageview();
 
-        // IDENTIFY
         if (!localStorage.getItem("mixpanel_distinct_id")) {
             localStorage.setItem(
                 "mixpanel_distinct_id",
@@ -116,7 +166,6 @@ export default function GlobalTracking() {
         const userId = localStorage.getItem("mixpanel_distinct_id")!;
         window.mixpanel.identify(userId);
 
-        // SESSION LOGIC
         function getOrCreateSessionId() {
             const KEY = "session_id_v1";
             const TIMEOUT = 30 * 60 * 1000;
@@ -147,26 +196,20 @@ export default function GlobalTracking() {
         const pv = parseInt(localStorage.getItem(sessionKey) || "0", 10) + 1;
         localStorage.setItem(sessionKey, pv.toString());
 
-        const pageData = {
-            url: window.location.href,
-            title: document.title,
-            path: window.location.pathname,
-            referrer: document.referrer || null,
-            timestamp: new Date().toISOString(),
-            device_type: window.innerWidth < 768 ? "mobile" : "desktop",
-            session_id,
-        };
-
-        if (window.analytics?.page) window.analytics.page("Page View", pageData);
-        window.mixpanel.track("Page View", pageData);
-
+        const viewStart = Date.now();
         let leaveTracked = false;
         let internalClick = false;
-        const viewStart = Date.now();
 
-        document.addEventListener("click", (e) => {
-            const link = (e.target as HTMLElement)?.closest("a");
-            if (link && link.hostname === window.location.hostname && !link.target?.includes("_blank")) {
+        document.addEventListener("click", (e: MouseEvent) => {
+            const target = e.target as HTMLElement | null;
+            if (!target) return;
+
+            const link = target.closest("a") as HTMLAnchorElement | null;
+            if (
+                link &&
+                link.hostname === window.location.hostname &&
+                !link.target?.includes("_blank")
+            ) {
                 internalClick = true;
             }
         });
@@ -177,15 +220,20 @@ export default function GlobalTracking() {
 
             const time_spent_sec = Math.round((Date.now() - viewStart) / 1000);
 
-            const leaveData = {
-                ...pageData,
+            const data: AnalyticsPageData = {
+                url: window.location.href,
+                title: document.title,
+                path: window.location.pathname,
+                referrer: document.referrer || null,
+                timestamp: new Date().toISOString(),
+                device_type: window.innerWidth < 768 ? "mobile" : "desktop",
+                session_id,
                 time_spent_sec,
                 bounce: !internalClick && pv === 1,
-                timestamp: new Date().toISOString(),
             };
 
-            if (window.analytics?.track) window.analytics.track("Page Leave", leaveData);
-            window.mixpanel.track("Page Leave", leaveData);
+            window.analytics?.track("Page Leave", data);
+            window.mixpanel.track("Page Leave", data);
         }
 
         window.addEventListener("beforeunload", trackLeave);
@@ -195,16 +243,13 @@ export default function GlobalTracking() {
     }, []);
 
     return (
-        <>
-            {/* GTM NOSCRIPT EXACT REPLICA */}
-            <noscript>
-                <iframe
-                    src="https://www.googletagmanager.com/ns.html?id=GTM-WRKTDMC4"
-                    height="0"
-                    width="0"
-                    style={{ display: "none", visibility: "hidden" }}
-                />
-            </noscript>
-        </>
+        <noscript>
+            <iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-WRKTDMC4"
+                height="0"
+                width="0"
+                style={{ display: "none", visibility: "hidden" }}
+            />
+        </noscript>
     );
 }
