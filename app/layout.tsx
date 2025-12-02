@@ -4,6 +4,7 @@ import { Inter_Tight } from "next/font/google"
 import { Metadata } from "next";
 import Script from "next/script";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import GlobalTracking from "./_tracking/GlobalTracking";
 
 const interTight = Inter_Tight(
   {
@@ -152,6 +153,7 @@ _iub.csLangConfiguration = {"it":{"cookiePolicyId":94483316}};
           {children}
         </main>
         {/* <GoogleAnalytics id="" /> */}
+        <GlobalTracking />
       </body>
     </html>
   )
