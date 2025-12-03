@@ -28,7 +28,7 @@ export default function page() {
 
                             <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                                 <CardHeader>
-                                    <Image src="/headache.webp" alt="icona stress" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" />
+                                    <Image src="/headache.webp" alt="icona stress" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" />
                                 </CardHeader>
 
                                 <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
@@ -40,7 +40,7 @@ export default function page() {
                             </Card>
                             <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                                 <CardHeader>
-                                    <Image src="/clock.webp" alt="icona orologio" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" />
+                                    <Image src="/clock.webp" alt="icona orologio" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" />
                                 </CardHeader>
                                 <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                                     Utenti Verificati
@@ -51,7 +51,7 @@ export default function page() {
                             </Card>
                             <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                                 <CardHeader>
-                                    <Image src="/light.webp" alt="icona luci" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" />
+                                    <Image src="/light.webp" alt="icona luci" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" />
                                 </CardHeader>
                                 <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                                     Accesso in autonomia
@@ -84,9 +84,9 @@ export default function page() {
 
                         </div>
                         <div className="flex xl:flex-col md:flex-row flex-col items-center gap-6 bg-white p-4 rounded-xl">
-                            <Image src={"/masterlock.webp"} alt="masterlock logo" width={300} height={300} />
-                            <Image src={"/1control.webp"} alt="1control logo" width={300} height={300} />
-                            <Image src={"/okhome.webp"} alt="okhome logo" width={300} height={300} />
+                            <Image src={"/masterlock.webp"} alt="masterlock logo" width={300} height={300} loading="lazy" />
+                            <Image src={"/1control.webp"} alt="1control logo" width={300} height={300} loading="lazy" />
+                            <Image src={"/okhome.webp"} alt="okhome logo" width={300} height={300} loading="lazy" />
                         </div>
                     </div>
 

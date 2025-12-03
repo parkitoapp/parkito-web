@@ -16,7 +16,7 @@ export default function DeviceTabs() {
                 <Card className="flex flex-col bg-primary p-4 rounded-xl h-full justify-between">
                     <CardHeader className="flex flex-col">
                         <Badge className="mb-4 bg-accent-foreground p-2 rounded-full w-fit">Consigliato!</Badge>
-                        <Image src={"/rocket.webp"} alt="rocket" width={250} height={250} className="items-start justify-start" />
+                        <Image src={"/rocket.webp"} alt="rocket" width={250} height={250} loading="lazy" className="items-start justify-start" />
 
                     </CardHeader>
                     <CardContent className="flex flex-col justify-start items-baseline">
@@ -41,7 +41,7 @@ export default function DeviceTabs() {
             <TabsContent value="device"><Card className="flex flex-col bg-card p-4 rounded-xl h-full justify-between">
                 <CardHeader className="flex flex-col">
                     <div className="h-9 mb-4" />
-                    <Image src={"/phone.webp"} alt="phone" width={250} height={250} className="items-start justify-start" />
+                    <Image src={"/phone.webp"} alt="phone" width={250} height={250} loading="lazy" className="items-start justify-start" />
                 </CardHeader>
                 <CardContent className="flex flex-col justify-start items-baseline">
                     <h2 className="text-md text-accent-foreground uppercase text-left font-semibold min-h-12 flex items-center">Lascia il telecomando o la chiave</h2>
@@ -66,7 +66,7 @@ export default function DeviceTabs() {
                 <Card className="flex flex-col bg-card p-4 rounded-xl h-full justify-between">
                     <CardHeader className="flex flex-col">
                         <div className="h-9 mb-4" />
-                        <Image src={"/heart.webp"} alt="heart" width={250} height={250} className="items-start justify-start" />
+                        <Image src={"/heart.webp"} alt="heart" width={250} height={250} loading="lazy" className="items-start justify-start" />
 
                     </CardHeader>
                     <CardContent className="flex flex-col justify-start items-baseline">

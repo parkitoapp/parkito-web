@@ -33,6 +33,7 @@ export default function ParkingCard({ parking }: { parking: Parking }) {
                     alt={parking.name}
                     width={400}
                     height={200}
+                    loading="lazy"
                     className="rounded-md w-full h-40 object-cover mb-3"
                 />
             )}

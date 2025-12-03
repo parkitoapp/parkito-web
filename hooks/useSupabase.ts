@@ -41,7 +41,16 @@ export default function useSupabaseJson<T>(
             }
 
             const { data: fileBlob, error } = await supabase.storage.from(bucket).download(file);
-            if (error) throw error;
+
+            if (error) {
+                if (cached) {
+                    const parsed = JSON.parse(cached);
+                    setData(key ? parsed.data[key] || [] : parsed.data);
+                    setLoading(false);
+                    return;
+                }
+                throw error;
+            }
 
             const text = await fileBlob.text();
             const json = JSON.parse(text);

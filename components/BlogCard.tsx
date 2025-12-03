@@ -30,6 +30,7 @@ export default function BlogCard({ title, coverImage, publishedAt, tags }: Parti
                         className="w-full h-48 object-cover rounded-t-3xl"
                         width={400}
                         height={200}
+                        loading="lazy"
                     />
                     <Badge className="text-sm absolute top-2 left-2 p-2 bg-accent text-primary dark:text-white">
                         {postedAt}

@@ -17,6 +17,7 @@ export default function CityList({ cities }: { cities: CityType[] }) {
                         alt={`Immagine per ${city.name}`}
                         width={400}
                         height={200}
+                        loading="lazy"
                         className="rounded-t-3xl w-full h-40 object-cover mb-3"
                     />
 

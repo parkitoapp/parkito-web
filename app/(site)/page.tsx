@@ -10,6 +10,7 @@ import DownloadButtons from "@/components/DownloadButtons";
 
 export const metadata = {
   title: 'Home',
+  description: 'Prenota in anticipo Parcheggi Privati sicuri e verificati',
 }
 
 export default function Home() {
@@ -29,7 +30,7 @@ export default function Home() {
               <p className="hidden sm:block text-chart-4 dark:text-chart-3 font-semibold text-lg">
                 Oltre 10.000 utenti soddisfatti in tutta Italia
               </p>
-              <Image src='/homePill.webp' alt="App preview" width={800} height={960} sizes="(max-width: 640px) 400px, 800px" className="mt-4 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%] sm:hidden px-4" />
+              <Image src='/homePill.webp' alt="App preview" width={800} height={960} sizes="(max-width: 640px) 400px, 800px" loading="lazy" className="mt-4 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%] sm:hidden px-4" />
             </>
             <ReviewsList />
           </div>
@@ -44,7 +45,7 @@ export default function Home() {
 
                 <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src="/headache.webp" alt="headache" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" className="md:w-50 w-40 mx-auto" />
+                    <Image src="/headache.webp" alt="headache" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
                   </CardHeader>
 
                   <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
@@ -53,7 +54,7 @@ export default function Home() {
                 </Card>
                 <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src="/clock.webp" alt="orologio" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" className="md:w-50 w-40 mx-auto" />
+                    <Image src="/clock.webp" alt="orologio" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
                   </CardHeader>
                   <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     Nessuna garanzia sulla disponibilità.
@@ -61,7 +62,7 @@ export default function Home() {
                 </Card>
                 <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src="/light.webp" alt="luci" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" className="md:w-50 w-40 mx-auto" />
+                    <Image src="/light.webp" alt="luci" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
                   </CardHeader>
                   <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     Prezzi poco trasparenti
@@ -69,7 +70,7 @@ export default function Home() {
                 </Card>
                 <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src="/x.webp" alt="croce" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" className="md:w-50 w-40 mx-auto" />
+                    <Image src="/x.webp" alt="croce" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
                   </CardHeader>
                   <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
                     No H24 e niente sicurezza

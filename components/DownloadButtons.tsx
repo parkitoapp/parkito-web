@@ -15,7 +15,7 @@ export default function DownloadButtons() {
                 rel="noopener noreferrer"
                 aria-label="apple download button"
             >
-                <Image src="/applebtn.webp" alt="App Store" width={150} height={50} />
+                <Image src="/applebtn.webp" alt="App Store" width={120} height={50} className="w-30" />
             </Link>
 
             <Link
@@ -25,7 +25,7 @@ export default function DownloadButtons() {
                 rel="noopener noreferrer"
                 aria-label="google download button"
             >
-                <Image src="/googlebtn.webp" alt="Google Play" width={150} height={50} />
+                <Image src="/googlebtn.webp" alt="Google Play" width={180} height={53} className="w-30" />
             </Link>
         </div>
     );
