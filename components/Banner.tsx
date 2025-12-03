@@ -17,7 +17,7 @@ import DownloadButtons from "./DownloadButtons";
 export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn }: BannerProps) {
     return (
         <>
-            {/* Desktop View (min-width: 1241px) */}
+            {/* Desktop View (min-width: 1280px) */}
             <div className="hidden xl:flex relative text-white w-full min-h-svh items-center">
                 <div className="flex w-full flex-col md:flex-row items-center justify-between px-6 md:px-32 py-16">
 
@@ -79,7 +79,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                 }
             </div >
 
-            {/* Mobile/Tablet View (max-width: 1240px) */}
+            {/* Mobile/Tablet View (max-width: 1280px) */}
             <div className="flex xl:hidden relative w-full flex-col overflow-visible" >
                 <div className="fixed top-0 left-0 w-full h-[50vh] -z-10">
                     <Image
