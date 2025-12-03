@@ -83,7 +83,7 @@ export default function ResNav() {
                     </NavBody>)
                     :
 
-                    (<MobileNav>
+                    (<MobileNav isMenuOpen={isMobileMenuOpen}>
                         <MobileNavHeader>
                             <NavbarLogo source={source} />
                             <MobileNavToggle

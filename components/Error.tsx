@@ -13,7 +13,7 @@ import Link from "next/link";
 
 export default function Error({ title, message, onClick, src }: ErrorType) {
     return (
-        <Alert variant="destructive" className="w-[50%] mx-auto my-8 flex flex-col">
+        <Alert variant="destructive" className="min-w-[50%] max-w-5xl mx-auto my-8 flex flex-col">
             <AlertTitle className="flex items-center justify-center text-xl">
                 <AlertCircle className="mr-2" /> Error: {title}
             </AlertTitle>

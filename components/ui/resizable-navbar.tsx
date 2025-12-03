@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import {
   motion,
-  AnimatePresence,
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
@@ -38,6 +37,7 @@ interface MobileNavProps {
   children: React.ReactNode;
   className?: string;
   visible?: boolean;
+  isMenuOpen?: boolean;
 }
 
 interface MobileNavHeaderProps {
@@ -176,7 +176,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
   );
 };
 
-export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
+export const MobileNav = ({ children, className, visible, isMenuOpen }: MobileNavProps) => {
   return (
     <motion.div
       animate={{
@@ -187,7 +187,6 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         width: visible ? "80%" : "100%",
         paddingRight: visible ? "0px" : "0px",
         paddingLeft: visible ? "0px" : "0px",
-        borderRadius: visible ? "99999px" : "99999px",
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -196,7 +195,9 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         damping: 50,
       }}
       className={cn(
-        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-white dark:bg-black px-0 my-4 rounded-full border border-primary/10",
+        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-white dark:bg-black px-0 my-4 border border-primary/10",
+        !isMenuOpen && "rounded-3xl",
+        isMenuOpen && "rounded-3xl",
         visible && "bg-white/60 dark:bg-neutral-950/80",
         className,
       )}
@@ -229,21 +230,33 @@ export const MobileNavMenu = ({
   onClose,
 }: MobileNavMenuProps) => {
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-md bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950",
-            className,
-          )}
-        >
-          {children}
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <motion.div
+      initial={false}
+      animate={{
+        height: isOpen ? "auto" : 0,
+        opacity: isOpen ? 1 : 0,
+      }}
+      transition={{
+        height: {
+          type: "spring",
+          stiffness: 300,
+          damping: 30,
+        },
+        opacity: {
+          duration: 0.2,
+        },
+      }}
+      className="w-full overflow-hidden"
+    >
+      <div
+        className={cn(
+          "flex w-full flex-col items-start justify-start gap-4 px-6 pb-6 pt-4 border-t border-primary/10",
+          className,
+        )}
+      >
+        {children}
+      </div>
+    </motion.div>
   );
 };
 
