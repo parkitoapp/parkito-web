@@ -40,7 +40,7 @@ export default function GlobalTracking() {
 
         // Static pages
         if (path.includes("/contatti")) return "contatti";
-        if (path.includes("/host")) return "host";
+        if (path.includes("/diventare-host")) return "host";
 
         // Cities
         if (path === "/citta") return "cities_index";

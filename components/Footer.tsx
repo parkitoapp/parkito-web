@@ -76,7 +76,7 @@ export default function Footer() {
                             <h2 className='text-white font-bold text-lg md:text-2xl'>Guadagna con Parkito</h2>
                             <ul className='flex flex-col mt-4 text-white gap-2 text-sm'>
                                 <li>
-                                    <Link href={"/host"} title='diventa host' aria-label='diventa un host'>
+                                    <Link href={"/diventare-host"} title='diventa host' aria-label='diventa un host'>
                                         Diventa Host
                                     </Link>
                                 </li>
@@ -99,7 +99,7 @@ export default function Footer() {
                             <h2 className='text-white font-bold text-lg md:text-2xl'>Parkito</h2>
                             <ul className='flex flex-col mt-4 text-white gap-2 text-sm'>
                                 <li>
-                                    <Link href="/about" title="About Us">
+                                    <Link href="/chi-siamo" title="About Us">
                                         Chi siamo
                                     </Link>
                                 </li>

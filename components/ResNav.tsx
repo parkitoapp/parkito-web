@@ -53,7 +53,7 @@ export default function ResNav() {
         },
         {
             name: "Diventa Host",
-            link: "/host",
+            link: "/diventare-host",
         },
         // {
         //     name: "Cos'è Parkito",
