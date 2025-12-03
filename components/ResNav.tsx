@@ -20,14 +20,12 @@ import ThemeSwitch from "./Switch";
 import Link from "next/link";
 import CityDropdown from "@/components/CityDropdown";
 import { useTheme } from "next-themes";
-import { useWidth } from "@/hooks/useWidth";
 
 export default function ResNav() {
 
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const width = useWidth();
 
 
     // Ensure this only runs on the client
@@ -70,7 +68,8 @@ export default function ResNav() {
     return (
         <div className="relative w-full">
             <Navbar>
-                {width > 1024 ? (
+                {/* Desktop View */}
+                <div className="hidden lg:block w-full">
                     <NavBody className="dark:border">
                         <NavbarLogo source={source} />
                         <NavItems items={navItems} />
@@ -80,10 +79,12 @@ export default function ResNav() {
                             </div>
                             {/* <NavbarButton variant="primary">Book a call</NavbarButton> */}
                         </div>
-                    </NavBody>)
-                    :
+                    </NavBody>
+                </div>
 
-                    (<MobileNav>
+                {/* Mobile View */}
+                <div className="lg:hidden w-full">
+                    <MobileNav>
                         <MobileNavHeader>
                             <NavbarLogo source={source} />
                             <MobileNavToggle
@@ -127,8 +128,7 @@ export default function ResNav() {
                             </div>
                         </MobileNavMenu>
                     </MobileNav>
-                    )
-                }
+                </div>
             </Navbar>
         </div >
     );

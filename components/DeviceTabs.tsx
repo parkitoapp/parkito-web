@@ -13,7 +13,7 @@ export default function DeviceTabs() {
             </TabsList>
             <TabsContent value="automated">
 
-                <Card className="flex flex-col bg-primary p-4 rounded-xl min-h-[600px] justify-between">
+                <Card className="flex flex-col bg-primary p-4 rounded-xl h-full justify-between">
                     <CardHeader className="flex flex-col">
                         <Badge className="mb-4 bg-accent-foreground p-2 rounded-full w-fit">Consigliato!</Badge>
                         <Image src={"/rocket.webp"} alt="rocket" width={250} height={250} className="items-start justify-start" />
@@ -38,7 +38,7 @@ export default function DeviceTabs() {
                 </Card>
 
             </TabsContent>
-            <TabsContent value="device"><Card className="flex flex-col bg-card p-4 rounded-xl min-h-[600px] justify-between">
+            <TabsContent value="device"><Card className="flex flex-col bg-card p-4 rounded-xl h-full justify-between">
                 <CardHeader className="flex flex-col">
                     <div className="h-9 mb-4" />
                     <Image src={"/phone.webp"} alt="phone" width={250} height={250} className="items-start justify-start" />
@@ -63,7 +63,7 @@ export default function DeviceTabs() {
             </Card>
             </TabsContent>
             <TabsContent value="manual">
-                <Card className="flex flex-col bg-card p-4 rounded-xl min-h-[600px] justify-between">
+                <Card className="flex flex-col bg-card p-4 rounded-xl h-full justify-between">
                     <CardHeader className="flex flex-col">
                         <div className="h-9 mb-4" />
                         <Image src={"/heart.webp"} alt="heart" width={250} height={250} className="items-start justify-start" />

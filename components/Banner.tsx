@@ -18,7 +18,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
     return (
         <>
             {/* Desktop View (min-width: 1241px) */}
-            <div className="hidden min-[1241px]:flex relative text-white w-full md:h-screen h-svh items-center">
+            <div className="hidden xl:flex relative text-white w-full min-h-svh items-center">
                 <div className="flex w-full flex-col md:flex-row items-center justify-between px-6 md:px-32 py-16">
 
                     <div className="flex max-w-[60%] flex-col items-start justify-center text-left space-y-6 px-24">
@@ -42,10 +42,10 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
 
                     </div>
                     <div className="relative flex justify-center w-[50%]  mt-12 md:mt-0">
-                        <Image src={src} alt="App preview" width={800} height={960} sizes="(max-width: 1240px) 0px, 50vw" priority className="object-contain drop-shadow-2xl w-full rounded-lg " />
+                        <Image src={src} alt="App preview" width={800} height={960} sizes="(max-width: 1280px) 0px, 50vw" priority className="object-contain drop-shadow-2xl w-full rounded-lg " />
 
                         {src2 &&
-                            <Image src={src2} alt="App preview" width={400} height={640} sizes="(max-width: 1240px) 0px, 240px" className="object-contain drop-shadow-2xl absolute z-10 w-[15em] h-10 min-w-[50%] -right-10 md:-bottom-3 -bottom-2" />}
+                            <Image src={src2} alt="App preview" width={400} height={640} sizes="(max-width: 1280px) 0px, 240px" className="object-contain drop-shadow-2xl absolute z-10 w-[15em] h-10 min-w-[50%] -right-10 md:-bottom-3 -bottom-2" />}
 
                     </div>
 
@@ -80,7 +80,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
             </div >
 
             {/* Mobile/Tablet View (max-width: 1240px) */}
-            <div className="flex min-[1241px]:hidden relative w-full flex-col overflow-visible" >
+            <div className="flex xl:hidden relative w-full flex-col overflow-visible" >
                 <div className="fixed top-0 left-0 w-full h-[50vh] -z-10">
                     <Image
                         src={src}

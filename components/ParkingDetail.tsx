@@ -58,7 +58,7 @@ export default function ParkingDetail({ citySlug, parking }: Props) {
             <div className="w-full max-w-7xl px-4 mb-4">
                 <BC title={parking.address} />
             </div>
-            <Card className="px-10 py-10 max-w-7xl">
+            <Card className="px-4 md:px-10 py-10 max-w-7xl">
                 <CardHeader>
                     <CardTitle className="text-4xl font-bold mb-2 flex items-center gap-4 text-primary">
                         {parking.address}, {parking.city}

@@ -9,7 +9,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
-import { Linkedin, Instagram, MessageCircle, Facebook } from 'lucide-react';
+import { Linkedin, Instagram, Facebook } from 'lucide-react';
 import FooterList from './FooterList';
 import DownloadButtons from './DownloadButtons';
 
@@ -48,7 +48,7 @@ export default function Footer() {
                             </li>
                             <li>
                                 <Link href='https://wa.me/393520397705' aria-label='link a whatsapp'>
-                                    <MessageCircle size={28} className="text-white" />
+                                    <Image src="/whatsapp-svgrepo-com.svg" width={28} height={28} className="object-contain invert-100" alt="whatsapp" />
                                 </Link>
                             </li>
                             <li>
@@ -125,6 +125,7 @@ export default function Footer() {
                         <Link
                             href="/(site)/tos"
                             title="Terms and Conditions"
+                            className='underline'
                         >
                             Terms and Conditions
                         </Link>
@@ -133,7 +134,7 @@ export default function Footer() {
                     <li>
                         <Link
                             href="https://www.iubenda.com/privacy-policy/94483316"
-                            className="iubenda-white iubenda-noiframe iubenda-embed"
+                            className="iubenda-white iubenda-noiframe iubenda-embed underline"
                             title="Privacy Policy"
                         >
                             Privacy Policy
@@ -143,7 +144,7 @@ export default function Footer() {
                     <li>
                         <Link
                             href="https://www.iubenda.com/privacy-policy/94483316/cookie-policy"
-                            className="iubenda-white iubenda-noiframe iubenda-embed"
+                            className="iubenda-white iubenda-noiframe iubenda-embed underline"
                             title="Cookie Policy"
                         >
                             Cookie Policy
