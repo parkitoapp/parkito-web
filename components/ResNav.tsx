@@ -113,8 +113,8 @@ export default function ResNav() {
                                         <span className="block">{item.name}</span>
                                     </Link>)
                             ))}
-                            <div className="flex w-full flex-col gap-4 border-t border-primary">
-                                <div className="z-999 flex flex-col items-center justify-center mx-auto mt-2">
+                            <div className="flex w-full flex-col gap-4 absolute bottom-4 right-2">
+                                <div className="z-999 flex flex-col items-end justify-center">
                                     <ThemeSwitch />
                                 </div>
                                 {/* <NavbarButton
