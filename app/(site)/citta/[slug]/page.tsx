@@ -26,15 +26,16 @@ export default async function CityPage({ params }: Props) {
                 title={`Parcheggi a ${display}`}
                 subtitle={`Scopri i migliori parcheggi a ${display} con Parkito`}
                 src={`/${citySlug.slug}.webp`}
-                src2={`/${citySlug.slug}.webp`}
                 icon={true}
                 social={true}
 
             />
-            <div className="px-16 pt-8">
-                <BC title={display} />
+            <div className="bg-background">
+                <div className="px-16 pt-8">
+                    <BC title={display} />
+                </div>
+                <ParkingList city={citySlug.slug} />
             </div>
-            <ParkingList city={citySlug.slug} />
         </div>
     );
 }

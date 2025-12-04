@@ -6,13 +6,13 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import Filter from "./Filter";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function CityListClient({ cities }: { cities: CityType[] }) {
     const [query, setQuery] = useState("");
     const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
 
     if (cities.length === 0) return <div>No parkings available.</div>;
-
     // Extract unique regions/cities for filtering (using city names as filters)
     const cityNames = Array.from(new Set(cities.map(city => city.name)));
 
@@ -40,12 +40,24 @@ export default function CityListClient({ cities }: { cities: CityType[] }) {
 
             {filteredCities.map((city) => (
                 <Card key={city.id} className="border shadow-md overflow-hidden bg-card hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg rounded-3xl">
+                    <Image
+                        src={city.image}
+                        alt={`Immagine per ${city.name}`}
+                        width={400}
+                        height={200}
+                        loading="lazy"
+                        className="rounded-t-3xl w-full h-40 object-cover mb-3"
+                    />
+
+
                     <CardFooter className="flex flex-col xl:flex-row gap-2 items-center px-6 py-4 w-full">
                         <CardTitle className="dark:text-chart-3 text-chart-4 text-xl items-center justify-start text-left w-full">{city.name}</CardTitle>
+
 
                         <Button variant="default" className="p-2 mt-2 rounded-2xl" asChild>
                             <Link href={city.url}>Scopri i migliori parcheggi a {city.name} &rarr;</Link>
                         </Button>
+
                     </CardFooter>
                 </Card>
             ))}

@@ -6,8 +6,9 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { slugify } from "@/lib/slugify";
-import { fetchParkingPhoto } from "@/lib/fetchParkingPhoto";
+
 import { Parking } from "@/types";
+import { fetchParkingPhotoServer } from "@/lib/parking-server";
 
 export default function ParkingCard({ parking }: { parking: Parking }) {
     const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -16,7 +17,7 @@ export default function ParkingCard({ parking }: { parking: Parking }) {
     useEffect(() => {
         async function loadImage() {
             setIsLoading(true);
-            const url = await fetchParkingPhoto(parking.id);
+            const url = await fetchParkingPhotoServer(parking.id);
             setImageUrl(url);
             setIsLoading(false);
         }
@@ -29,7 +30,7 @@ export default function ParkingCard({ parking }: { parking: Parking }) {
                 <div className="w-full h-40 bg-muted animate-pulse rounded-md mb-3" />
             ) : (
                 <Image
-                    src={imageUrl || '/device.webp'}
+                    src={imageUrl ?? ""}
                     alt={parking.name}
                     width={400}
                     height={200}

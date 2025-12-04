@@ -1,7 +1,6 @@
 //app/components/ParkingList.tsx
 
 "use client";
-
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";
 import useSupabaseJson from "@/hooks/useSupabase";
@@ -16,7 +15,6 @@ export default function ParkingList({ city }: { city?: string }) {
     const routeSlug = typeof params?.slug === 'string' ? params.slug : undefined;
     const citySlug = city ?? routeSlug;
 
-    // console.log("City param (prop):", city, "routeSlug:", routeSlug, "using:", citySlug);
 
     const { data: parkings, loading, error } = useSupabaseJson<Parking>(
         "parking_sheet_data",

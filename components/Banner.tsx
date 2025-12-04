@@ -91,8 +91,8 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                     />
                 </div>
 
-                <div className="relative mt-[40vh] bg-background w-full flex flex-col items-center justify-start p-8 rounded-t-[3rem] min-h-[60vh]">
-                    <div className="absolute -top-5 text-sm text-white rounded-full bg-accent-foreground p-2 px-4">La prima app per il Park Sharing in Italia!</div>
+                <div className="relative mt-[40vh] bg-background w-full flex flex-col items-center justify-center p-8 rounded-t-[3rem] min-h-[60vh]">
+                    <div className="absolute -top-5 text-sm text-white rounded-full bg-green-800 p-2 px-4">La prima app per il Park Sharing in Italia!</div>
                     <div className="w-full h-full relative">
                         {/* <span
                             aria-hidden
@@ -108,6 +108,10 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
 
                         <DownloadButtons />
                     </div>
+
+                    {src2 && (
+                        <Image src={src2} alt="App preview" width={400} height={640} className="object-contain drop-shadow-2xl min-w-[50%] mt-10" />
+                    )}
 
                 </div>
 

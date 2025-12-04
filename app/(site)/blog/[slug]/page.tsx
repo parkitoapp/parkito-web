@@ -103,12 +103,10 @@ export default async function BlogPostPage({ params }: Props) {
     if (!post) return <div>Post not found</div>;
     const cityFaqs: FAQ[] | undefined = blogFaqs.find(f => post.tags.includes(f.city))?.faqs;
 
-    console.log("intro", post.intro)
-
     return (
         <>
             <div className="mx-auto py-32 px-6 md:px-16">
-                <BC title={post.title} />
+                <BC />
 
 
                 {/* TITLE */}
@@ -192,7 +190,6 @@ export default async function BlogPostPage({ params }: Props) {
                 {/* CONTENT SECTIONS */}
                 <div className="prose prose-img:max-w-none max-w-none">
                     {post.content?.map((section, idx) => (
-                        console.log(idx),
                         <section
                             key={section.title.toLowerCase().replace(/\s/g, "-")}
                             id={section.title.toLowerCase().replace(/\s/g, "-")} // anchor for ToC

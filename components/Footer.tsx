@@ -91,7 +91,24 @@ export default function Footer() {
 
                         <div>
                             <h2 className='text-white font-bold text-lg md:text-2xl'>Città</h2>
-                            <FooterList />
+                            {/* <FooterList /> */}
+                            <ul className='flex flex-col mt-4 text-white gap-2 text-sm'>
+                                <li>
+                                    <Link href="/citta/torino" title="Torino">
+                                        Torino
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/citta/ milano" title="Milano">
+                                        Milano
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/citta/roma" title="Roma">
+                                        Roma
+                                    </Link>
+                                </li>
+                            </ul>
 
                         </div>
 

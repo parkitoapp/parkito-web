@@ -21,6 +21,9 @@ export const metadata: Metadata = {
 
 export default async function City() {
     const cities = await getCities();
+
+    const safeCities = cities.filter(city => city.name !== "");
+
     return (
         <>
             <Banner title="Dove siamo" subtitle="Scopri le città in cui Parkito è disponibile" src="/cities.webp" icon={true} social={true} dwbtn={true} />
@@ -28,7 +31,7 @@ export default async function City() {
                 <div className="px-16 pt-8">
                     <BC />
                 </div>
-                <CityList cities={cities} />
+                <CityList cities={safeCities} />
             </div>
         </>
     )

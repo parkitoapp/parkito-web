@@ -15,19 +15,21 @@ import { AppleReview } from "@/types";
 import ReviewCard from "./ReviewCard";
 import LogoLoop from "./LogoLoop";
 import useSupabaseJson from "@/hooks/useSupabase";
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
+import { Alert, AlertTitle } from "./ui/alert";
 import { InfoIcon } from "lucide-react";
 
 export default function ReviewsList() {
 
-    const { data: reviews, loading, error, refetch } = useSupabaseJson<AppleReview>(
+    const { data: reviews, loading, error } = useSupabaseJson<AppleReview>(
         "reviews",
         "reviews.json",
         "ios"
     );
 
-    const reviewItems = reviews.map((r) => ({
-        node: <ReviewCard key={r.id} name={r.attributes.authorName || "Utente"} rating={r.attributes.rating || 0} title={r.attributes.title || ""} body={r.attributes.body || ""} date={r.attributes.date ? formatDate(r.attributes.date) : ""} />
+    const filteredReviews = reviews.filter(r => r.attributes.rating! >= 5);
+
+    const reviewItems = filteredReviews.map((r) => ({
+        node: <ReviewCard key={r.id} name={r.attributes.authorName || "Utente"} rating={r.attributes.rating!} title={r.attributes.title || ""} body={r.attributes.body || ""} date={r.attributes.date ? formatDate(r.attributes.date) : ""} />
     }
     ))
     if (error)

@@ -9,31 +9,17 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import Image from "next/image";
 import Faq from "./Faq";
 import { parkingFaqs } from "@/data/parkingFaq";
-import { fetchParkingPhoto } from "@/lib/fetchParkingPhoto";
-import { useEffect, useState } from "react";
 import BC from "./BC";
-import { Skeleton } from "./ui/skeleton";
 import DownloadButtons from "./DownloadButtons";
 
 
 interface Props {
     citySlug: string;
     parking: Parking | null;
+    imageUrl: string | null;
 }
 
-export default function ParkingDetail({ citySlug, parking }: Props) {
-    const [imageUrl, setImageUrl] = useState<string | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        async function loadImage() {
-            setIsLoading(true);
-            const url = await fetchParkingPhoto(parking?.id ?? 0);
-            setImageUrl(url);
-            setIsLoading(false);
-        }
-        loadImage();
-    }, [parking?.id]);
+export default function ParkingDetail({ citySlug, parking, imageUrl }: Props) {
 
     if (!parking)
         return (
@@ -64,14 +50,14 @@ export default function ParkingDetail({ citySlug, parking }: Props) {
                         {parking.address}, {parking.city}
                     </CardTitle>
                 </CardHeader>
-                <CardContent className="md:grid md:grid-cols-2 flex flex-col m-2">
-                    {isLoading ? <Skeleton className="w-full h-full min-h-75 bg-black/40 rounded-md mb-3 flex items-center justify-center animate-pulse" /> : <Image
-                        src={imageUrl ?? '/device.webp'}
+                <CardContent className="md:grid md:grid-cols-2 flex flex-col m-2 gap-2">
+                    <Image
+                        src={imageUrl ?? "/access.webp"}
                         alt={`Copertina per ${parking.name}`}
                         width={500}
                         height={300}
                         className="rounded-md m-auto object-cover"
-                    />}
+                    />
                     <CardDescription>
 
                         <div className="flex md:flex-row flex-col w-full justify-evenly items-center mb-4 gap-2 mt-2">

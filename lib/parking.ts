@@ -1,31 +1,31 @@
-import { supabase } from "@/lib/supabaseClient";
+import { supabaseServer } from "@/lib/supabaseClient";
 import { Parking } from "@/types";
 import { slugify } from "@/lib/slugify";
 import fs from "fs";
 import path from "path";
 
+const placeholderArray: string[] = ['/homePic.webp', '/1control.webp', '/access.webp', '/b4i-logo.webp'];
+
+// Generate consistent placeholder index from string
+const hashString = (str: string): number => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) - hash) + str.charCodeAt(i);
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash);
+};
+
 export async function getParkingData(): Promise<Parking[]> {
     try {
-        const { data: fileBlob, error } = await supabase.storage
+        const { data: fileBlob, error } = await supabaseServer.storage
             .from("parking_sheet_data")
             .download("parkings_data.json");
 
-        if (error) {
-            throw new Error(`Error downloading parking data: ${error}`);
-        }
+        if (error) throw new Error(`Error downloading parking data: ${error}`);
 
         const text = await fileBlob.text();
-        const json = JSON.parse(text);
-
-        // The structure from useSupabaseJson suggests the data might be directly the array or inside a key.
-        // Based on useSupabaseJson: setData(key ? parsed.data[key] || [] : parsed.data);
-        // And usage: useSupabaseJson<Parking>("parking_sheet_data", "parkings_data.json") -> no key.
-        // So it should be the root object or array.
-        // However, useSupabaseJson also does: setData(json[key]) if key is present, else setData(json).
-        // Let's assume it's the root json for now, but we should be careful.
-        // The hook usage was: useSupabaseJson<Parking>("parking_sheet_data", "parkings_data.json")
-
-        return json as Parking[];
+        return JSON.parse(text) as Parking[];
     } catch (error) {
         throw new Error(`Error fetching parking data: ${error}`);
     }
@@ -58,26 +58,24 @@ export async function getCities(): Promise<CityType[]> {
     const cityMap = new Map<string, Parking>();
 
     for (const p of parkings) {
-        if (!cityMap.has(p.city)) {
-            cityMap.set(p.city, p); // first parking per city
-        }
+        if (!cityMap.has(p.city)) cityMap.set(p.city, p);
     }
 
-    // Check if image exists in public folder, otherwise use default
     const publicDir = path.join(process.cwd(), "public");
 
-    return Array.from(cityMap.entries()).map(
-        ([cityName, p]) => {
-            const slug = slugify(cityName);
-            const imagePath = path.join(publicDir, `${slug}.webp`);
-            const hasImage = fs.existsSync(imagePath);
+    return Array.from(cityMap.entries()).map(([cityName, p]) => {
+        const slug = slugify(cityName);
+        const imagePath = path.join(publicDir, `${slug}.webp`);
+        const hasImage = fs.existsSync(imagePath);
 
-            return {
-                id: p.id,
-                name: cityName,
-                url: `/citta/${slug}`,
-                image: hasImage ? `/${slug}.webp` : '/homePic.webp',
-            };
-        }
-    );
+        // fallback placeholder
+        const placeholderIndex = hashString(cityName) % placeholderArray.length;
+
+        return {
+            id: p.id,
+            name: cityName,
+            url: `/citta/${slug}`,
+            image: hasImage ? `/${slug}.webp` : placeholderArray[placeholderIndex],
+        };
+    });
 }

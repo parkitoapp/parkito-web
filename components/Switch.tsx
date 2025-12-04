@@ -34,14 +34,14 @@ export default function ThemeSwitch() {
             checked={!isLightMode}
             onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
             className={cn(
-                "peer inline-flex h-8 w-16 shrink-0 items-center rounded-full border-2 border-transparent shadow-sm transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+                "peer inline-flex h-8 w-16 shrink-0 items-center rounded-full border-2 border-transparent shadow-sm transition-colors duration-400 ease-in-out outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
                 isLightMode ? "bg-amber-300" : "bg-blue-900"
             )}
             aria-label="Toggle Theme"
         >
             <SwitchPrimitive.Thumb
                 className={cn(
-                    "pointer-events-none flex items-center justify-center h-7 w-7 rounded-full bg-white shadow-lg ring-0 transition-transform",
+                    "pointer-events-none flex items-center justify-center h-7 w-7 rounded-full bg-white shadow-lg ring-0 transition-transform duration-400 ease-in-out",
                     "data-[state=checked]:translate-x-8 data-[state=unchecked]:translate-x-0.5"
                 )}
             >
