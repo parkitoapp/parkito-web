@@ -123,11 +123,11 @@ export default function Footer() {
                 <ul className='flex flex-row gap-4 text-white justify-center mt-3 text-sm'>
                     <li>
                         <Link
-                            href="/tos"
+                            href="/terminiecondizioni"
                             title="Terms and Conditions"
                             className='underline'
                         >
-                            Terms and Conditions
+                            Termini e Condizioni
                         </Link>
                     </li>
                     <li> - </li>
