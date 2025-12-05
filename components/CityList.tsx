@@ -1,4 +1,4 @@
-import { CityType } from "@/lib/parking";
+import { CityType } from "@/types";
 import CityListClient from "./CityListClient";
 
 export default function CityList({ cities }: { cities: CityType[] }) {
