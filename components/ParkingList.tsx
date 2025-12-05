@@ -8,6 +8,7 @@ import { Parking } from "@/types";
 import { useParams } from "next/navigation";
 import { slugify } from '@/lib/slugify';
 import ParkingCard from "@/components/ParkingCard";
+import titleizeSlug from "@/lib/titleizeSlug";
 
 export default function ParkingList({ city }: { city?: string }) {
     const params = useParams();
@@ -45,7 +46,7 @@ export default function ParkingList({ city }: { city?: string }) {
 
     return (
         <div className="min-h-screen w-full px-8 bg-background">
-            <h1 className="text-7xl font-bold text-chart-2">I migliori parcheggi di {citySlug}</h1>
+            <h1 className="text-7xl font-bold text-chart-2">I migliori parcheggi di {titleizeSlug(citySlug)}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-10 h-full">
                 {deduplicated.map((p) => (
                     <ParkingCard key={p.id} parking={p} />

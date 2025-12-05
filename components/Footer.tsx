@@ -98,7 +98,7 @@ export default function Footer() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/citta/ milano" title="Milano">
+                                    <Link href="/citta/milano" title="Milano">
                                         Milano
                                     </Link>
                                 </li>
