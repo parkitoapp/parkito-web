@@ -3,8 +3,9 @@ import { Parking } from "@/types";
 import { slugify } from "@/lib/slugify";
 import fs from "fs";
 import path from "path";
+import { CityType } from "@/types";
 
-const placeholderArray: string[] = ['/homePic.webp', '/1control.webp', '/access.webp', '/b4i-logo.webp'];
+const placeholderArray: string[] = ['/citta1.webp', '/citta2.webp', '/citta3.webp', '/citta4.webp', '/citta5.webp', '/citta6.webp',];
 
 // Generate consistent placeholder index from string
 const hashString = (str: string): number => {
@@ -25,7 +26,10 @@ export async function getParkingData(): Promise<Parking[]> {
         if (error) throw new Error(`Error downloading parking data: ${error}`);
 
         const text = await fileBlob.text();
-        return JSON.parse(text) as Parking[];
+        const parkings = JSON.parse(text) as Parking[];
+
+        return parkings.filter((p) => p.city !== "");
+
     } catch (error) {
         throw new Error(`Error fetching parking data: ${error}`);
     }
@@ -33,7 +37,18 @@ export async function getParkingData(): Promise<Parking[]> {
 
 export async function getAllParkings(): Promise<{ slug: string; address: string }[]> {
     const parkings = await getParkingData();
-    return parkings.map((p) => ({
+
+    // Deduplicate parkings with same driver_name and address
+    const uniqueParkings = new Map<string, Parking>();
+
+    for (const p of parkings) {
+        const key = `${p.driver_name}|${p.address}`;
+        if (!uniqueParkings.has(key)) {
+            uniqueParkings.set(key, p);
+        }
+    }
+
+    return Array.from(uniqueParkings.values()).map((p) => ({
         slug: slugify(p.city),
         address: slugify(p.address),
     }));
@@ -46,13 +61,6 @@ export async function getParking(citySlug: string, parkingAddress: string): Prom
     ) || null;
 }
 
-export interface CityType {
-    id: number;
-    name: string;
-    url: string;
-    image: string;
-}
-
 export async function getCities(): Promise<CityType[]> {
     const parkings = await getParkingData();
     const cityMap = new Map<string, Parking>();
@@ -63,19 +71,21 @@ export async function getCities(): Promise<CityType[]> {
 
     const publicDir = path.join(process.cwd(), "public");
 
-    return Array.from(cityMap.entries()).map(([cityName, p]) => {
-        const slug = slugify(cityName);
-        const imagePath = path.join(publicDir, `${slug}.webp`);
-        const hasImage = fs.existsSync(imagePath);
+    return Array.from(cityMap.entries())
+        .map(([cityName, p]) => {
+            const slug = slugify(cityName);
+            const imagePath = path.join(publicDir, `${slug}.webp`);
+            const hasImage = fs.existsSync(imagePath);
 
-        // fallback placeholder
-        const placeholderIndex = hashString(cityName) % placeholderArray.length;
+            // fallback placeholder
+            const placeholderIndex = hashString(cityName) % placeholderArray.length;
 
-        return {
-            id: p.id,
-            name: cityName,
-            url: `/citta/${slug}`,
-            image: hasImage ? `/${slug}.webp` : placeholderArray[placeholderIndex],
-        };
-    });
+            return {
+                id: p.id,
+                name: cityName,
+                url: `/citta/${slug}`,
+                image: hasImage ? `/${slug}.webp` : placeholderArray[placeholderIndex],
+            };
+        })
+        .sort((a, b) => a.name.localeCompare(b.name));
 }

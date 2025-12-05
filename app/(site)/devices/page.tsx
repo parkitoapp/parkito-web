@@ -83,10 +83,9 @@ export default function page() {
                             </p>
 
                         </div>
-                        <div className="flex xl:flex-col md:flex-row flex-col items-center gap-6 bg-white p-4 rounded-xl">
+                        <div className="flex xl:flex-col md:flex-row flex-col items-center gap-16 bg-white p-4 rounded-xl">
                             <Image src={"/masterlock.webp"} alt="masterlock logo" width={300} height={300} loading="lazy" />
                             <Image src={"/1control.webp"} alt="1control logo" width={300} height={300} loading="lazy" />
-                            <Image src={"/okhome.webp"} alt="okhome logo" width={300} height={300} loading="lazy" />
                         </div>
                     </div>
 

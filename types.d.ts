@@ -15,6 +15,13 @@ export type BannerProps = {
     classname?: string,
 }
 
+export type CityType = {
+    id: number;
+    name: string;
+    url: string;
+    image: string;
+}
+
 
 export type AppleReview = {
     id: string;

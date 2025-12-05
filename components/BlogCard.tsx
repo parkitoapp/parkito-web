@@ -21,7 +21,7 @@ export default function BlogCard({ title, coverImage, publishedAt, tags }: Parti
     const postedAt = formatDate(publishedAt!);
     return (
         // make the card rounded with overflow-hidden so the image sits flush at the top
-        <Card className="border-transparent shadow-none rounded-3xl overflow-hidden bg-card hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg">
+        <Card className="border-transparent shadow-none rounded-3xl overflow-hidden bg-card hover:scale-[1.02] transition-transform duration-200 min-h-90 relative hover:shadow-lg">
             {coverImage && (
                 <>
                     <Image

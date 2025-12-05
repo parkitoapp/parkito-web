@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 export default async function ParkingDetailPage({ params }: { params: Promise<Params> }) {
     const { slug, address } = await params; // <- unwrap the promise
     const parking = await getParking(slug, address);
-    const imageUrl = await fetchParkingPhotoServer(parking!.id);
+    const imageUrl = await fetchParkingPhotoServer(parking!.id) ?? "/parkitoplaceholder.webp";
 
     return <ParkingDetail citySlug={slug} parking={parking} imageUrl={imageUrl} />;
 }

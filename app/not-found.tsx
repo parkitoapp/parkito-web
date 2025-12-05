@@ -1,17 +1,15 @@
 'use client'
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Link from "next/link";
 export default function notFound() {
     return (
         <div className="min-h-screen w-full bg-background flex flex-col md:flex-row items-center justify-center">
             <div>
-                <Image
-                    src="/garage.webp"
-                    alt="404 Not Found"
-                    className="mx-auto"
-                    width={400}
-                    height={400}
+                <DotLottieReact
+                    src="https://lottie.host/0f42691d-3e37-4fd2-ba6b-a2e53039d053/Wu7plc2j1N.lottie"
+                    loop
+                    autoplay
                 />
             </div>
             <div className="flex flex-col gap-2 justify-center md:justify-start">

@@ -10,7 +10,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 import { Linkedin, Instagram, Facebook } from 'lucide-react';
-import FooterList from './FooterList';
 import DownloadButtons from './DownloadButtons';
 
 export default function Footer() {
@@ -31,7 +30,7 @@ export default function Footer() {
                             <ul className='list-none text-sm md:text-base'>
                                 <li>All Indabox Srl</li>
                                 <li>Milano - Firenze - Bologna</li>
-                                <li>P.IVA: 04099131205</li>
+                                <li>P.I: 04099131205</li>
                             </ul>
                         </div>
 

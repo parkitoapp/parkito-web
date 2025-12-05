@@ -27,17 +27,27 @@ export default function ParkingList({ city }: { city?: string }) {
     // Safety: hook might return undefined for 1 render
     const safeParkings = Array.isArray(parkings) ? parkings : [];
 
-    // If citySlug is a human name like 'torino' or 'la-spezi a', normalize and compare
+    // If citySlug is a human name like 'torino' or 'la-spezia', normalize and compare
     const filtered = safeParkings.filter((p) => {
         const pSlug = slugify(p?.city);
         return pSlug && citySlug ? pSlug === slugify(citySlug) : false;
     });
 
+    // Deduplicate parkings with same driver_name and address
+    const uniqueParkings = new Map<string, Parking>();
+    for (const p of filtered) {
+        const key = `${p.driver_name}|${p.address}`;
+        if (!uniqueParkings.has(key)) {
+            uniqueParkings.set(key, p);
+        }
+    }
+    const deduplicated = Array.from(uniqueParkings.values());
+
     return (
         <div className="min-h-screen w-full px-8 bg-background">
             <h1 className="text-7xl font-bold text-chart-2">I migliori parcheggi di {citySlug}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-10 h-full">
-                {filtered.map((p) => (
+                {deduplicated.map((p) => (
                     <ParkingCard key={p.id} parking={p} />
                 ))}
             </div>

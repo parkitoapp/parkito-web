@@ -7,6 +7,7 @@ import Link from "next/link";
 import Filter from "./Filter";
 import { useState } from "react";
 import Image from "next/image";
+import { ArrowRightIcon } from "lucide-react";
 
 export default function CityListClient({ cities }: { cities: CityType[] }) {
     const [query, setQuery] = useState("");
@@ -54,8 +55,8 @@ export default function CityListClient({ cities }: { cities: CityType[] }) {
                         <CardTitle className="dark:text-chart-3 text-chart-4 text-xl items-center justify-start text-left w-full">{city.name}</CardTitle>
 
 
-                        <Button variant="default" className="p-2 mt-2 rounded-2xl" asChild>
-                            <Link href={city.url}>Scopri i migliori parcheggi a {city.name} &rarr;</Link>
+                        <Button variant="default" className="p-2 mt-2 rounded-2xl items-center justify-center" asChild>
+                            <Link href={city.url}>Scopri {city.name} <ArrowRightIcon /></Link>
                         </Button>
 
                     </CardFooter>

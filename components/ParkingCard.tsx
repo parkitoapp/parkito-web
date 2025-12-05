@@ -9,16 +9,17 @@ import { slugify } from "@/lib/slugify";
 
 import { Parking } from "@/types";
 import { fetchParkingPhotoServer } from "@/lib/parking-server";
+import { ArrowRightIcon } from "lucide-react";
 
 export default function ParkingCard({ parking }: { parking: Parking }) {
-    const [imageUrl, setImageUrl] = useState<string | null>(null);
+    const [imageUrl, setImageUrl] = useState<string>("");
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function loadImage() {
             setIsLoading(true);
             const url = await fetchParkingPhotoServer(parking.id);
-            setImageUrl(url);
+            setImageUrl(url!);
             setIsLoading(false);
         }
         loadImage();
@@ -30,7 +31,7 @@ export default function ParkingCard({ parking }: { parking: Parking }) {
                 <div className="w-full h-40 bg-muted animate-pulse rounded-md mb-3" />
             ) : (
                 <Image
-                    src={imageUrl ?? ""}
+                    src={imageUrl ?? "/parkitoplaceholder.webp"}
                     alt={parking.name}
                     width={400}
                     height={200}
@@ -46,7 +47,7 @@ export default function ParkingCard({ parking }: { parking: Parking }) {
 
                 <Button variant="default" className="p-6 rounded-3xl" asChild>
                     <Link href={`/citta/${slugify(parking.city)}/${slugify(parking.address)}`}>
-                        Scopri i dettagli &rarr;
+                        Vai ai dettagli <ArrowRightIcon />
                     </Link>
                 </Button>
             </CardFooter>
