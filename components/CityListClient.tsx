@@ -48,6 +48,11 @@ export default function CityListClient({ cities }: { cities: CityType[] }) {
                         height={200}
                         loading="lazy"
                         className="rounded-t-3xl w-full h-40 object-cover mb-3"
+                        onError={(e) => {
+                            // Fallback to city-specific placeholder if city image doesn't exist
+                            const target = e.target as HTMLImageElement;
+                            target.src = city.fallbackImage || '/citta1.webp';
+                        }}
                     />
 
 

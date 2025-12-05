@@ -20,6 +20,7 @@ export type CityType = {
     name: string;
     url: string;
     image: string;
+    fallbackImage?: string;
 }
 
 

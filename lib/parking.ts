@@ -1,11 +1,9 @@
 import { supabaseServer } from "@/lib/supabaseClient";
 import { Parking } from "@/types";
 import { slugify } from "@/lib/slugify";
-import fs from "fs";
-import path from "path";
 import { CityType } from "@/types";
 
-const placeholderArray: string[] = ['/citta1.webp', '/citta2.webp', '/citta3.webp', '/citta4.webp', '/citta5.webp', '/citta6.webp',];
+const placeholderArray: string[] = ['/citta1.webp', '/citta2.webp', '/citta3.webp', '/citta4.webp', '/citta5.webp', '/citta6.webp'];
 
 // Generate consistent placeholder index from string
 const hashString = (str: string): number => {
@@ -69,22 +67,20 @@ export async function getCities(): Promise<CityType[]> {
         if (!cityMap.has(p.city)) cityMap.set(p.city, p);
     }
 
-    const publicDir = path.join(process.cwd(), "public");
-
     return Array.from(cityMap.entries())
         .map(([cityName, p]) => {
             const slug = slugify(cityName);
-            const imagePath = path.join(publicDir, `${slug}.webp`);
-            const hasImage = fs.existsSync(imagePath);
 
-            // fallback placeholder
+            // Generate consistent placeholder based on city name hash
             const placeholderIndex = hashString(cityName) % placeholderArray.length;
+            const fallbackImage = placeholderArray[placeholderIndex];
 
             return {
                 id: p.id,
                 name: cityName,
                 url: `/citta/${slug}`,
-                image: hasImage ? `/${slug}.webp` : placeholderArray[placeholderIndex],
+                image: `/${slug}.webp`, // Try city-specific image first, fallback handled by Image component
+                fallbackImage, // Consistent random placeholder for this city
             };
         })
         .sort((a, b) => a.name.localeCompare(b.name));
