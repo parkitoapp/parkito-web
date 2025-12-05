@@ -1,6 +1,6 @@
 'use client'
 
-import { CityType } from "@/lib/parking";
+import { CityType } from "@/types";
 import { Card, CardFooter, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import Link from "next/link";
