@@ -152,7 +152,8 @@ _iub.csLangConfiguration = {"it":{"cookiePolicyId":94483316}};
         <main>
           {children}
         </main>
-        <GoogleAnalytics gaId="G-W2851M0TEF" />
+        <GoogleAnalytics gaId="G-MJ696D3GF8" />
+        {/* <GoogleTagManager gtmId="G-MJ696D3GF8" /> */}
         <GlobalTracking />
       </body>
     </html>
