@@ -1,6 +1,7 @@
 import Banner from "@/components/Banner";
 import ParkingList from "@/components/ParkingList";
 import BC from "@/components/BC";
+import { getCities } from "@/lib/parking";
 
 interface Props {
     params: { slug: string };
@@ -8,6 +9,10 @@ interface Props {
 
 export default async function CityPage({ params }: Props) {
     const citySlug = await params;
+
+    // Fetch city data to get fallback image
+    const cities = await getCities();
+    const cityData = cities.find(c => c.url === `/citta/${citySlug.slug}`);
 
     // console.log("Rendering CityPage for:", citySlug);
     function titleizeSlug(slug?: string) {
@@ -26,6 +31,7 @@ export default async function CityPage({ params }: Props) {
                 title={`Parcheggi a ${display}`}
                 subtitle={`Scopri i migliori parcheggi a ${display} con Parkito`}
                 src={`/${citySlug.slug}.webp`}
+                src2={cityData?.fallbackImage}
                 icon={true}
                 social={true}
 

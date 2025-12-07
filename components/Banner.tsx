@@ -11,10 +11,16 @@ import Image from "next/image";
 import { BannerProps } from "@/types";
 import Link from "next/link";
 import { ArrowDown, Instagram, Linkedin } from "lucide-react";
+import { useState } from "react";
 
 import DownloadButtons from "./DownloadButtons";
 
 export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn }: BannerProps) {
+    const [hasError, setHasError] = useState(false);
+
+    // Use fallback image if main image fails to load
+    const displaySrc = hasError && src2 ? src2 : src;
+
     return (
         <>
             {/* Desktop View (min-width: 1280px) */}
@@ -42,9 +48,22 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
 
                     </div>
                     <div className="relative flex justify-center w-[50%]  mt-12 md:mt-0">
-                        <Image src={src} alt="App preview" width={800} height={960} sizes="(max-width: 1280px) 0px, 50vw" priority className="object-contain drop-shadow-2xl w-full rounded-lg " />
+                        <Image
+                            src={displaySrc}
+                            alt="App preview"
+                            width={800}
+                            height={960}
+                            sizes="(max-width: 1280px) 0px, 50vw"
+                            priority
+                            className="object-contain drop-shadow-2xl w-full rounded-lg"
+                            onError={() => {
+                                if (!hasError && src2) {
+                                    setHasError(true);
+                                }
+                            }}
+                        />
 
-                        {src2 &&
+                        {src2 && !hasError &&
                             <Image src={src2} alt="App preview" width={400} height={640} sizes="(max-width: 1280px) 0px, 240px" className="object-contain drop-shadow-2xl absolute z-10 w-[15em] h-10 min-w-[50%] -right-10 md:-bottom-3 -bottom-2" />}
 
                     </div>
@@ -83,11 +102,16 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
             <div className="flex xl:hidden relative w-full flex-col overflow-visible" >
                 <div className="fixed top-0 left-0 w-full h-[50vh] -z-10">
                     <Image
-                        src={src}
+                        src={displaySrc}
                         alt="Background"
                         fill
                         priority
                         className="object-cover object-center"
+                        onError={() => {
+                            if (!hasError && src2) {
+                                setHasError(true);
+                            }
+                        }}
                     />
                 </div>
 
@@ -109,7 +133,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                         <DownloadButtons />
                     </div>
 
-                    {src2 && (
+                    {src2 && !hasError && (
                         <Image src={src2} alt="App preview" width={400} height={640} className="object-contain drop-shadow-2xl min-w-[50%] mt-10" />
                     )}
 
