@@ -7,6 +7,7 @@ import { Parking } from "@/types";
 import { useParams } from "next/navigation";
 import ParkingCard from "@/components/ParkingCard";
 import { useEffect, useState } from "react";
+import titleizeSlug from "@/lib/titleizeSlug";
 
 export default function ParkingList({ city }: { city?: string }) {
     const params = useParams();

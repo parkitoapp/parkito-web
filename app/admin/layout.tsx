@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
-import { ThemeProvider } from "@/hooks/theme-provider";
 import { AppSidebar } from '@/components/app-sidebar';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import Loading from '@/components/Loading';
@@ -35,15 +34,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     // User is authenticated, show the admin layout
     return (
         <div>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                <SidebarProvider>
-                    <AppSidebar />
-                    <main className="w-full min-h-screen">
-                        <SidebarTrigger />
-                        {children}
-                    </main>
-                </SidebarProvider>
-            </ThemeProvider>
+            <SidebarProvider>
+                <AppSidebar />
+                <main className="w-full min-h-screen">
+                    <SidebarTrigger />
+                    {children}
+                </main>
+            </SidebarProvider>
         </div>
     );
 }

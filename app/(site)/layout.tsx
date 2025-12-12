@@ -1,5 +1,4 @@
 import "../globals.css";
-import { ThemeProvider } from "@/hooks/theme-provider";
 // import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
@@ -23,16 +22,15 @@ export default function RootLayout({
       >
         Vai al contenuto
       </Link>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        {/* <Nav /> */}
-        {<ResNav />}
-        <div id="main-content" className="min-h-screen">
-          {children}
-        </div>
-        <BackToTop />
-        <Footer />
-        <Toaster richColors position="top-right" />
-      </ThemeProvider>
+      {/* <Nav /> */}
+      {<ResNav />}
+      <div id="main-content" className="min-h-screen">
+        {children}
+      </div>
+      <BackToTop />
+      <Footer />
+      <Toaster richColors position="top-right" />
+
     </>
   );
 }

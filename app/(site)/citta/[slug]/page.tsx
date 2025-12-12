@@ -23,7 +23,6 @@ export default async function CityPage({ params }: Props) {
             .join(' ');
     }
 
-    const display = titleizeSlug(citySlug.slug);
 
     return (
         <div>

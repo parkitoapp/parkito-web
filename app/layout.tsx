@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import Script from "next/script";
 import GlobalTracking from "./_tracking/GlobalTracking";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { ThemeProvider } from "@/hooks/theme-provider";
 
 const interTight = Inter_Tight(
   {
@@ -148,12 +149,17 @@ _iub.csLangConfiguration = {"it":{"cookiePolicyId":94483316}};
       </head>
       {/* <GoogleTagManager gtmId="" /> */}
       <body className={`${interTight.className} bg-background min-h-screen`}>
-
-        <main>
-          {children}
-        </main>
-        <GoogleAnalytics gaId="G-MJ696D3GF8" />
-        <GlobalTracking />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+        >
+          <main>
+            {children}
+          </main>
+          <GoogleAnalytics gaId="G-MJ696D3GF8" />
+          <GlobalTracking />
+        </ThemeProvider>
       </body>
     </html>
   )
