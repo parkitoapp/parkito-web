@@ -1,4 +1,4 @@
-import { supabaseServer } from "@/lib/supabaseClient";
+import { supabaseServer } from "./supabaseServer";
 
 /**
  * Server-side function to fetch parking photo

@@ -1,4 +1,4 @@
-import { supabaseServer } from "@/lib/supabaseClient";
+import { supabaseServer } from "@/lib/supabaseServer";
 import { Parking } from "@/types";
 import { slugify } from "@/lib/slugify";
 import { CityType } from "@/types";

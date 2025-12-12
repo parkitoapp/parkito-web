@@ -3,12 +3,10 @@
 "use client";
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";
-import useSupabaseJson from "@/hooks/useSupabase";
 import { Parking } from "@/types";
 import { useParams } from "next/navigation";
-import { slugify } from '@/lib/slugify';
 import ParkingCard from "@/components/ParkingCard";
-import titleizeSlug from "@/lib/titleizeSlug";
+import { useEffect, useState } from "react";
 
 export default function ParkingList({ city }: { city?: string }) {
     const params = useParams();
@@ -16,39 +14,46 @@ export default function ParkingList({ city }: { city?: string }) {
     const routeSlug = typeof params?.slug === 'string' ? params.slug : undefined;
     const citySlug = city ?? routeSlug;
 
+    const [parkings, setParkings] = useState<Parking[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    const { data: parkings, loading, error } = useSupabaseJson<Parking>(
-        "parking_sheet_data",
-        "parkings_data.json"
-    );
+    useEffect(() => {
+        async function fetchParkings() {
+            if (!citySlug) return;
+
+            setLoading(true);
+            try {
+                const response = await fetch(`/api/parkings/${citySlug}`);
+                if (!response.ok) {
+                    setError("Failed to fetch parkings");
+                    setLoading(false);
+                    return;
+                }
+                const data = await response.json();
+                setParkings(data);
+                setError(null);
+            } catch {
+                setError("Failed to fetch parkings");
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchParkings();
+    }, [citySlug]);
 
     if (loading) return <Loading />;
-    if (error) return <Error message={error.message} title="Parcheggio non trovato, torna indietro" src={`/citta/${city}`} />
+    if (error) return <Error message={error} title="Parcheggio non trovato, torna indietro" src={`/citta/${city}`} />
 
-    // Safety: hook might return undefined for 1 render
+    // Safety: parkings might be undefined for 1 render
     const safeParkings = Array.isArray(parkings) ? parkings : [];
 
-    // If citySlug is a human name like 'torino' or 'la-spezia', normalize and compare
-    const filtered = safeParkings.filter((p) => {
-        const pSlug = slugify(p?.city);
-        return pSlug && citySlug ? pSlug === slugify(citySlug) : false;
-    });
-
-    // Deduplicate parkings with same driver_name and address
-    const uniqueParkings = new Map<string, Parking>();
-    for (const p of filtered) {
-        const key = `${p.driver_name}|${p.address}`;
-        if (!uniqueParkings.has(key)) {
-            uniqueParkings.set(key, p);
-        }
-    }
-    const deduplicated = Array.from(uniqueParkings.values());
 
     return (
         <div className="min-h-screen w-full px-8 bg-background">
             <h1 className="text-7xl font-bold text-chart-2">I migliori parcheggi di {titleizeSlug(citySlug)}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-10 h-full">
-                {deduplicated.map((p) => (
+                {safeParkings.map((p) => (
                     <ParkingCard key={p.id} parking={p} />
                 ))}
             </div>

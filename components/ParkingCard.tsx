@@ -8,7 +8,6 @@ import Link from "next/link";
 import { slugify } from "@/lib/slugify";
 
 import { Parking } from "@/types";
-import { fetchParkingPhotoServer } from "@/lib/parking-server";
 import { ArrowRightIcon } from "lucide-react";
 
 export default function ParkingCard({ parking }: { parking: Parking }) {
@@ -18,8 +17,14 @@ export default function ParkingCard({ parking }: { parking: Parking }) {
     useEffect(() => {
         async function loadImage() {
             setIsLoading(true);
-            const url = await fetchParkingPhotoServer(parking.id);
-            setImageUrl(url!);
+            try {
+                const response = await fetch(`/api/parking-photo/${parking.id}`);
+                const data = await response.json();
+                setImageUrl(data.imageUrl);
+            } catch (error) {
+                console.error("Error fetching parking photo:", error);
+                setImageUrl("/parkitoplaceholder.webp");
+            }
             setIsLoading(false);
         }
         loadImage();
