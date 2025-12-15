@@ -24,7 +24,11 @@ export async function getParkingData(): Promise<Parking[]> {
         if (error) throw new Error(`Error downloading parking data: ${error}`);
 
         const text = await fileBlob.text();
-        const parkings = JSON.parse(text) as Parking[];
+        const parkings = (JSON.parse(text) as Parking[]).map((p) => ({
+            ...p,
+            city: p.city?.trim() ?? "",
+            address: p.address?.trim() ?? "",
+        }));
 
         return parkings.filter((p) => p.city !== "");
 
@@ -64,12 +68,16 @@ export async function getCities(): Promise<CityType[]> {
     const cityMap = new Map<string, Parking>();
 
     for (const p of parkings) {
-        if (!cityMap.has(p.city)) cityMap.set(p.city, p);
+        const cityName = p.city?.trim();
+        if (!cityName) continue;
+        const cityKey = slugify(cityName);
+        if (!cityMap.has(cityKey)) cityMap.set(cityKey, { ...p, city: cityName });
     }
 
     return Array.from(cityMap.entries())
-        .map(([cityName, p]) => {
-            const slug = slugify(cityName);
+        .map(([cityKey, p]) => {
+            const cityName = p.city;
+            const slug = cityKey;
 
             // Generate consistent placeholder based on city name hash
             const placeholderIndex = hashString(cityName) % placeholderArray.length;
