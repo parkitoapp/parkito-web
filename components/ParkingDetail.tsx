@@ -62,7 +62,7 @@ export default function ParkingDetail({ citySlug, parking, imageUrl }: Props) {
 
                         <div className="flex md:flex-row flex-col w-full justify-evenly items-center mb-4 gap-2 mt-2">
                             <Button variant={"default"} asChild className="rounded-full bg-green-600 hover:bg-green-900 px-4 text-white">
-                                <Link href={"https://www.google.com/maps/dir//" + encodeURIComponent(parking.address + ", " + parking.city)} target="_blank" rel="noopener noreferrer">
+                                <Link href={"https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(parking.address + ", " + parking.city)} target="_blank" rel="noopener noreferrer">
                                     <MapPlus /> Indicazioni
                                 </Link>
                             </Button>
@@ -87,23 +87,23 @@ export default function ParkingDetail({ citySlug, parking, imageUrl }: Props) {
                             <div className="flex flex-col items-center justify-center gap-2 mb-2 w-full">
                                 <div className="flex gap-2 items-center justify-center w-full">
                                     <Image src="/parkingType.webp" alt="Tipo di parcheggio" width={50} height={50} />
-                                    <p className="font-bold text-primary">tipo di parcheggio: </p>
+                                    <p className="font-bold text-primary">Tipo di parcheggio: </p>
                                 </div>
-                                <p className="text-foreground">{parking.parking_type}</p>
+                                <p className="text-foreground font-semibold">{parking.parking_type}</p>
                             </div>
                             <div className="flex flex-col items-center justify-center gap-2 mb-2 w-full">
                                 <div className="flex gap-2 items-center justify-center w-full">
                                     <Image src="/macchina.webp" alt="Veicolo Max" width={50} height={50} />
                                     <p className="font-bold text-primary">Veicolo Max: </p>
                                 </div>
-                                <p className="text-foreground">{parking.vehicle_type}</p>
+                                <p className="text-foreground font-semibold">{parking.vehicle_type}</p>
                             </div>
                             <div className="flex flex-col items-center justify-center gap-2 mb-2 w-full">
                                 <div className="flex gap-2 items-center w-full justify-center">
                                     <Image src="/hostIcon.webp" alt="Host" width={40} height={40} />
                                     <p className="font-bold text-primary">Host: </p>
                                 </div>
-                                <p className="text-foreground">{parking.driver_name ?? "Non specificato"}</p>
+                                <p className="text-foreground font-semibold">{parking.driver_name ?? "Non specificato"}</p>
                             </div>
                         </div>
 
