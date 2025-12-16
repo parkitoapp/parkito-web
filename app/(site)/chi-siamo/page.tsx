@@ -58,14 +58,15 @@ export const metadata: Metadata = {
 export default function page() {
     return (
         <>
-            <div className="px-16 pt-8">
-                <BC />
-            </div>
-            <div className="min-h-screen w-full flex flex-row items-center justify-between p-24">
-                <div className="text-center w-[60%] mx-auto">
-                    <h1 className="text-7xl font-bold mb-4 text-primary">La prima piattaforma
+
+            <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center p-4 gap-8 md:gap-12">
+                <div className="text-center min-h-full w-full md:w-[60%] mx-auto flex flex-col my-auto items-center justify-center">
+                    <div className="mb-4 md:mb-6">
+                        <BC />
+                    </div>
+                    <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold text-primary">La prima piattaforma
                         <br />di Park Sharing in Italia!</h1>
-                    <section className="text-4xl">
+                    <section className="text-lg md:text-2xl lg:text-4xl md:mt-0 mt-8">
                         <p> Parkito è la prima piattaforma di <span className="font-bold text-chart-2">Park Sharing</span> in Italia che rende il parcheggio facile, sicuro e sostenibile, riducendo traffico e stress urbano per una mobilità più intelligente.
                             Ci occupiamo di creare parcheggi in zone dove non esistono senza ridurre ulteriormente il suolo pubblico, sfruttando le migliaia di <span className="font-bold text-chart-2">box e posti auto inutilizzati</span> in tutte le città.</p>
                     </section>
@@ -77,36 +78,31 @@ export default function page() {
                         alt="About Us Illustration"
                         width={400}
                         height={400}
+                        className="w-full max-w-[300px] md:max-w-[400px]"
                     />
                 </div>
 
             </div>
-            <div className="min-h-screen w-full flex flex-row items-center justify-between p-24">
-                <div>
+            <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center p-4 md:p-24 gap-8 md:gap-12">
+                <div className="order-1 md:order-1">
                     <Image
                         src="/parking-parkito.webp"
                         alt="Parkito app illustration"
                         width={400}
                         height={400}
+                        className="w-full max-w-[300px] md:max-w-[400px]"
                     />
                 </div>
 
-                <div className="text-center w-[60%] mx-auto">
-                    <h1 className="text-7xl font-bold mb-4 text-primary">Il nostro obiettivo? </h1>
-                    <section className="text-4xl">
+                <div className="text-center w-full md:w-[60%] mx-auto order-2 md:order-2">
+                    <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-4 text-primary">Il nostro obiettivo? </h1>
+                    <section className="text-lg md:text-2xl lg:text-4xl md:mt-0 mt-8">
                         <p>Diventare la piattaforma di riferimento per una gestione intelligente e sostenibile degli spazi urbani, connettendo persone, luoghi e mobilità per città più vivibili e accessibili</p>
                     </section>
                 </div>
             </div>
-            <div className=" bg-linear-to-b from-chart-1 to-primary">
-                {/*
-                  Render team in rows. For md+ screens we want 3 columns; for smaller screens 2 columns.
-                  To center rows that have 1 or 2 members we chunk the list into groups of 3 and render
-                  each row as a responsive container: a 2-column grid on small screens and a centered
-                  flex row on md+ screens with the same gap. This avoids empty placeholders while
-                  keeping alignment and spacing consistent.
-                */}
-                <div className="mx-auto py-24 px-12 rounded-lg mb-24 max-w-6xl">
+            <div className="bg-chart-1">
+                <div className="mx-auto py-12 md:py-24 px-4 md:px-12 rounded-lg mb-12 md:mb-24 max-w-6xl">
                     {(() => {
                         // filter out empty placeholders (members without a name)
                         const items = team.filter(m => m && m.name && m.name.trim().length > 0);
@@ -117,17 +113,17 @@ export default function page() {
                         }
 
                         return rows.map((row, rowIdx) => (
-                            <div key={`team-row-${rowIdx}`} className="grid grid-cols-2 gap-8 md:flex md:justify-center md:gap-8 mb-8">
+                            <div key={`team-row-${rowIdx}`} className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 md:flex md:justify-center mb-6 md:mb-8">
                                 {row.map((member, idx) => (
                                     <div key={`team-member-${rowIdx}-${idx}`} className="flex flex-col items-center justify-center">
-                                        <Avatar className="w-36 h-36">
+                                        <Avatar className="w-24 h-24 md:w-36 md:h-36">
                                             <AvatarImage src={member.image} />
                                             <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
                                         </Avatar>
-                                        <h2 className="text-2xl font-bold text-white">{member.name}</h2>
-                                        <p className="text-xl mb-2 text-white">{member.role}</p>
+                                        <h2 className="text-lg md:text-2xl font-bold text-primary mt-2">{member.name}</h2>
+                                        <p className="text-base md:text-xl mb-2 text-primary">{member.role}</p>
                                         <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                                            <Linkedin className="w-6 h-6 hover:opacity-70 cursor-pointer text-white" />
+                                            <Linkedin className="w-5 h-5 md:w-6 md:h-6 hover:opacity-70 cursor-pointer text-primary" />
                                         </Link>
                                     </div>
                                 ))}
@@ -137,14 +133,14 @@ export default function page() {
                 </div>
             </div>
 
-            <div className="">
-                <h2 className="text-4xl font-bold text-center mb-12 text-primary italic">Powered By</h2>
+            <div className="px-4 md:px-0 dark:bg-chart-1 p-8">
+                <h2 className="text-2xl md:text-4xl font-bold text-center mb-6 md:mb-12 text-primary italic">Powered By</h2>
                 <Image
                     src="/b4i-logo.webp"
                     alt="Bocconi for Innovation Logo"
                     width={550}
                     height={550}
-                    className="mx-auto mb-10"
+                    className="mx-auto mb-10 w-full max-w-[300px] md:max-w-[550px] h-auto"
                 />
 
             </div>
