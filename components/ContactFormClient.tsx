@@ -16,7 +16,6 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
-import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Link from 'next/link';
 import { MessageCircle } from 'lucide-react';
@@ -47,7 +46,6 @@ export default function ContactFormClient({ teamMembers, selectOptions }: Props)
 
                 <div className="space-y-8">
                     <div className="space-y-2">
-                        <Label className="text-sm font-medium text-foreground">Di cosa hai bisogno?</Label>
                         <Select value={selectedOption} onValueChange={setSelectedOption}>
                             <SelectTrigger className="w-full h-12 text-base">
                                 <SelectValue placeholder="Cliccami" />
@@ -71,7 +69,7 @@ export default function ContactFormClient({ teamMembers, selectOptions }: Props)
                                     </Avatar>
                                     <span>{member.name}</span>
                                 </div>
-                            ) : "Scegli il Problema"}
+                            ) : ""}
                         </h3>
 
                         {member && member.id === "parkito" ? (
@@ -81,8 +79,9 @@ export default function ContactFormClient({ teamMembers, selectOptions }: Props)
                         ) : member && (member.id === "benedetta" || member.id === "davide") ? (
                             <ContactForm member={member} selectedOption={selectedOption} />
                         ) : (
-                            <div className="rounded-lg overflow-hidden border border-border shadow-soft bg-primary">
-                                <iframe src={member?.url} className="w-full min-h-[30em]" title={`Prendi un appuntamento con ${member?.name}`} />
+                            member?.url &&
+                            <div className="rounded-lg overflow-hidden border border-border shadow-soft">
+                                <iframe src={member?.url} className="w-full min-h-screen" title={`Prendi un appuntamento con ${member?.name}`} />
                             </div>
                         )}
 
