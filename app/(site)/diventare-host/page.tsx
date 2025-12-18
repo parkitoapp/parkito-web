@@ -174,7 +174,7 @@ export default function page() {
                 </div>
                 <div className='w-full bg-accent flex flex-col gap-6 py-10 px-4'>
                     <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center text-primary">Non puoi essere presente per l&apos;accoglienza?</h1>
-                    <Image src="/access.webp" alt="icona accesso" width={600} height={600} sizes="(max-width: 768px) 90vw, 50vw" loading="lazy" className='mx-auto w-[50%] p-4' />
+                    <Image src="/device.webp" alt="icona accesso" width={600} height={600} loading="lazy" className='mx-auto w-[40%] p-4' />
                     {/* <p className="text-center text-lg mx-auto w-[60%]">Nessun problema! Con Parkito puoi automatizzare l&apos;accesso al tuo parcheggio in pochi semplici passi, permettendo ai driver di entrare e uscire in completa autonomia tramite l&apos;app.</p> */}
                     <Button variant={"default"} className="mx-auto rounded-full p-6 text-lg" size={"lg"} asChild>
                         <Link href={"/devices"}>
