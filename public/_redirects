@@ -1,25 +1,7 @@
-# Redirects for old URL structure to new structure
-
-# Old: /myCity -> New: /citta/myCity
-
-# Old: /myCity/myParkingAddress -> New: /citta/myCity/myParkingAddress
-
+# DEPRECATED: Redirects are now handled by Next.js (next.config.ts)
 #
-
-# These redirects handle old indexed URLs from search engines.
-
-# Note: Next.js routes (like /blog, /contatti, /citta, etc.) will be handled by Next.js first,
-
-# so these redirects only apply to routes that would otherwise 404.
-
-# Redirect old parking routes (city/parking address pattern)
-
-# Matches: /city-name/parking-address -> /citta/city-name/parking-address
-
-/:city/\* /citta/:city/:splat 301
-
-# Redirect old city-only routes
-
-# Matches: /city-name -> /citta/city-name
-
-/:city /citta/:city 301
+# The _redirects file format cannot distinguish between URL routes and static files,
+# so all redirect logic has been moved to next.config.ts which uses regex patterns
+# to only redirect URL slugs (lowercase letters, numbers, hyphens) and not static assets.
+#
+# Do not add redirect rules here - they may interfere with static file serving.

@@ -26,7 +26,7 @@ export default function page() {
                     <h2 className="text-5xl font-extrabold mx-auto mb-4 px-4 text-center pt-10">La soluzione? Un parcheggio <span className="text-primary dark:text-ring">Parkito!</span></h2>
                     <ScrollStack className="bg-background">
                         {/* ITEM 1 */}
-                        <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-white dark:bg-accent rounded-lg justify-between w-full max-w-full md:max-w-5xl mx-auto">
+                        <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full max-w-full md:max-w-5xl mx-auto">
 
                             <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-start">
                                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
@@ -47,7 +47,7 @@ export default function page() {
                         </ScrollStackItem>
 
                         {/* ITEM 2 */}
-                        <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-white dark:bg-accent rounded-lg justify-between w-full max-w-full md:max-w-5xl mx-auto">
+                        <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full max-w-full md:max-w-5xl mx-auto">
 
                             {/* Desktop video */}
                             {/* Desktop video */}
@@ -77,7 +77,7 @@ export default function page() {
                         </ScrollStackItem>
 
                         {/* ITEM 3 */}
-                        <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-white dark:bg-accent rounded-lg justify-between w-full max-w-full md:max-w-5xl mx-auto">
+                        <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full max-w-full md:max-w-5xl mx-auto">
 
                             <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-start">
                                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
@@ -98,7 +98,7 @@ export default function page() {
                         </ScrollStackItem>
 
                         {/* ITEM 4 */}
-                        <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-white dark:bg-accent rounded-lg justify-between w-full max-w-full md:max-w-5xl mx-auto">
+                        <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full max-w-full md:max-w-5xl mx-auto">
 
                             {/* Desktop video */}
                             {/* Desktop video */}

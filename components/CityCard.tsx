@@ -1,3 +1,5 @@
+"use client";
+
 import { CityType } from "@/types";
 import { useState } from "react";
 import { Card, CardFooter, CardTitle } from "./ui/card";

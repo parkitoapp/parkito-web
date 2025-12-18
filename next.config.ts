@@ -71,16 +71,17 @@ const nextConfig = {
       {
         // Redirect old parking routes: /myCity/myParkingAddress -> /citta/myCity/myParkingAddress
         // This must come first to match longer paths before shorter ones
-        // Matches a single segment for parking address (slugified addresses are single segments)
-        source: '/:citySlug((?!' + excludedPattern + ')[^/]+)/:parkingAddress([^/]+)',
+        // [^/.]+  = any char except slash and dot, so file.mp4 won't match
+        source: '/:citySlug((?!' + excludedPattern + ')[^/.]+)/:parkingAddress([^/.]+)',
         destination: '/citta/:citySlug/:parkingAddress',
-        permanent: true, // 301 redirect for SEO
+        permanent: process.env.NODE_ENV === 'production', // 301 in prod, 302 in dev
       },
       {
         // Redirect old city-only routes: /myCity -> /citta/myCity
-        source: '/:citySlug((?!' + excludedPattern + ')[^/]+)',
+        // [^/.]+  = any char except slash and dot, so file.mp4 won't match
+        source: '/:citySlug((?!' + excludedPattern + ')[^/.]+)',
         destination: '/citta/:citySlug',
-        permanent: true, // 301 redirect for SEO
+        permanent: process.env.NODE_ENV === 'production', // 301 in prod, 302 in dev
       },
     ];
   },

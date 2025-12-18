@@ -5,8 +5,12 @@ import { faq } from "@/data/faq";
 import Faq from "@/components/Faq";
 import ScrollStack, { ScrollStackItem } from '@/components/ScrollStack';
 import LazyVideo from '@/components/LazyVideo';
-import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import DownloadButtons from "@/components/DownloadButtons";
+import CityCarousel from "@/components/CityCarousel";
+import { Button } from "@/components/ui/button";
+import { ArrowRightIcon } from "lucide-react";
+import Link from "next/link";
 
 export const metadata = {
   title: 'Home',
@@ -17,21 +21,12 @@ export default function Home() {
 
   return (
     <>
-      <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.webp" src2={"/homePill.webp"} icon={true} social={true} dwbtn={true} />
+      <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.webp" icon={true} social={true} dwbtn={true} />
       <div className="bg-background">
 
         <div className=" bg-background">
           {/* Reviews */}
           <div className="w-full bg-background py-10 flex flex-col justify-center items-center gap-6" id="icon-link">
-            <h1 className="text-5xl font-bold text-center text-primary">
-              Prova l&apos;esperienza Parkito
-            </h1>
-            <>
-              <p className="hidden sm:block text-chart-4 dark:text-chart-3 font-semibold text-lg">
-                Oltre 10.000 utenti soddisfatti in tutta Italia
-              </p>
-              <Image src='/homePill.webp' alt="App preview" width={800} height={960} sizes="(max-width: 640px) 400px, 800px" loading="lazy" className="mt-4 object-contain drop-shadow-2xl z-10 w-[25em] min-w-[50%] sm:hidden px-4" />
-            </>
             <ReviewsList />
           </div>
 
@@ -84,10 +79,48 @@ export default function Home() {
 
         {/* How it works */}
         <div className="bg-background min-h-screen">
-          <h2 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10">La soluzione? Un parcheggio <span className="text-primary">Parkito!</span></h2>
+          <h2 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10 text-primary">La soluzione? Prenota un Parkito!</h2>
+          <p className="text-xl mx-auto text-center">Scopri la prima piattaforma di Park Sharing in Italia: i Parkito sono parcheggi privati verificati, <span className="font-bold underline">NON</span> autorimesse e <span className="font-bold underline">NON</span> strisce blu.</p>
+          <div className="flex md:flex-row flex-col items-center justify-center gap-4 mt-10">
+
+            <Card className="flex flex-col w-90 bg-card p-4 rounded-xl">
+              <CardHeader>
+                <Image src="/house.webp" alt="house" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
+              </CardHeader>
+              <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
+                Come a casa, ma ovunque.
+              </CardTitle>
+              <CardDescription className="text-lg">
+                Hai un box o posto auto? Vivi la stessa esperienza.
+              </CardDescription>
+            </Card>
+            <Card className="flex flex-col w-90 bg-card p-4 rounded-xl">
+              <CardHeader>
+                <Image src="/banner.webp" alt="banner" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
+              </CardHeader>
+              <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
+                Esclusività e sicurezza
+              </CardTitle>
+              <CardDescription className="text-lg">
+                I parcheggi sono prenotabili solo in Parkito.
+              </CardDescription>
+            </Card>
+            <Card className="flex flex-col w-90 bg-card p-4 rounded-xl">
+              <CardHeader>
+                <Image src="/secure.webp" alt="secure" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
+              </CardHeader>
+              <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
+                Gestione digitale
+              </CardTitle>
+              <CardDescription className="text-lg">
+                Nessun ticket o pagamento cash: paghi online con un click e tutto rimane tracciato
+              </CardDescription>
+            </Card>
+
+          </div>
           <ScrollStack className="bg-background">
             {/* ITEM 1 */}
-            <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-white dark:bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
+            <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
 
               <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-start">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
@@ -105,7 +138,7 @@ export default function Home() {
             </ScrollStackItem>
 
             {/* ITEM 2 */}
-            <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-white dark:bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
+            <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
 
               {/* Desktop video */}
               <LazyVideo
@@ -133,7 +166,7 @@ export default function Home() {
             </ScrollStackItem>
 
             {/* ITEM 3 */}
-            <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-white dark:bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
+            <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
 
               <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-start">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
@@ -156,42 +189,17 @@ export default function Home() {
 
         </div>
 
-        {/* Download */}
-        <div className="w-full bg-accent flex flex-col gap-6 py-10 px-4 text-center">
-
-          <h2 className="text-5xl text-primary font-extrabold">Scarica Parkito!</h2>
-          <p className="text-xl md:w-[20%] mx-auto text-primary">E trasforma l&apos;esperienza del parcheggio in città con Parkito</p>
-
-          <div className="flex flex-row w-full mx-auto items-center justify-center gap-4 mt-6">
+        {/* Carosello */}
+        <div className="bg-primary flex flex-col items-center justify-center p-4">
+          <h2 className="text-5xl font-bold text-accent w-full text-center">Città già attive</h2>
+          <CityCarousel />
+          <Button variant={"default"} className="bg-foreground hover:bg-blue-900/90 hover:text-white mt-4 rounded-full p-6 text-lg" asChild><Link href={"/citta"}>Scoprile tutte <ArrowRightIcon /></Link></Button>
+          <div className="flex flex-col items-center justify-center gap-4 my-10">
+            <h2 className="text-2xl font-bold text-accent">Prenota subito il tuo primo Parkito!</h2>
             <DownloadButtons />
           </div>
-          <div className="flex md:flex-row flex-col gap-8 items-center justify-center">
-            <Card className="rounded-lg bg-card flex flex-col justify-between w-64 h-40 p-6">
-              <CardHeader>
-                <CardTitle className="text-accent-foreground font-extrabold text-2xl text-center">0</CardTitle>
-              </CardHeader>
-              <CardFooter>
-                <CardDescription className="w-[80%] mx-auto text-primary text-lg font-semibold text-center">Problemi di sicurezza registrati</CardDescription>
-              </CardFooter>
-            </Card>
-            <Card className="rounded-lg bg-card flex flex-col justify-between w-64 h-40 p-6">
-              <CardHeader>
-                <CardTitle className="text-accent-foreground font-extrabold text-2xl text-center">+ 300</CardTitle>
-              </CardHeader>
-              <CardFooter>
-                <CardDescription className="w-[80%] mx-auto text-primary text-lg font-semibold text-center">Parcheggi prenotabili</CardDescription>
-              </CardFooter>
-            </Card>
-            <Card className="rounded-lg bg-card flex flex-col justify-between w-64 h-40 p-6">
-              <CardHeader>
-                <CardTitle className="text-accent-foreground font-extrabold text-2xl text-center">Infinite</CardTitle>
-              </CardHeader>
-              <CardFooter>
-                <CardDescription className="w-[80%] mx-auto text-primary text-lg font-semibold text-center">Ore risparmiate a cercare parcheggio</CardDescription>
-              </CardFooter>
-            </Card>
-          </div>
         </div>
+
 
         {/* FAQ */}
         <Faq items={faq} />
