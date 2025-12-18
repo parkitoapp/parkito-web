@@ -38,7 +38,8 @@ human_size() {
 convert_png() {
     local input_file="$1"
     local filename=$(basename "$input_file" .png)
-    local output_file="$OUTPUT_DIR/${filename}.webp"
+    local filename_lower=$(echo "$filename" | tr '[:upper:]' '[:lower:]')
+    local output_file="$OUTPUT_DIR/${filename_lower}.webp"
     
     echo "Converting: $input_file -> $output_file"
     

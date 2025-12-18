@@ -81,40 +81,46 @@ export default function Home() {
         <div className="bg-background min-h-screen">
           <h2 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10 text-primary">La soluzione? Prenota un Parkito!</h2>
           <p className="text-xl mx-auto text-center">Scopri la prima piattaforma di Park Sharing in Italia: i Parkito sono parcheggi privati verificati, <span className="font-bold underline">NON</span> autorimesse e <span className="font-bold underline">NON</span> strisce blu.</p>
-          <div className="flex md:flex-row flex-col items-center justify-center gap-4 mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 max-w-5xl mx-auto px-4">
 
-            <Card className="flex flex-col w-90 bg-card p-4 rounded-xl">
+            <Card className="flex flex-col bg-card p-4 rounded-xl">
               <CardHeader>
                 <Image src="/house.webp" alt="house" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
               </CardHeader>
-              <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
-                Come a casa, ma ovunque.
-              </CardTitle>
-              <CardDescription className="text-lg">
-                Hai un box o posto auto? Vivi la stessa esperienza.
-              </CardDescription>
+              <div className="mt-auto">
+                <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
+                  Come a casa, ma ovunque
+                </CardTitle>
+                <CardDescription className="text-lg">
+                  Hai un box o posto auto? Vivi la stessa esperienza.
+                </CardDescription>
+              </div>
             </Card>
-            <Card className="flex flex-col w-90 bg-card p-4 rounded-xl">
+            <Card className="flex flex-col bg-card p-4 rounded-xl">
               <CardHeader>
                 <Image src="/banner.webp" alt="banner" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
               </CardHeader>
-              <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
-                Esclusività e sicurezza
-              </CardTitle>
-              <CardDescription className="text-lg">
-                I parcheggi sono prenotabili solo in Parkito.
-              </CardDescription>
+              <div className="mt-auto">
+                <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
+                  Esclusività
+                </CardTitle>
+                <CardDescription className="text-lg">
+                  I parcheggi sono prenotabili solo in Parkito
+                </CardDescription>
+              </div>
             </Card>
-            <Card className="flex flex-col w-90 bg-card p-4 rounded-xl">
+            <Card className="flex flex-col bg-card p-4 rounded-xl">
               <CardHeader>
                 <Image src="/secure.webp" alt="secure" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
               </CardHeader>
-              <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
-                Gestione digitale
-              </CardTitle>
-              <CardDescription className="text-lg">
-                Nessun ticket o pagamento cash: paghi online con un click e tutto rimane tracciato
-              </CardDescription>
+              <div className="mt-auto">
+                <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
+                  Gestione digitale
+                </CardTitle>
+                <CardDescription className="text-lg">
+                  Nessun ticket o pagamento cash: paghi direttamente in app con un click
+                </CardDescription>
+              </div>
             </Card>
 
           </div>
@@ -148,7 +154,7 @@ export default function Home() {
 
               <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-end text-right">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
-                  Scegli tra più di 300 parcheggi
+                  Scegli tra centinaia di parcheggi
                 </h3>
                 <h2 className="text-2xl md:text-4xl font-bold text-primary mb-2 md:mb-4">
                   Un parcheggio privato a tua disposizione
@@ -176,7 +182,7 @@ export default function Home() {
                   Massima sicurezza per la tua auto
                 </h2>
                 <p className="text-base md:text-lg">
-                  I parcheggi sono verificati e in contesti tranquilli. Dimentica il caos di strisce blu e autorimesse.
+                  I parcheggi sono verificati e sicuri. Dimentica il caos di strisce blu e autorimesse.
                 </p>
               </div>
 
