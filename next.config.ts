@@ -45,6 +45,45 @@ const nextConfig = {
       exclude: ['error', 'warn'],
     } : false,
   },
+  // Redirects for old URL structure to new structure
+  // Old: /myCity -> New: /citta/myCity
+  // Old: /myCity/myParkingAddress -> New: /citta/myCity/myParkingAddress
+  async redirects() {
+    // List of routes that should NOT be redirected
+    const excludedRoutes = [
+      'citta',
+      'api',
+      '_next',
+      'admin',
+      'blog',
+      'chi-siamo',
+      'contatti',
+      'devices',
+      'diventare-host',
+      'login',
+      'terminiecondizioni',
+      'favicon.ico',
+    ];
+
+    const excludedPattern = excludedRoutes.join('|');
+
+    return [
+      {
+        // Redirect old parking routes: /myCity/myParkingAddress -> /citta/myCity/myParkingAddress
+        // This must come first to match longer paths before shorter ones
+        // Matches a single segment for parking address (slugified addresses are single segments)
+        source: '/:citySlug((?!' + excludedPattern + ')[^/]+)/:parkingAddress([^/]+)',
+        destination: '/citta/:citySlug/:parkingAddress',
+        permanent: true, // 301 redirect for SEO
+      },
+      {
+        // Redirect old city-only routes: /myCity -> /citta/myCity
+        source: '/:citySlug((?!' + excludedPattern + ')[^/]+)',
+        destination: '/citta/:citySlug',
+        permanent: true, // 301 redirect for SEO
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

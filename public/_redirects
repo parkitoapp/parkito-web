@@ -1,0 +1,25 @@
+# Redirects for old URL structure to new structure
+
+# Old: /myCity -> New: /citta/myCity
+
+# Old: /myCity/myParkingAddress -> New: /citta/myCity/myParkingAddress
+
+#
+
+# These redirects handle old indexed URLs from search engines.
+
+# Note: Next.js routes (like /blog, /contatti, /citta, etc.) will be handled by Next.js first,
+
+# so these redirects only apply to routes that would otherwise 404.
+
+# Redirect old parking routes (city/parking address pattern)
+
+# Matches: /city-name/parking-address -> /citta/city-name/parking-address
+
+/:city/\* /citta/:city/:splat 301
+
+# Redirect old city-only routes
+
+# Matches: /city-name -> /citta/city-name
+
+/:city /citta/:city 301
