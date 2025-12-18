@@ -35,7 +35,7 @@ export default function Home() {
 
             <div className="w-full flex mx-auto flex-col min-h-80 bg-accent justify-center items-center py-10 px-16 text-white text-center rounded-t-3xl lg:rounded-none shadow-lg gap-5">
 
-              <h1 className="text-4xl flex flex-col font-bold mb-4 text-foreground">Trovare parcheggio in una città che non conosci? <span className="pb-2 border-b border-secondary text-secondary dark:text-accent-foreground md:w-[5em]">Un incubo</span></h1>
+              <h1 className="text-4xl flex flex-col font-bold mb-4 text-primary">Trovare parcheggio in una città che non conosci? <br />Un incubo</h1>
               <div className="flex flex-col lg:grid lg:grid-cols-4 items-baseline gap-10">
 
                 <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
@@ -80,7 +80,7 @@ export default function Home() {
         {/* How it works */}
         <div className="bg-background min-h-screen">
           <h2 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10 text-primary">La soluzione? Prenota un Parkito!</h2>
-          <p className="text-xl mx-auto text-center">Scopri la prima piattaforma di Park Sharing in Italia: i Parkito sono parcheggi privati verificati, <span className="font-bold underline">NON</span> autorimesse e <span className="font-bold underline">NON</span> strisce blu.</p>
+          <p className="text-xl mx-auto text-center">Scopri la prima piattaforma di Park Sharing in Italia: i Parkito sono parcheggi privati verificati, <span className="font-bold underline">NON</span> autorimesse</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 max-w-5xl mx-auto px-4">
 
             <Card className="flex flex-col bg-card p-4 rounded-xl">
@@ -154,7 +154,7 @@ export default function Home() {
 
               <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-end text-right">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
-                  Scegli tra centinaia di parcheggi
+                  Scegli tra oltre 400 parcheggi
                 </h3>
                 <h2 className="text-2xl md:text-4xl font-bold text-primary mb-2 md:mb-4">
                   Un parcheggio privato a tua disposizione
@@ -182,7 +182,7 @@ export default function Home() {
                   Massima sicurezza per la tua auto
                 </h2>
                 <p className="text-base md:text-lg">
-                  I parcheggi sono verificati e sicuri. Dimentica il caos di strisce blu e autorimesse.
+                  I parcheggi sono verificati e in contesti tranquilli. Dimentica il caos di strisce blu e autorimesse.
                 </p>
               </div>
 
@@ -201,7 +201,7 @@ export default function Home() {
           <CityCarousel />
           <Button variant={"default"} className="bg-foreground hover:bg-blue-900/90 hover:text-white mt-4 rounded-full p-6 text-lg" asChild><Link href={"/citta"}>Scoprile tutte <ArrowRightIcon /></Link></Button>
           <div className="flex flex-col items-center justify-center gap-4 my-10">
-            <h2 className="text-2xl font-bold text-accent">Prenota subito il tuo primo Parkito!</h2>
+            <h2 className="text-2xl font-bold text-accent">Prenota il tuo primo Parkito!</h2>
             <DownloadButtons />
           </div>
         </div>

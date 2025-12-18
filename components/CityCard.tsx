@@ -14,7 +14,7 @@ export default function CityCard({ city }: { city: CityType }) {
     const [hasError, setHasError] = useState(false);
 
     return (
-        <Card className="border shadow-md overflow-hidden bg-card hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg rounded-3xl">
+        <Card className="shadow-md overflow-hidden bg-card hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg rounded-3xl">
             <Image
                 src={hasError ? (city.fallbackImage || '/citta1.webp') : imgSrc}
                 alt={`Immagine per ${city.name}`}

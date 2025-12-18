@@ -18,12 +18,14 @@ export default async function CityCarousel() {
                 align: "start",
                 loop: true,
             }}
-            className="w-full max-w-6xl mx-auto px-12 mt-10"
+            className="w-full max-w-6xl mx-auto p-12 mt-10 h-full"
         >
-            <CarouselContent className="-ml-2 md:-ml-4">
+            <CarouselContent className="-ml-2 md:-ml-4 py-4">
                 {safeCities.map((city) => (
                     <CarouselItem key={city.id} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
-                        <CityCard city={city} />
+                        <div className="p-2">
+                            <CityCard city={city} />
+                        </div>
                     </CarouselItem>
                 ))}
             </CarouselContent>
