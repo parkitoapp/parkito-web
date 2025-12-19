@@ -92,7 +92,7 @@ export default function Home() {
                   Come a casa, ma ovunque!
                 </CardTitle>
                 <CardDescription className="text-lg">
-                  Hai un box o posto auto? Vivi la stessa esperienza.
+                  Hai un box o posto auto? Vivi la stessa esperienza
                 </CardDescription>
               </div>
             </Card>
