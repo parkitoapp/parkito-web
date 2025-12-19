@@ -90,10 +90,12 @@ export default function page() {
                     </div>
 
                 </div>
-                <div className="w-full mx-auto" >
-                    <div className="w-full flex mx-auto flex-col min-h-80 bg-accent justify-center items-center py-10 px-16 text-center rounded-t-3xl lg:rounded-none shadow-lg gap-5">
+                <div className="mx-auto mt-20">
+                    <div className="flex mx-auto flex-col bg-accent justify-center items-center py-10 text-center rounded-t-3xl lg:rounded-none shadow-lg gap-5">
                         <h2 className="text-5xl font-extrabold mx-auto mb-4 text-center text-primary">Scegli come far accedere i driver al tuo parcheggio</h2>
-                        <DeviceTabs />
+                        <div className="mx-auto px-16">
+                            <DeviceTabs />
+                        </div>
                     </div>
 
                 </div>

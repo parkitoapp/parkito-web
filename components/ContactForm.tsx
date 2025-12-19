@@ -34,7 +34,7 @@ export default function ContactForm({ member, selectedOption }: { member: TeamMe
         }
     };
     return (
-        <div className="p-4 bg-accent rounded-lg border border-border shadow-soft min-h-[30em]">
+        <div className="p-4 bg-accent/20 dark:bg-accent/90 rounded-lg border border-border shadow-soft min-h-[30em]">
             <form className="flex flex-col gap-4 h-[30em]" onSubmit={handleSubmit}>
                 <div className='flex flex-col md:grid md:grid-cols-2 gap-4 h-full'>
                     <div className='flex flex-col w-[90%] gap-4 h-full'>
