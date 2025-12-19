@@ -89,7 +89,7 @@ export default function Home() {
               </CardHeader>
               <div className="mt-auto">
                 <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
-                  Come a casa, ma ovunque
+                  Come a casa, ma ovunque!
                 </CardTitle>
                 <CardDescription className="text-lg">
                   Hai un box o posto auto? Vivi la stessa esperienza.
