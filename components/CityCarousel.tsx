@@ -24,7 +24,7 @@ export default async function CityCarousel() {
                 {safeCities.map((city) => (
                     <CarouselItem key={city.id} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
                         <div className="p-2">
-                            <CityCard city={city} />
+                        <CityCard city={city} />
                         </div>
                     </CarouselItem>
                 ))}

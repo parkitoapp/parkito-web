@@ -6,6 +6,7 @@ import Script from "next/script";
 import GlobalTracking from "./_tracking/GlobalTracking";
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { ThemeProvider } from "@/hooks/theme-provider";
+import Snow from "@/components/Snow";
 
 const interTight = Inter_Tight(
   {

@@ -281,7 +281,9 @@ export const NavbarLogo = ({
   source: string;
   visible?: boolean;
 }) => {
-  const finalSrc = visible ? "/logo-cropped.webp" : source;
+  const finalSrc = visible ? "/logo-xmas.webp" : source;
+  // const finalSrc = visible ? "/logo-cropped.webp" : source;
+
 
   return (
     <Link href="/" className="relative z-20 flex items-center py-1 ">
