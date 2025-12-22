@@ -14,6 +14,7 @@ import {
     MobileNavHeader,
     MobileNavToggle,
     MobileNavMenu,
+    NavbarButton,
 } from "@/components/ui/resizable-navbar";
 import { useState, useEffect } from "react";
 import ThemeSwitch from "./Switch";
@@ -80,14 +81,14 @@ export default function ResNav() {
                         <NavbarLogo source={source} />
                         <NavItems items={navItems} />
                         <div className="flex items-center gap-4">
-                            <button
-                                onClick={toggleSnow}
-                                className={`p-2 rounded-full transition-colors ${isSnowActive ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-400'}`}
+                            <NavbarButton
+                                onClick={() => toggleSnow()}
+                                className={`p-2 rounded-full transition-colors z-1000 ${isSnowActive ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-400'}`}
                                 aria-label={isSnowActive ? "Disattiva neve" : "Attiva neve"}
                                 title={isSnowActive ? "Disattiva neve" : "Attiva neve"}
                             >
                                 <Snowflake size={20} />
-                            </button>
+                            </NavbarButton>
                             <div className="z-1000">
                                 <ThemeSwitch />
                             </div>
@@ -127,15 +128,15 @@ export default function ResNav() {
                                     </Link>)
                             ))}
                             <div className="flex w-full flex-col gap-4 mt-auto pt-8">
-                                <div className="flex flex-row items-center justify-end gap-4">
-                                    <button
+                                <div className="flex flex-row items-center justify-end gap-4 z-1000">
+                                    <NavbarButton
                                         onClick={toggleSnow}
-                                        className={`p-2 rounded-full transition-colors ${isSnowActive ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-400'}`}
+                                        className={`p-2 rounded-full transition-colors z-1000 ${isSnowActive ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-400'}`}
                                         aria-label={isSnowActive ? "Disattiva neve" : "Attiva neve"}
                                         title={isSnowActive ? "Disattiva neve" : "Attiva neve"}
                                     >
                                         <Snowflake size={20} />
-                                    </button>
+                                    </NavbarButton>
                                     <ThemeSwitch />
                                 </div>
                                 {/* <NavbarButton
