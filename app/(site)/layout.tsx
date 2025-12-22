@@ -5,7 +5,8 @@ import BackToTop from "@/components/BackToTop";
 import ResNav from "@/components/ResNav";
 import Link from "next/link";
 import { Toaster } from "@/components/ui/sonner";
-
+import Snow from "@/components/Snow";
+import { SnowProvider } from "@/hooks/useSnow";
 
 export default function RootLayout({
   children
@@ -13,8 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-
-    <>
+    <SnowProvider>
       <Link
         href="#main-content"
         tabIndex={0}
@@ -24,13 +24,17 @@ export default function RootLayout({
       </Link>
       {/* <Nav /> */}
       {<ResNav />}
+
+      <Snow />
+
       <div id="main-content" className="min-h-screen">
+
         {children}
       </div>
       <BackToTop />
       <Footer />
       <Toaster richColors position="top-right" />
 
-    </>
+    </SnowProvider>
   );
 }

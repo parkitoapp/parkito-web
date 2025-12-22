@@ -10,13 +10,14 @@
 import Image from "next/image";
 import { BannerProps } from "@/types";
 import Link from "next/link";
-import { ArrowDown, Instagram, Linkedin } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { useState } from "react";
 
 import DownloadButtons from "./DownloadButtons";
 
 export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn }: BannerProps) {
     const [hasError, setHasError] = useState(false);
+    void social;
 
     // Use fallback image if main image fails to load
     const displaySrc = hasError && src2 ? src2 : src;
@@ -55,7 +56,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                             height={960}
                             sizes="(max-width: 1280px) 0px, 50vw"
                             priority
-                            className="object-contain drop-shadow-2xl w-full rounded-lg"
+                            className="object-contain drop-shadow-2xl w-full rounded-lg z-9999"
                             onError={() => {
                                 if (!hasError && src2) {
                                     setHasError(true);
@@ -70,7 +71,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
 
                 </div>
 
-                {
+                {/* {
                     social && (
                         <ul className="absolute bottom-4 right-6 flex gap-4">
                             <li>
@@ -87,7 +88,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                             </li>
                         </ul>
                     )
-                }
+                } */}
 
                 {
                     icon && (
@@ -140,7 +141,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                 </div>
 
                 {/* Social icons */}
-                {
+                {/* {
                     social && (
                         <ul className="absolute bottom-4 right-6 flex gap-4">
                             <li>
@@ -155,7 +156,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                             </li>
                         </ul>
                     )
-                }
+                } */}
 
                 {
                     icon && (

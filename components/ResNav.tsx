@@ -21,6 +21,8 @@ import Link from "next/link";
 import CityDropdown from "@/components/CityDropdown";
 import { useTheme } from "next-themes";
 import { useWidth } from "@/hooks/useWidth";
+import { useSnow } from "@/hooks/useSnow";
+import { Snowflake } from "lucide-react";
 
 export default function ResNav() {
 
@@ -28,6 +30,7 @@ export default function ResNav() {
     const [mounted, setMounted] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const width = useWidth();
+    const { isSnowActive, toggleSnow } = useSnow();
 
 
     // Ensure this only runs on the client
@@ -39,7 +42,9 @@ export default function ResNav() {
 
     if (!mounted) return null; // or a placeholder
 
-    const source = resolvedTheme === "dark" ? "/logo-dark.webp" : "/logo.webp";
+    const source = resolvedTheme === "dark" ? "/logo-xmas-dark.webp" : "/logo-xmas-light.webp";
+    // const source = resolvedTheme === "dark" ? "/logo-dark.webp" : "/logo.webp";
+
 
 
     const navItems = [
@@ -68,13 +73,21 @@ export default function ResNav() {
 
 
     return (
-        <div className="relative w-full">
+        <div className="relative w-full z-99999">
             <Navbar>
                 {width > 1024 ? (
                     <NavBody className="dark:border">
                         <NavbarLogo source={source} />
                         <NavItems items={navItems} />
                         <div className="flex items-center gap-4">
+                            <button
+                                onClick={toggleSnow}
+                                className={`p-2 rounded-full transition-colors ${isSnowActive ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-400'}`}
+                                aria-label={isSnowActive ? "Disattiva neve" : "Attiva neve"}
+                                title={isSnowActive ? "Disattiva neve" : "Attiva neve"}
+                            >
+                                <Snowflake size={20} />
+                            </button>
                             <div className="z-1000">
                                 <ThemeSwitch />
                             </div>
@@ -114,7 +127,15 @@ export default function ResNav() {
                                     </Link>)
                             ))}
                             <div className="flex w-full flex-col gap-4 mt-auto pt-8">
-                                <div className="flex flex-col items-end justify-center">
+                                <div className="flex flex-row items-center justify-end gap-4">
+                                    <button
+                                        onClick={toggleSnow}
+                                        className={`p-2 rounded-full transition-colors ${isSnowActive ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-400'}`}
+                                        aria-label={isSnowActive ? "Disattiva neve" : "Attiva neve"}
+                                        title={isSnowActive ? "Disattiva neve" : "Attiva neve"}
+                                    >
+                                        <Snowflake size={20} />
+                                    </button>
                                     <ThemeSwitch />
                                 </div>
                                 {/* <NavbarButton
