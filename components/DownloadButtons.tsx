@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function DownloadButtons() {
 
     return (
-        <div className="flex gap-4">
+        <div className="flex gap-4 relative z-10">
             <Link
                 href="https://apps.apple.com/it/app/parkito-park-sharing/id6446240996"
                 data-download-store="apple"

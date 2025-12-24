@@ -14,9 +14,9 @@ export default function Snow() {
 
     return (
         <div className="fixed inset-0 z-50 pointer-events-none">
-            <Snowfall
+        <Snowfall
                 color={snowColor}
-            />
+        />
         </div>
     )
 }

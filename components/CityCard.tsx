@@ -9,14 +9,12 @@ import { ArrowRightIcon } from "lucide-react";
 import { Button } from "./ui/button";
 
 export default function CityCard({ city }: { city: CityType }) {
-    const [imgSrc, setImgSrc] = useState(city.image);
-    void setImgSrc;
     const [hasError, setHasError] = useState(false);
 
     return (
         <Card className="shadow-md overflow-hidden bg-card hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg rounded-3xl">
             <Image
-                src={hasError ? (city.fallbackImage || '/citta1.webp') : imgSrc}
+                src={hasError ? (city.fallbackImage || '/citta1.webp') : city.image}
                 alt={`Immagine per ${city.name}`}
                 width={400}
                 height={200}

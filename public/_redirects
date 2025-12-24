@@ -1,7 +1,0 @@
-# DEPRECATED: Redirects are now handled by Next.js (next.config.ts)
-#
-# The _redirects file format cannot distinguish between URL routes and static files,
-# so all redirect logic has been moved to next.config.ts which uses regex patterns
-# to only redirect URL slugs (lowercase letters, numbers, hyphens) and not static assets.
-#
-# Do not add redirect rules here - they may interfere with static file serving.

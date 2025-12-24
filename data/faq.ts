@@ -3,7 +3,7 @@ import { FAQ } from "@/types"
 export const faq: FAQ[] = [
     {
         question: "Cos'è un Parkito?",
-        answer: "Un parcheggio esclusivo messo a disposizione da un Host privato, non prenotabile su altre piattaforme.\nPuoi trovare sia <strong>box privati</strong> che <strong>posti auto coperti o scoperti</strong>.Hai un parcheggio personale a casa tua? Immagina di parcheggiarci mentre ti trovi in altre città: <strong>questa è l'esperienza di prenotare un Parkito!</strong>"
+        answer: "Un parcheggio esclusivo messo a disposizione da un Host privato, non prenotabile su altre piattaforme.\nPuoi trovare sia <strong>box privati</strong> che <strong>posti auto coperti o scoperti</strong>. Hai un parcheggio personale a casa tua? Immagina di parcheggiarci mentre ti trovi in altre città: <strong>questa è l'esperienza di prenotare un Parkito!</strong>"
     },
     {
         question: "Come si prenota un parcheggio?",

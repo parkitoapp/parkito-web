@@ -26,7 +26,7 @@ export default function TableCompare({ rows }: { rows: Row[] }) {
             </TableHeader>
             <TableBody>
                 {rows.map((row, idx) => (
-                    <TableRow key={idx}>
+                    <TableRow key={idx} className={idx % 2 !== 0 ? "" : "bg-primary/10"}>
                         <TableCell className="font-medium text-lg p-6 text-foreground">{row.feature}</TableCell>
                         <TableCell className='p-6 text-lg text-foreground'>{row.traditional}</TableCell>
                         <TableCell className='p-6 text-lg text-foreground'>{row.parkito}</TableCell>

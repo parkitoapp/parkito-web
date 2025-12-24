@@ -45,46 +45,9 @@ const nextConfig = {
       exclude: ['error', 'warn'],
     } : false,
   },
-  // Redirects for old URL structure to new structure
-  // Old: /myCity -> New: /citta/myCity
-  // Old: /myCity/myParkingAddress -> New: /citta/myCity/myParkingAddress
-  async redirects() {
-    // List of routes that should NOT be redirected
-    const excludedRoutes = [
-      'citta',
-      'api',
-      '_next',
-      'admin',
-      'blog',
-      'chi-siamo',
-      'contatti',
-      'devices',
-      'diventare-host',
-      'login',
-      'terminiecondizioni',
-      'favicon.ico',
-    ];
-
-    const excludedPattern = excludedRoutes.join('|');
-
-    return [
-      {
-        // Redirect old parking routes: /myCity/myParkingAddress -> /citta/myCity/myParkingAddress
-        // This must come first to match longer paths before shorter ones
-        // [^/.]+  = any char except slash and dot, so file.mp4 won't match
-        source: '/:citySlug((?!' + excludedPattern + ')[^/.]+)/:parkingAddress([^/.]+)',
-        destination: '/citta/:citySlug/:parkingAddress',
-        permanent: process.env.NODE_ENV === 'production', // 301 in prod, 302 in dev
-      },
-      {
-        // Redirect old city-only routes: /myCity -> /citta/myCity
-        // [^/.]+  = any char except slash and dot, so file.mp4 won't match
-        source: '/:citySlug((?!' + excludedPattern + ')[^/.]+)',
-        destination: '/citta/:citySlug',
-        permanent: process.env.NODE_ENV === 'production', // 301 in prod, 302 in dev
-      },
-    ];
-  },
+  // City redirects are now handled by middleware.ts
+  // This allows dynamic validation of city slugs before redirecting
+  // Invalid cities will show 404 instead of redirecting to /citta/invalid-slug
 };
 
 module.exports = nextConfig;
