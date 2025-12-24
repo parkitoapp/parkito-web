@@ -42,7 +42,9 @@ export default function Faq({ items }: FaqProps) {
                         <AccordionTrigger className="text-lg font-semibold text-primary dark:text-white flex flex-row items-center hover:cursor-pointer w-full">
                             {item.question}
                         </AccordionTrigger>
-                        <AccordionContent>{item.answer}</AccordionContent>
+                        <AccordionContent>
+                            <span dangerouslySetInnerHTML={{ __html: item.answer }} />
+                        </AccordionContent>
                     </AccordionItem>
                 ))}
             </Accordion>

@@ -2,8 +2,12 @@ import { supabaseServer } from "@/lib/supabaseServer";
 import { Parking } from "@/types";
 import { slugify } from "@/lib/slugify";
 import { CityType } from "@/types";
+import { unstable_cache } from "next/cache";
 
 const placeholderArray: string[] = ['/citta1.webp', '/citta2.webp', '/citta3.webp', '/citta4.webp', '/citta5.webp', '/citta6.webp'];
+
+// Cache duration in seconds (1 week = 7 days)
+const CACHE_DURATION = 604800;
 
 // Generate consistent placeholder index from string
 const hashString = (str: string): number => {
@@ -15,7 +19,8 @@ const hashString = (str: string): number => {
     return Math.abs(hash);
 };
 
-export async function getParkingData(): Promise<Parking[]> {
+// Internal function to fetch parking data from Supabase
+async function fetchParkingDataFromSupabase(): Promise<Parking[]> {
     try {
         const { data: fileBlob, error } = await supabaseServer.storage
             .from("parking_sheet_data")
@@ -36,6 +41,13 @@ export async function getParkingData(): Promise<Parking[]> {
         throw new Error(`Error fetching parking data: ${error}`);
     }
 }
+
+// Cached version of getParkingData - revalidates every 5 minutes
+export const getParkingData = unstable_cache(
+    fetchParkingDataFromSupabase,
+    ['parking-data'],
+    { revalidate: CACHE_DURATION, tags: ['parkings'] }
+);
 
 export async function getAllParkings(): Promise<{ slug: string; address: string }[]> {
     const parkings = await getParkingData();

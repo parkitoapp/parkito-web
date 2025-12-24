@@ -1,6 +1,6 @@
 export type BannerProps = {
     src: string,
-    src2?: string;
+    src2?: boolean;
     title: string,
     subtitle?: string,
     dwbtn?: false | boolean,

@@ -16,8 +16,6 @@ function titleizeSlug(slug?: string) {
         .join(' ');
 }
 
-export const dynamic = "force-dynamic";
-
 // Generate dynamic metadata for each blog post (title from post)
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
@@ -40,8 +38,8 @@ export default async function CityPage({ params }: Props) {
             <Banner
                 title={`Parcheggi a ${titleizeSlug(citySlug.slug)}`}
                 subtitle={`Scopri i migliori parcheggi a ${titleizeSlug(citySlug.slug)} con Parkito`}
-                src={`/${citySlug.slug}.webp`}
-                src2={cityData?.fallbackImage}
+                src={cityData?.fallbackImage ?? `/${citySlug.slug}.webp`}
+                src2={true}
                 icon={true}
                 social={true}
 
