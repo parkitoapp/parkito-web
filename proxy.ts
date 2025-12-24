@@ -60,7 +60,7 @@ async function getCitySlugs(baseUrl: string): Promise<Set<string>> {
     }
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
     // Skip if it's a file request (has extension)

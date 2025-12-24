@@ -252,7 +252,7 @@ export default function page() {
                             </div>
 
                         </Card>
-                        <Card className="flex flex-col md:flex-row bg-white p-6 md:p-8 rounded-3xl shadow-xl w-[90%] md:w-[50%] mx-auto overflow-visible">
+                        <Card className="flex flex-col md:flex-row bg-card p-6 md:p-8 rounded-3xl shadow-xl w-[90%] md:w-[50%] mx-auto overflow-visible">
                             <CardHeader className=" flex flex-col items-center justify-center p-4 md:w-1/3">
                                 <Image
                                     src={"/secure.webp"}

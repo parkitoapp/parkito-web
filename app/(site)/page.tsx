@@ -5,7 +5,7 @@ import { faq } from "@/data/faq";
 import Faq from "@/components/Faq";
 import ScrollStack, { ScrollStackItem } from '@/components/ScrollStack';
 import LazyVideo from '@/components/LazyVideo';
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import DownloadButtons from "@/components/DownloadButtons";
 import CityCarousel from "@/components/CityCarousel";
 import { Button } from "@/components/ui/button";
@@ -36,42 +36,47 @@ export default function Home() {
             <div className="w-full flex mx-auto flex-col min-h-80 justify-center items-center py-10 px-16 text-white text-center rounded-t-3xl lg:rounded-none gap-5">
 
               <h1 className="text-4xl flex flex-col font-bold mb-4 text-primary">Trovare parcheggio in una città che non conosci? <br />Un incubo</h1>
-              <div className="flex flex-col lg:grid lg:grid-cols-4 items-baseline gap-10">
-
-                <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
+              <div className="grid grid-cols-1 md:grid-cols-4 items-stretch gap-10">
+                <Card className="flex flex-col bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src="/headache.webp" alt="headache" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
+                    <Image src="/headache.webp" alt="icona frustrazione" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="mx-auto" />
                   </CardHeader>
-
-                  <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
-                    Rischio di girare a vuoto per ore.
-                  </CardTitle>
+                  <CardContent className="mt-auto">
+                    <CardTitle className="text-lg font-bold text-primary dark:text-chart-3">
+                      Rischio di girare a vuoto per ore
+                    </CardTitle>
+                  </CardContent>
                 </Card>
-                <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
+                <Card className="flex flex-col bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src="/clock.webp" alt="orologio" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
+                    <Image src="/notif.webp" alt="icona disponibilità" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="mx-auto" />
                   </CardHeader>
-                  <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
-                    Nessuna garanzia sulla disponibilità.
-                  </CardTitle>
+                  <CardContent className="mt-auto">
+                    <CardTitle className="text-lg font-bold text-primary dark:text-chart-3">
+                      Nessuna garanzia sulle disponibilità
+                    </CardTitle>
+                  </CardContent>
                 </Card>
-                <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
+                <Card className="flex flex-col bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src="/light.webp" alt="luci" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
+                    <Image src="/perplexed.webp" alt="icona automatico" width={200} height={100} loading="lazy" className="mx-auto w-30" />
                   </CardHeader>
-                  <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
-                    Prezzi poco trasparenti
-                  </CardTitle>
+                  <CardContent className="mt-auto">
+                    <CardTitle className="text-lg font-bold text-primary dark:text-chart-3">
+                      Prezzi poco trasparenti
+                    </CardTitle>
+                  </CardContent>
                 </Card>
-                <Card className="flex flex-col w-50 bg-card p-4 rounded-xl">
+                <Card className="flex flex-col bg-card p-4 rounded-xl">
                   <CardHeader>
-                    <Image src="/x.webp" alt="croce" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
+                    <Image src="/x.webp" alt="icona automatico" width={200} height={200} loading="lazy" className="mx-auto" />
                   </CardHeader>
-                  <CardTitle className="text-md font-bold text-primary dark:text-chart-3 text-lg">
-                    No H24 e niente sicurezza
-                  </CardTitle>
+                  <CardContent className="mt-auto">
+                    <CardTitle className="text-lg font-bold text-primary dark:text-chart-3">
+                      No H24 e poca sicurezza
+                    </CardTitle>
+                  </CardContent>
                 </Card>
-
               </div>
             </div>
           </div>
@@ -104,20 +109,20 @@ export default function Home() {
 
               <Card className="flex flex-col bg-card p-4 rounded-xl">
                 <CardHeader>
-                  <Image src="/house.webp" alt="house" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
+                  <Image src="/house.webp" alt="house" width={200} height={200} loading="lazy" className="mx-auto" />
                 </CardHeader>
-                <div className="mt-auto">
+                <CardContent className="mt-auto">
                   <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
                     Come a casa, ma ovunque!
                   </CardTitle>
                   <CardDescription className="text-lg">
                     Hai un box o posto auto? Vivi la stessa esperienza
                   </CardDescription>
-                </div>
+                </CardContent>
               </Card>
               <Card className="flex flex-col bg-card p-4 rounded-xl">
                 <CardHeader>
-                  <Image src="/banner.webp" alt="banner" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
+                  <Image src="/banner.webp" alt="banner" width={200} height={200} loading="lazy" className="md:w-50 w-40 mx-auto" />
                 </CardHeader>
                 <div className="mt-auto">
                   <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
@@ -130,16 +135,16 @@ export default function Home() {
               </Card>
               <Card className="flex flex-col bg-card p-4 rounded-xl">
                 <CardHeader>
-                  <Image src="/secure.webp" alt="secure" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="md:w-50 w-40 mx-auto" />
+                  <Image src="/secure.webp" alt="secure" width={200} height={200} loading="lazy" className="md:w-50 w-40 mx-auto" />
                 </CardHeader>
-                <div className="mt-auto">
+                <CardContent className="mt-auto">
                   <CardTitle className="font-bold text-primary dark:text-chart-3 text-2xl">
                     Gestione digitale
                   </CardTitle>
                   <CardDescription className="text-lg">
                     Nessun ticket o pagamento cash: paghi direttamente in app con un click
                   </CardDescription>
-                </div>
+                </CardContent>
               </Card>
 
             </div>
