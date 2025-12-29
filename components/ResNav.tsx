@@ -20,6 +20,7 @@ import { useState, useEffect } from "react";
 import ThemeSwitch from "./Switch";
 import Link from "next/link";
 import CityDropdown from "@/components/CityDropdown";
+import HostDropdown from "@/components/HostDropdown";
 import { useTheme } from "next-themes";
 import { useWidth } from "@/hooks/useWidth";
 import { useSnow } from "@/hooks/useSnow";
@@ -57,9 +58,13 @@ export default function ResNav() {
             name: "Dove Siamo",
             link: "/citta",
         },
+        // {
+        //     name: "Diventa Host",
+        //     link: "/diventare-host",
+        // },
         {
-            name: "Diventa Host",
-            link: "/diventare-host",
+            name: "Host",
+            link: "",
         },
         // {
         //     name: "Cos'è Parkito",
@@ -118,14 +123,20 @@ export default function ResNav() {
                                             <CityDropdown />
                                         </div>
                                     )
-                                    : (<Link
-                                        key={`mobile-link-${idx}`}
-                                        href={item.link}
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                        className="relative text-primary font-bold dark:text-neutral-300"
-                                    >
-                                        <span className="block">{item.name}</span>
-                                    </Link>)
+                                    : item.name === "Host" ? (
+                                        <div key={`mobile-link-${idx}`} className="w-full">
+                                            <HostDropdown onLinkClick={() => setIsMobileMenuOpen(false)} />
+                                        </div>
+                                    ) : (
+                                        <Link
+                                            key={`mobile-link-${idx}`}
+                                            href={item.link}
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                            className="relative text-primary font-bold dark:text-neutral-300"
+                                        >
+                                            <span className="block">{item.name}</span>
+                                        </Link>
+                                    )
                             ))}
                             <div className="flex w-full flex-col gap-4 mt-auto pt-8">
                                 <div className="flex flex-row items-center justify-end gap-4 z-1000">

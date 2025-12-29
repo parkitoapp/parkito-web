@@ -10,8 +10,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
-import CityDropdown from "../CityDropdown";
-
+import HostDropdown from "@/components/HostDropdown";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -145,14 +144,14 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
       )}
     >
       {items.map((item, idx) => (
-        item.name === "Città" ? (
+        item.name === "Host" ? (
           <div
             className="relative py-2 text-primary dark:text-neutral-300"
             key={`link-${idx}`}
             onMouseEnter={() => setHovered(null)}
             onFocus={() => setHovered(null)}
           >
-            <CityDropdown />
+            <HostDropdown />
           </div>
         ) : (
           <Link

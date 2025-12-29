@@ -31,7 +31,7 @@ export default function page() {
                         <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
                             <Image src="/notif.webp" alt="icona Disponibilità e prezzo" width={200} height={200} loading="lazy" className='w-36 h-36 p-4' />
                             <CardContent className='w-full p-6'>
-                                <CardTitle className="text-2xl font-bold text-primary mt-4">Scegli la disponibilità e prezzo</CardTitle>
+                                <CardTitle className="text-2xl font-bold text-primary mt-4">Scegli disponibilità e prezzo</CardTitle>
                                 <CardDescription className="mt-2 w-[60%] text-left text-md text-primary">
                                     Condividi il tuo parcheggio quando e a che prezzo vuoi con un calendario super flessibile
                                 </CardDescription>
@@ -67,7 +67,7 @@ export default function page() {
                         </Card>
                     </div>
                 </div>
-                <div className=" min-h-screen sm:pb-120 md:pb-60 lg:pb-60">
+                <div className=" min-h-screen pb-4">
                     <h2 className="text-5xl font-extrabold mx-auto mb-4 px-4 text-center pt-10 text-primary">Inizia a ricevere prenotazioni in 5 minuti!</h2>
                     <ScrollStack className="bg-background">
                         {/* ITEM 1 */}
@@ -170,7 +170,6 @@ export default function page() {
                                 src="/diventa-host-2.mp4"
                                 className="md:hidden w-full h-auto rounded-lg mt-4"
                             />
-
                         </ScrollStackItem>
                     </ScrollStack>
 

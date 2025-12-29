@@ -33,7 +33,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
     return (
         <>
             {/* Desktop View (min-width: 1280px) */}
-            <div className="hidden lg:flex relative text-white w-full min-h-svh items-center overflow-hidden">
+            <div className="hidden xl:flex relative text-white w-full min-h-svh items-center overflow-hidden">
                 {src2 && (
                     <div className="absolute inset-0 z-0 pointer-events-none">
                         <div className="relative w-full h-full">
@@ -41,7 +41,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                                 src="/linea-desk.webp"
                                 alt=""
                                 fill
-                                className="hidden xl:block object-cover object-center opacity-70"
+                                className="hidden xl:block object-cover object-center opacity-30"
                                 aria-hidden
                             />
                         </div>
@@ -76,32 +76,12 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                             alt="App preview"
                             width={800}
                             height={960}
-                            sizes="(max-width: 1280px) 0px, 50vw"
                             priority
                             className="object-contain drop-shadow-2xl w-full rounded-lg z-9999"
                         />
                     </div>
 
                 </div>
-
-                {/* {
-                    social && (
-                        <ul className="absolute bottom-4 right-6 flex gap-4">
-                            <li>
-                                <Link href="https://www.instagram.com/parkito.app/" aria-label="instagram link">
-                                    <Instagram className="text-primary hover:opacity-80 cursor-pointer" />
-                                </Link>
-
-
-                            </li>
-                            <li>
-                                <Link href="https://www.linkedin.com/company/parkito/" aria-label="linkedin link">
-                                    <Linkedin className="text-primary hover:opacity-80 cursor-pointer" />
-                                </Link>
-                            </li>
-                        </ul>
-                    )
-                } */}
 
                 {
                     icon && (
@@ -139,7 +119,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                                     src="/linea-mob.webp"
                                     alt=""
                                     fill
-                                    className="object-cover object-center opacity-50"
+                                    className="block xl:hidden object-cover object-center opacity-50"
                                     aria-hidden
                                 />
                             </div>

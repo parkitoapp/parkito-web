@@ -1,12 +1,12 @@
+
 import React from "react"
 import "@/app/globals.css"
 import { Inter_Tight } from "next/font/google"
 import { Metadata } from "next";
 import Script from "next/script";
-import GlobalTracking from "./_tracking/GlobalTracking";
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { ThemeProvider } from "@/hooks/theme-provider";
-
+import Tracking from "./_tracking/Tracking";
 const interTight = Inter_Tight(
   {
     subsets: ["latin"],
@@ -71,58 +71,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-
-        <Script id="segment-official" strategy="beforeInteractive">
-          {`
-          !function(){
-            var i="analytics",analytics=window[i]=window[i]||[];
-            if(!analytics.initialize){
-              if(analytics.invoked){
-                window.console&&console.error&&console.error("Segment snippet incluso due volte.");
-              } else {
-                analytics.invoked=!0;
-                analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview",
-                "identify","reset","group","track","ready","alias","debug","page","screen","once",
-                "off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId",
-                "addDestinationMiddleware","register"];
-                analytics.factory=function(e){
-                  return function(){
-                    if(window[i].initialized) return window[i][e].apply(window[i],arguments);
-                    var n=Array.prototype.slice.call(arguments);
-                    if(["track","screen","alias","group","page","identify"].indexOf(e)>-1){
-                      var c=document.querySelector("link[rel='canonical']");
-                      n.push({__t:"bpc",c:c&&c.getAttribute("href")||void 0,
-                      p:location.pathname,u:location.href,s:location.search,
-                      t:document.title,r:document.referrer});
-                    }
-                    n.unshift(e);
-                    analytics.push(n);
-                    return analytics
-                  }
-                };
-                for(var n=0;n<analytics.methods.length;n++){
-                  var key=analytics.methods[n];
-                  analytics[key]=analytics.factory(key)
-                }
-                analytics.load=function(key,n){
-                  var t=document.createElement("script");
-                  t.type="text/javascript";t.async=!0;
-                  t.setAttribute("data-global-segment-analytics-key",i);
-                  t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
-                  var r=document.getElementsByTagName("script")[0];
-                  r.parentNode.insertBefore(t,r);
-                  analytics._loadOptions=n
-                };
-                analytics._writeKey="${process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY}";
-                analytics.SNIPPET_VERSION="5.2.0";
-                analytics.load("${process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY}");
-                analytics.page();
-              }    
-            }
-          }();
-        `}
-        </Script>
-
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
 
@@ -144,11 +92,10 @@ _iub.csLangConfiguration = {"it":{"cookiePolicyId":94483316}};
           src="https://cdn.iubenda.com/cs/iubenda_cs.js"
           strategy="lazyOnload"
         />
-
-
       </head>
       {/* <GoogleTagManager gtmId="" /> */}
       <body className={`${interTight.className} bg-background min-h-screen`}>
+        <Tracking />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -158,7 +105,6 @@ _iub.csLangConfiguration = {"it":{"cookiePolicyId":94483316}};
             {children}
           </main>
           <GoogleAnalytics gaId="G-MJ696D3GF8" />
-          <GlobalTracking />
         </ThemeProvider>
       </body>
     </html>
