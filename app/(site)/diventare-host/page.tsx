@@ -202,7 +202,7 @@ export default function page() {
                             {/* Right side - Content */}
                             <div className="flex flex-col md:w-2/3 p-4">
                                 <CardContent className="flex flex-col items-start p-0 mb-4">
-                                    <p className="text-sm text-lime-300 uppercase font-semibold tracking-wide mb-1">
+                                    <p className="text-sm text-lime-300 dark:text-accent-foreground uppercase font-semibold tracking-wide mb-1">
                                         VUOI UN&apos;AUTOMAZIONE SU MISURA?
                                     </p>
                                     <CardTitle className="text-3xl font-bold text-accent mb-4">
@@ -213,27 +213,27 @@ export default function page() {
                                 <CardFooter className="p-0 flex-1 flex-col justify-center items-start">
                                     <ul className="text-left text-primary-foreground/90 flex flex-col gap-2 text-sm">
                                         <li className="flex items-start gap-2">
-                                            <span className="text-lime-300">✨</span>
+                                            <span className="">✨</span>
                                             Presenza fisica non necessaria
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <span className="text-lime-300">📱</span>
+                                            <span className="">📱</span>
                                             Invio automatizzato delle indicazioni per l&apos;accesso
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <span className="text-lime-300">🕐</span>
+                                            <span className="">🕐</span>
                                             Assistenza 24h gestita da Parkito
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <span className="text-lime-300">🔑</span>
+                                            <span className="">🔑</span>
                                             Eliminazione chiavi
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <span className="text-lime-300">👥</span>
+                                            <span className="">👥</span>
                                             Condivisione degli accessi con i tuoi famigliari (su richiesta)
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <span className="text-lime-300">🏢</span>
+                                            <span className="">🏢</span>
                                             Accesso digitale per tutti i condomini disponibile (su richiesta)
                                         </li>
                                     </ul>
@@ -267,7 +267,7 @@ export default function page() {
                             {/* Right side - Content */}
                             <div className="flex flex-col md:w-2/3 p-4">
                                 <CardContent className="flex flex-col items-start p-0 mb-4">
-                                    <p className="text-sm text-lime-300 uppercase font-semibold tracking-wide mb-1">
+                                    <p className="text-sm text-lime-300 dark:text-accent-foreground uppercase font-semibold tracking-wide mb-1">
                                         HAI GIÀ UN DISPOSITIVO?
                                     </p>
                                     <CardTitle className="text-3xl font-bold mb-4">
@@ -309,7 +309,7 @@ export default function page() {
                     </div>
                 </div>
                 <div className='relative bg-primary min-h-60 flex flex-col items-center justify-center gap-10'>
-                    <h2 className='relative z-10 text-4xl font-bold mx-auto text-center text-accent'>Scarica Parkito e scopri la soluzione migliore per il tuo parcheggio</h2>
+                    <h2 className='relative z-10 md:text-4xl text-2xl font-bold mx-auto text-center text-accent'>Scarica Parkito e scopri la soluzione migliore per il tuo parcheggio</h2>
                     <DownloadButtons />
                     <div className="absolute inset-0 z-0 pointer-events-none">
                         <div className="relative w-full h-full">
@@ -317,14 +317,14 @@ export default function page() {
                                 src="/linea-desk.webp"
                                 alt=""
                                 fill
-                                className="hidden xl:block object-cover object-center opacity-90"
+                                className="hidden xl:block object-cover object-center opacity-70"
                                 aria-hidden
                             />
                             <Image
                                 src="/linea-mob.webp"
                                 alt=""
                                 fill
-                                className="xl:hidden object-cover object-center opacity-90"
+                                className="xl:hidden object-cover object-center opacity-70"
                                 aria-hidden
                             />
                         </div>

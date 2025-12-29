@@ -76,14 +76,14 @@ export default function page() {
                                 src="/linea-desk.webp"
                                 alt=""
                                 fill
-                                className="hidden xl:block object-cover object-center opacity-90"
+                                className="hidden xl:block object-cover object-center opacity-70"
                                 aria-hidden
                             />
                             <Image
                                 src="/linea-mob.webp"
                                 alt=""
                                 fill
-                                className="xl:hidden object-cover object-center opacity-90"
+                                className="xl:hidden object-cover object-center opacity-70"
                                 aria-hidden
                             />
                         </div>
@@ -111,7 +111,7 @@ export default function page() {
                         <div className="w-full md:w-2/3 flex flex-col items-center justify-start mt-10 px-4 order-1 md:order-2">
                             <h2 className="text-3xl md:text-5xl font-extrabold mx-auto mb-4 text-center text-background">Per garantirti <span className="text-lime-300 dark:text-accent-foreground">sicurezza</span> possibile</h2>
                             <p className="text-lg md:text-2xl text-center max-w-full md:max-w-[80%] mb-4 text-background">
-                                I driver potranno <span className="text-lime-300 dark:text-accent-foreground">acedere</span> al tuo parcheggio soltanto all&apos;interno della fascia oraria prenotata, utilizzando <span className="text-lime-300 dark:text-accent-foreground">codici</span> di accesso <span className="text-lime-300 dark:text-accent-foreground">unici</span> e <span className="text-lime-300 dark:text-accent-foreground">temporanei</span>.
+                                I driver potranno <span className="text-lime-300 dark:text-accent-foreground">accedere</span> al tuo parcheggio soltanto all&apos;interno della fascia oraria prenotata, utilizzando <span className="text-lime-300 dark:text-accent-foreground">codici</span> di accesso <span className="text-lime-300 dark:text-accent-foreground">unici</span> e <span className="text-lime-300 dark:text-accent-foreground">temporanei</span>.
                             </p>
                         </div>
                     </div>
@@ -132,7 +132,7 @@ export default function page() {
                     </div>
                 </div>
                 <div className='relative bg-primary min-h-60 flex flex-col items-center justify-center gap-10'>
-                    <h2 className='relative z-10 text-4xl font-bold mx-auto text-center text-accent'>Scarica Parkito e scopri la soluzione migliore per il tuo parcheggio</h2>
+                    <h2 className='relative z-10 text-2xl md:text-4xl font-bold mx-auto text-center text-accent'>Scarica Parkito e scopri la soluzione migliore per il tuo parcheggio</h2>
                     <DownloadButtons />
                     <div className="absolute inset-0 z-0 pointer-events-none">
                         <div className="relative w-full h-full">
@@ -140,14 +140,14 @@ export default function page() {
                                 src="/linea-desk.webp"
                                 alt=""
                                 fill
-                                className="hidden xl:block object-cover object-center opacity-90"
+                                className="hidden xl:block object-cover object-center opacity-70"
                                 aria-hidden
                             />
                             <Image
                                 src="/linea-mob.webp"
                                 alt=""
                                 fill
-                                className="xl:hidden object-cover object-center opacity-90"
+                                className="xl:hidden object-cover object-center opacity-70"
                                 aria-hidden
                             />
                         </div>

@@ -149,7 +149,7 @@ export default function Home() {
 
             </div>
           </div>
-          <ScrollStack className="bg-background">
+          <ScrollStack className="bg-background mt-10">
             {/* ITEM 1 */}
             <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
 

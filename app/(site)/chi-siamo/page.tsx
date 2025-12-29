@@ -20,7 +20,7 @@ const team = [
     },
     {
         name: "Davide Facchin",
-        role: "Head of Marketing",
+        role: "Head of Growth",
         image: "/davide.webp",
         linkedin: "https://www.linkedin.com/in/giulia-verdi"
     },
@@ -32,7 +32,7 @@ const team = [
     },
     {
         name: "Nicolò Mignacca",
-        role: "Urban Developer",
+        role: "Sales Manager",
         image: "/nicolo.webp",
         linkedin: "https://www.linkedin.com/in/nicolo-mignacca"
     },
@@ -60,7 +60,7 @@ export default function page() {
         <>
 
             <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center p-4 gap-8 md:gap-12">
-                <div className="text-center min-h-full w-full md:w-[60%] mx-auto flex flex-col my-auto items-center justify-center">
+                <div className="text-center min-h-full w-full md:w-[60%] mx-auto flex flex-col my-auto items-center justify-center mt-20">
                     <div className="mb-4 md:mb-6">
                         <BC />
                     </div>

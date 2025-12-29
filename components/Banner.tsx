@@ -41,7 +41,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                                 src="/linea-desk.webp"
                                 alt=""
                                 fill
-                                className="hidden xl:block object-cover object-center opacity-30"
+                                className="hidden xl:block object-cover object-center opacity-70"
                                 aria-hidden
                             />
                         </div>
