@@ -28,17 +28,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CityPage({ params }: Props) {
     const citySlug = await params;
 
-    // Fetch city data to get fallback image
+    // Fetch city data to get image from Supabase bucket (with fallback to placeholder)
     const cities = await getCities();
     const cityData = cities.find(c => c.url === `/citta/${citySlug.slug}`);
 
+    // Use city image from Supabase/placeholder, or fallback to local path
+    const bannerImage = cityData?.image || `/${citySlug.slug}.webp`;
 
     return (
         <div>
             <Banner
                 title={`Parcheggi a ${titleizeSlug(citySlug.slug)}`}
                 subtitle={`Scopri i migliori parcheggi a ${titleizeSlug(citySlug.slug)} con Parkito`}
-                src={cityData?.fallbackImage ?? `/${citySlug.slug}.webp`}
+                src={bannerImage}
                 src2={true}
                 icon={true}
                 social={true}

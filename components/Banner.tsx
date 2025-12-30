@@ -16,6 +16,8 @@ import DownloadButtons from "./DownloadButtons";
 export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn }: BannerProps) {
     void social;
     const [scrollY, setScrollY] = useState(0);
+    const [imageError, setImageError] = useState(false);
+    const [imageSrc, setImageSrc] = useState(src);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,6 +28,16 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
         handleScroll(); // Get initial position
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    // Reset image source when src prop changes
+    useEffect(() => {
+        setImageSrc(src);
+        setImageError(false);
+    }, [src]);
+
+    // Check if image is from Supabase (external URL) - skip optimization to avoid timeouts
+    const isExternalImage = typeof imageSrc === 'string' && imageSrc.startsWith('http');
+    const isSupabaseImage = typeof imageSrc === 'string' && imageSrc.includes('supabase.co');
 
     // Image starts bigger (1.15x) and shrinks to 1x as user scrolls down
     const imageScale = Math.max(1, 1.15 - scrollY / 800);
@@ -72,12 +84,18 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                     </div>
                     <div className="flex justify-center w-[50%]  mt-12 md:mt-0">
                         <Image
-                            src={src}
+                            src={imageError ? '/parkitoplaceholder.webp' : imageSrc}
                             alt="App preview"
                             width={800}
                             height={960}
                             priority
+                            unoptimized={isSupabaseImage}
                             className="object-contain drop-shadow-2xl w-full rounded-lg z-9999"
+                            onError={() => {
+                                if (!imageError) {
+                                    setImageError(true);
+                                }
+                            }}
                         />
                     </div>
 
@@ -101,11 +119,17 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                         style={{ transform: `scale(${imageScale})` }}
                     >
                         <Image
-                            src={src}
+                            src={imageError ? '/parkitoplaceholder.webp' : imageSrc}
                             alt="App preview"
                             fill
                             priority
+                            unoptimized={isSupabaseImage}
                             className="object-cover object-center"
+                            onError={() => {
+                                if (!imageError) {
+                                    setImageError(true);
+                                }
+                            }}
                         />
                     </div>
                 </div>
