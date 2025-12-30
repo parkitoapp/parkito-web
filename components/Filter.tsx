@@ -73,7 +73,7 @@ export default function Filter({
             <div id="filters" className="flex flex-row gap-4 mt-10 mb-4 px-4 overflow-x-auto w-full md:w-[50%] mx-auto">
                 <Button
                     onClick={handleFilter(null)}
-                    className={`px-2 text-lg rounded-full hover:cursor-pointer ${selectedFilter === null ? 'bg-accent text-white' : ''
+                    className={`px-2 text-lg rounded-full hover:cursor-pointer ${selectedFilter === null ? 'dark:bg-accent bg-chart-1 text-white' : ''
                         }`}
                 >
                     {allItemsLabel}
@@ -93,11 +93,11 @@ export default function Filter({
             </div>
             <div className="flex flex-row w-full mx-auto items-center justify-center gap-4 mb-10 [&_button]:rounded-3xl">
                 <Button variant={"default"} size={"icon-lg"} onClick={handleScrollLeft} aria-label="scroll left">
-                    <ChevronLeft className="text-chart-2" />
+                    <ChevronLeft className="dark:text-chart-2 text-white" />
                 </Button>
 
                 <Button variant={"default"} size={"icon-lg"} onClick={handleScrollRight} aria-label="scroll right">
-                    <ChevronRight className="text-chart-2" />
+                    <ChevronRight className="dark:text-chart-2 text-white" />
                 </Button>
             </div>
         </>

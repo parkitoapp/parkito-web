@@ -56,7 +56,7 @@ export default function BlogRender({ posts }: Props) {
     });
 
     return (
-        <div className="z-9999">
+        <div className="">
             <div id="blog">
                 <Filter
                     filterOptions={postCities}
