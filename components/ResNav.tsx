@@ -25,6 +25,8 @@ import { useTheme } from "next-themes";
 import { useWidth } from "@/hooks/useWidth";
 import { useSnow } from "@/hooks/useSnow";
 import { Snowflake } from "lucide-react";
+import isChristmas from "@/hooks/isChristmas";
+import { Button } from "./ui/button";
 
 export default function ResNav() {
 
@@ -44,8 +46,10 @@ export default function ResNav() {
 
     if (!mounted) return null; // or a placeholder
 
-    const source = resolvedTheme === "dark" ? "/logo-xmas-dark.webp" : "/logo-xmas-light.webp";
-    // const source = resolvedTheme === "dark" ? "/logo-dark.webp" : "/logo.webp";
+    const xmasSrc = resolvedTheme === "dark" ? "/logo-xmas-dark.webp" : "/logo-xmas-light.webp";
+    const normalSrc = resolvedTheme === "dark" ? "/logo-dark.webp" : "/logo.webp";
+
+    const finalSrc = isChristmas() ? xmasSrc : normalSrc;
 
 
 
@@ -77,23 +81,25 @@ export default function ResNav() {
     ];
 
 
-
     return (
-        <div className="relative w-full z-99999">
+        <div className="relative w-full z-99">
             <Navbar>
                 {width > 1024 ? (
                     <NavBody className="dark:border">
-                        <NavbarLogo source={source} />
+                        <NavbarLogo source={finalSrc} />
                         <NavItems items={navItems} />
                         <div className="flex items-center gap-4">
-                            <NavbarButton
-                                onClick={() => toggleSnow()}
-                                className={`p-2 rounded-full transition-colors z-1000 ${isSnowActive ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-400'}`}
-                                aria-label={isSnowActive ? "Disattiva neve" : "Attiva neve"}
-                                title={isSnowActive ? "Disattiva neve" : "Attiva neve"}
-                            >
-                                <Snowflake size={20} />
-                            </NavbarButton>
+                            {isChristmas() &&
+                                <Button
+                                    variant="default"
+                                    size="icon"
+                                    onClick={() => toggleSnow()}
+                                    className={`p-2 rounded-full transition-colors z-1000 ${isSnowActive ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-400'}`}
+                                    aria-label="Bottone neve"
+                                    title={isSnowActive ? "Disattiva neve" : "Attiva neve"}
+                                >
+                                    <Snowflake size={20} />
+                                </Button>}
                             <div className="z-1000">
                                 <ThemeSwitch />
                             </div>
@@ -104,7 +110,7 @@ export default function ResNav() {
 
                     (<MobileNav isMenuOpen={isMobileMenuOpen}>
                         <MobileNavHeader>
-                            <NavbarLogo source={source} />
+                            <NavbarLogo source={finalSrc} />
                             <MobileNavToggle
                                 isOpen={isMobileMenuOpen}
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

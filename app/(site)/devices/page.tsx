@@ -124,7 +124,7 @@ export default function page() {
                     <div className="flex md:flex-row flex-col items-center justify-between w-full mx-auto">
                         <div className="md:w-1/2 p-20">
                             <p className="text-primary text-xl">
-                                In base all&apos;attuale normativa italiana <Link className="underline text-chart-2" href='https://legis.xligo.com/documento/it/documentazione/stato/codice.civile/art1102/comma1?v=2025-02-20'>(art. 1102 Codice Civile)</Link> <span className="font-bold">non c&apos;è alcuna limitazione all&apos;utilizzo della cosa comune</span> purché non ne venga alterata la destinazione e non venga impedito agli altri condomini di farne parimenti uso secondo il loro diritto.
+                                In base all&apos;attuale normativa italiana <Link className="underline text-chart-3" href='https://legis.xligo.com/documento/it/documentazione/stato/codice.civile/art1102/comma1?v=2025-02-20'>(art. 1102 Codice Civile)</Link> <span className="font-bold">non c&apos;è alcuna limitazione all&apos;utilizzo della cosa comune</span> purché non ne venga alterata la destinazione e non venga impedito agli altri condomini di farne parimenti uso secondo il loro diritto.
                             </p>
                         </div>
                         <div className="md:w-1/2 p-20">

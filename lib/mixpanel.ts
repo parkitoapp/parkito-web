@@ -29,8 +29,11 @@ export const initMixpanel = () => {
                 dead_click: true,
             },
             record_heatmap_data: true,
-            record_sessions_percent: 100,
+            record_sessions_percent: 50,
+            record_idle_timeout_ms: 1000 * 60 * 2, // 2 minutes
             persistence: 'localStorage',
+            record_mask_text_selector: '', // unmasks all text elements
+            record_block_selector: '', // unmasks all images and videos
             ignore_dnt: true,
         });
 

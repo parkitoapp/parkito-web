@@ -10,6 +10,7 @@
 "use client"
 
 import { useState } from "react"
+import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,
@@ -41,13 +42,14 @@ export default function HostDropdown({ onLinkClick }: HostDropdownProps) {
     const hostPages = [
         { name: "Diventa Host", link: "/diventare-host" },
         { name: "Automatizza il tuo parcheggio", link: "/devices" },
+
     ]
 
     // Mobile: Use Collapsible (accordion behavior)
     if (isMobile) {
         return (
             <Collapsible className="w-full">
-                <CollapsibleTrigger className="flex w-full flex-row items-center justify-between text-primary font-bold dark:text-neutral-300 py-2">
+                <CollapsibleTrigger className="flex w-full flex-row items-center justify-between text-primary font-bold  py-2">
                     <span>Host</span>
                     <ChevronDown className="h-4 w-4 transition-transform duration-200 data-[state=open]:rotate-180" />
                 </CollapsibleTrigger>
@@ -58,7 +60,7 @@ export default function HostDropdown({ onLinkClick }: HostDropdownProps) {
                                 key={idx}
                                 href={page.link}
                                 onClick={onLinkClick}
-                                className={`text-primary font-bold dark:text-neutral-300 ${isActive(page.link) ? "text-chart-2" : ""}`}
+                                className={`text-primary font-bold  ${isActive(page.link) ? "text-chart-2" : ""}`}
                             >
                                 {page.name}
                             </Link>
@@ -73,26 +75,50 @@ export default function HostDropdown({ onLinkClick }: HostDropdownProps) {
     // Desktop: Use DropdownMenu (popup behavior)
     return (
         <DropdownMenu open={open} onOpenChange={setOpen}>
-            <DropdownMenuTrigger asChild className={`flex flex-row items-center justify-center ${isActive(hostPages[0].link) || isActive(hostPages[1].link) ? "inset-0 h-full w-full px-2 rounded-full bg-chart-1/40" : ""}`}>
-                <Button variant={"ghost"} size={"sm"} className={`hover:bg-transparent hover:cursor-pointer font-bold md:text-xl text-md text-primary dark:text-white hover:text-chart-2 flex flex-row justify-center items-center md:py-2 ${isActive("/torino") || isActive("/milano") || isActive("/genova") || isActive("/laspezia") ? "text-chart-2" : ""}`}>
-                    Host
-                    <ChevronDown className="flex items-center justify-center mx-auto" />
+            <DropdownMenuTrigger asChild>
+                <Button
+                    variant={"ghost"}
+                    size={"sm"}
+                    className={`relative hover:bg-transparent hover:cursor-pointer font-bold md:text-xl text-md hover:text-chart-2 flex flex-row justify-center items-center md:py-2 transition-colors ${isActive(hostPages[0].link) || isActive(hostPages[1].link)
+                        ? "text-white dark:text-white"
+                        : "text-primary dark:text-primary"
+                        }`}
+                >
+                    {(isActive(hostPages[0].link) || isActive(hostPages[1].link)) && (
+                        <motion.div
+                            layoutId="hovered-host"
+                            className="absolute inset-0 h-full w-full px-2 rounded-full bg-chart-1/40"
+                        />
+                    )}
+                    <span className="relative z-20">Host</span>
+                    <ChevronDown className={`flex items-center justify-center mx-auto ml-1 transition-transform duration-200 relative z-20 ${open ? 'rotate-180' : ''}`} />
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="size-full z-9999 bg-popover/95 backdrop-blur-sm relative top-6" align="center">
+            <DropdownMenuContent
+                className="min-w-[240px] bg-white/50 dark:bg-neutral-950/50 backdrop-blur-lg border border-primary/20 shadow-2xl rounded-2xl py-2 px-2"
+                align="center"
+                sideOffset={10}
+                side="bottom"
+                style={{ zIndex: 9999 }}
+            >
                 {hostPages.map((pages, idx) => (
-                    <>
-                        <DropdownMenuItem key={idx} onClick={() => setOpen(false)}>
-                            <Link
-                                className={`text-primary dark:text-white font-2xl text-bold size-full ${isActive(pages.link) ? "text-chart-2" : ""
-                                    }`}
-                                href={pages.link}
-                            >
-                                {pages.name}
-                            </Link>
-                        </DropdownMenuItem>
-                        {idx < hostPages.length - 1 && <DropdownMenuSeparator />}
-                    </>
+
+                    <DropdownMenuItem
+                        key={idx}
+                        onClick={() => setOpen(false)}
+                        className={`px-4 py-3 transition-all rounded-none duration-200 hover:bg-accent/60 focus:bg-accent/60 active:scale-[0.98] cursor-pointer ${idx < hostPages.length - 1 ? "border-b border-primary/20" : ""}`}
+                    >
+                        <Link
+                            className={`w-full text-primary dark:text-white text-lg font-semibold transition-colors ${isActive(pages.link) ? "text-chart-2 dark:text-chart-2" : "hover:text-chart-2 dark:hover:text-chart-2"
+                                }`}
+                            href={pages.link}
+                        >
+                            {pages.name}
+                        </Link>
+
+                    </DropdownMenuItem>
+
+
                 ))}
             </DropdownMenuContent>
         </DropdownMenu >
