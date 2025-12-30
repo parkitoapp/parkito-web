@@ -14,30 +14,55 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Error from "./Error";
 
-const COMPANY_DOMAIN = "parkito.app";
-
 export default function LoginClient() {
     const router = useRouter();
     const [error, setError] = useState("");
 
     const handleLogin = async () => {
         try {
+            setError("");
             // dynamically import firebase only on the client
-            const { signInWithPopup } = await import("firebase/auth");
+            const { signInWithPopup, signOut } = await import("firebase/auth");
             const { auth, provider } = await import("@/lib/firebase");
 
             const result = await signInWithPopup(auth, provider);
-            const email = result.user.email || "";
+            
+            // Get the ID token
+            const idToken = await result.user.getIdToken();
 
-            if (!email.endsWith(`@${COMPANY_DOMAIN}`)) {
-                await auth.signOut();
-                setError("Access restricted to company accounts only.");
+            // Verify with server (server-side validation is the source of truth)
+            const response = await fetch("/api/auth/verify", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ idToken }),
+            });
+
+            const data = await response.json();
+
+            if (!data.valid) {
+                await signOut(auth);
+                setError(data.error || "Access restricted to company accounts only.");
                 return;
             }
 
+            // Set secure HttpOnly cookie via API route (prevents XSS)
+            // Include credentials to ensure cookies are set
+            await fetch("/api/auth/set-cookie", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include", // Important: ensures cookies are set
+                body: JSON.stringify({ idToken }),
+            });
+            
+            // Redirect to admin
             router.push("/admin");
-        } catch {
-            setError("Login failed. Please try again.");
+        } catch (err: any) {
+            console.error("Login error:", err);
+            setError(err.message || "Login failed. Please try again.");
         }
     };
 

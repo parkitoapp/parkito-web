@@ -63,6 +63,27 @@ async function getCitySlugs(baseUrl: string): Promise<Set<string>> {
 export async function proxy(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
+    // Protect /admin routes - check for authentication token
+    if (pathname.startsWith("/admin")) {
+        // Allow /admin/login if it exists (for redirects)
+        if (pathname === "/admin/login" || pathname === "/login") {
+            return NextResponse.next();
+        }
+
+        // Check for token in cookie or Authorization header
+        const token =
+            request.cookies.get("firebase-auth-token")?.value ||
+            request.headers.get("authorization")?.replace("Bearer ", "");
+
+        // If no token, redirect to login
+        // The layout will handle the actual verification
+        if (!token) {
+            return NextResponse.redirect(new URL("/login", request.url));
+        }
+
+        return NextResponse.next();
+    }
+
     // Skip if it's a file request (has extension)
     if (pathname.includes('.')) {
         return NextResponse.next();
