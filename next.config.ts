@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
@@ -50,4 +53,4 @@ const nextConfig = {
   // Invalid cities will show 404 instead of redirecting to /citta/invalid-slug
 };
 
-module.exports = nextConfig;
+export default nextConfig; 
