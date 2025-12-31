@@ -20,10 +20,13 @@ import { useState, useEffect } from "react";
 import ThemeSwitch from "./Switch";
 import Link from "next/link";
 import CityDropdown from "@/components/CityDropdown";
+import HostDropdown from "@/components/HostDropdown";
 import { useTheme } from "next-themes";
 import { useWidth } from "@/hooks/useWidth";
 import { useSnow } from "@/hooks/useSnow";
 import { Snowflake } from "lucide-react";
+import isChristmas from "@/hooks/isChristmas";
+import { Button } from "./ui/button";
 
 export default function ResNav() {
 
@@ -43,8 +46,10 @@ export default function ResNav() {
 
     if (!mounted) return null; // or a placeholder
 
-    const source = resolvedTheme === "dark" ? "/logo-xmas-dark.webp" : "/logo-xmas-light.webp";
-    // const source = resolvedTheme === "dark" ? "/logo-dark.webp" : "/logo.webp";
+    const xmasSrc = resolvedTheme === "dark" ? "/logo-xmas-dark.webp" : "/logo-xmas-light.webp";
+    const normalSrc = resolvedTheme === "dark" ? "/logo-dark.webp" : "/logo.webp";
+
+    const finalSrc = isChristmas() ? xmasSrc : normalSrc;
 
 
 
@@ -57,9 +62,13 @@ export default function ResNav() {
             name: "Dove Siamo",
             link: "/citta",
         },
+        // {
+        //     name: "Diventa Host",
+        //     link: "/diventare-host",
+        // },
         {
-            name: "Diventa Host",
-            link: "/diventare-host",
+            name: "Host",
+            link: "",
         },
         // {
         //     name: "Cos'è Parkito",
@@ -72,23 +81,25 @@ export default function ResNav() {
     ];
 
 
-
     return (
-        <div className="relative w-full z-99999">
+        <div className="relative w-full z-99">
             <Navbar>
                 {width > 1024 ? (
                     <NavBody className="dark:border">
-                        <NavbarLogo source={source} />
+                        <NavbarLogo source={finalSrc} />
                         <NavItems items={navItems} />
                         <div className="flex items-center gap-4">
-                            <NavbarButton
-                                onClick={() => toggleSnow()}
-                                className={`p-2 rounded-full transition-colors z-1000 ${isSnowActive ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-400'}`}
-                                aria-label={isSnowActive ? "Disattiva neve" : "Attiva neve"}
-                                title={isSnowActive ? "Disattiva neve" : "Attiva neve"}
-                            >
-                                <Snowflake size={20} />
-                            </NavbarButton>
+                            {isChristmas() &&
+                                <Button
+                                    variant="default"
+                                    size="icon"
+                                    onClick={() => toggleSnow()}
+                                    className={`p-2 rounded-full transition-colors z-1000 ${isSnowActive ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-400'}`}
+                                    aria-label="Bottone neve"
+                                    title={isSnowActive ? "Disattiva neve" : "Attiva neve"}
+                                >
+                                    <Snowflake size={20} />
+                                </Button>}
                             <div className="z-1000">
                                 <ThemeSwitch />
                             </div>
@@ -99,7 +110,7 @@ export default function ResNav() {
 
                     (<MobileNav isMenuOpen={isMobileMenuOpen}>
                         <MobileNavHeader>
-                            <NavbarLogo source={source} />
+                            <NavbarLogo source={finalSrc} />
                             <MobileNavToggle
                                 isOpen={isMobileMenuOpen}
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -118,14 +129,20 @@ export default function ResNav() {
                                             <CityDropdown />
                                         </div>
                                     )
-                                    : (<Link
-                                        key={`mobile-link-${idx}`}
-                                        href={item.link}
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                        className="relative text-primary font-bold dark:text-neutral-300"
-                                    >
-                                        <span className="block">{item.name}</span>
-                                    </Link>)
+                                    : item.name === "Host" ? (
+                                        <div key={`mobile-link-${idx}`} className="w-full">
+                                            <HostDropdown onLinkClick={() => setIsMobileMenuOpen(false)} />
+                                        </div>
+                                    ) : (
+                                        <Link
+                                            key={`mobile-link-${idx}`}
+                                            href={item.link}
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                            className="relative text-primary font-bold dark:text-neutral-300"
+                                        >
+                                            <span className="block">{item.name}</span>
+                                        </Link>
+                                    )
                             ))}
                             <div className="flex w-full flex-col gap-4 mt-auto pt-8">
                                 <div className="flex flex-row items-center justify-end gap-4 z-1000">

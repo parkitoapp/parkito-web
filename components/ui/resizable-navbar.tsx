@@ -10,8 +10,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
-import CityDropdown from "../CityDropdown";
-
+import HostDropdown from "@/components/HostDropdown";
+import isChristmas from "@/hooks/isChristmas";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -129,49 +129,61 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
   const pathname = usePathname();
 
-  const activeIdx = items.findIndex((item) => {
+  const isActive = (item: { name: string; link: string }) => {
     if (item.link === "/") {
       return pathname === "/";
     }
+    if (!item.link) return false; // Skip empty links (Host)
     return pathname?.startsWith(item.link);
-  });
+  };
 
   return (
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-primary font-bold text-xl transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
+        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 font-bold text-xl transition duration-200 lg:flex lg:space-x-2",
         className,
       )}
     >
-      {items.map((item, idx) => (
-        item.name === "Città" ? (
+      {items.map((item, idx) => {
+        const itemIsActive = isActive(item);
+        const isHovered = hovered === idx;
+        const showActive = isHovered || (hovered === null && itemIsActive);
+
+        return item.name === "Host" ? (
           <div
-            className="relative py-2 text-primary dark:text-neutral-300"
+            className="relative py-2"
             key={`link-${idx}`}
             onMouseEnter={() => setHovered(null)}
             onFocus={() => setHovered(null)}
           >
-            <CityDropdown />
+            <HostDropdown />
           </div>
         ) : (
           <Link
             onMouseEnter={() => setHovered(idx)}
             onClick={onItemClick}
-            className="relative px-2 py-2 text-primary dark:text-neutral-300"
+            className="relative px-2 py-2"
             key={`link-${idx}`}
             href={item.link}
           >
-            {(hovered === idx || (hovered === null && activeIdx === idx)) && (
+            {showActive && (
               <motion.div
                 layoutId="hovered"
-                className="absolute inset-0 h-full w-full px-2 rounded-full bg-chart-1/40 "
+                className="absolute inset-0 h-full w-full px-2 rounded-full bg-chart-1/40"
               />
             )}
-            <span className="relative z-20">{item.name}</span>
+            <span className={cn(
+              "relative z-20 transition-colors",
+              showActive
+                ? " dark:text-white"
+                : "text-primary dark:text-primary"
+            )}>
+              {item.name}
+            </span>
           </Link>
-        )
-      ))}
+        );
+      })}
     </motion.div>
   );
 };
@@ -281,10 +293,10 @@ export const NavbarLogo = ({
   source: string;
   visible?: boolean;
 }) => {
-  const finalSrc = visible ? "/logo-xmas.webp" : source;
-  // const finalSrc = visible ? "/logo-cropped.webp" : source;
+  const xmasSrc = visible ? "/logo-xmas.webp" : source;
+  const normalSrc = visible ? '/logo-cropped.webp' : source;
 
-
+  const finalSrc = isChristmas() ? xmasSrc : normalSrc;
   return (
     <Link href="/" className="relative z-20 flex items-center py-1 ">
       <Image

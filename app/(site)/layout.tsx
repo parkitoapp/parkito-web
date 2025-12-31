@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Toaster } from "@/components/ui/sonner";
 import Snow from "@/components/Snow";
 import { SnowProvider } from "@/hooks/useSnow";
+import isChristmas from "@/hooks/isChristmas";
 
 export default function RootLayout({
   children
@@ -22,10 +23,9 @@ export default function RootLayout({
       >
         Vai al contenuto
       </Link>
-      {/* <Nav /> */}
-      {<ResNav />}
+      <ResNav />
 
-      <Snow />
+      {isChristmas() && <Snow />}
 
       <div id="main-content" className="min-h-screen">
 

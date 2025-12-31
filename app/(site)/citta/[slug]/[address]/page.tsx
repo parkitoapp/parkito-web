@@ -8,8 +8,6 @@ interface Params {
     address: string;
 }
 
-export const dynamic = "force-dynamic";
-
 type Props = {
     params: { slug: string; address: string } | Promise<{ slug: string; address: string }>;
 };

@@ -16,8 +16,6 @@ function titleizeSlug(slug?: string) {
         .join(' ');
 }
 
-export const dynamic = "force-dynamic";
-
 // Generate dynamic metadata for each blog post (title from post)
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
@@ -30,18 +28,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CityPage({ params }: Props) {
     const citySlug = await params;
 
-    // Fetch city data to get fallback image
+    // Fetch city data to get image from Supabase bucket (with fallback to placeholder)
     const cities = await getCities();
     const cityData = cities.find(c => c.url === `/citta/${citySlug.slug}`);
 
+    // Use city image from Supabase/placeholder, or fallback to local path
+    const bannerImage = cityData?.image || `/${citySlug.slug}.webp`;
 
     return (
         <div>
             <Banner
                 title={`Parcheggi a ${titleizeSlug(citySlug.slug)}`}
                 subtitle={`Scopri i migliori parcheggi a ${titleizeSlug(citySlug.slug)} con Parkito`}
-                src={`/${citySlug.slug}.webp`}
-                src2={cityData?.fallbackImage}
+                src={bannerImage}
+                src2={true}
                 icon={true}
                 social={true}
 
