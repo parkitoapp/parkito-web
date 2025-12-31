@@ -29,7 +29,6 @@ export default function Footer() {
                         <div className='mt-6 md:mt-8'>
                             <ul className='list-none text-sm md:text-base'>
                                 <li>All Indabox Srl</li>
-                                <li>Milano - Firenze - Bologna</li>
                                 <li>P.I: 04099131205</li>
                             </ul>
                         </div>

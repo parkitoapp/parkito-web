@@ -14,7 +14,12 @@ import LazyVideo from '@/components/LazyVideo'
 import { ArrowRight } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import DownloadButtons from '@/components/DownloadButtons'
+import { Metadata } from 'next'
 
+export const metadata: Metadata = {
+    title: "Condividi il tuo parcheggio con Parkito",
+    description: "Scopri come condividere il tuo parcheggio privato con Parkito e guadagnare fino al 300% in più rispetto ad un affitto tradizionale.",
+}
 
 export default function page() {
     return (

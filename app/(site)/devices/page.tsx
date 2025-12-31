@@ -4,7 +4,12 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import BC from "@/components/BC"
 import DownloadButtons from "@/components/DownloadButtons"
 import Link from "next/link"
+import { Metadata } from "next"
 
+export const metadata: Metadata = {
+    title: "Automatizza gli accessi del tuo Parkito",
+    description: "Non puoi essere presente di persona per gestire gli accessi del tuo parcheggio? Automatizzali con le soluzioni proposte da Parkito, scopri come!",
+}
 
 export default function page() {
     return (
