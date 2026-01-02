@@ -147,12 +147,15 @@ export default function Footer() {
                     </li>
                     <li> - </li>
                     <li>
-                        <Link
+                        {/* <Link
                             href="https://www.iubenda.com/privacy-policy/94483316"
                             className="iubenda-white iubenda-noiframe iubenda-embed underline"
                             title="Privacy Policy"
                         >
                             Privacy Policy
+                        </Link> */}
+                        <Link href='/privacy-policy' target='_blank' title='Informativa sulla privacy'>
+                            Informativa sulla privacy
                         </Link>
                     </li>
                     <li>-</li>
