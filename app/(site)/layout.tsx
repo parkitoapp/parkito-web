@@ -1,5 +1,12 @@
+/**
+ * Layout component for the site pages.
+ * Includes the navigation, footer, and snow effects.
+ * 
+ * @param {React.ReactNode} children - The child components to be rendered.
+ * @returns {JSX.Element} The layout component.
+ */
+
 import "../globals.css";
-// import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import ResNav from "@/components/ResNav";
