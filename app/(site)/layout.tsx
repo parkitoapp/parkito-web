@@ -12,9 +12,8 @@ import BackToTop from "@/components/BackToTop";
 import ResNav from "@/components/ResNav";
 import Link from "next/link";
 import { Toaster } from "@/components/ui/sonner";
-import Snow from "@/components/Snow";
 import { SnowProvider } from "@/hooks/useSnow";
-import isChristmas from "@/hooks/isChristmas";
+import ChristmasSnow from "@/components/ChristmasSnow";
 
 export default function RootLayout({
   children
@@ -32,7 +31,7 @@ export default function RootLayout({
       </Link>
       <ResNav />
 
-      {isChristmas() && <Snow />}
+      <ChristmasSnow />
 
       <div id="main-content" className="min-h-screen">
 
