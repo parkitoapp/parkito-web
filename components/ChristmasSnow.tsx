@@ -5,14 +5,20 @@ import Snow from '@/components/Snow'
 import isChristmas from '@/hooks/isChristmas'
 
 export default function ChristmasSnow() {
-    const [shouldShowSnow, setShouldShowSnow] = useState(false)
+    const [mounted, setMounted] = useState(false)
 
+    // Ensure this only runs on the client
     useEffect(() => {
-        // Check on client side only
-        setShouldShowSnow(isChristmas())
+        // defer the update to avoid synchronous setState inside the effect
+        const id = requestAnimationFrame(() => setMounted(true));
+        return () => cancelAnimationFrame(id);
     }, [])
 
-    if (!shouldShowSnow) return null
+    // Don't render anything until mounted (client-side only)
+    if (!mounted) return null
+
+    // Check on client side only after mount
+    if (!isChristmas()) return null
 
     return <Snow />
 }
