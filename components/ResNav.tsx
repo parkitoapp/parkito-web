@@ -29,12 +29,19 @@ import isChristmas from "@/hooks/isChristmas";
 import { Button } from "./ui/button";
 
 export default function ResNav() {
-
-    const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    // Always call hooks unconditionally (React requirement)
+    const theme = useTheme();
     const width = useWidth();
-    const { isSnowActive, toggleSnow } = useSnow();
+    const snow = useSnow();
+
+    // Safely extract values with fallbacks
+    const resolvedTheme = theme?.resolvedTheme || "light";
+    const displayWidth = width > 0 ? width : (typeof window !== 'undefined' ? window.innerWidth : 1920);
+    const isSnowActive = snow?.isSnowActive || false;
+    const toggleSnow = snow?.toggleSnow || (() => { });
 
     // Ensure this only runs on the client to prevent hydration mismatches
     useEffect(() => {
@@ -77,14 +84,40 @@ export default function ResNav() {
         },
     ];
 
-    // Use a safe default width if width is 0 (SSR or initial render)
-    // Default to desktop width to ensure navbar renders on Hostinger
-    const displayWidth = mounted && width > 0 ? width : (typeof window !== 'undefined' ? window.innerWidth : 1920);
+    const isDesktop = displayWidth > 1024;
 
+    // Render simple fallback navbar if not mounted yet (SSR or initial load)
+    // This ensures navbar always shows on Hostinger even if motion library fails
+    if (!mounted) {
+        return (
+            <nav className="fixed inset-x-0 top-0 z-50 w-full bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="flex h-16 items-center justify-between">
+                        <Link href="/" className="flex items-center">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={finalSrc}
+                                alt="Parkito"
+                                className="h-12 w-auto"
+                            />
+                        </Link>
+                        <div className="flex items-center gap-4">
+                            <Link href="/" className="text-primary font-medium">Home</Link>
+                            <Link href="/citta" className="text-primary font-medium">Dove Siamo</Link>
+                            <Link href="/blog" className="text-primary font-medium">Blog</Link>
+                            <ThemeSwitch />
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        );
+    }
+
+    // Render full navbar with motion animations once mounted
     return (
         <div className="relative w-full z-99">
             <Navbar>
-                {displayWidth > 1024 ? (
+                {isDesktop ? (
                     <NavBody className="dark:border">
                         <NavbarLogo source={finalSrc} />
                         <NavItems items={navItems} />
@@ -157,18 +190,18 @@ export default function ResNav() {
                                     <ThemeSwitch />
                                 </div>
                                 {/* <NavbarButton
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                variant="primary"
-                                className="w-full"
-                            >
-                                Book a call
-                            </NavbarButton> */}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            variant="primary"
+                            className="w-full"
+                        >
+                            Book a call
+                        </NavbarButton> */}
                             </div>
                         </MobileNavMenu>
                     </MobileNav>
                     )
                 }
             </Navbar>
-        </div >
+        </div>
     );
 }
