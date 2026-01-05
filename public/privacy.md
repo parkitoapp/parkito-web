@@ -109,10 +109,6 @@ All indabox s.r.l. Via del Tiratoio n.1 - 50124 - Firenze
 
 Ultima modifica: 25 luglio 2025
 
-[Scarica il PDF](https://www.iubenda.com/privacy-policy/94483316.pdf)
-
-Questo documento è stato creato con il [Generatore di Privacy e Cookie Policy](https://www.iubenda.com/it/generatore-di-privacy-e-cookie-policy) di iubenda. Scopri anche il [Generatore di Termini e Condizioni](https://www.iubenda.com/it/generatore-termini-e-condizioni). [iubenda](https://www.iubenda.com/it/) ospita questo contenuto e raccoglie solo [i Dati Personali strettamente necessari](https://www.iubenda.com/privacy-policy/19418041) alla sua fornitura.
-
-(EN) This document has been created with the iubenda [Privacy and Cookie Policy Generator](https://www.iubenda.com/en/privacy-and-cookie-policy-generator). See also the [Terms and Conditions Generator](https://www.iubenda.com/en/terms-and-conditions-generator).
+[Scarica il PDF](https://parkito.app/94483316.pdf)
 
 [Visualizza la Privacy Policy Completa](https://www.iubenda.com/app/privacy-policy/94483316/legal)
