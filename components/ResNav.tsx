@@ -27,6 +27,7 @@ import { useSnow } from "@/hooks/useSnow";
 import { Snowflake } from "lucide-react";
 import isChristmas from "@/hooks/isChristmas";
 import { Button } from "./ui/button";
+import Image from "next/image";
 
 export default function ResNav() {
     const [mounted, setMounted] = useState(false);
@@ -94,8 +95,9 @@ export default function ResNav() {
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
                         <Link href="/" className="flex items-center">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
+                            <Image
+                                width={100}
+                                height={100}
                                 src={finalSrc}
                                 alt="Parkito"
                                 className="h-12 w-auto"
@@ -105,6 +107,8 @@ export default function ResNav() {
                             <Link href="/" className="text-primary font-medium">Home</Link>
                             <Link href="/citta" className="text-primary font-medium">Dove Siamo</Link>
                             <Link href="/blog" className="text-primary font-medium">Blog</Link>
+                            <Link href="/diventare-host" className="text-primary font-medium">Diventa Host</Link>
+                            <Link href="/devices" className="text-primary font-medium">Automatizza l&apos;accesso</Link>
                             <ThemeSwitch />
                         </div>
                     </div>
