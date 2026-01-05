@@ -92,6 +92,92 @@ _iub.csLangConfiguration = {"it":{"cookiePolicyId":94483316}};
           src="https://cdn.iubenda.com/cs/iubenda_cs.js"
           strategy="lazyOnload"
         />
+        {/* Chunk loading error handler */}
+        <Script id="chunk-error-handler" strategy="afterInteractive">
+          {`
+            (function() {
+              if (typeof window === 'undefined') return;
+              
+              const originalAddEventListener = window.addEventListener;
+              const chunkErrorHandler = function(event) {
+                if (event.type === 'error' && event.target && event.target.tagName === 'SCRIPT') {
+                  const script = event.target;
+                  const src = script.src || script.getAttribute('src');
+                  
+                  if (src && src.includes('/_next/static/chunks/')) {
+                    console.warn('Chunk loading error detected:', src);
+                    event.preventDefault();
+                    
+                    // Retry loading the chunk with cache busting
+                    const retryLoad = function(attempt = 1) {
+                      if (attempt > 5) {
+                        console.error('Failed to load chunk after 5 attempts:', src);
+                        // Force hard reload to clear cache
+                        if (typeof window !== 'undefined' && window.location) {
+                          // Clear service worker cache if exists
+                          if ('serviceWorker' in navigator) {
+                            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                              for(var registration of registrations) {
+                                registration.unregister();
+                              }
+                            });
+                          }
+                          // Hard reload with cache bypass
+                          window.location.href = window.location.href.split('#')[0] + '?reload=' + Date.now();
+                        }
+                        return;
+                      }
+                      
+                      // Remove old script if exists
+                      const existingScript = document.querySelector('script[src="' + src + '"]');
+                      if (existingScript) {
+                        existingScript.remove();
+                      }
+                      
+                      const newScript = document.createElement('script');
+                      // Add cache busting and retry parameter
+                      const separator = src.includes('?') ? '&' : '?';
+                      newScript.src = src + separator + 'v=' + Date.now() + '&retry=' + attempt;
+                      newScript.async = true;
+                      newScript.crossOrigin = 'anonymous';
+                      newScript.onerror = function() {
+                        setTimeout(function() {
+                          retryLoad(attempt + 1);
+                        }, 500 * attempt);
+                      };
+                      newScript.onload = function() {
+                        console.log('Chunk loaded successfully on retry:', src);
+                      };
+                      
+                      document.head.appendChild(newScript);
+                    };
+                    
+                    setTimeout(function() {
+                      retryLoad();
+                    }, 100);
+                  }
+                }
+              };
+              
+              // Listen for script errors
+              window.addEventListener('error', chunkErrorHandler, true);
+              
+              // Handle unhandled promise rejections from chunk loading
+              window.addEventListener('unhandledrejection', function(event) {
+                if (event.reason && typeof event.reason === 'string' && event.reason.includes('chunk')) {
+                  console.warn('Chunk loading promise rejection:', event.reason);
+                  event.preventDefault();
+                  // Try to reload the page
+                  setTimeout(function() {
+                    if (typeof window !== 'undefined' && window.location) {
+                      window.location.reload();
+                    }
+                  }, 1000);
+                }
+              });
+            })();
+          `}
+        </Script>
       </head>
       {/* <GoogleTagManager gtmId="" /> */}
       <body className={`${interTight.className} bg-background min-h-screen`}>
