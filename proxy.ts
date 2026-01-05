@@ -60,6 +60,16 @@ async function getCitySlugs(baseUrl: string): Promise<Set<string>> {
     }
 }
 
+// Helper function to add security headers to any response
+function addSecurityHeaders(response: NextResponse): NextResponse {
+    response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+    response.headers.set('X-Frame-Options', 'DENY');
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+    response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), interest-cohort=()');
+    return response;
+}
+
 export async function proxy(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
@@ -67,7 +77,7 @@ export async function proxy(request: NextRequest) {
     if (pathname.startsWith("/admin")) {
         // Allow /admin/login if it exists (for redirects)
         if (pathname === "/admin/login" || pathname === "/login") {
-            return NextResponse.next();
+            return addSecurityHeaders(NextResponse.next());
         }
 
         // Check for token in cookie or Authorization header
@@ -78,15 +88,16 @@ export async function proxy(request: NextRequest) {
         // If no token, redirect to login
         // The layout will handle the actual verification
         if (!token) {
-            return NextResponse.redirect(new URL("/login", request.url));
+            const redirectResponse = NextResponse.redirect(new URL("/login", request.url));
+            return addSecurityHeaders(redirectResponse);
         }
 
-        return NextResponse.next();
+        return addSecurityHeaders(NextResponse.next());
     }
 
     // Skip if it's a file request (has extension)
     if (pathname.includes('.')) {
-        return NextResponse.next();
+        return addSecurityHeaders(NextResponse.next());
     }
 
     // Parse the path segments
@@ -94,14 +105,14 @@ export async function proxy(request: NextRequest) {
 
     // Skip if no segments or starts with excluded route
     if (segments.length === 0) {
-        return NextResponse.next();
+        return addSecurityHeaders(NextResponse.next());
     }
 
     const firstSegment = segments[0];
 
     // Skip excluded routes
     if (excludedRoutes.has(firstSegment)) {
-        return NextResponse.next();
+        return addSecurityHeaders(NextResponse.next());
     }
 
     // Get valid city slugs
@@ -115,17 +126,19 @@ export async function proxy(request: NextRequest) {
             // /milano -> /citta/milano
             const url = request.nextUrl.clone();
             url.pathname = `/citta/${firstSegment}`;
-            return NextResponse.redirect(url, { status: 301 });
+            const redirectResponse = NextResponse.redirect(url, { status: 301 });
+            return addSecurityHeaders(redirectResponse);
         } else if (segments.length === 2) {
             // /milano/via-roma -> /citta/milano/via-roma
             const url = request.nextUrl.clone();
             url.pathname = `/citta/${firstSegment}/${segments[1]}`;
-            return NextResponse.redirect(url, { status: 301 });
+            const redirectResponse = NextResponse.redirect(url, { status: 301 });
+            return addSecurityHeaders(redirectResponse);
         }
     }
 
     // Not a valid city - let Next.js handle it (will show 404)
-    return NextResponse.next();
+    return addSecurityHeaders(NextResponse.next());
 }
 
 export const config = {
