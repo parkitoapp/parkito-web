@@ -17,8 +17,8 @@ const interTight = Inter_Tight(
 
 export const metadata: Metadata = {
   title: {
-    default: "Parkito",
-    template: "%s | Parkito",
+    default: "Parkito.app",
+    template: "%s | Parkito.app",
   },
   description: "Trova parcheggio sicuro con un click!",
   keywords: [
@@ -54,10 +54,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Parkito Team', url: 'https://parkito.app' }],
   openGraph: {
-    title: 'Parkito',
+    title: 'Parkito.app',
     description: 'Trova parcheggio sicuro con un click!',
     url: 'https://parkito.app',
-    siteName: 'Parkito',
+    siteName: 'Parkito.app',
   }
 };
 
