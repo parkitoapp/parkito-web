@@ -36,22 +36,19 @@ export default function ResNav() {
     const width = useWidth();
     const { isSnowActive, toggleSnow } = useSnow();
 
-
-    // Ensure this only runs on the client
+    // Ensure this only runs on the client to prevent hydration mismatches
     useEffect(() => {
-        // defer the update to avoid synchronous setState inside the effect
-        const id = requestAnimationFrame(() => setMounted(true));
-        return () => cancelAnimationFrame(id);
+        // Use requestAnimationFrame to defer state update
+        const rafId = requestAnimationFrame(() => {
+            setMounted(true);
+        });
+        return () => cancelAnimationFrame(rafId);
     }, []);
-
-    if (!mounted) return null; // or a placeholder
 
     const xmasSrc = resolvedTheme === "dark" ? "/logo-xmas-dark.webp" : "/logo-xmas-light.webp";
     const normalSrc = resolvedTheme === "dark" ? "/logo-dark.webp" : "/logo.webp";
 
     const finalSrc = isChristmas() ? xmasSrc : normalSrc;
-
-
 
     const navItems = [
         {
@@ -80,11 +77,14 @@ export default function ResNav() {
         },
     ];
 
+    // Use a safe default width if width is 0 (SSR or initial render)
+    // Default to desktop width to ensure navbar renders on Hostinger
+    const displayWidth = mounted && width > 0 ? width : (typeof window !== 'undefined' ? window.innerWidth : 1920);
 
     return (
         <div className="relative w-full z-99">
             <Navbar>
-                {width > 1024 ? (
+                {displayWidth > 1024 ? (
                     <NavBody className="dark:border">
                         <NavbarLogo source={finalSrc} />
                         <NavItems items={navItems} />
