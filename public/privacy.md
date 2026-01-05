@@ -109,6 +109,6 @@ All indabox s.r.l. Via del Tiratoio n.1 - 50124 - Firenze
 
 Ultima modifica: 25 luglio 2025
 
-[Scarica il PDF](https://parkito.app/94483316.pdf)
+[Scarica il PDF](https://parkito.app/privacy.pdf)
 
 [Visualizza la Privacy Policy Completa](https://www.iubenda.com/app/privacy-policy/94483316/legal)
