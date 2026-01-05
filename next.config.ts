@@ -29,6 +29,39 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   // Disable source maps in production for smaller bundles
   productionBrowserSourceMaps: false,
+  // Hide x-powered-by header for security
+  poweredByHeader: false,
+  // Security headers
+  async headers() {
+    return [
+      {
+        // Apply security headers to all routes
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains; preload',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+          },
+        ],
+      },
+    ];
+  },
   // Optimize package imports to reduce bundle size
   experimental: {
     optimizePackageImports: [
@@ -48,9 +81,6 @@ const nextConfig: NextConfig = {
       exclude: ['error', 'warn'],
     } : false,
   },
-  // City redirects are now handled by middleware.ts
-  // This allows dynamic validation of city slugs before redirecting
-  // Invalid cities will show 404 instead of redirecting to /citta/invalid-slug
 };
 
 export default nextConfig; 
