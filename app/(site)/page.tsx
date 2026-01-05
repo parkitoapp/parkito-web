@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <>
-      <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.webp" icon={true} social={true} dwbtn={true} src2={true} />
+      <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati con Parkito.app!" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito.app!" src="/homePic.webp" icon={true} social={true} dwbtn={true} src2={true} />
       <div className="bg-background">
 
         <div className=" bg-background">
@@ -104,7 +104,7 @@ export default function Home() {
               </div>
             </div>
             <h2 className="relative z-10 text-5xl font-extrabold mx-auto mb-4 text-center pt-10 text-background px-2">La soluzione? Prenota <span className="text-lime-300 dark:text-accent-foreground">un Parkito!</span></h2>
-            <p className="relative z-10 text-xl mx-auto text-center text-background">Scopri la prima piattaforma di Park Sharing in Italia: i Parkito sono parcheggi privati verificati, <span className="font-bold underline">NON</span> autorimesse</p>
+            <p className="relative z-10 text-xl mx-auto text-center text-background">Scopri <span className="font-bold">Parkito.app</span>, la prima piattaforma di Park Sharing in Italia: i Parkito sono parcheggi privati verificati, <span className="font-bold underline">NON</span> autorimesse</p>
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 max-w-5xl mx-auto px-4">
 
               <Card className="flex flex-col bg-card p-4 rounded-xl">
@@ -244,7 +244,7 @@ export default function Home() {
           <CityCarousel />
           <div className="relative z-10  flex flex-col items-center justify-center gap-4 mb-10">
             <Button variant={"default"} className="bg-foreground hover:bg-blue-900/90 hover:text-white mt-4 rounded-full px-6 text-lg" asChild><Link href={"/citta"}>Scoprile tutte <ArrowRightIcon /></Link></Button>
-            <h2 className="text-2xl font-bold text-accent">Prenota il tuo primo Parkito!</h2>
+            <h2 className="text-2xl font-bold text-accent">Prenota il tuo primo Parkito con Parkito.app!</h2>
             <DownloadButtons />
           </div>
         </div>
