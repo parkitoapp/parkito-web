@@ -81,8 +81,9 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                                 aria-hidden
                                 className="absolute left-0 bottom-0 z-0 w-1/2 max-w-160 h-1 md:h-2 bg-lime-200 dark:bg-green-800 pointer-events-none"
                             />
-                            <span className="sr-only">Parkito.app, la prima app per il Park Sharing in Italia! Prenota in anticipo e in modo sicuro il tuo parcheggio!</span>
+                            <span className="sr-only">Parkito.app: La prima app per il Park Sharing in Italia! Prenota in anticipo e in modo sicuro il tuo parcheggio!</span>
                             <h1 className="relative z-10 font-extrabold  lg:text-6xl  leading-tight text-primary">{title}</h1>
+                            <h2 className="relative z-10 font-extrabold  lg:text-6xl  leading-tight text-primary">Parkito.app</h2>
                         </div>
                         <p className="text-xl md:text-2xl text-chart-3">{subtitle}</p>
 
@@ -171,7 +172,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                             </div>
                         </div>
                     )}
-                    <div className="absolute -top-5 z-20 text-sm text-white rounded-full bg-green-800 p-2 px-4">La prima app per il Park Sharing in Italia!</div>
+                    <div className="absolute -top-5 z-20 text-sm text-white rounded-full bg-green-800 p-2 px-4">Parkito.app: La prima app per il Park Sharing in Italia!</div>
                     <div className="relative z-10 w-full h-full">
                         <h1 className="relative z-10 text-4xl md:text-6xl lg:text-7xl font-bold text-primary mb-4 md:px-16 text-center">
                             {title}
