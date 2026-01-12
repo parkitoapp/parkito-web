@@ -13,15 +13,15 @@ import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
-  title: 'Home',
-  description: 'Prenota in anticipo Parcheggi Privati sicuri e verificati',
+  title: 'Prenota Parcheggi Privati',
+  description: 'Parkito.app: la prima app per il Park Sharing in Italia. Prenota in anticipo Parcheggi Privati sicuri e verificati',
 }
 
 export default function Home() {
 
   return (
     <>
-      <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati con Parkito.app!" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito.app!" src="/homePic.webp" icon={true} social={true} dwbtn={true} src2={true} />
+      <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati con Parkito!" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito.app!" src="/homePic.webp" icon={true} social={true} dwbtn={true} src2={true} />
       <div className="bg-background">
 
         <div className=" bg-background">
@@ -35,7 +35,10 @@ export default function Home() {
 
             <div className="w-full flex mx-auto flex-col min-h-80 justify-center items-center py-10 px-16 text-white text-center rounded-t-3xl lg:rounded-none gap-5">
 
-              <h1 className="text-4xl flex flex-col font-bold mb-4 text-primary">Trovare parcheggio in una città che non conosci? <br />Un incubo</h1>
+              <h1 className="text-4xl flex flex-col font-bold mb-4 text-primary">
+                <span className="text-5xl mb-2">Parkito.app</span>
+                <span>Trovare parcheggio in una città che non conosci? <br />Un incubo</span>
+              </h1>
               <div className="grid grid-cols-1 md:grid-cols-4 items-stretch gap-10">
                 <Card className="flex flex-col bg-card p-4 rounded-xl">
                   <CardHeader>
