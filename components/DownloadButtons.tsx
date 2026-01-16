@@ -9,7 +9,7 @@ export default function DownloadButtons() {
   const pathname = usePathname();
 
   const handleDownloadClick = (store: "apple" | "google") => {
-    trackEvent("Download Button Clicked", {
+    trackEvent("downloadapp_clicked", {
       store,
       page: pathname,
     });
