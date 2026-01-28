@@ -179,7 +179,7 @@ export default function Home() {
 
               <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-end text-right">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
-                  Scegli tra oltre 400 parcheggi
+                  Scegli tra oltre 400 Parkito
                 </h3>
                 <h2 className="text-2xl md:text-4xl font-bold text-primary mb-2 md:mb-4">
                   Un parcheggio privato a tua disposizione

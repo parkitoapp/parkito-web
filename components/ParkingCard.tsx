@@ -11,51 +11,51 @@ import { Parking } from "@/types";
 import { ArrowRightIcon } from "lucide-react";
 
 export default function ParkingCard({ parking }: { parking: Parking }) {
-    const [imageUrl, setImageUrl] = useState<string>("");
-    const [isLoading, setIsLoading] = useState(true);
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        async function loadImage() {
-            setIsLoading(true);
-            try {
-                const response = await fetch(`/api/parking-photo/${parking.id}`);
-                const data = await response.json();
-                setImageUrl(data.imageUrl);
-            } catch (error) {
-                console.error("Error fetching parking photo:", error);
-                setImageUrl("/parkitoplaceholder.webp");
-            }
-            setIsLoading(false);
-        }
-        loadImage();
-    }, [parking.id]);
+  useEffect(() => {
+    async function loadImage() {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`/api/parking-photo/${parking.id}`);
+        const data = await response.json();
+        setImageUrl(data.imageUrl);
+      } catch (error) {
+        console.error("Error fetching parking photo:", error);
+        setImageUrl("/parkitoplaceholder.webp");
+      }
+      setIsLoading(false);
+    }
+    loadImage();
+  }, [parking.id]);
 
-    return (
-        <Card className="border shadow-md rounded-3xl overflow-hidden bg-card hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg min-w-[60%]">
-            {isLoading ? (
-                <div className="w-full h-40 bg-muted animate-pulse rounded-md mb-3" />
-            ) : (
-                <Image
-                    src={imageUrl ?? "/parkitoplaceholder.webp"}
-                    alt={parking.name}
-                    width={400}
-                    height={200}
-                    loading="lazy"
-                    className="rounded-md w-full h-40 object-cover mb-3"
-                />
-            )}
+  return (
+    <Card className="border shadow-md rounded-3xl overflow-hidden bg-card hover:scale-[1.02] transition-transform duration-200 relative hover:shadow-lg min-w-[60%]">
+      {isLoading ? (
+        <div className="w-full h-40 bg-muted animate-pulse rounded-md mb-3" />
+      ) : (
+        <Image
+          src={imageUrl ?? "/parkitoplaceholder.webp"}
+          alt={parking.name}
+          width={400}
+          height={200}
+          loading="lazy"
+          className="rounded-md w-full h-40 object-cover mb-3"
+        />
+      )}
 
-            <CardFooter className="flex flex-col md:flex-row gap-2 items-center justify-center py-4 w-full px-10">
-                <CardTitle className="text-chart-2 text-xl items-center justify-start text-left w-full">
-                    {parking.name}
-                </CardTitle>
+      <CardFooter className="flex flex-col md:flex-row gap-2 items-center justify-center py-4 w-full px-10">
+        <CardTitle className="text-chart-2 text-xl items-center justify-start text-left w-full">
+          {parking.name}
+        </CardTitle>
 
-                <Button variant="default" className="p-6 rounded-3xl" asChild>
-                    <Link href={`/citta/${slugify(parking.city)}/${slugify(parking.address)}`}>
-                        Vai ai dettagli <ArrowRightIcon />
-                    </Link>
-                </Button>
-            </CardFooter>
-        </Card>
-    );
+        <Button variant="default" className="p-6 rounded-3xl" asChild>
+          <Link href={`/citta/${slugify(parking.city)}/${slugify(parking.address)}-${parking.id}`}>
+            Vai ai dettagli <ArrowRightIcon />
+          </Link>
+        </Button>
+      </CardFooter>
+    </Card>
+  );
 }
