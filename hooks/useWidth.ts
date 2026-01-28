@@ -13,7 +13,7 @@ export function useWidth(): number {
 
         window.addEventListener('resize', handleResize);
 
-        // ensure we have the current width
+        // ensure we have the current width immediately
         handleResize();
 
         return () => window.removeEventListener('resize', handleResize);

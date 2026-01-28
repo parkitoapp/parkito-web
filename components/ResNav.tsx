@@ -29,12 +29,16 @@ import { Button } from "./ui/button";
 
 export default function ResNav() {
 
-  const { resolvedTheme } = useTheme();
+  const theme = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const width = useWidth();
-  const { isSnowActive, toggleSnow } = useSnow();
+  const snow = useSnow();
 
+  // Safely extract values with fallbacks
+  const resolvedTheme = theme?.resolvedTheme || "light";
+  const isSnowActive = snow?.isSnowActive || false;
+  const toggleSnow = snow?.toggleSnow || (() => { });
 
   // Ensure this only runs on the client
   useEffect(() => {
