@@ -63,27 +63,31 @@ export async function getAllParkings(): Promise<
 > {
   const parkings = await getParkingData();
 
-  return parkings.map((p) => ({
+  // Deduplicate parkings with same driver_name and address
+  const uniqueParkings = new Map<string, Parking>();
+
+  for (const p of parkings) {
+    const key = `${p.driver_name}|${p.address}`;
+    if (!uniqueParkings.has(key)) {
+      uniqueParkings.set(key, p);
+    }
+  }
+
+  return Array.from(uniqueParkings.values()).map((p) => ({
     slug: slugify(p.city),
-    address: `${slugify(p.address)}-${p.id}`,
+    address: slugify(p.address),
   }));
 }
 
 export async function getParking(
   citySlug: string,
-  parkingSlug: string
+  parkingAddress: string
 ): Promise<Parking | null> {
   const parkings = await getParkingData();
-
-  // Extract ID (last part of the slug)
-  const parts = parkingSlug.split("-");
-  const id = parts.pop();
-
-  if (!id) return null;
-
   return (
     parkings.find(
-      (p) => p.id.toString() === id && slugify(p.city) === citySlug
+      (p) =>
+        slugify(p.city) === citySlug && slugify(p.address) === parkingAddress
     ) || null
   );
 }

@@ -51,7 +51,7 @@ export default function ParkingCard({ parking }: { parking: Parking }) {
         </CardTitle>
 
         <Button variant="default" className="p-6 rounded-3xl" asChild>
-          <Link href={`/citta/${slugify(parking.city)}/${slugify(parking.address)}-${parking.id}`}>
+          <Link href={`/citta/${slugify(parking.city)}/${slugify(parking.address)}`}>
             Vai ai dettagli <ArrowRightIcon />
           </Link>
         </Button>
