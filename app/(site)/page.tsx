@@ -224,29 +224,15 @@ export default function Home() {
         </div>
 
         {/* Carosello */}
-        <div className="relative flex flex-col items-center justify-center p-4 h-screen">
-          <div className="absolute inset-0 z-0 pointer-events-none">
-            <div className="relative w-full h-full">
-              <Image
-                src="/linea-desk.webp"
-                alt=""
-                fill
-                className="hidden xl:block object-cover object-center opacity-90"
-                aria-hidden
-              />
-              <Image
-                src="/linea-mob.webp"
-                alt=""
-                fill
-                className="xl:hidden object-cover object-center opacity-90"
-                aria-hidden
-              />
-            </div>
-          </div>
-          <h2 className="text-5xl font-bold text-primary w-full text-center mt-40">Città già <span className="text-lime-300 dark:text-accent-foreground">attive</span></h2>
+        <div className="relative flex flex-col items-center justify-center p-4">
+          <h2 className="text-5xl font-bold text-primary w-full text-center">Città già <span className="text-lime-300 dark:text-accent-foreground">attive</span></h2>
           <CityCarousel />
-          <div className="relative z-10  flex flex-col items-center justify-center gap-4 mb-10">
-            <Button variant={"default"} className="bg-foreground hover:bg-blue-900/90 hover:text-white mt-4 rounded-full px-6 text-lg" asChild><Link href={"/citta"}>Scoprile tutte <ArrowRightIcon /></Link></Button>
+          <div className="relative z-10 flex flex-col items-center justify-center gap-4 mb-10">
+            <Button variant={"default"} className="bg-foreground hover:bg-blue-900/90 hover:text-white mt-4 rounded-full px-6 text-lg mb-20" asChild>
+              <Link href={"/citta"}>
+                Scoprile tutte <ArrowRightIcon />
+              </Link>
+            </Button>
             <h2 className="text-2xl font-bold text-primary">Prenota il tuo primo Parkito con Parkito!</h2>
             <DownloadButtons />
           </div>
