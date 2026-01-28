@@ -152,7 +152,7 @@ export default function Home() {
 
             </div>
           </div>
-          <ScrollStack className="bg-background mt-10">
+          <ScrollStack className="bg-background mt-10 px-8 md:px-0">
             {/* ITEM 1 */}
             <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
 
@@ -224,7 +224,7 @@ export default function Home() {
         </div>
 
         {/* Carosello */}
-        <div className="bg-primary relative flex flex-col items-center justify-center p-4">
+        <div className="relative flex flex-col items-center justify-center p-4 h-screen">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <div className="relative w-full h-full">
               <Image
@@ -243,11 +243,11 @@ export default function Home() {
               />
             </div>
           </div>
-          <h2 className="text-5xl font-bold text-accent w-full text-center mt-10">Città già <span className="text-lime-300 dark:text-accent-foreground">attive</span></h2>
+          <h2 className="text-5xl font-bold text-primary w-full text-center mt-40">Città già <span className="text-lime-300 dark:text-accent-foreground">attive</span></h2>
           <CityCarousel />
           <div className="relative z-10  flex flex-col items-center justify-center gap-4 mb-10">
             <Button variant={"default"} className="bg-foreground hover:bg-blue-900/90 hover:text-white mt-4 rounded-full px-6 text-lg" asChild><Link href={"/citta"}>Scoprile tutte <ArrowRightIcon /></Link></Button>
-            <h2 className="text-2xl font-bold text-accent">Prenota il tuo primo Parkito con Parkito!</h2>
+            <h2 className="text-2xl font-bold text-primary">Prenota il tuo primo Parkito con Parkito!</h2>
             <DownloadButtons />
           </div>
         </div>
