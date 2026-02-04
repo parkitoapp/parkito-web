@@ -17,8 +17,8 @@ const interTight = Inter_Tight(
 
 export const metadata: Metadata = {
   title: {
-    default: "Parkito.app",
-    template: "%s | Parkito.app",
+    default: "Parkito",
+    template: "%s | Parkito",
   },
   description: "Trova parcheggio sicuro con un click!",
   keywords: [
