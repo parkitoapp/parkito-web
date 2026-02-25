@@ -20,7 +20,7 @@ export const teamMembers: Record<string, TeamMember> = {
   benedetta: {
     id: "benedetta",
     name: "Benedetta Sclano",
-    url: "URL_BENEDETTA",
+    url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0WgIlL4rI3dp95elxxMKo6AQQ1H282lzryMyMBcFSx46NhCDYx7v-UQQypdzdGYYvqCODYxbFV?gv=true",
     image: "/benedetta.webp",
   },
   marco: {
@@ -32,14 +32,8 @@ export const teamMembers: Record<string, TeamMember> = {
   davide: {
     id: "davide",
     name: "Davide Facchin",
-    url: "URL_DAVIDE",
+    url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1LvbiF0Z03OV9b0q_eXmOM257cDK2lfkROwib3lm-CSShGUrAk4tVJ2SgKy_4s_rGkjPA8Rwr6?gv=true",
     image: "/davide.webp",
-  },
-  nicolo: {
-    id: "nicolo",
-    name: "Nicolò Mignacca",
-    url: "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0q6crGA80PhHAfGJth6R0ZS67BPzJbCT7Q_q9L-aKrlvczUDU_bQ9kfvlOZmMX81ygv6FGtVaz",
-    image: "/nicolo.webp",
   },
   parkito:
   {
@@ -56,7 +50,7 @@ export const selectOptions: SelectOption[] = [
   { label: "Design Feedback", memberId: "benedetta" },
   { label: "Assistenza App", memberId: "benedetta" },
   { label: "Sei già un Host?", memberId: "davide" },
-  { label: "Vuoi diventare Host?", memberId: "nicolo" },
+  { label: "Vuoi diventare Host?", memberId: "davide" },
   { label: "Vorrei prenotare parcheggio", memberId: "parkito" },
 ];
 

@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <>
-      <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati con Parkito!" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.webp" icon={true} social={true} dwbtn={true} src2={true} />
+      <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati con Parkito!" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.webp" icon={true} social={true} dwbtn={true} src2={true} classname="max-w-xl" />
       <div className="bg-background">
 
         <div className=" bg-background">
@@ -156,7 +156,7 @@ export default function Home() {
             {/* ITEM 1 */}
             <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
 
-              <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-start">
+              <div className="flex flex-col w-full md:w-full p-2 md:p-4 justify-center items-start">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
                   Prepara un documento e
                 </h3>
@@ -168,7 +168,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <LazyVideo src="/ricerca-edited.mp4" className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0" />
+              <LazyVideo src="/video_home1.mp4" className="w-full md:w-[30%] h-auto rounded-lg mt-4 md:mt-0" />
             </ScrollStackItem>
 
             {/* ITEM 2 */}
@@ -176,11 +176,11 @@ export default function Home() {
 
               {/* Desktop video */}
               <LazyVideo
-                src="/mappa-edited.mp4"
-                className="hidden md:block w-full md:w-[40%] h-auto rounded-lg"
+                src="/video_home2.mp4"
+                className="hidden md:block w-full md:w-[30%] h-auto rounded-lg"
               />
 
-              <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-end text-right">
+              <div className="flex flex-col w-full md:w-full p-2 md:p-4 justify-center items-end text-right">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
                   Scegli tra oltre 400 Parkito
                 </h3>
@@ -194,7 +194,7 @@ export default function Home() {
 
               {/* Mobile video */}
               <LazyVideo
-                src="/mappa-edited.mp4"
+                src="/video_home3.mp4"
                 className="md:hidden w-full h-auto rounded-lg mt-4"
               />
             </ScrollStackItem>
@@ -202,7 +202,7 @@ export default function Home() {
             {/* ITEM 3 */}
             <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
 
-              <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-start">
+              <div className="flex flex-col w-full md:w-full p-2 md:p-4 justify-center items-start">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
                   accedi tramite l&apos;app
                 </h3>
@@ -215,8 +215,8 @@ export default function Home() {
               </div>
 
               <LazyVideo
-                src="/istruzioni-edited.mp4"
-                className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0"
+                src="/video_home3.mp4"
+                className="w-full md:w-[30%] h-auto rounded-lg mt-4 md:mt-0"
               />
             </ScrollStackItem>
           </ScrollStack>

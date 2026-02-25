@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <>
-      <Banner title="Automatizza gli accessi al tuo parcheggio e guadagna senza preoccuparti di nulla" src="/device.webp" src2={true} icon={true} social={true} dwbtn={true} />
+      <Banner title="Automatizza gli accessi al tuo parcheggio e guadagna senza preoccuparti di nulla" src="/device.webp" src2={true} icon={true} social={true} dwbtn={true} classname="max-w-sm" />
 
       <div className="bg-background">
         <div className="px-16 pt-8">

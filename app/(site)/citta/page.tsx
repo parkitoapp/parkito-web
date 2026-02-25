@@ -14,25 +14,25 @@ import { getCities } from "@/lib/parking"
 import BC from "@/components/BC"
 
 export const metadata: Metadata = {
-    title: 'Dove siamo',
-    keywords: ['città parkito', 'dove siamo parkito', 'location parkito', 'aree servite parkito', 'parcheggi per città parkito'],
-    description: 'Scopri le città in cui Parkito è disponibile e trova il parcheggio perfetto per te.'
+  title: 'Dove siamo',
+  keywords: ['città parkito', 'dove siamo parkito', 'location parkito', 'aree servite parkito', 'parcheggi per città parkito'],
+  description: 'Scopri le città in cui Parkito è disponibile e trova il parcheggio perfetto per te.'
 }
 
 export default async function City() {
-    const cities = await getCities();
+  const cities = await getCities();
 
-    const safeCities = cities.filter(city => city.name !== "");
+  const safeCities = cities.filter(city => city.name !== "");
 
-    return (
-        <>
-            <Banner title="Dove siamo" subtitle="Scopri le città in cui Parkito è disponibile" src="/cities.webp" src2={true} icon={true} social={true} dwbtn={true} />
-            <div className="bg-background">
-                <div className="px-16 pt-8">
-                    <BC />
-                </div>
-                <CityList cities={safeCities} />
-            </div>
-        </>
-    )
+  return (
+    <>
+      <Banner title="Dove siamo" subtitle="Scopri le città in cui Parkito è disponibile" src="/cities.webp" src2={true} icon={true} social={true} dwbtn={true} classname="max-w-sm" />
+      <div className="bg-background">
+        <div className="px-16 pt-8">
+          <BC />
+        </div>
+        <CityList cities={safeCities} />
+      </div>
+    </>
+  )
 }

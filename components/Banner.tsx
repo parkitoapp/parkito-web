@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 import DownloadButtons from "./DownloadButtons";
 
-export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn }: BannerProps) {
+export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn, classname = "" }: BannerProps) {
   void social;
   // Lazy initialization to avoid setState in useEffect
   const [scrollY, setScrollY] = useState(() => {
@@ -102,7 +102,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
               height={960}
               priority
               unoptimized={isSupabaseImage}
-              className="object-contain drop-shadow-2xl w-full rounded-lg z-9999"
+              className={`${classname} object-contain drop-shadow-2xl w-full rounded-lg z-9999`}
               onError={() => {
                 setImageError(true);
               }}
@@ -141,7 +141,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
               fill
               priority
               unoptimized={isSupabaseImage}
-              className="object-cover object-center"
+              className={`max-w-3xl w-full object-center object-contain mt-10`}
               onError={() => {
                 setImageError(true);
               }}
