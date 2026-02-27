@@ -1,52 +1,66 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Linkedin } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import BC from "@/components/BC";
+import { changeLog } from "@/data/changelog";
+import { Timeline } from "@/components/ui/timeline";
+import TeamCard from "@/components/TeamCard";
 
 const team = [
   {
     name: "Marco Lepore",
     role: "CEO & Founder",
     image: "/marco.webp",
-    linkedin: "https://www.linkedin.com/in/mario-rossi"
+    linkedin: "https://www.linkedin.com/in/marco-lepore",
+    avatar: "/marco_nobg.webp",
+    cit: "Parkito to the Moon!"
   },
   {
     name: "Filippo Giovannoni",
     role: "CTO",
     image: "/filippo.webp",
-    linkedin: "https://www.linkedin.com/in/filippo-giovannoni"
+    linkedin: "https://www.linkedin.com/in/filippo-giovannoni",
+    avatar: "/filippo_nobg.webp",
+    cit: "Pazienza da pescatore, codice da dev."
   },
   {
     name: "Davide Facchin",
     role: "Head of Growth",
     image: "/davide.webp",
-    linkedin: "https://www.linkedin.com/in/giulia-verdi"
+    linkedin: "https://www.linkedin.com/in/davide-facchin",
+    avatar: "/davide_nobg.webp",
+    cit: "Carpe Diem"
   },
   {
     name: "Benedetta Sclano",
     role: "Product Designer",
     image: "/benedetta.webp",
-    linkedin: "https://www.linkedin.com/in/benedetta-sclano"
+    linkedin: "https://www.linkedin.com/in/benedetta-sclano",
+    avatar: "/benedetta_nobg.webp",
+    cit: "L'inverno si trasforma sempre in primavera"
   },
-  {
-    name: "Nicolò Mignacca",
-    role: "Sales Manager",
-    image: "/nicolo.webp",
-    linkedin: "https://www.linkedin.com/in/nicolo-mignacca"
-  },
+  // {
+  //   name: "Nicolò Mignacca",
+  //   role: "Sales Manager",
+  //   image: "/nicolo.webp",
+  //   linkedin: "https://www.linkedin.com/in/nicolo-mignacca",
+  //   avatar: "/nicolo.png",
+  //   cit: "Parkito to the Moon!"
+  // },
   {
     name: "Orlando Ferazzani",
     role: "Frontend Developer",
     image: "/orlando.webp",
-    linkedin: "https://www.linkedin.com/in/orlando-v-m-ferazzani"
+    linkedin: "https://www.linkedin.com/in/orlando-v-m-ferazzani",
+    avatar: "/orlando_nobg.webp",
+    cit: "Per aspera ad Astra"
   },
   {
     name: "Edoardo Pietrobono",
     role: "Social Media Manager",
     image: "/edoardo.webp",
-    linkedin: "https://www.linkedin.com/in/edoardo-pietrobono"
+    linkedin: "https://www.linkedin.com/in/edoardo-pietrobono",
+    avatar: "/edoardo_nobg.webp",
+    cit: "uomini forti destini forti, uomini deboli destini deboli"
   }
 ]
 
@@ -58,7 +72,7 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <>
-      <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center p-4 gap-8 md:gap-12">
+      <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center p-4 gap-8 md:gap-12 md:pt-0 pt-30">
         <div className="text-center min-h-full w-full md:w-[60%] mx-auto flex flex-col my-auto items-center justify-center">
           <div className="mb-4 md:mb-6">
             <BC />
@@ -100,8 +114,8 @@ export default function page() {
           </section>
         </div>
       </div>
-      <div className="bg-chart-1">
-        <div className="mx-auto py-12 md:py-24 px-4 md:px-12 rounded-lg mb-12 md:mb-24 max-w-6xl">
+      <div>
+        <div className="mx-auto py-6 md:py-12 px-4 md:px-6 mb-12 md:mb-24">
           {(() => {
             // filter out empty placeholders (members without a name)
             const items = team.filter(m => m && m.name && m.name.trim().length > 0);
@@ -114,25 +128,29 @@ export default function page() {
             return rows.map((row, rowIdx) => (
               <div key={`team-row-${rowIdx}`} className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 md:flex md:justify-center mb-6 md:mb-8">
                 {row.map((member, idx) => (
-                  <div key={`team-member-${rowIdx}-${idx}`} className="flex flex-col items-center justify-center">
-                    <Avatar className="w-24 h-24 md:w-36 md:h-36">
-                      <AvatarImage src={member.image} />
-                      <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <h2 className="text-lg md:text-2xl font-bold text-primary mt-2">{member.name}</h2>
-                    <p className="text-base md:text-xl mb-2 text-primary">{member.role}</p>
-                    <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                      <Linkedin className="w-5 h-5 md:w-6 md:h-6 hover:opacity-70 cursor-pointer text-primary" />
-                    </Link>
-                  </div>
+                  // <div key={`team-member-${rowIdx}-${idx}`} className="flex flex-col items-center justify-center">
+                  //   <Avatar className="w-24 h-24 md:w-36 md:h-36">
+                  //     <AvatarImage src={member.image} />
+                  //     <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
+                  //   </Avatar>
+                  //   <h2 className="text-lg md:text-2xl font-bold text-primary mt-2">{member.name}</h2>
+                  //   <p className="text-base md:text-xl mb-2 text-primary">{member.role}</p>
+                  //   <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                  //     <Linkedin className="w-5 h-5 md:w-6 md:h-6 hover:opacity-70 cursor-pointer text-primary" />
+                  //   </Link>
+                  // </div>
+                  <TeamCard key={`team-member-${rowIdx}-${idx}`} {...member} />
                 ))}
+
               </div>
             ));
           })()}
         </div>
       </div>
 
-      <div className="px-4 md:px-0 dark:bg-chart-1 p-8">
+      <Timeline data={changeLog} />
+
+      {/* <div className="px-4 md:px-0 dark:bg-chart-1 p-8">
         <h2 className="text-2xl md:text-4xl font-bold text-center mb-6 md:mb-12 text-primary italic">Powered By</h2>
         <Image
           src="/b4i-logo.webp"
@@ -142,7 +160,7 @@ export default function page() {
           className="mx-auto mb-10 w-full max-w-[300px] md:max-w-[550px] h-auto"
         />
 
-      </div>
+      </div> */}
 
     </>
   )

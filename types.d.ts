@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export type BannerProps = {
   src: string;
   src2?: boolean;
@@ -179,4 +181,19 @@ export type Row = {
   feature: string;
   traditional: string;
   parkito: string;
+};
+
+export type TimelineCardType = {
+  cardTitle: string;
+  badgeTitle: string;
+  badgeVariant: "ux" | "new" | "web";
+  description: ReactNode;
+  bulletPoints?: ReactNode[] | string[];
+  version?: string;
+  images?: string[];
+};
+
+export type TimelineEntry = {
+  title: string;
+  content: ReactNode;
 };
