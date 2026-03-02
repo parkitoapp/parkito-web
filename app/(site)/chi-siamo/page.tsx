@@ -72,20 +72,28 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <>
-      <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center p-4 gap-8 md:gap-12 md:pt-0 pt-30">
-        <div className="text-center min-h-full w-full md:w-[60%] mx-auto flex flex-col my-auto items-center justify-center">
+      <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center p-4 md:p-24 gap-8 md:gap-12">
+
+        <div className="w-full md:w-[60%] mx-auto text-left">
           <div className="mb-4 md:mb-6">
             <BC />
           </div>
-          <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold text-primary">La prima piattaforma
-            <br />di Park Sharing in Italia!</h1>
+          <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold text-primary w-full mb-8">
+            La prima piattaforma
+            <br />
+            di Park Sharing in Italia!
+          </h1>
           <section className="text-lg md:text-2xl lg:text-4xl md:mt-0 mt-8">
-            <p> Parkito è la prima piattaforma di <span className="font-bold text-chart-2">Park Sharing</span> in Italia che rende il parcheggio facile, sicuro e sostenibile, riducendo traffico e stress urbano per una mobilità più intelligente.
-              Ci occupiamo di creare parcheggi in zone dove non esistono senza ridurre ulteriormente il suolo pubblico, sfruttando le migliaia di <span className="font-bold text-chart-2">box e posti auto inutilizzati</span> in tutte le città.</p>
+            <p>
+              Parkito è la prima piattaforma di <span className="font-bold text-chart-2">Park Sharing</span> in Italia che rende
+              il parcheggio facile, sicuro e sostenibile, riducendo traffico e stress urbano per una mobilità più intelligente.
+              Ci occupiamo di creare parcheggi in zone dove non esistono senza ridurre ulteriormente il suolo pubblico,
+              sfruttando le migliaia di <span className="font-bold text-chart-2">box e posti auto inutilizzati</span> in tutte le
+              città.
+            </p>
           </section>
         </div>
-
-        <div>
+        <div className="">
           <Image
             src="/about.webp"
             alt="About Us Illustration"
@@ -94,10 +102,9 @@ export default function page() {
             className="w-full max-w-[300px] md:max-w-[400px]"
           />
         </div>
-
       </div>
       <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center p-4 md:p-24 gap-8 md:gap-12">
-        <div className="order-1 md:order-1">
+        <div className="">
           <Image
             src="/parking-parkito.webp"
             alt="Parkito app illustration"
@@ -107,7 +114,7 @@ export default function page() {
           />
         </div>
 
-        <div className="text-center w-full md:w-[60%] mx-auto order-2 md:order-2">
+        <div className="text-right w-full md:w-[60%] mx-auto order-2 md:order-2">
           <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-4 text-primary">Il nostro obiettivo? </h1>
           <section className="text-lg md:text-2xl lg:text-4xl md:mt-0 mt-8">
             <p>Diventare la piattaforma di riferimento per una gestione intelligente e sostenibile degli spazi urbani, connettendo persone, luoghi e mobilità per città più vivibili e accessibili</p>
@@ -148,8 +155,9 @@ export default function page() {
         </div>
       </div>
 
-      <Timeline data={changeLog} />
-
+      <div className="relative w-full overflow-clip">
+        <Timeline data={changeLog} />
+      </div>
       {/* <div className="px-4 md:px-0 dark:bg-chart-1 p-8">
         <h2 className="text-2xl md:text-4xl font-bold text-center mb-6 md:mb-12 text-primary italic">Powered By</h2>
         <Image

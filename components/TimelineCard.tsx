@@ -6,9 +6,9 @@ import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from 
 import SpotlightCard from './SpotlightCard'
 
 const variantConfig = {
-  ux: "bg-purple-50 text-purple-600 border-purple-100 dark:bg-purple-500/10 dark:text-purple-400 dark:border-purple-500/20",
-  new: "bg-emerald-50 text-emerald-600 border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20",
-  web: "bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20"
+  ux: "bg-purple-100 text-purple-600 border-purple-500 dark:bg-purple-500/20 dark:text-purple-400 dark:border-purple-500/20",
+  new: "bg-emerald-100 text-emerald-600 border-emerald-500 dark:bg-emerald-500/20 dark:text-emerald-400 dark:border-emerald-500/20",
+  web: "bg-blue-100 text-blue-600 border-blue-500 dark:bg-blue-500/20 dark:text-blue-400 dark:border-blue-500/20"
 }
 
 export default function TimelineCard({ cardTitle, badgeTitle, badgeVariant, description, bulletPoints, version, images }: TimelineCardType) {
@@ -24,7 +24,7 @@ export default function TimelineCard({ cardTitle, badgeTitle, badgeVariant, desc
                 Release {version}
               </CardTitle>
             </div>
-            <h4 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 tracking-tight">
+            <h4 className="text-2xl font-bold text-primary-foreground dark:text-foreground tracking-tight">
               {cardTitle}
             </h4>
           </div>
@@ -36,7 +36,7 @@ export default function TimelineCard({ cardTitle, badgeTitle, badgeVariant, desc
           </Badge>
         </CardHeader>
 
-        <CardDescription className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-sm md:text-base">
+        <CardDescription className="text-neutral-400  leading-relaxed text-sm md:text-base">
           {description}
         </CardDescription>
 
@@ -44,7 +44,7 @@ export default function TimelineCard({ cardTitle, badgeTitle, badgeVariant, desc
           {bulletPoints && bulletPoints.length > 0 && (
             <ul className="flex flex-col gap-2">
               {bulletPoints.map((point, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-sm text-neutral-500 dark:text-neutral-400">
+                <li key={idx} className="flex items-start gap-2 text-sm text-neutral-400 ">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
                   {point}
                 </li>
