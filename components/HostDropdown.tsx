@@ -24,7 +24,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
-import { ChevronDown, ExternalLink } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useWidth } from "@/hooks/useWidth"
@@ -56,17 +56,17 @@ export default function HostDropdown({ onLinkClick }: HostDropdownProps) {
         </CollapsibleTrigger>
         <CollapsibleContent className="flex flex-col gap-2 pt-2 pl-4">
           {hostPages.map((page, idx) => (
-            <>
-              <Link
-                key={idx}
-                href={page.link}
-                onClick={onLinkClick}
-                className={`text-primary font-bold  ${isActive(page.link) ? "text-chart-2" : ""}`}
-              >
-                {page.name}
-              </Link>
-              {idx < hostPages.length - 1 && <DropdownMenuSeparator />}
-            </>
+
+            <Link
+              key={idx}
+              href={page.link}
+              onClick={onLinkClick}
+              className={`text-primary font-bold  ${isActive(page.link) ? "text-chart-2" : ""}`}
+            >
+              {page.name}
+              {idx < hostPages.length - 1 && <DropdownMenuSeparator className="mt-2" />}
+            </Link>
+
           ))}
         </CollapsibleContent>
       </Collapsible>

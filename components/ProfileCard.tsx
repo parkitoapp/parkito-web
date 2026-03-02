@@ -383,15 +383,11 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
 
   // Complex styles that require CSS variables and can't be done with Tailwind
   const shineStyle = {
-    maskImage: 'var(--icon)',
-    maskMode: 'luminance',
-    maskRepeat: 'repeat',
-    maskSize: '150%',
-    maskPosition: 'top calc(200% - (var(--background-y) * 5)) left calc(100% - var(--background-x))',
+    // NOTE: Safari has issues with CSS masking + color-dodge here,
+    // so we intentionally avoid maskImage/maskMode/mixBlendMode to keep the card visible.
     filter: 'brightness(0.66) contrast(1.33) saturate(0.33) opacity(0.5)',
     animation: 'pc-holo-bg 18s linear infinite',
     animationPlayState: 'running' as const,
-    mixBlendMode: 'color-dodge' as const,
     transform: 'translate3d(0, 0, 1px)',
     overflow: 'hidden' as const,
     zIndex: 3,
@@ -513,7 +509,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
             <div
               className="overflow-visible"
               style={{
-                mixBlendMode: 'luminosity',
                 transform: 'translateZ(2px)',
                 gridArea: '1 / -1',
                 borderRadius: cardRadius,
@@ -602,7 +597,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
               style={{
                 transform:
                   'translate3d(calc(var(--pointer-from-left) * -6px + 3px), calc(var(--pointer-from-top) * -6px + 3px), 0.1px)',
-                mixBlendMode: 'luminosity',
                 gridArea: '1 / -1',
                 pointerEvents: 'none'
               }}

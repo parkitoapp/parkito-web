@@ -142,14 +142,14 @@ export default function ResNav() {
               ))}
               <div className="flex w-full flex-col gap-4 mt-auto pt-8">
                 <div className="flex flex-row items-center justify-end gap-4 z-1000">
-                  <NavbarButton
+                  {isChristmas() && <NavbarButton
                     onClick={toggleSnow}
                     className={`p-2 rounded-full transition-colors z-1000 ${isSnowActive ? 'bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-400'}`}
                     aria-label={isSnowActive ? "Disattiva neve" : "Attiva neve"}
                     title={isSnowActive ? "Disattiva neve" : "Attiva neve"}
                   >
                     <Snowflake size={20} />
-                  </NavbarButton>
+                  </NavbarButton>}
                   <ThemeSwitch />
                 </div>
                 {/* <NavbarButton

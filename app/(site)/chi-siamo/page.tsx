@@ -147,6 +147,7 @@ export default function page() {
                   //   </Link>
                   // </div>
                   <TeamCard key={`team-member-${rowIdx}-${idx}`} {...member} />
+
                 ))}
 
               </div>

@@ -334,7 +334,7 @@ export default function page() {
           </div>
         </div>
         <div>
-          <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center text-primary pt-10">Guadagna pià degli affitti tradizionali, ma non solo:</h1>
+          <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center text-primary pt-10">Guadagna più degli affitti tradizionali, ma non solo:</h1>
           <div className='md:block hidden'>
             <TableCompare rows={rows} />
           </div>

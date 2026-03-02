@@ -18,11 +18,26 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
+    const measure = () => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        setHeight(rect.height);
+      }
+    };
+    // Initial measurement
+    measure();
+    // Keep height in sync with element size changes
+    if (ref.current && typeof ResizeObserver !== "undefined") {
+      const observer = new ResizeObserver(() => {
+        measure();
+      });
+      observer.observe(ref.current);
+      return () => {
+        observer.disconnect();
+      };
     }
-  }, [ref]);
+  }, [data]);
+
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -42,7 +57,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           Scopri come ci siamo evoluti.
         </h2>
         <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          Ci impegnamo ogni giorno per rendere Parkito sempre migliore. Scopri cosa abbiamo modificato nel tempo.
+          Ci impegniamo ogni giorno per rendere Parkito sempre migliore. Scopri cosa abbiamo modificato nel tempo.
         </p>
       </div>
 

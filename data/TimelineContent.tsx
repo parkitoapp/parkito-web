@@ -9,7 +9,7 @@ export const timelineData: TimelineEntry[] = [
         cardTitle="Coming soon"
         badgeTitle="stay tuned"
         badgeVariant="new"
-        description="Installa l'app, metti il sito tra i preferiti e segui i nostri progressi, da qui andiamo solo avanti!s"
+        description="Installa l'app, metti il sito tra i preferiti e segui i nostri progressi, da qui andiamo solo avanti!"
       />
     ),
   },
@@ -33,7 +33,7 @@ export const timelineData: TimelineEntry[] = [
           <p key="bullet-point-3">Creazione dashboard host</p>,
         ]}
         version="v2.7.2"
-        images={["/dashScreen.webp", "/ztl.webp"]}
+        images={["/dashscreen.webp", "/ztl.webp"]}
       />
     ),
   },

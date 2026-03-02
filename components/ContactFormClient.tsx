@@ -134,7 +134,7 @@ export default function ContactFormClient({ teamMembers, selectOptions }: Props)
       <div className='h-50 w-full'>
         <h3 className="text-xl font-semibold text-foreground mt-16 mb-4">Non hai tempo per una call?</h3>
 
-        <Link href="https://wa.me/393520397705" className="text-primarydark:text-white underline">
+        <Link href="https://wa.me/393520397705" className="text-primary dark:text-white underline">
           <MessageCircle className="inline mr-2" size={32} />
           Contattaci direttamente via whatsapp
         </Link>

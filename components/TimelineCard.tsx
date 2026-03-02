@@ -18,12 +18,12 @@ export default function TimelineCard({ cardTitle, badgeTitle, badgeVariant, desc
       <div className="relative z-10 space-y-4">
         <CardHeader className="flex items-start justify-between px-0">
           <div className="space-y-1">
-            <div className="flex items-center gap-2">
+            {version && <div className="flex items-center gap-2">
               <Milestone className="w-5 h-5 text-blue-500" />
               <CardTitle className="text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                 Release {version}
               </CardTitle>
-            </div>
+            </div>}
             <h4 className="text-2xl font-bold text-primary-foreground dark:text-foreground tracking-tight">
               {cardTitle}
             </h4>

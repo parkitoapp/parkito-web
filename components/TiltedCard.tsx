@@ -1,20 +1,21 @@
 import type { SpringOptions } from 'motion/react';
 import { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
+import { ComponentProps, CSSProperties, ReactNode, MouseEvent } from 'react';
 
 interface TiltedCardProps {
-  imageSrc: React.ComponentProps<'img'>['src'];
+  imageSrc: ComponentProps<'img'>['src'];
   altText?: string;
   captionText?: string;
-  containerHeight?: React.CSSProperties['height'];
-  containerWidth?: React.CSSProperties['width'];
-  imageHeight?: React.CSSProperties['height'];
-  imageWidth?: React.CSSProperties['width'];
+  containerHeight?: CSSProperties['height'];
+  containerWidth?: CSSProperties['width'];
+  imageHeight?: CSSProperties['height'];
+  imageWidth?: CSSProperties['width'];
   scaleOnHover?: number;
   rotateAmplitude?: number;
   showMobileWarning?: boolean;
   showTooltip?: boolean;
-  overlayContent?: React.ReactNode;
+  overlayContent?: ReactNode;
   displayOverlayContent?: boolean;
 }
 
@@ -54,7 +55,7 @@ export default function TiltedCard({
 
   const [lastY, setLastY] = useState(0);
 
-  function handleMouse(e: React.MouseEvent<HTMLElement>) {
+  function handleMouse(e: MouseEvent<HTMLElement>) {
     if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
