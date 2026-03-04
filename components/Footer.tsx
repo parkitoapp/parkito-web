@@ -24,7 +24,7 @@ export default function Footer() {
           <div className='flex-1 flex flex-col text-white font-semibold'>
             <div className='flex items-center gap-4'>
               <Image src="/parkito-pill.webp" width={140} height={34} className="object-contain" alt="parkito-logo" />
-              <p className='hidden md:block'>L&apos;app per il park sharing in Italia</p>
+              <p className='hidden md:block'>L&apos;app per i parcheggi in viaggio</p>
             </div>
 
             <div className='mt-6 md:mt-8'>
@@ -99,8 +99,8 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/citta/roma" title="Roma">
-                    Roma
+                  <Link href="/citta/firenze" title="Roma">
+                    Firenze
                   </Link>
                 </li>
               </ul>

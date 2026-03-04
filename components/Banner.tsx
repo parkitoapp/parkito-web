@@ -74,7 +74,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
         <div className="relative z-10 flex w-full flex-col md:flex-row items-center justify-between px-6 md:px-32 py-16">
 
           <div className="flex max-w-[60%] flex-col items-start justify-center text-left space-y-6 px-24">
-            <div className="text-sm text-white rounded-full bg-green-800 font-bold p-2 px-4">La prima app per il Park Sharing in Italia!</div>
+            <div className="text-sm text-white rounded-full bg-green-800 font-bold p-2 px-4">Parkito App: Parcheggi in viaggio</div>
             <div className="relative w-full">
               {/* underline decoration */}
               <span
@@ -170,7 +170,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
               </div>
             </div>
           )}
-          <div className="absolute -top-5 z-20 text-sm text-white rounded-full bg-green-800 p-2 px-4">La prima app per il Park Sharing in Italia!</div>
+          <div className="absolute -top-5 z-20 text-sm text-white rounded-full bg-green-800 p-2 px-4">Parkito App: Parcheggi in viaggio</div>
           <div className="relative z-10 w-full h-full">
             <h2 className="relative z-10 text-4xl md:text-6xl lg:text-7xl font-bold text-primary mb-4 md:px-16 text-center">
               {title}

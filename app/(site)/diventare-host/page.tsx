@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <>
-      <Banner title='Scarica Parkito e attiva il tuo parcheggio in 5 minuti.' subtitle='Condividi qualsiasi parcheggio, anche quelli condominiali.' src='/host.webp' src2={true} dwbtn={true} icon={true} social={true} classname="max-w-sm"
+      <Banner title='Scarica Parkito e attiva il tuo parcheggio.' subtitle='Condividi qualsiasi parcheggio, anche quelli condominiali.' src='/host.webp' src2={true} dwbtn={true} icon={true} social={true} classname="max-w-sm"
       />
       <div className='bg-background'>
         <div className="px-16 pt-8">

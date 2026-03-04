@@ -9,7 +9,7 @@ export const faq: FAQ[] = [
   {
     question: "Come si prenota un Parkito?",
     answer:
-      "Una volta registrato, ti basta cercare la città e inserire il tempo che ti serve. Puoi scegliere se prenotare un parcheggio da 1 ora fino a 7 giorni. Anche per un periodo successivo!",
+      "Una volta registrato, ti basta cercare la città e inserire il tempo che ti serve. Puoi scegliere se prenotare un parcheggio da 1 ora fino a 7 giorni. Anche con mesi di anticipo!",
   },
   {
     question: "Come funzionano gli accessi?",
@@ -20,5 +20,10 @@ export const faq: FAQ[] = [
     question: "Sono sicuri i Parkito?",
     answer:
       "I parcheggi privati inseriti in piattaforma sono scrupolosamente verificati e garantiscono una sicurezza di gran lunga superiore rispetto a strisce blu e alle autorimesse non custodite.",
+  },
+  {
+    question: "Non ho mai sentito parlare di Parkito, è affidabile?",
+    answer:
+      "Non avrai mai sentito parlare di noi perché siamo una <strong>startup innovativa</strong> attiva dal 2024. Hanno già creduto in noi investitori istituzionali come <strong>Bocconi, Nana Bianca, Fondazione Cassa di Risparmio di Firenze</strong> e altri privati.",
   },
 ];

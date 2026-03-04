@@ -107,7 +107,7 @@ export default function Home() {
               </div>
             </div>
             <h2 className="relative z-10 text-5xl font-extrabold mx-auto mb-4 text-center pt-10 text-background px-2">La soluzione? Prenota <span className="text-lime-300 dark:text-accent-foreground">un Parkito!</span></h2>
-            <p className="relative z-10 text-xl mx-auto text-center text-background">Scopri <span className="font-bold">Parkito</span>, la prima piattaforma di Park Sharing in Italia: i Parkito sono parcheggi privati verificati, <span className="font-bold underline">NON</span> autorimesse</p>
+            <p className="relative z-10 text-xl mx-auto text-center text-background">Scopri <span className="font-bold">Parkito</span>, la prima piattaforma di Park Sharing in Italia: I Parkito sono parcheggi privati verificati, <span className="font-bold underline">NON</span> autorimesse</p>
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 max-w-5xl mx-auto px-4">
 
               <Card className="flex flex-col bg-card p-4 rounded-xl">
@@ -119,7 +119,7 @@ export default function Home() {
                     Come a casa, ma ovunque!
                   </CardTitle>
                   <CardDescription className="text-lg">
-                    Hai un box o posto auto? Vivi la stessa esperienza
+                    La tranquillità di tutti i giorni ovunque tu sia
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -145,7 +145,7 @@ export default function Home() {
                     Gestione digitale
                   </CardTitle>
                   <CardDescription className="text-lg">
-                    Nessun ticket o pagamento cash: paghi direttamente in app con un click
+                    Nessun ticket o pagamenti in contanti: paghi con un click
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -182,7 +182,7 @@ export default function Home() {
 
               <div className="flex flex-col w-full md:w-full p-2 md:p-4 justify-center items-end text-right">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
-                  Scegli tra oltre 400 Parkito
+                  Scegli il tuo Parkito!
                 </h3>
                 <h2 className="text-2xl md:text-4xl font-bold text-primary mb-2 md:mb-4">
                   Un parcheggio privato a tua disposizione
