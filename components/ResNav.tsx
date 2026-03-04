@@ -81,6 +81,10 @@ export default function ResNav() {
       name: "Blog",
       link: "/blog"
     },
+    {
+      name: "Chi siamo",
+      link: "/chi-siamo"
+    }
   ];
 
 

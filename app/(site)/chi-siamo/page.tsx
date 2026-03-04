@@ -72,8 +72,7 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <>
-      <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center p-4 md:p-24 gap-8 md:gap-12">
-
+      <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center p-4 pt-24 md:p-24 gap-8 md:gap-12">
         <div className="w-full md:w-[60%] mx-auto text-left">
           <div className="mb-4 md:mb-6">
             <BC />
@@ -85,8 +84,7 @@ export default function page() {
           </h1>
           <section className="text-lg md:text-2xl lg:text-4xl md:mt-0 mt-8">
             <p>
-              Parkito è la prima piattaforma di <span className="font-bold text-chart-2">Park Sharing</span> in Italia che rende
-              il parcheggio facile, sicuro e sostenibile, riducendo traffico e stress urbano per una mobilità più intelligente.
+              Rendiamo il parcheggio <strong >facile, sicuro e sostenibile.</strong> Riduciamo traffico e stress urbano per una mobilità più intelligente.
               <br /><br />Ci occupiamo di creare parcheggi in zone dove non esistono senza ridurre ulteriormente il suolo pubblico,
               sfruttando le migliaia di <span className="font-bold text-chart-2">box e posti auto inutilizzati</span> in tutte le
               città.

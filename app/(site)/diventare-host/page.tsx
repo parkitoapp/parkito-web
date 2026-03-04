@@ -57,7 +57,7 @@ export default function page() {
               <CardContent className='w-full p-6'>
                 <CardTitle className="text-2xl font-bold text-primary mt-4">Recedi quando vuoi</CardTitle>
                 <CardDescription className="mt-2 w-[60%] text-left text-md text-primary">
-                  In Parkito non esistono vincoli: sarai sempre libero di eliminare il tuo parcheggio
+                  In Parkito non esistono vincoli: potrai sempre togliere il tuo parcheggio dalla piattaforma
                 </CardDescription>
               </CardContent>
             </Card>
