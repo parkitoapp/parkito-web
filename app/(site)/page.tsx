@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <>
-      <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati con Parkito!" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.webp" icon={true} social={true} dwbtn={true} src2={true} />
+      <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati con Parkito!" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.webp" icon={true} social={true} dwbtn={true} src2={true} classname="max-w-xl" />
       <div className="bg-background">
 
         <div className=" bg-background">
@@ -107,7 +107,7 @@ export default function Home() {
               </div>
             </div>
             <h2 className="relative z-10 text-5xl font-extrabold mx-auto mb-4 text-center pt-10 text-background px-2">La soluzione? Prenota <span className="text-lime-300 dark:text-accent-foreground">un Parkito!</span></h2>
-            <p className="relative z-10 text-xl mx-auto text-center text-background">Scopri <span className="font-bold">Parkito</span>, la prima piattaforma di Park Sharing in Italia: i Parkito sono parcheggi privati verificati, <span className="font-bold underline">NON</span> autorimesse</p>
+            <p className="relative z-10 text-xl mx-auto text-center text-background">Scopri <span className="font-bold">Parkito</span>, la prima piattaforma di Park Sharing in Italia: I Parkito sono parcheggi privati verificati, <span className="font-bold underline">NON</span> autorimesse</p>
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 max-w-5xl mx-auto px-4">
 
               <Card className="flex flex-col bg-card p-4 rounded-xl">
@@ -119,7 +119,7 @@ export default function Home() {
                     Come a casa, ma ovunque!
                   </CardTitle>
                   <CardDescription className="text-lg">
-                    Hai un box o posto auto? Vivi la stessa esperienza
+                    La tranquillità di tutti i giorni ovunque tu sia
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -145,7 +145,7 @@ export default function Home() {
                     Gestione digitale
                   </CardTitle>
                   <CardDescription className="text-lg">
-                    Nessun ticket o pagamento cash: paghi direttamente in app con un click
+                    Nessun ticket o pagamenti in contanti: paghi con un click
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -156,7 +156,7 @@ export default function Home() {
             {/* ITEM 1 */}
             <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
 
-              <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-start">
+              <div className="flex flex-col w-full md:w-full p-2 md:p-4 justify-center items-start">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
                   Prepara un documento e
                 </h3>
@@ -168,7 +168,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <LazyVideo src="/ricerca-edited.mp4" className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0" />
+              <LazyVideo src="/video_home1.mp4" className="w-full md:w-[30%] h-auto rounded-lg mt-4 md:mt-0" />
             </ScrollStackItem>
 
             {/* ITEM 2 */}
@@ -176,13 +176,13 @@ export default function Home() {
 
               {/* Desktop video */}
               <LazyVideo
-                src="/mappa-edited.mp4"
-                className="hidden md:block w-full md:w-[40%] h-auto rounded-lg"
+                src="/video_home2.mp4"
+                className="hidden md:block w-full md:w-[30%] h-auto rounded-lg"
               />
 
-              <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-end text-right">
+              <div className="flex flex-col w-full md:w-full p-2 md:p-4 justify-center items-end text-right">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
-                  Scegli tra oltre 400 Parkito
+                  Scegli il tuo Parkito!
                 </h3>
                 <h2 className="text-2xl md:text-4xl font-bold text-primary mb-2 md:mb-4">
                   Un parcheggio privato a tua disposizione
@@ -194,7 +194,7 @@ export default function Home() {
 
               {/* Mobile video */}
               <LazyVideo
-                src="/mappa-edited.mp4"
+                src="/video_home3.mp4"
                 className="md:hidden w-full h-auto rounded-lg mt-4"
               />
             </ScrollStackItem>
@@ -202,7 +202,7 @@ export default function Home() {
             {/* ITEM 3 */}
             <ScrollStackItem itemClassName="flex flex-col md:flex-row p-4 md:p-8 bg-accent rounded-lg justify-between w-full mx-auto md:max-w-5xl">
 
-              <div className="flex flex-col w-full md:w-[40%] p-2 md:p-4 justify-center items-start">
+              <div className="flex flex-col w-full md:w-full p-2 md:p-4 justify-center items-start">
                 <h3 className="text-xl md:text-2xl font-bold text-accent-foreground mb-2 md:mb-4 uppercase">
                   accedi tramite l&apos;app
                 </h3>
@@ -215,8 +215,8 @@ export default function Home() {
               </div>
 
               <LazyVideo
-                src="/istruzioni-edited.mp4"
-                className="w-full md:w-[40%] h-auto rounded-lg mt-4 md:mt-0"
+                src="/video_home3.mp4"
+                className="w-full md:w-[30%] h-auto rounded-lg mt-4 md:mt-0"
               />
             </ScrollStackItem>
           </ScrollStack>

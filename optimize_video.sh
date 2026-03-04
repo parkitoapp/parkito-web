@@ -28,6 +28,9 @@ optimize_video() {
     # Show size comparison
     original_size=$(du -h "$input" | cut -f1)
     optimized_size=$(du -h "$output" | cut -f1)
+    rm "$input"
+    # rename optimized file to original name
+    mv "$output" "$input"
     echo "Size: $original_size -> $optimized_size"
     echo "---"
 }
@@ -41,4 +44,3 @@ done
 
 echo "Video optimization complete!"
 echo "Original videos: $(du -sh public/*.mp4 public/*.MP4 2>/dev/null | awk '{total+=$1}END{print total"M"}' || echo "0M")"
-echo "Optimized videos: $(du -sh public/video_optimized/* 2>/dev/null | awk '{total+=$1}END{print total"M"}' || echo "0M")"

@@ -1,47 +1,48 @@
+import type { ReactNode } from "react";
+
 export type BannerProps = {
-    src: string,
-    src2?: boolean;
-    title: string,
-    subtitle?: string,
-    dwbtn?: false | boolean,
-    btn1?: false | boolean,
-    btn2?: false | boolean,
-    link1?: false | string,
-    link2?: false | string,
-    text1?: false | string,
-    text2?: false | string,
-    icon?: false | boolean,
-    social?: false | boolean,
-    classname?: string,
-}
+  src: string;
+  src2?: boolean;
+  title: string;
+  subtitle?: string;
+  dwbtn?: false | boolean;
+  btn1?: false | boolean;
+  btn2?: false | boolean;
+  link1?: false | string;
+  link2?: false | string;
+  text1?: false | string;
+  text2?: false | string;
+  icon?: false | boolean;
+  social?: false | boolean;
+  classname?: string;
+};
 
 export type CityType = {
-    id: number;
-    name: string;
-    url: string;
-    image: string;
-    fallbackImage?: string;
-}
-
+  id: number;
+  name: string;
+  url: string;
+  image: string;
+  fallbackImage?: string;
+};
 
 export type AppleReview = {
-    id: string;
-    attributes: {
-        authorName?: string;
-        rating?: number;
-        title?: string;
-        body?: string;
-        date?: string;
-    };
-}
+  id: string;
+  attributes: {
+    authorName?: string;
+    rating?: number;
+    title?: string;
+    body?: string;
+    date?: string;
+  };
+};
 
 export type ReviewCardType = {
-    name: string,
-    title: string,
-    rating: number,
-    body: string,
-    date: string,
-}
+  name: string;
+  title: string;
+  rating: number;
+  body: string;
+  date: string;
+};
 
 /**
  * "review": {
@@ -70,115 +71,129 @@ export type ReviewCardType = {
  */
 
 export interface GoogleUserComment {
-    starRating?: number;
-    text?: string;
-    appVersionName?: string;
-    lastModified?: { seconds?: number };
+  starRating?: number;
+  text?: string;
+  appVersionName?: string;
+  lastModified?: { seconds?: number };
 }
 
 export interface GoogleComment {
-    userComment?: GoogleUserComment;
+  userComment?: GoogleUserComment;
 }
 
 export interface GoogleReview {
-    reviewId: string;
-    authorName?: string;
-    comments?: GoogleComment[];
+  reviewId: string;
+  authorName?: string;
+  comments?: GoogleComment[];
 }
-
 
 export type citiesType = {
-    name: string,
-    link: string,
-    subLinks?: null | citiesType[],
-}
+  name: string;
+  link: string;
+  subLinks?: null | citiesType[];
+};
 export type Slug = {
-    _type: "slug";
-    current: string;
+  _type: "slug";
+  current: string;
 };
 
 export type SanityImage = {
-    _type: "image";
-    asset: {
-        _ref: string;
-        _type: "reference";
-    };
+  _type: "image";
+  asset: {
+    _ref: string;
+    _type: "reference";
+  };
 };
 
 export type Block = {
-    _type: "block";
-    children: { _type: "p"; text: string }[];
+  _type: "block";
+  children: { _type: "p"; text: string }[];
 };
 
 export type BlogPost = {
-    _id: string;
-    title: string;
-    metatitle: string;
-    metadescription: string;
-    slug: { current: string };
-    publishedAt: string;
-    coverImage: SanityImage;
-    author: {
-        name: string;
-        role: string;
-        image: SanityImage;
-    };
-    tags: string[];
-    recap: Block[]; // PortableText content for recap section
-    coverAlt: string;
-    intro: Block[];
-    content: ContentSection[];
+  _id: string;
+  title: string;
+  metatitle: string;
+  metadescription: string;
+  slug: { current: string };
+  publishedAt: string;
+  coverImage: SanityImage;
+  author: {
+    name: string;
+    role: string;
+    image: SanityImage;
+  };
+  tags: string[];
+  recap: Block[]; // PortableText content for recap section
+  coverAlt: string;
+  intro: Block[];
+  content: ContentSection[];
 };
 
 export type ContentSection = {
-    title: string;
-    image: SanityImage;
-    body: Block[];
-    sectionAlt: string;
+  title: string;
+  image: SanityImage;
+  body: Block[];
+  sectionAlt: string;
 };
 
 export type FAQ = {
-    question: string,
-    answer: string,
-}
+  question: string;
+  answer: string;
+};
 
 export type ErrorType = {
-    title: string,
-    message: string,
-    onClick?: () => void
-    src?: string,
-}
+  title: string;
+  message: string;
+  onClick?: () => void;
+  src?: string;
+};
 
 export type blogFaq = {
-    city: string;
-    faqs: FAQ[];
+  city: string;
+  faqs: FAQ[];
 };
 
 export type TeamMember = {
-    id: string;
-    name: string;
-    url: string;
-    image: string;
+  id: string;
+  name: string;
+  url: string;
+  image: string;
 };
 
 export type SelectOption = {
-    label: string;
-    memberId: string;
+  label: string;
+  memberId: string;
 };
 
 export type Parking = {
-    id: number,
-    name: string,
-    address: string,
-    city: string,
-    vehicle_type: string,
-    parking_type: string,
-    driver_name: string,
-    description: string,
-}
+  id: number;
+  name: string;
+  address: string;
+  city: string;
+  vehicle_type: string;
+  parking_type: string;
+  driver_name: string;
+  description: string;
+};
 
 export type Row = {
-    feature: string,
-    traditional: string,
-    parkito: string,
-}
+  feature: string;
+  traditional: string;
+  parkito: string;
+};
+
+export type TimelineCardType = {
+  cardTitle: string;
+  badgeTitle: string;
+  badgeVariant: "ux" | "new" | "web";
+  description: ReactNode;
+  bulletPoints?: ReactNode[] | string[];
+  version?: string;
+  images?: string[];
+};
+
+export type TimelineEntry = {
+  title: string;
+  content: ReactNode;
+};

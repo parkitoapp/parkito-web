@@ -107,7 +107,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: "800px",
       }}
       className={cn(
-        "relative z-60 mx-auto hidden w-[80%]  flex-row items-center justify-between self-start rounded-full bg-white px-8 py-3 lg:flex dark:bg-black/70",
+        "relative z-60 mx-auto hidden w-[80%]  flex-row items-center justify-between self-start rounded-3xl bg-white px-8 py-3 lg:flex dark:bg-black/70",
         visible && "bg-white/80 dark:bg-neutral-950/80",
         className,
       )}
@@ -208,8 +208,8 @@ export const MobileNav = ({ children, className, visible, isMenuOpen }: MobileNa
       }}
       className={cn(
         "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-white dark:bg-black px-0 my-4 border border-primary/10",
-        !isMenuOpen && "rounded-3xl",
-        isMenuOpen && "rounded-3xl",
+        !isMenuOpen && "rounded-2xl",
+        isMenuOpen && "rounded-2xl",
         visible && "bg-white/60 dark:bg-neutral-950/80",
         className,
       )}
