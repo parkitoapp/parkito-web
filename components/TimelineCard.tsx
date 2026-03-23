@@ -1,9 +1,11 @@
 import { TimelineCardType } from '@/types'
 import { Badge } from "@/components/ui/badge"
 import { Milestone, CheckCircle2 } from "lucide-react"
-import Image from "next/image"
+// import Image from "next/image"
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card'
 import SpotlightCard from './SpotlightCard'
+import MagicBento from './MagicBento'
+
 
 const variantConfig = {
   ux: "bg-purple-100 text-purple-600 border-purple-500 dark:bg-purple-500/20 dark:text-purple-400 dark:border-purple-500/20",
@@ -12,6 +14,15 @@ const variantConfig = {
 }
 
 export default function TimelineCard({ cardTitle, badgeTitle, badgeVariant, description, bulletPoints, version, images }: TimelineCardType) {
+  const bentoItems = (images || []).map((img, idx) => ({
+    color: "#060010",
+    title: cardTitle,
+    description: `Screenshot ${idx + 1}`,
+    label: `Image ${idx + 1}`,
+    imageSrc: img,
+    imageAlt: `${cardTitle} screenshot ${idx + 1}`
+  }));
+
   return (
     <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(13, 28, 115, 0.9)">
 
@@ -54,8 +65,14 @@ export default function TimelineCard({ cardTitle, badgeTitle, badgeVariant, desc
         </CardContent>
 
         <CardFooter className="w-full px-0 mx-auto items-center justify-center flex">
-          {images && images.length > 0 && (
-            <div className="flex gap-4 w-full items-center justify-center max-w-5xl mx-auto overflow-x-auto">
+          {/* {images && images.length > 0 && (
+            <div
+              className={
+                images.length > 2
+                  ? "grid grid-cols-2 gap-4 w-full max-w-5xl mx-auto"
+                  : "flex gap-4 w-full items-center justify-center max-w-5xl mx-auto overflow-x-auto"
+              }
+            >
               {images.map((img, idx) => (
                 <div
                   key={idx}
@@ -72,6 +89,22 @@ export default function TimelineCard({ cardTitle, badgeTitle, badgeVariant, desc
                 </div>
               ))}
             </div>
+          )} */}
+          {bentoItems.length > 0 && (
+            <MagicBento
+              items={bentoItems}
+              textAutoHide={true}
+              enableStars={false}
+              enableSpotlight
+              enableBorderGlow={true}
+              enableTilt
+              enableMagnetism
+              clickEffect
+              spotlightRadius={200}
+              particleCount={12}
+              glowColor="132, 0, 255"
+              disableAnimations={false}
+            />
           )}
         </CardFooter>
 
