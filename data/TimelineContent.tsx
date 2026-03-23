@@ -14,6 +14,25 @@ export const timelineData: TimelineEntry[] = [
     ),
   },
   {
+    title: "Mar 2026",
+    content: (
+      <TimelineCard
+        cardTitle="Servizi per gli host, veicoli preferiti"
+        badgeTitle="NUOVE FUNZIONALITÀ"
+        badgeVariant="new"
+        description="Driver, aggiungi un veicolo preferito e prenota velocemente un Parkito. Host: acquista l'assicurazione per il tuo Parkito direttamente in app."
+        bulletPoints={[
+          <p key="bullet-point-1">Home host e mappa migliorate</p>,
+          <p key="bullet-point-2">Servizi in-app per gli host</p>,
+          <p key="bullet-point-3">Aggiunta veicoli preferiti</p>,
+          <p key="bullet-point-4">Supporto diretto e prioritario per gli host</p>,
+        ]}
+        version="v2.7.5"
+        images={["/mar262.webp", "/mar261.webp", "/mar264.webp", "/mar263.webp"]}
+      />
+    ),
+  },
+  {
     title: "Feb 2026",
     content: (
       <TimelineCard
@@ -72,7 +91,7 @@ export const timelineData: TimelineEntry[] = [
           <p key="bullet-point-2">Nuovi format Social</p>,
         ]}
         version="v2.6.9"
-        images={["/ott251.webp", "/ott252.webp"]}
+        images={["/ott252.webp", "/ott251.webp",]}
       />
     ),
   },
@@ -93,7 +112,7 @@ export const timelineData: TimelineEntry[] = [
           <p key="bullet-point-2">Raggiungimento dei primi 10.000 utenti in app</p>,
         ]}
         version="v2.5.1"
-        images={["/ago251.webp", "/ago252.webp"]}
+        images={["/ago252.webp", "/ago251.webp",]}
       />
     ),
   },

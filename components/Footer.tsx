@@ -159,7 +159,7 @@ export default function Footer() {
                         >
                             Privacy Policy
                         </Link> */}
-            <Link href='/privacy-policy' target='_blank' title='Informativa sulla privacy'>
+            <Link href='/privacy-policy' title='Informativa sulla privacy' className='underline'>
               Informativa sulla privacy
             </Link>
           </li>
