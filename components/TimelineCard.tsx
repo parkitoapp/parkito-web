@@ -27,7 +27,7 @@ export default function TimelineCard({ cardTitle, badgeTitle, badgeVariant, desc
     <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(13, 28, 115, 0.9)">
 
       <div className="relative z-10 space-y-4">
-        <CardHeader className="flex items-start justify-between px-0">
+        <CardHeader className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 px-0">
           <div className="space-y-1">
             {version && <div className="flex items-center gap-2">
               <Milestone className="w-5 h-5 text-blue-500" />
@@ -41,7 +41,7 @@ export default function TimelineCard({ cardTitle, badgeTitle, badgeVariant, desc
           </div>
           <Badge
             variant={"secondary"}
-            className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${variantConfig[badgeVariant] || variantConfig.web}`}
+            className={`w-fit rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${variantConfig[badgeVariant] || variantConfig.web}`}
           >
             {badgeTitle}
           </Badge>
