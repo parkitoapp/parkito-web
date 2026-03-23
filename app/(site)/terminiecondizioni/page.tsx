@@ -1,11 +1,10 @@
 // app/(site)/tos/page.tsx
-import fs from "fs";
-import path from "path";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import { Metadata } from "next";
 import BC from "@/components/BC";
 import { slugify } from "@/lib/slugify";
+import { supabaseServer } from "@/lib/supabaseServer";
 
 export const metadata: Metadata = {
     title: "Termini e Condizioni",
@@ -30,9 +29,16 @@ function extractText(children: ReactNode): string {
 
 // Server component
 export default async function TermsPage() {
-    // Read markdown file at build time
-    const filePath = path.join(process.cwd(), "public/terms.md");
-    const content = fs.readFileSync(filePath, "utf-8");
+    const { data, error } = await supabaseServer.storage
+        .from("website")
+        .download("legal/terms.md");
+
+    if (error || !data) {
+        throw new Error(`Unable to load legal/terms.md from website bucket: ${error?.message ?? "Unknown error"}`);
+    }
+
+    const content = await data.text();
+
     return (
         <div className="max-w-3xl mx-auto px-4 py-32">
             <BC />
