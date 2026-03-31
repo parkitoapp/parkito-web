@@ -6,7 +6,7 @@ import { rows } from '@/data/rows'
 import { faq } from '@/data/faq'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import TableCompare from '@/components/TableCompare'
 import MobileCompare from '@/components/MobileCompare'
 import BC from '@/components/BC'
@@ -15,6 +15,8 @@ import { ArrowRight } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import DownloadButtons from '@/components/DownloadButtons'
 import { Metadata } from 'next'
+import HomeCards from '@/components/HomeCards'
+import { hostCards } from '@/data/homeCards'
 
 export const metadata: Metadata = {
   title: "Condividi il tuo parcheggio con Parkito",
@@ -33,43 +35,7 @@ export default function page() {
         <div className='min-h-96'>
           <h1 className="text-5xl font-extrabold mx-auto mb-4 text-center pt-10 text-primary">Perché scegliere <span className="text-primary dark:text-ring">Parkito:</span></h1>
           <div className='md:grid md:grid-cols-2 flex flex-col gap-4 p-16'>
-            <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
-              <Image src="/notif.webp" alt="icona Disponibilità e prezzo" width={200} height={200} loading="lazy" className='w-36 h-36 p-4' />
-              <CardContent className='w-full p-6'>
-                <CardTitle className="text-2xl font-bold text-primary mt-4">Scegli disponibilità e prezzo</CardTitle>
-                <CardDescription className="mt-2 w-[60%] text-left text-md text-primary">
-                  Condividi il tuo parcheggio quando e a che prezzo vuoi con un calendario super flessibile
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
-              <Image src="/star.webp" alt="icona stelle" width={200} height={200} sizes="144px" loading="lazy" className='w-36 h-36 p-4' />
-              <CardContent className='w-full p-6'>
-                <CardTitle className="text-2xl font-bold text-primary mt-4">100% Gratuito</CardTitle>
-                <CardDescription className="mt-2 w-[60%] text-left text-md text-primary">
-                  Incassa sempre quello che chiedi, senza commissioni a carico
-                  tuo ed oneri burocratici
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
-              <Image src="/reload.webp" alt="icona ricarica" width={200} height={200} sizes="144px" loading="lazy" className='w-36 h-36 p-4' />
-              <CardContent className='w-full p-6'>
-                <CardTitle className="text-2xl font-bold text-primary mt-4">Recedi quando vuoi</CardTitle>
-                <CardDescription className="mt-2 w-[60%] text-left text-md text-primary">
-                  In Parkito non esistono vincoli: potrai sempre togliere il tuo parcheggio dalla piattaforma
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card className="bg-card rounded-lg flex flex-col items-center justify-start w-full">
-              <Image src="/gold.webp" alt="icona oro" width={200} height={200} sizes="144px" loading="lazy" className='w-36 h-36 p-4' />
-              <CardContent className='w-full p-6'>
-                <CardTitle className="text-2xl font-bold text-primary mt-4">Guadagna fino al 300%</CardTitle>
-                <CardDescription className="mt-2 w-[60%] text-left text-md text-primary">
-                  Massimizza il tuo ritorno economico
-                </CardDescription>
-              </CardContent>
-            </Card>
+            <HomeCards cards={hostCards} />
           </div>
         </div>
         <div className=" min-h-screen pb-4">

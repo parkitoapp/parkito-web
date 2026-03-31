@@ -197,3 +197,10 @@ export type TimelineEntry = {
   title: string;
   content: ReactNode;
 };
+
+export type HomeCardType = {
+  title: string;
+  imgSrc: string;
+  description?: string;
+  alt: string;
+};
