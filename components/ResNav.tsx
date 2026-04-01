@@ -26,6 +26,7 @@ import { useSnow } from "@/hooks/useSnow";
 import { Snowflake } from "lucide-react";
 import isChristmas from "@/hooks/isChristmas";
 import { Button } from "./ui/button";
+import { hostDrop, servicesDrop } from "@/data/navDropdown";
 
 export default function ResNav() {
 
@@ -62,8 +63,9 @@ export default function ResNav() {
       link: "/",
     },
     {
-      name: "Dove Siamo",
-      link: "/citta",
+      name: "Servizi",
+      link: "",
+      data: servicesDrop
     },
     // {
     //     name: "Diventa Host",
@@ -72,6 +74,7 @@ export default function ResNav() {
     {
       name: "Host",
       link: "",
+      data: hostDrop
     },
     // {
     //     name: "Cos'è Parkito",
@@ -129,9 +132,13 @@ export default function ResNav() {
               onClose={() => setIsMobileMenuOpen(false)}
             >
               {navItems.map((item, idx) => (
-                item.name === "Host" ? (
+                item.data ? (
                   <div key={`mobile-link-${idx}`} className="w-full">
-                    <HostDropdown onLinkClick={() => setIsMobileMenuOpen(false)} />
+                    <HostDropdown
+                      label={item.name}
+                      navDropDown={item.data}
+                      onLinkClick={() => setIsMobileMenuOpen(false)}
+                    />
                   </div>
                 ) : (
                   <Link

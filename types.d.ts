@@ -204,3 +204,8 @@ export type HomeCardType = {
   description?: string;
   alt: string;
 };
+
+export interface DropdownProps {
+  name: string;
+  link: string;
+}

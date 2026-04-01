@@ -12,6 +12,8 @@ import Link from "next/link";
 import React, { useRef, useState } from "react";
 import HostDropdown from "@/components/HostDropdown";
 import isChristmas from "@/hooks/isChristmas";
+import { hostDrop } from "@/data/navDropdown";
+import { DropdownProps } from "@/types";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -28,6 +30,7 @@ interface NavItemsProps {
   items: {
     name: string;
     link: string;
+    data?: DropdownProps[];
   }[];
   className?: string;
   onItemClick?: () => void;
@@ -150,14 +153,17 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         const isHovered = hovered === idx;
         const showActive = isHovered || (hovered === null && itemIsActive);
 
-        return item.name === "Host" ? (
+        return (item.link === "" && item.data) ? (
           <div
             className="relative py-2"
             key={`link-${idx}`}
             onMouseEnter={() => setHovered(null)}
             onFocus={() => setHovered(null)}
           >
-            <HostDropdown />
+            <HostDropdown 
+              label={item.name} 
+              navDropDown={item.data} 
+            />
           </div>
         ) : (
           <Link
