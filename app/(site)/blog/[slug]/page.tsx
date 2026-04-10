@@ -159,7 +159,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
 
-        <Card className="mb-12 md:w-[30%] p-4 rounded-3xl">
+        <Card className="mb-12 md:w-[30%] p-4 rounded-lg">
           <CardTitle>Indice dei contenuti</CardTitle>
           <CardContent className="p-8 ">
             <ul className="flex flex-col list-disc">

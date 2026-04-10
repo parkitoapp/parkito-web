@@ -23,14 +23,6 @@ const team = [
     cit: "Pazienza da pescatore, codice da dev."
   },
   {
-    name: "Davide Facchin",
-    role: "Head of Growth",
-    image: "/davide.webp",
-    linkedin: "https://www.linkedin.com/in/davide-facchin",
-    avatar: "/davide_nobg.webp",
-    cit: "Carpe Diem"
-  },
-  {
     name: "Benedetta Sclano",
     role: "Product Designer",
     image: "/benedetta.webp",
@@ -38,14 +30,6 @@ const team = [
     avatar: "/benedetta_nobg.webp",
     cit: "L'inverno si trasforma sempre in primavera"
   },
-  // {
-  //   name: "Nicolò Mignacca",
-  //   role: "Sales Manager",
-  //   image: "/nicolo.webp",
-  //   linkedin: "https://www.linkedin.com/in/nicolo-mignacca",
-  //   avatar: "/nicolo.png",
-  //   cit: "Parkito to the Moon!"
-  // },
   {
     name: "Orlando Ferazzani",
     role: "Frontend Developer",

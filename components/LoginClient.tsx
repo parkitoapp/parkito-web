@@ -14,55 +14,71 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Error from "./Error";
 
+const GENERIC_LOGIN_ERROR = "Login failed. Please try again.";
+
 export default function LoginClient() {
     const router = useRouter();
     const [error, setError] = useState("");
+    const [submitting, setSubmitting] = useState(false);
 
     const handleLogin = async () => {
+        if (submitting) return;
+        setSubmitting(true);
+        setError("");
+
         try {
-            setError("");
             // dynamically import firebase only on the client
             const { signInWithPopup, signOut } = await import("firebase/auth");
             const { auth, provider } = await import("@/lib/firebase");
 
             const result = await signInWithPopup(auth, provider);
-            
-            // Get the ID token
             const idToken = await result.user.getIdToken();
 
             // Verify with server (server-side validation is the source of truth)
-            const response = await fetch("/api/auth/verify", {
+            const verifyRes = await fetch("/api/auth/verify", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({ idToken }),
             });
 
-            const data = await response.json();
+            const verifyData = await verifyRes.json().catch(() => ({}));
 
-            if (!data.valid) {
-                await signOut(auth);
-                setError(data.error || "Access restricted to company accounts only.");
+            if (!verifyRes.ok || !verifyData.valid) {
+                await signOut(auth).catch(() => {});
+                // Only the domain-restriction error is safe/useful to show
+                // verbatim — everything else collapses to a generic message.
+                const safe =
+                    typeof verifyData?.error === "string" &&
+                    verifyData.error.startsWith("Access restricted")
+                        ? verifyData.error
+                        : GENERIC_LOGIN_ERROR;
+                setError(safe);
                 return;
             }
 
-            // Set secure HttpOnly cookie via API route (prevents XSS)
-            // Include credentials to ensure cookies are set
-            await fetch("/api/auth/set-cookie", {
+            // Exchange the verified token for the HttpOnly cookie.
+            const cookieRes = await fetch("/api/auth/set-cookie", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include", // Important: ensures cookies are set
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({ idToken }),
             });
-            
-            // Redirect to admin
+
+            if (!cookieRes.ok) {
+                await signOut(auth).catch(() => {});
+                setError(GENERIC_LOGIN_ERROR);
+                return;
+            }
+
             router.push("/admin");
-        } catch (err: any) {
+        } catch (err) {
+            // Never forward Firebase error messages to the UI — they can
+            // leak config, user existence, or network internals.
             console.error("Login error:", err);
-            setError(err.message || "Login failed. Please try again.");
+            setError(GENERIC_LOGIN_ERROR);
+        } finally {
+            setSubmitting(false);
         }
     };
 
@@ -74,8 +90,9 @@ export default function LoginClient() {
                     onClick={handleLogin}
                     variant="default"
                     className="px-4 py-2 rounded-md"
+                    disabled={submitting}
                 >
-                    Sign in with your company account
+                    {submitting ? "Signing in..." : "Sign in with your company account"}
                 </Button>
                 {error && (
                     <Error title="Login Error" message={error} />
