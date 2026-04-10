@@ -68,21 +68,31 @@ export async function proxy(request: NextRequest) {
         return NextResponse.next();
     }
 
-    // Protect /admin routes - check for authentication token
+    // Protect /admin routes — edge-layer filter only. The real verification
+    // (signature, expiry, email_verified, domain match, revocation check)
+    // lives in `app/admin/layout.tsx`, a Server Component. This block only
+    // does cheap shape checks so obviously missing/malformed requests get
+    // bounced before they hit the Node runtime.
     if (pathname.startsWith("/admin")) {
-        // Allow /admin/login if it exists (for redirects)
         if (pathname === "/admin/login" || pathname === "/login") {
             return NextResponse.next();
         }
 
-        // Check for token in cookie or Authorization header
-        const token =
-            request.cookies.get("firebase-auth-token")?.value ||
-            request.headers.get("authorization")?.replace("Bearer ", "");
+        const token = request.cookies.get("firebase-auth-token")?.value;
 
-        // If no token, redirect to login
-        // The layout will handle the actual verification
-        if (!token) {
+        // Firebase ID tokens are JWTs — `header.payload.signature` in
+        // base64url. A legitimate token is a few hundred to ~2000 chars,
+        // has exactly two `.` separators, and contains only base64url
+        // characters. Reject anything that doesn't fit before we waste a
+        // server invocation verifying it.
+        const looksLikeJwt =
+            typeof token === "string" &&
+            token.length >= 20 &&
+            token.length <= 4096 &&
+            token.split(".").length === 3 &&
+            /^[A-Za-z0-9_\-.]+$/.test(token);
+
+        if (!looksLikeJwt) {
             return NextResponse.redirect(new URL("/login", request.url));
         }
 

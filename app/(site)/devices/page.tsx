@@ -1,10 +1,12 @@
 import Banner from "@/components/Banner"
 import Image from "next/image"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import HomeCards from "@/components/HomeCards"
+import { devicesCards } from "@/data/homeCards"
 import BC from "@/components/BC"
 import DownloadButtons from "@/components/DownloadButtons"
 import Link from "next/link"
 import { Metadata } from "next"
+
 
 export const metadata: Metadata = {
   title: "Automatizza gli accessi del tuo Parkito",
@@ -32,45 +34,8 @@ export default function page() {
               Grazie a Parkito puoi attivare un controllo da remoto per qualsiasi tipologia di varco: cancelli, portoni, sbarre, basculanti...
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 items-stretch gap-10">
-              <Card className="flex flex-col bg-card p-4 rounded-xl">
-                <CardHeader>
-                  <Image src="/safety.webp" alt="icona sicurezza" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="mx-auto" />
-                </CardHeader>
-                <div className="mt-auto">
-                  <CardTitle className="text-lg font-bold text-primary dark:text-chart-3">
-                    Sicurezza aumentata
-                  </CardTitle>
-                  <CardDescription>
-                    Traccia gli accessi al tuo parcheggio
-                  </CardDescription>
-                </div>
-              </Card>
-              <Card className="flex flex-col bg-card p-4 rounded-xl">
-                <CardHeader>
-                  <Image src="/secure.webp" alt="icona utenti verificati" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="mx-auto" />
-                </CardHeader>
-                <div className="mt-auto">
-                  <CardTitle className="text-lg font-bold text-primary dark:text-chart-3">
-                    Utenti Verificati
-                  </CardTitle>
-                  <CardDescription>
-                    Gli utenti sono verificati tramite carta di identità
-                  </CardDescription>
-                </div>
-              </Card>
-              <Card className="flex flex-col bg-card p-4 rounded-xl">
-                <CardHeader>
-                  <Image src="/automatic.webp" alt="icona automatico" width={200} height={200} sizes="(max-width: 768px) 160px, 200px" loading="lazy" className="mx-auto" />
-                </CardHeader>
-                <div className="mt-auto">
-                  <CardTitle className="text-lg font-bold text-primary dark:text-chart-3">
-                    Accesso in autonomia
-                  </CardTitle>
-                  <CardDescription>
-                    La tua presenza non sarà necessaria
-                  </CardDescription>
-                </div>
-              </Card>
+
+              <HomeCards cards={devicesCards} />
             </div>
           </div>
         </div>
@@ -137,8 +102,8 @@ export default function page() {
             </div>
           </div>
         </div>
-        <div className='relative bg-primary min-h-60 flex flex-col items-center justify-center gap-10'>
-          <h2 className='relative z-10 text-2xl md:text-4xl font-bold mx-auto text-center text-accent'>Scarica Parkito e scopri la soluzione migliore per il tuo parcheggio</h2>
+        <div className='relative min-h-90 flex flex-col items-center justify-center gap-10'>
+          <h2 className='relative z-10 text-2xl md:text-4xl font-bold mx-auto text-center text-primary'>Scarica Parkito e scopri la soluzione migliore per il tuo parcheggio</h2>
           <DownloadButtons />
           <div className="absolute inset-0 z-0 pointer-events-none">
             <div className="relative w-full h-full">

@@ -26,6 +26,7 @@ import { useSnow } from "@/hooks/useSnow";
 import { Snowflake } from "lucide-react";
 import isChristmas from "@/hooks/isChristmas";
 import { Button } from "./ui/button";
+import { hostDrop } from "@/data/navDropdown";
 
 export default function ResNav() {
 
@@ -62,29 +63,39 @@ export default function ResNav() {
       link: "/",
     },
     {
-      name: "Dove Siamo",
-      link: "/citta",
+      name: "Città",
+      link: "/citta"
     },
+    {
+      name: "Concerti",
+      link: "/servizi",
+    },
+
     // {
     //     name: "Diventa Host",
     //     link: "/diventare-host",
     // },
     {
-      name: "Host",
-      link: "",
+      name: "Area C",
+      link: "https://areac.parkito.app"
     },
     // {
     //     name: "Cos'è Parkito",
     //     link: "/about",
     // },
     {
-      name: "Blog",
-      link: "/blog"
+      name: "Diventa Host",
+      link: "",
+      data: hostDrop
     },
-    {
-      name: "Chi siamo",
-      link: "/chi-siamo"
-    }
+    // {
+    //   name: "Blog",
+    //   link: "/blog"
+    // },
+    // {
+    //   name: "Chi siamo",
+    //   link: "/chi-siamo"
+    // }
   ];
 
 
@@ -92,7 +103,7 @@ export default function ResNav() {
     <div className="relative w-full z-99">
       <Navbar>
         {width > 1024 ? (
-          <NavBody className="dark:border">
+          <NavBody className="">
             <NavbarLogo source={finalSrc} />
             <NavItems items={navItems} />
             <div className="flex items-center gap-4">
@@ -129,9 +140,13 @@ export default function ResNav() {
               onClose={() => setIsMobileMenuOpen(false)}
             >
               {navItems.map((item, idx) => (
-                item.name === "Host" ? (
+                item.data ? (
                   <div key={`mobile-link-${idx}`} className="w-full">
-                    <HostDropdown onLinkClick={() => setIsMobileMenuOpen(false)} />
+                    <HostDropdown
+                      label={item.name}
+                      navDropDown={item.data}
+                      onLinkClick={() => setIsMobileMenuOpen(false)}
+                    />
                   </div>
                 ) : (
                   <Link

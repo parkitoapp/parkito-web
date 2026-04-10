@@ -1,102 +1,44 @@
-"use client";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { verifyAuthToken } from "@/lib/firebase-admin";
+import AdminShell from "./AdminShell";
+import "../globals.css";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useAuth } from "@/hooks/useAuth";
-import { AppSidebar } from '@/components/app-sidebar';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
-import Loading from '@/components/Loading';
-import '../globals.css';
+/**
+ * Server-side admin guard.
+ *
+ * Previously this layout was a "use client" component and the auth check
+ * happened in a `useEffect` after hydration — which meant the admin JSX
+ * was always shipped and `proxy.ts` only checked cookie *presence*, not
+ * validity. That left `/admin/*` reachable to anyone who could forge a
+ * non-empty cookie value.
+ *
+ * Now the layout is a Server Component that:
+ *  1. Reads the HttpOnly `firebase-auth-token` cookie.
+ *  2. Verifies it with the Firebase Admin SDK (falls back to REST lookup
+ *     if the service account isn't configured).
+ *  3. Redirects to `/login` on any failure — nothing below this point
+ *     renders without a valid, domain-matching, email-verified token.
+ *
+ * Note: `/api/*` admin endpoints still need their own per-request guard.
+ * The layout check protects page renders, not direct API hits.
+ */
+export default async function AdminLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("firebase-auth-token")?.value;
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
-    const { user, loading } = useAuth();
-    const router = useRouter();
-    const [serverVerified, setServerVerified] = useState<boolean | null>(null);
-    const [verifying, setVerifying] = useState(false);
-
-    // Verify token with server on mount and when user changes
-    useEffect(() => {
-        const verifyWithServer = async () => {
-            if (loading || !user) {
-                setServerVerified(null);
-                return;
-            }
-
-            setVerifying(true);
-            try {
-                // Get the ID token from Firebase
-                const idToken = await user.getIdToken();
-
-                // Verify with server
-                const response = await fetch("/api/auth/verify", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ idToken }),
-                });
-
-                const data = await response.json();
-
-                if (data.valid) {
-                    setServerVerified(true);
-                    // Set secure HttpOnly cookie via API route (prevents XSS)
-                    // Include credentials to ensure cookies are set
-                    await fetch("/api/auth/set-cookie", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        credentials: "include", // Important: ensures cookies are set
-                        body: JSON.stringify({ idToken }),
-                    });
-                } else {
-                    setServerVerified(false);
-                    // Sign out if server rejects
-                    const { signOut } = await import("firebase/auth");
-                    const { auth } = await import("@/lib/firebase");
-                    await signOut(auth);
-                    // Clear HttpOnly cookie via API route
-                    await fetch("/api/auth/clear-cookie", {
-                        method: "POST",
-                        credentials: "include", // Important: ensures cookies are cleared
-                    });
-                    router.push("/login");
-                }
-            } catch (error) {
-                console.error("Error verifying token:", error);
-                setServerVerified(false);
-                router.push("/login");
-            } finally {
-                setVerifying(false);
-            }
-        };
-
-        verifyWithServer();
-    }, [user, loading, router]);
-
-    // Redirect if not logged in
-    useEffect(() => {
-        if (!loading && !user) {
-            router.push("/login");
-        }
-    }, [user, loading, router]);
-
-    // Show loading state while checking auth, verifying, or if verification failed
-    if (loading || !user || verifying || serverVerified === false || serverVerified === null) {
-        return <Loading />;
+    if (!token) {
+        redirect("/login");
     }
 
-    // User is authenticated and server-verified, show the admin layout
-    return (
-        <div>
-            <SidebarProvider>
-                <AppSidebar />
-                <main className="w-full min-h-screen">
-                    <SidebarTrigger />
-                    {children}
-                </main>
-            </SidebarProvider>
-        </div>
-    );
+    const result = await verifyAuthToken(token);
+    if (!result.valid) {
+        redirect("/login");
+    }
+
+    return <AdminShell>{children}</AdminShell>;
 }
