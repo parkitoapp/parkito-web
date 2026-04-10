@@ -92,3 +92,25 @@ export const devicesCards = [
     alt: "icona automatico",
   },
 ];
+
+export const shuttleCards = [
+  {
+    title: "Scegli l'evento",
+    imgSrc: "/icon-calendar.webp",
+    description:
+      "La tua auto sarà al sicuro in un piazzale custodito. Navette da tre ore prima dell'inizio",
+    alt: "icona calendario",
+  },
+  {
+    title: "Seleziona il numero di posti in navetta",
+    imgSrc: "/icon-people.webp",
+    description: "Puoi prenotarne fino a 5!",
+    alt: "icona persone",
+  },
+  {
+    title: "Paga in modo sicuro",
+    imgSrc: "/icon-pay.webp",
+    alt: "icona pagamento",
+    description: "Riceverai un'email di conferma con tutti i dettagli",
+  },
+];

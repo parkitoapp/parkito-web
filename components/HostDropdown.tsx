@@ -52,8 +52,8 @@ export default function HostDropdown({
   if (isMobile) {
     return (
       <Collapsible className="w-full">
-        <CollapsibleTrigger className="flex w-full flex-row items-center justify-between text-primary font-bold  py-2">
-          <span>{label}</span>
+        <CollapsibleTrigger className="flex w-full flex-row items-center justify-between text-primary dark:text-accent font-bold  py-2">
+          <span className="dark:text-accent">{label}</span>
           <ChevronDown className="h-4 w-4 transition-transform duration-200 data-[state=open]:rotate-180" />
         </CollapsibleTrigger>
         <CollapsibleContent className="flex flex-col gap-2 pt-2 pl-4">
@@ -62,7 +62,7 @@ export default function HostDropdown({
               key={idx}
               href={page.link}
               onClick={onLinkClick}
-              className={`text-primary font-bold  ${isActive(page.link) ? "text-chart-2" : ""}`}
+              className={`text-primary dark:text-accent font-bold  ${isActive(page.link) ? "text-chart-2" : ""}`}
             >
               {page.name}
               {idx < navDropDown.length - 1 && <DropdownMenuSeparator className="mt-2" />}
@@ -82,7 +82,7 @@ export default function HostDropdown({
           size={"sm"}
           className={`relative hover:bg-transparent hover:cursor-pointer font-bold md:text-xl text-md hover:text-chart-2 flex flex-row justify-center items-center md:py-2 transition-colors ${isAnyChildActive
             ? "text-white dark:text-white"
-            : "text-primary dark:text-primary"
+            : "text-primary dark:text-accent"
             }`}
         >
           {isAnyChildActive && (
@@ -109,10 +109,10 @@ export default function HostDropdown({
               setOpen(false)
               onLinkClick?.()
             }}
-            className={`px-4 py-3 transition-all rounded-none duration-200 hover:bg-accent/60 focus:bg-accent/60 active:scale-[0.98] cursor-pointer ${idx < navDropDown.length - 1 ? "border-b border-primary/20" : ""}`}
+            className={`px-4 py-3 transition-all rounded-none duration-200 hover:bg-accent/60  focus:bg-accent/60 active:scale-[0.98] cursor-pointer ${idx < navDropDown.length - 1 ? "border-b border-primary/20" : ""}`}
           >
             <Link
-              className={`w-full text-primary dark:text-white text-lg font-semibold transition-colors ${isActive(pages.link) ? "text-chart-2 dark:text-chart-2" : "hover:text-chart-2 dark:hover:text-chart-2"
+              className={`w-full text-primary dark:text-white text-lg font-semibold transition-colors ${isActive(pages.link) ? "text-chart-2 dark:text-chart-2" : "hover:text-chart-2 dark:hover:text-primary"
                 }`}
               href={pages.link}
               target={pages.link.includes("https://") ? "_blank" : "_self"}

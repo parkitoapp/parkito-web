@@ -3,6 +3,7 @@ import { Parking } from "@/types";
 import { slugify } from "@/lib/slugify";
 import { CityType } from "@/types";
 import { unstable_cache } from "next/cache";
+import { enforceRateLimit } from "@/lib/rate-limit";
 
 const placeholderArray: string[] = [
   "/citta1.webp",
@@ -61,6 +62,9 @@ export const getParkingData = unstable_cache(
 export async function getAllParkings(): Promise<
   { slug: string; address: string }[]
 > {
+  // SECURITY: rate-limit per IP. At build-time headers() is unavailable so
+  // all calls share the "unknown" bucket — generous limit prevents build breakage.
+  await enforceRateLimit("parkings-all", { limit: 120, windowMs: 60_000 });
   const parkings = await getParkingData();
 
   // Deduplicate parkings with same driver_name and address
@@ -83,6 +87,9 @@ export async function getParking(
   citySlug: string,
   parkingAddress: string
 ): Promise<Parking | null> {
+  // SECURITY: rate-limit per IP. Limit is high to accommodate build-time
+  // generateStaticParams which calls this function once per parking.
+  await enforceRateLimit("parking", { limit: 120, windowMs: 60_000 });
   const parkings = await getParkingData();
   return (
     parkings.find(
@@ -250,5 +257,7 @@ const getCitiesCached =
       );
 
 export async function getCities(): Promise<CityType[]> {
+  // SECURITY: rate-limit per IP to protect the public /citta route from abuse.
+  await enforceRateLimit("cities", { limit: 60, windowMs: 60_000 });
   return getCitiesCached();
 }

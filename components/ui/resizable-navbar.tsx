@@ -12,7 +12,6 @@ import Link from "next/link";
 import React, { useRef, useState } from "react";
 import HostDropdown from "@/components/HostDropdown";
 import isChristmas from "@/hooks/isChristmas";
-import { hostDrop } from "@/data/navDropdown";
 import { DropdownProps } from "@/types";
 
 interface NavbarProps {
@@ -110,7 +109,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: "800px",
       }}
       className={cn(
-        "relative z-60 mx-auto hidden w-[80%]  flex-row items-center justify-between self-start rounded-3xl bg-white px-8 py-3 lg:flex dark:bg-black/70",
+        "relative z-60 mx-auto hidden w-[80%]  flex-row items-center justify-between self-start rounded-[10px] bg-background px-8 py-3 lg:flex",
         visible && "bg-white/80 dark:bg-neutral-950/80",
         className,
       )}
@@ -160,9 +159,9 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
             onMouseEnter={() => setHovered(null)}
             onFocus={() => setHovered(null)}
           >
-            <HostDropdown 
-              label={item.name} 
-              navDropDown={item.data} 
+            <HostDropdown
+              label={item.name}
+              navDropDown={item.data}
             />
           </div>
         ) : (
@@ -183,7 +182,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
               "relative z-20 transition-colors",
               showActive
                 ? " dark:text-white"
-                : "text-primary dark:text-primary"
+                : "text-primary dark:text-accent"
             )}>
               {item.name}
             </span>

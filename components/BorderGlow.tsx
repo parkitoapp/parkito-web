@@ -18,7 +18,8 @@ interface BorderGlowProps {
 }
 
 function parseHSL(hslStr: string): { h: number; s: number; l: number } {
-  const match = hslStr.match(/([\d.]+)\s*([\d.]+)%?\s*([\d.]+)%?/);
+  // Matches HSL values with or without units (deg, %) and separators (spaces, commas)
+  const match = hslStr.match(/([\d.]+)(?:deg)?[\s,]+([\d.]+)(?:%)?[\s,]+([\d.]+)(?:%)?/);
   if (!match) return { h: 40, s: 80, l: 80 };
   return { h: parseFloat(match[1]), s: parseFloat(match[2]), l: parseFloat(match[3]) };
 }

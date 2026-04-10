@@ -26,7 +26,7 @@ import { useSnow } from "@/hooks/useSnow";
 import { Snowflake } from "lucide-react";
 import isChristmas from "@/hooks/isChristmas";
 import { Button } from "./ui/button";
-import { hostDrop, servicesDrop } from "@/data/navDropdown";
+import { hostDrop } from "@/data/navDropdown";
 
 export default function ResNav() {
 
@@ -63,31 +63,39 @@ export default function ResNav() {
       link: "/",
     },
     {
-      name: "Servizi",
-      link: "",
-      data: servicesDrop
+      name: "Città",
+      link: "/citta"
     },
+    {
+      name: "Concerti",
+      link: "/servizi",
+    },
+
     // {
     //     name: "Diventa Host",
     //     link: "/diventare-host",
     // },
     {
-      name: "Host",
-      link: "",
-      data: hostDrop
+      name: "Area C",
+      link: "https://areac.parkito.app"
     },
     // {
     //     name: "Cos'è Parkito",
     //     link: "/about",
     // },
     {
-      name: "Blog",
-      link: "/blog"
+      name: "Diventa Host",
+      link: "",
+      data: hostDrop
     },
-    {
-      name: "Chi siamo",
-      link: "/chi-siamo"
-    }
+    // {
+    //   name: "Blog",
+    //   link: "/blog"
+    // },
+    // {
+    //   name: "Chi siamo",
+    //   link: "/chi-siamo"
+    // }
   ];
 
 
@@ -95,7 +103,7 @@ export default function ResNav() {
     <div className="relative w-full z-99">
       <Navbar>
         {width > 1024 ? (
-          <NavBody className="dark:border">
+          <NavBody className="">
             <NavbarLogo source={finalSrc} />
             <NavItems items={navItems} />
             <div className="flex items-center gap-4">

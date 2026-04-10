@@ -153,7 +153,7 @@ export default function page() {
             <p className="text-xl mx-auto text-center text-foreground w-[60%] mt-10">Scegli <span className='font-bold'>come impostare</span> gli accessi al tuo parcheggio: accogliendo di persona, utilizzando un dispositivo fornito da Parkito oppure utilizzandone uno che già possiedi.</p>
           </div>
           <div className="py-10 flex flex-col gap-4">
-            <Card className="flex flex-col md:flex-row bg-primary p-6 md:p-8 rounded-3xl shadow-xl w-[90%] md:w-[50%] mx-auto overflow-visible">
+            <Card className="flex flex-col md:flex-row bg-primary p-6 md:p-8 rounded-lg shadow-xl w-[90%] md:w-[50%] mx-auto overflow-visible">
               <CardHeader className=" flex flex-col items-center justify-center p-4 md:w-1/3">
                 <Badge className=" md:left-6 bg-accent-foreground text-primary-foreground px-4 py-1.5 rounded-full text-sm font-semibold shadow-md z-10">
                   consigliato
@@ -221,7 +221,7 @@ export default function page() {
               </div>
 
             </Card>
-            <Card className="flex flex-col md:flex-row bg-card p-6 md:p-8 rounded-3xl shadow-xl w-[90%] md:w-[50%] mx-auto overflow-visible">
+            <Card className="flex flex-col md:flex-row bg-card p-6 md:p-8 rounded-lg shadow-xl w-[90%] md:w-[50%] mx-auto overflow-visible">
               <CardHeader className=" flex flex-col items-center justify-center p-4 md:w-1/3">
                 <Image
                   src={"/secure.webp"}

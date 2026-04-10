@@ -1,5 +1,5 @@
 export const hostDrop = [
-  { name: "Diventa Host", link: "/diventare-host" },
+  { name: "Inizia", link: "/diventare-host" },
   { name: "Automatizza il tuo parcheggio", link: "/devices" },
   { name: "Già host? Accedi qui", link: "https://host.parkito.app" },
 ];

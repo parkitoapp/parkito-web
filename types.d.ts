@@ -25,6 +25,112 @@ export type CityType = {
   fallbackImage?: string;
 };
 
+export type ServiceType = {
+  id: string;
+  slug: string;
+  type: string;
+  city: string;
+  title: string;
+  subtitle: string | null;
+  description: string | null;
+  image: string;
+  fallbackImage: string;
+  url: string;
+};
+
+export type ServiceImage = {
+  id: string;
+  url: string;
+  altText: string | null;
+  sortOrder: number;
+};
+
+export type ServiceFaq = {
+  id: string;
+  question: string;
+  answer: string;
+  sortOrder: number;
+};
+
+/** "HH:MM:SS" from Postgres `time` — treat as local, unzoned. */
+export type ShuttleDetails = {
+  frequencyMinutes: number | null;
+  operatingStart: string;
+  operatingEnd: string;
+  operatingDays: string | null;
+};
+
+export type CarwashDetails = {
+  address: string;
+  latitude: number | null;
+  longitude: number | null;
+  operatingStart: string;
+  operatingEnd: string;
+  operatingDays: string | null;
+  acceptsBooking: boolean;
+};
+
+export type ServiceEventTimeslot = {
+  id: string;
+  departureTime: string;
+  spotsAvailable: number | null;
+};
+
+export type ServiceEvent = {
+  id: string;
+  title: string;
+  destination: string;
+  /** ISO date "YYYY-MM-DD". */
+  eventDate: string;
+  departureTime: string;
+  returnTime: string | null;
+  departureAddress: string;
+  arrivalAddress: string;
+  frequencyMinutes: number | null;
+  minPersons: number;
+  maxPersons: number;
+  priceCents: number;
+  stripePaymentLink: string;
+  spotsAvailable: number | null;
+  sortOrder: number;
+  timeslots: ServiceEventTimeslot[];
+};
+
+/**
+ * Full payload for a service detail page — one row from `srv_services`
+ * joined with its gallery, FAQs, type-specific details, and events.
+ */
+export type ServiceDetailData = {
+  id: string;
+  slug: string;
+  type: string;
+  city: string;
+  title: string;
+  subtitle: string | null;
+  description: string | null;
+  coverImage: string | null;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+
+  /**
+   * Public URL to the city image in the "website" Supabase bucket, resolved as
+   * `${slugify(city)}.webp`. The URL is always returned — if the file does not
+   * exist the request will 404, so consumers must handle the error case (e.g.
+   * `onError` fallback in `next/image`).
+   */
+  cityImage: string;
+
+  images: ServiceImage[];
+  faqs: ServiceFaq[];
+  /** Populated when `type === "shuttle"`. Null otherwise. */
+  shuttleDetails: ShuttleDetails | null;
+  /** Populated when `type === "carwash"`. Null otherwise. */
+  carwashDetails: CarwashDetails | null;
+  /** Active events attached to this service, each with its timeslots. */
+  events: ServiceEvent[];
+};
+
 export type AppleReview = {
   id: string;
   attributes: {

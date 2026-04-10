@@ -81,9 +81,9 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
                 aria-hidden
                 className="absolute left-0 bottom-0 z-0 w-1/2 max-w-160 h-1 md:h-2 bg-lime-200 dark:bg-green-800 pointer-events-none"
               />
-              <h2 className="relative z-10 font-extrabold  lg:text-6xl  leading-tight text-primary">{title}</h2>
+              <h2 className="relative z-10 font-extrabold  lg:text-6xl leading-tight text-primary dark:text-chart-2">{title}</h2>
             </div>
-            <p className="text-xl md:text-2xl text-chart-3">{subtitle}</p>
+            <p className="text-xl md:text-2xl text-chart-3 dark:text-chart-1">{subtitle}</p>
 
             {dwbtn && (
               <div className="flex flex-row w-full mx-auto items-center justify-start gap-4 mt-6">
