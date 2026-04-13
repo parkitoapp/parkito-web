@@ -29,6 +29,7 @@ interface NavItemsProps {
   items: {
     name: string;
     link: string;
+    icon?: React.ReactNode;
     data?: DropdownProps[];
   }[];
   className?: string;
@@ -179,12 +180,13 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
               />
             )}
             <span className={cn(
-              "relative z-20 transition-colors",
+              "relative z-20 transition-colors flex flex-row items-center gap-2",
               showActive
                 ? " dark:text-white"
                 : "text-primary dark:text-accent"
             )}>
               {item.name}
+              {item.icon && item.icon}
             </span>
           </Link>
         );

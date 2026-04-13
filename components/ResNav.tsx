@@ -23,7 +23,7 @@ import HostDropdown from "@/components/HostDropdown";
 import { useTheme } from "next-themes";
 import { useWidth } from "@/hooks/useWidth";
 import { useSnow } from "@/hooks/useSnow";
-import { Snowflake } from "lucide-react";
+import { ExternalLink, Snowflake } from "lucide-react";
 import isChristmas from "@/hooks/isChristmas";
 import { Button } from "./ui/button";
 import { hostDrop } from "@/data/navDropdown";
@@ -77,7 +77,8 @@ export default function ResNav() {
     // },
     {
       name: "Area C",
-      link: "https://areac.parkito.app"
+      link: "https://areac.parkito.app",
+      icon: <ExternalLink className="size-4" />
     },
     // {
     //     name: "Cos'è Parkito",
