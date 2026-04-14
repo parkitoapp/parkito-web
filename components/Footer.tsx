@@ -98,9 +98,10 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className='flex flex-col gap-2'>
               <h2 className='text-white font-bold text-lg md:text-2xl'>Contattaci</h2>
-              <ul className='flex flex-col mt-4 text-white gap-2 text-sm'>
+              <p className='w-full'>Scarica l&apos;app per ricevere supporto prioritario</p>
+              {/* <ul className='flex flex-col mt-4 text-white gap-2 text-sm'>
                 <li>
                   <Link href={"tel:+39800816980"} title='diventa host' aria-label='diventa un host'>
                     +39 800 816 980
@@ -111,14 +112,15 @@ export default function Footer() {
                     help@parkito.app
                   </Link>
                 </li>
-                {/* <li>Per i condomini</li> */}
-              </ul>
+                {/* <li>Per i condomini</li> 
+              </ul> */}
+              <DownloadButtons />
             </div>
 
           </div>
         </div>
-        <div className='flex flex-row items-center justify-between gap-4 mt-4 w-full'>
-          <DownloadButtons />
+        <div className='flex flex-row items-center justify-center md:justify-end gap-4 mt-4 w-full'>
+          {/* <DownloadButtons /> */}
           <div className='flex items-center gap-4 md:flex-row flex-col'>
             <p className='text-white text-sm'>Powered by</p>
             <Link href="https://www.b4i.unibocconi.it/">

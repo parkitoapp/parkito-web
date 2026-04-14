@@ -143,7 +143,8 @@ export default function ServiceEventsSection({
             <h4 className="text-3xl md:text-4xl font-bold mb-6 capitalize">
               {group.label}
             </h4>
-            <Table className="rounded-lg dark:bg-chart-5 ">
+            {/* Desktop: shadcn table */}
+            <Table className="hidden md:table rounded-lg dark:bg-chart-5">
               <TableBody>
                 {group.events.map((event) => {
                   const hasLink = Boolean(event.stripePaymentLink);
@@ -177,6 +178,42 @@ export default function ServiceEventsSection({
                 })}
               </TableBody>
             </Table>
+
+            {/* Mobile: stacked cards */}
+            <ul className="md:hidden flex flex-col divide-y divide-accent/20">
+              {group.events.map((event) => {
+                const hasLink = Boolean(event.stripePaymentLink);
+                return (
+                  <li
+                    key={event.id}
+                    className="flex flex-col gap-1 py-4 text-primary dark:text-white"
+                  >
+                    <span className="font-semibold text-sm">
+                      {formatItalianDate(event.eventDate)}
+                    </span>
+                    <span className="text-base font-medium break-words">
+                      {hasLink ? (
+                        <Link
+                          href={event.stripePaymentLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline underline-offset-4"
+                        >
+                          {event.title}
+                        </Link>
+                      ) : (
+                        event.title
+                      )}
+                    </span>
+                    {event.destination ? (
+                      <span className="text-sm opacity-75 break-words">
+                        {event.destination}
+                      </span>
+                    ) : null}
+                  </li>
+                );
+              })}
+            </ul>
           </section>
         ))}
       </div>

@@ -20,7 +20,7 @@ export default function DownloadButtons() {
 
   return (
     <Button
-      variant="default"
+      variant="secondary"
       size={"lg"}
       className="min-w-[200px]"
       onClick={handleDownloadClick}
