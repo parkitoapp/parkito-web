@@ -69,12 +69,12 @@ export default function ServiceDetail({
         />
         <div className="bg-transparent flex flex-col py-16 w-full">
           <div className="flex items-center justify-center w-[90%] md:w-[80%] mx-auto bg-background rounded-lg flex-col p-6 gap-6">
-            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold max-w-3xl text-center text-primary dark:text-accent break-words">Lo sappiamo, trovare parcheggio a <span className="text-lime-400 dark:text-lime-200">{service.city}</span> è quasi impossibile. </h3>
-            <p className="text-xl sm:text-2xl md:text-3xl italic text-primary dark:text-accent text-center break-words">Per questo abbiamo creato il servizio <span className="text-lime-400 dark:text-lime-200 font-bold">Parcheggio + Navetta!</span></p>
+            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold max-w-3xl text-center text-primary dark:text-accent wrap-break-words">Lo sappiamo, trovare parcheggio a <span className="text-lime-400 dark:text-lime-200">{service.city}</span> è quasi impossibile. </h3>
+            <p className="text-xl sm:text-2xl md:text-3xl italic text-primary dark:text-accent text-center wrap-break-words">Per questo abbiamo creato il servizio <span className="text-lime-400 dark:text-lime-200 font-bold">Parcheggio + Navetta!</span></p>
           </div>
         </div>
         <div className="bg-primary flex flex-col w-full p-6 md:p-8 gap-16">
-          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold w-full text-center text-accent break-words">Come funziona?</h3>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold w-full text-center text-accent wrap-break-words">Come funziona?</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 items-stretch gap-10">
             <HomeCards cards={shuttleCards} />
           </div>
@@ -84,7 +84,7 @@ export default function ServiceDetail({
           </Button>
         </div>
         <div id="events" className="py-16 bg-background">
-          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold w-full text-center text-primary dark:text-accent break-words px-4">Prossimi eventi</h3>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold w-full text-center text-primary dark:text-accent wrap-break-words px-4">Prossimi eventi</h3>
           <ServiceEventsSection events={service.events} />
         </div>
         <ServiceFaq faqs={service.faqs} />

@@ -23,7 +23,7 @@ import HostDropdown from "@/components/HostDropdown";
 import { useTheme } from "next-themes";
 import { useWidth } from "@/hooks/useWidth";
 import { useSnow } from "@/hooks/useSnow";
-import { Snowflake } from "lucide-react";
+import { Building, ExternalLink, Home, Music, Snowflake } from "lucide-react";
 import isChristmas from "@/hooks/isChristmas";
 import { Button } from "./ui/button";
 import { hostDrop } from "@/data/navDropdown";
@@ -61,14 +61,17 @@ export default function ResNav() {
     {
       name: "Home",
       link: "/",
+      icon: <Home />
     },
     {
       name: "Città",
-      link: "/citta"
+      link: "/citta",
+      icon: <Building />
     },
     {
       name: "Concerti",
       link: "/servizi",
+      icon: <Music />
     },
 
     // {
@@ -77,7 +80,8 @@ export default function ResNav() {
     // },
     {
       name: "Area C",
-      link: "https://areac.parkito.app"
+      link: "https://areac.parkito.app",
+      icon: <ExternalLink />
     },
     // {
     //     name: "Cos'è Parkito",
@@ -153,8 +157,9 @@ export default function ResNav() {
                     key={`mobile-link-${idx}`}
                     href={item.link}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="relative text-primary font-bold dark:text-neutral-300"
+                    className="relative text-primary font-bold dark:text-neutral-300 flex flex-row items-center gap-2"
                   >
+                    {item.icon && item.icon}
                     <span className="block">{item.name}</span>
                   </Link>
                 )

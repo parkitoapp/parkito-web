@@ -117,7 +117,7 @@ export default function ServiceBanner({ city, start_address, image, className, s
       {/* Mobile/Tablet View (max-width: 1280px) */}
       <div className="flex xl:hidden relative w-full flex-col" >
         {/* Fixed image container - always behind ALL content with -z-10 */}
-        <div
+        {/* <div
           className="fixed xl:hidden top-0 left-0 w-full overflow-hidden -z-10"
           style={{ height: `${windowHeight * 0.5}px` }}
         >
@@ -141,15 +141,15 @@ export default function ServiceBanner({ city, start_address, image, className, s
               }}
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Content that slides over the image */}
         <div
-          className="relative bg-background w-full flex flex-col items-center justify-center p-8 rounded-t-[3rem] min-h-[60vh]"
+          className="relative bg-background w-full flex flex-col items-center justify-center p-8 min-h-[60vh]"
           style={{ marginTop: `${windowHeight * 0.45}px` }}
         >
 
-          <div className="absolute inset-0 z-0 pointer-events-none rounded-t-[3rem] overflow-hidden">
+          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
             <div className="relative w-full h-full">
               <Image
                 src="/linea-mob.webp"
@@ -172,8 +172,8 @@ export default function ServiceBanner({ city, start_address, image, className, s
               <MapPin className="inline-block mr-2 shrink-0" />
               Partenza da: {start_address}
             </p>
-            <Button variant={"secondary"} size={"lg"} asChild>
-              <Link href="#events">Prenota ora</Link>
+            <Button variant={"secondary"} className="w-full" asChild>
+              <Link href="#events">Prenota</Link>
             </Button>
           </div>
         </div>

@@ -29,6 +29,7 @@ interface NavItemsProps {
   items: {
     name: string;
     link: string;
+    icon?: React.ReactNode;
     data?: DropdownProps[];
   }[];
   className?: string;
@@ -97,7 +98,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "none",
-        width: visible ? "40%" : "80%",
+        width: visible ? "55%" : "90%",
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -110,7 +111,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
       }}
       className={cn(
         "relative z-60 mx-auto hidden w-[80%]  flex-row items-center justify-between self-start rounded-[10px] bg-background px-8 py-3 lg:flex",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        visible && "bg-background/80",
         className,
       )}
     >
@@ -179,11 +180,12 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
               />
             )}
             <span className={cn(
-              "relative z-20 transition-colors",
+              "relative z-20 transition-colors flex flex-row items-center gap-2",
               showActive
                 ? " dark:text-white"
                 : "text-primary dark:text-accent"
             )}>
+              {item.icon && item.icon}
               {item.name}
             </span>
           </Link>
