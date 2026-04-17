@@ -12,6 +12,7 @@ const excludedRoutes = new Set([
     'contatti',
     'devices',
     'diventare-host',
+    'ingest',
     'login',
     'terminiecondizioni',
     'favicon.ico',

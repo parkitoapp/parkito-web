@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { getPostHogClient } from "@/lib/posthog-server";
 
 export async function POST(req: Request) {
     try {
@@ -30,6 +31,16 @@ export async function POST(req: Request) {
         <p><b>Telefono:</b> ${phone}</p>
         <p><b>Messaggio:</b><br/>${body}</p>
         `,
+        });
+
+        const posthog = getPostHogClient();
+        posthog.capture({
+            distinctId: from,
+            event: "contact_form_submitted",
+            properties: {
+                subject,
+                has_phone: !!phone,
+            },
         });
 
         return new Response(JSON.stringify({ success: true }), { status: 200 });
