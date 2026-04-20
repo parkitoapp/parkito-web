@@ -57,7 +57,7 @@ export default async function ThankYouPage({
           style={{ animationFillMode: "both" }}
         >
           <Link
-            href="https://id-preview--892f2058-882a-4c71-b17a-104c6ceff218.lovable.app/"
+            href="https://lavender-monkey-236324.hostingersite.com"
             className="inline-flex gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all hover:scale-105 active:scale-95 items-center"
             style={{ background: "oklch(0.2904 0.1476 267.0961)", color: "white" }}
           >

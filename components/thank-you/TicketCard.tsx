@@ -73,7 +73,9 @@ export function TicketCard({ data }: { data: ConfirmationData }) {
 
         {/* Persons + plate */}
         <div className="grid grid-cols-2 gap-4">
-          <TicketRow icon="👥" label="Passeggeri" value={String(data.persons)} />
+          {data.persons != null && (
+            <TicketRow icon="👥" label="Passeggeri" value={String(data.persons)} />
+          )}
           <TicketRow icon="🚗" label="Targa" value={data.plate.toUpperCase()} />
         </div>
 
