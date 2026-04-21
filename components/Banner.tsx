@@ -102,7 +102,7 @@ export default function Banner({ src, src2, title, subtitle, icon, social, dwbtn
               height={960}
               priority
               unoptimized={isSupabaseImage}
-              className={`${classname} object-contain drop-shadow-2xl w-full rounded-lg z-9999`}
+              className={`${classname} object-contain w-full rounded-lg z-9999`}
               onError={() => {
                 setImageError(true);
               }}

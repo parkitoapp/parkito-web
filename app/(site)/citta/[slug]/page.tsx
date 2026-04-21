@@ -3,8 +3,9 @@ import ParkingList from "@/components/ParkingList";
 import BC from "@/components/BC";
 import { getCities } from "@/lib/parking";
 import { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
 interface Props {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }
 
 // console.log("Rendering CityPage for:", citySlug);
@@ -28,6 +29,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CityPage({ params }: Props) {
     const citySlug = await params;
 
+    const cityName = titleizeSlug(citySlug.slug);
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://parkito.app' },
+            { '@type': 'ListItem', position: 2, name: 'Città', item: 'https://parkito.app/citta' },
+            { '@type': 'ListItem', position: 3, name: cityName, item: `https://parkito.app/citta/${citySlug.slug}` },
+        ],
+    };
+
     // Fetch city data to get image from Supabase bucket (with fallback to placeholder)
     const cities = await getCities();
     const cityData = cities.find(c => c.url === `/citta/${citySlug.slug}`);
@@ -37,6 +49,7 @@ export default async function CityPage({ params }: Props) {
 
     return (
         <div>
+            <JsonLd data={breadcrumbSchema} />
             <Banner
                 title={`Parcheggi a ${titleizeSlug(citySlug.slug)}`}
                 subtitle={`Scopri i migliori parcheggi a ${titleizeSlug(citySlug.slug)} con Parkito`}

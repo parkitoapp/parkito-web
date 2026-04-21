@@ -12,16 +12,31 @@ import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import HomeCards from "@/components/HomeCards";
 import { cards, howItWorks } from '@/data/homeCards'
+import { JsonLd } from "@/components/JsonLd";
 
 export const metadata = {
   title: 'Prenota Parcheggi Privati',
   description: 'Parkito: la prima app per il Park Sharing in Italia. Prenota in anticipo Parcheggi Privati sicuri e verificati',
 }
 
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ParkingFacility',
+  name: 'Parkito - Parcheggi in Viaggio',
+  description: 'Il primo servizio di Park Sharing in Italia. Prenota parcheggi privati verificati nelle principali città italiane.',
+  url: 'https://parkito.app',
+  logo: 'https://parkito.app/logo.webp',
+  image: 'https://parkito.app/logo.webp',
+  areaServed: ['Milano', 'Firenze', 'Bologna', 'Torino', 'Roma', 'Napoli'],
+  serviceType: 'Park Sharing',
+  priceRange: '€',
+}
+
 export default function Home() {
 
   return (
     <>
+      <JsonLd data={localBusinessSchema} />
       <Banner title="Prenota in anticipo Parcheggi Privati sicuri e verificati con Parkito!" subtitle="Vacanze, eventi, viaggi di lavoro: dimentica per sempre il problema del parcheggio, scarica Parkito!" src="/homePic.webp" icon={true} social={true} dwbtn={true} src2={true} classname="max-w-xl" />
       <div className="bg-background">
 

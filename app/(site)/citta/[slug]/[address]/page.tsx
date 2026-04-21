@@ -2,6 +2,11 @@ import ParkingDetail from "@/components/ParkingDetail";
 import { getAllParkings, getParking } from "@/lib/parking";
 import { fetchParkingPhotoServer } from "@/lib/parking-server";
 import { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+
+function titleizeSlug(s: string) {
+    return s.split('-').map(w => w ? w[0].toUpperCase() + w.slice(1) : '').join(' ')
+}
 
 interface Params {
     slug: string;
@@ -32,5 +37,21 @@ export default async function ParkingDetailPage({ params }: { params: Promise<Pa
     const parking = await getParking(slug, address);
     const imageUrl = await fetchParkingPhotoServer(parking!.id) ?? "/parkitoplaceholder.webp";
 
-    return <ParkingDetail citySlug={slug} parking={parking} imageUrl={imageUrl} />;
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://parkito.app' },
+            { '@type': 'ListItem', position: 2, name: 'Città', item: 'https://parkito.app/citta' },
+            { '@type': 'ListItem', position: 3, name: titleizeSlug(slug), item: `https://parkito.app/citta/${slug}` },
+            { '@type': 'ListItem', position: 4, name: parking?.name ?? titleizeSlug(address), item: `https://parkito.app/citta/${slug}/${address}` },
+        ],
+    };
+
+    return (
+        <>
+            <JsonLd data={breadcrumbSchema} />
+            <ParkingDetail citySlug={slug} parking={parking} imageUrl={imageUrl} />
+        </>
+    );
 }

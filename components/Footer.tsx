@@ -46,11 +46,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href='https://wa.me/393520397705' aria-label='link a whatsapp'>
-                  <Image src="/whatsapp-svgrepo-com.svg" width={28} height={28} className="object-contain invert-100" alt="whatsapp" />
-                </Link>
-              </li>
-              <li>
                 <Link href='https://www.facebook.com/parkito.parking' aria-label='link a facebook'>
                   <Facebook size={28} className="text-white" />
                 </Link>
@@ -100,20 +95,7 @@ export default function Footer() {
             </div>
             <div className='flex flex-col gap-2'>
               <h2 className='text-white font-bold text-lg md:text-2xl'>Contattaci</h2>
-              <p className='w-full'>Scarica l&apos;app per ricevere supporto prioritario</p>
-              {/* <ul className='flex flex-col mt-4 text-white gap-2 text-sm'>
-                <li>
-                  <Link href={"tel:+39800816980"} title='diventa host' aria-label='diventa un host'>
-                    +39 800 816 980
-                  </Link>
-                </li>
-                <li>
-                  <Link href={"mailto:help@parkito.app?subject=Richiesta di informazioni?body=Buongiorno,\nVolevo chiedere informazioni riguardo..."} title='devices' aria-label='dispositivi di accesso'>
-                    help@parkito.app
-                  </Link>
-                </li>
-                {/* <li>Per i condomini</li> 
-              </ul> */}
+              <p className='w-full text-white'>Scarica l&apos;app per ricevere supporto prioritario</p>
               <DownloadButtons />
             </div>
 

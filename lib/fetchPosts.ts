@@ -9,9 +9,12 @@ export async function getPosts(): Promise<BlogPost[]> {
         `
         *[_type == "blogPost"] | order(publishedAt desc){
             _id,
+            _updatedAt,
             title,
             slug,
             publishedAt,
+            metatitle,
+            metadescription,
             coverImage,
             altCoverImage,
             tags,
@@ -23,8 +26,8 @@ export async function getPosts(): Promise<BlogPost[]> {
         }
         `,
         {},
-        { 
-            next: { revalidate: 0 } // Disable caching for fresh data
+        {
+            next: { revalidate: 3600 } // ISR revalidate every hour
         }
     );
 }
@@ -36,6 +39,7 @@ export async function getPost(slug: string): Promise<BlogPost | null> {
         `
         *[_type == "blogPost" && slug.current == $slug][0]{
             _id,
+            _updatedAt,
             title,
             slug,
             publishedAt,
@@ -55,14 +59,14 @@ export async function getPost(slug: string): Promise<BlogPost | null> {
                 id,
                 title,
                 image,
-                body, 
+                body,
                 sectionAlt
             }
         }
         `,
         { slug },
-        { 
-            next: { revalidate: 0 } // Disable caching for fresh data
+        {
+            next: { revalidate: 3600 } // ISR revalidate every hour
         }
     );
 }
@@ -74,7 +78,7 @@ export async function checkPostExists(slug: string): Promise<{ exists: boolean; 
         const post = await client.fetch(
             `*[_type == "blogPost" && slug.current == $slug][0]{_id}`,
             { slug },
-            { next: { revalidate: 0 } }
+            { next: { revalidate: 3600 } }
         );
         return { exists: !!post, _id: post?._id };
     } catch {

@@ -218,6 +218,7 @@ export type Block = {
 
 export type BlogPost = {
   _id: string;
+  _updatedAt: string;
   title: string;
   metatitle: string;
   metadescription: string;

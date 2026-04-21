@@ -98,7 +98,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "none",
-        width: visible ? "55%" : "90%",
+        width: visible ? "65%" : "90%",
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -172,6 +172,8 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
             className="relative px-2 py-2"
             key={`link-${idx}`}
             href={item.link}
+            target={item.link.startsWith("http") ? "_blank" : "_self"}
+            rel={item.link.startsWith("http") ? "noopener noreferrer" : ""}
           >
             {showActive && (
               <motion.div

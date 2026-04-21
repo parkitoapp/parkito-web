@@ -49,21 +49,22 @@ export default async function ThankYouPage({
 
       <div className="relative z-10 w-full max-w-lg">
         <SuccessBadge name={data.customer_name} />
-        <TicketCard data={data} />
-
         <Button
           asChild
           className="mt-8 flex justify-center animate-[fadeInUp_0.6s_0.25s_ease_both] mx-auto w-full"
           style={{ animationFillMode: "both" }}
         >
           <Link
-            href="https://lavender-monkey-236324.hostingersite.com"
+            href="https://shuttle.parkito.app"
             className="inline-flex gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all hover:scale-105 active:scale-95 items-center"
             style={{ background: "oklch(0.2904 0.1476 267.0961)", color: "white" }}
           >
             Scegli le navette 🚌
           </Link>
         </Button>
+        <p className="text-sm text-muted-foreground/70 mx-auto w-[80%] text-center my-2">Clicca sul bottone sopra per prenotare le navette. Per farlo, inserisci il numero di prenotazione e la tua targa. Trovi entrambi qua sotto, e nella mail di conferma</p>
+
+        <TicketCard data={data} />
       </div>
     </main>
   );
