@@ -10,6 +10,8 @@ export const metadata: Metadata = {
     description: "Leggi l'informativa sulla privacy dell'app Parkito.",
 };
 
+export const dynamic = "force-dynamic";
+
 // Server component
 export default async function TermsPage() {
     const content = await fetchLegalMarkdown("privacy.md");
