@@ -30,7 +30,7 @@ export default function ServiceCard({ service }: { service: ServiceType }) {
         </div>
 
         <CardFooter className="flex flex-col gap-2 items-start px-6 py-4 w-full flex-1">
-          <CardTitle className="dark:text-chart-3 text-chart-4 text-xl text-left w-full">
+          <CardTitle className="dark:text-chart-1 text-chart-4 text-xl text-left w-full">
             {service.title}
           </CardTitle>
 

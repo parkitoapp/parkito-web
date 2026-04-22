@@ -28,7 +28,7 @@ export default function CityCard({ city }: { city: CityType }) {
       />
 
       <CardFooter className="flex flex-col xl:flex-row gap-2 items-center px-6 py-4 w-full">
-        <CardTitle className="dark:text-chart-3 text-chart-4 text-xl items-center justify-start text-left w-full">{city.name}</CardTitle>
+        <CardTitle className="dark:text-chart-1 text-chart-4 text-xl items-center justify-start text-left w-full">{city.name}</CardTitle>
 
         <Button variant="default" className="p-2 mt-2 rounded-lg items-center justify-center" asChild>
           <Link href={city.url}>Scopri {city.name} <ArrowRightIcon /></Link>
