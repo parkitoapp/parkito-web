@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Error from "./Error";
+import posthog from "posthog-js";
 
 const GENERIC_LOGIN_ERROR = "Login failed. Please try again.";
 
@@ -53,6 +54,7 @@ export default function LoginClient() {
                     verifyData.error.startsWith("Access restricted")
                         ? verifyData.error
                         : GENERIC_LOGIN_ERROR;
+                posthog.capture("admin_login_failed", { reason: "verification_failed" });
                 setError(safe);
                 return;
             }
@@ -71,11 +73,21 @@ export default function LoginClient() {
                 return;
             }
 
+            posthog.identify(result.user.uid, {
+                email: result.user.email ?? undefined,
+                name: result.user.displayName ?? undefined,
+            });
+            posthog.capture("admin_login_success", {
+                email: result.user.email ?? undefined,
+            });
+
             router.push("/admin");
         } catch (err) {
             // Never forward Firebase error messages to the UI — they can
             // leak config, user existence, or network internals.
             console.error("Login error:", err);
+            posthog.captureException(err);
+            posthog.capture("admin_login_failed", { reason: "exception" });
             setError(GENERIC_LOGIN_ERROR);
         } finally {
             setSubmitting(false);

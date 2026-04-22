@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { confirmBooking } from "@/lib/api/confirmBooking";
 import { SuccessBadge } from "@/components/thank-you/SuccessBadge";
 import { TicketCard } from "@/components/thank-you/TicketCard";
+import { getPostHogClient } from "@/lib/posthog-server";
 
 export const metadata: Metadata = {
   title: "Prenotazione Confermata · Parkito Shuttle",
@@ -24,6 +25,15 @@ export default async function ThankYouPage({
   let data;
   try {
     data = await confirmBooking(sessionId);
+    const posthog = getPostHogClient();
+    posthog.capture({
+      distinctId: sessionId,
+      event: "booking_confirmed",
+      properties: {
+        session_id: sessionId,
+        customer_name: data.customer_name,
+      },
+    });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Errore sconosciuto";
     return (
