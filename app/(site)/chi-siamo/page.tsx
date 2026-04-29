@@ -10,7 +10,7 @@ const team = [
     name: "Marco Lepore",
     role: "CEO & Founder",
     image: "/marco.webp",
-    linkedin: "https://www.linkedin.com/in/marco-lepore",
+    linkedin: "https://www.linkedin.com/in/leporemarco",
     avatar: "/marco_nobg.webp",
     cit: "Parkito to the Moon!"
   },
