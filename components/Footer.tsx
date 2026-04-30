@@ -17,7 +17,7 @@ export default function Footer() {
 
 
   return (
-    <footer className="w-full dark:bg-sidebar-primary bg-primary" aria-label='footer'>
+    <footer className="relative z-10 w-full bg-primary dark:bg-chart-5" aria-label='footer'>
       <div className="max-w-7xl mx-auto px-6 py-10 md:px-24 md:py-16">
         <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-0">
           {/* Left block: logo, label, company info */}
@@ -43,11 +43,6 @@ export default function Footer() {
               <li>
                 <Link href='https://www.instagram.com/parkito.app/' aria-label='link a instagram' >
                   <Instagram size={28} className="text-white" />
-                </Link>
-              </li>
-              <li>
-                <Link href='https://wa.me/393520397705' aria-label='link a whatsapp'>
-                  <Image src="/whatsapp-svgrepo-com.svg" width={28} height={28} className="object-contain invert-100" alt="whatsapp" />
                 </Link>
               </li>
               <li>
@@ -83,30 +78,6 @@ export default function Footer() {
                 {/* <li>Per i condomini</li> */}
               </ul>
             </div>
-
-            <div>
-              <h2 className='text-white font-bold text-lg md:text-2xl'>Città</h2>
-              {/* <FooterList /> */}
-              <ul className='flex flex-col mt-4 text-white gap-2 text-sm'>
-                <li>
-                  <Link href="/citta/torino" title="Torino">
-                    Torino
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/citta/milano" title="Milano">
-                    Milano
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/citta/firenze" title="Roma">
-                    Firenze
-                  </Link>
-                </li>
-              </ul>
-
-            </div>
-
             <div>
               <h2 className='text-white font-bold text-lg md:text-2xl'>Parkito</h2>
               <ul className='flex flex-col mt-4 text-white gap-2 text-sm'>
@@ -120,17 +91,18 @@ export default function Footer() {
                     Blog
                   </Link>
                 </li>
-                <li>
-                  <Link href="/contatti" title="Contact Us">
-                    Contatti
-                  </Link>
-                </li>
               </ul>
             </div>
+            <div className='flex flex-col gap-2'>
+              <h2 className='text-white font-bold text-lg md:text-2xl'>Contattaci</h2>
+              <p className='w-full text-white'>Scarica l&apos;app per ricevere supporto prioritario</p>
+              <DownloadButtons />
+            </div>
+
           </div>
         </div>
-        <div className='flex flex-row items-center justify-between gap-4 mt-4 w-full'>
-          <DownloadButtons />
+        <div className='flex flex-row items-center justify-center md:justify-end gap-4 mt-4 w-full'>
+          {/* <DownloadButtons /> */}
           <div className='flex items-center gap-4 md:flex-row flex-col'>
             <p className='text-white text-sm'>Powered by</p>
             <Link href="https://www.b4i.unibocconi.it/">

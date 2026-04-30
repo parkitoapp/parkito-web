@@ -25,11 +25,12 @@ import { Metadata } from "next";
 import Link from "next/link";
 import BC from "@/components/BC";
 import DownloadButtons from "@/components/DownloadButtons";
+import { JsonLd } from "@/components/JsonLd";
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source: SanityImage) => builder.image(source).url();
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 type Props = {
   params: { slug: string } | Promise<{ slug: string }>;
@@ -100,8 +101,31 @@ export default async function BlogPostPage({ params }: Props) {
   const post = await getPost(slug);
   if (!post) return <div>Post not found</div>;
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.metatitle,
+    description: post.metadescription,
+    image: urlFor(post.coverImage),
+    datePublished: post.publishedAt,
+    dateModified: post._updatedAt,
+    author: {
+      '@type': 'Person',
+      name: post.author?.name ?? 'Parkito Team',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Parkito',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://parkito.app/logo.webp',
+      },
+    },
+  }
+
   return (
     <>
+      <JsonLd data={articleSchema} />
       <div className="mx-auto py-32 px-6 md:px-16">
         <BC />
 
@@ -159,7 +183,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
 
-        <Card className="mb-12 md:w-[30%] p-4 rounded-3xl">
+        <Card className="mb-12 md:w-[30%] p-4 rounded-lg">
           <CardTitle>Indice dei contenuti</CardTitle>
           <CardContent className="p-8 ">
             <ul className="flex flex-col list-disc">

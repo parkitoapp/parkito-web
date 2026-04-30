@@ -12,6 +12,7 @@ import Link from "next/link";
 import React, { useRef, useState } from "react";
 import HostDropdown from "@/components/HostDropdown";
 import isChristmas from "@/hooks/isChristmas";
+import { DropdownProps } from "@/types";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -28,6 +29,8 @@ interface NavItemsProps {
   items: {
     name: string;
     link: string;
+    icon?: React.ReactNode;
+    data?: DropdownProps[];
   }[];
   className?: string;
   onItemClick?: () => void;
@@ -95,7 +98,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "none",
-        width: visible ? "40%" : "80%",
+        width: visible ? "65%" : "90%",
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -107,8 +110,8 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: "800px",
       }}
       className={cn(
-        "relative z-60 mx-auto hidden w-[80%]  flex-row items-center justify-between self-start rounded-3xl bg-white px-8 py-3 lg:flex dark:bg-black/70",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        "relative z-60 mx-auto hidden w-[80%]  flex-row items-center justify-between self-start rounded-[10px] bg-background px-8 py-3 lg:flex",
+        visible && "bg-background/80",
         className,
       )}
     >
@@ -150,14 +153,17 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         const isHovered = hovered === idx;
         const showActive = isHovered || (hovered === null && itemIsActive);
 
-        return item.name === "Host" ? (
+        return (item.link === "" && item.data) ? (
           <div
             className="relative py-2"
             key={`link-${idx}`}
             onMouseEnter={() => setHovered(null)}
             onFocus={() => setHovered(null)}
           >
-            <HostDropdown />
+            <HostDropdown
+              label={item.name}
+              navDropDown={item.data}
+            />
           </div>
         ) : (
           <Link
@@ -166,6 +172,8 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
             className="relative px-2 py-2"
             key={`link-${idx}`}
             href={item.link}
+            target={item.link.startsWith("http") ? "_blank" : "_self"}
+            rel={item.link.startsWith("http") ? "noopener noreferrer" : ""}
           >
             {showActive && (
               <motion.div
@@ -174,11 +182,12 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
               />
             )}
             <span className={cn(
-              "relative z-20 transition-colors",
+              "relative z-20 transition-colors flex flex-row items-center gap-2",
               showActive
                 ? " dark:text-white"
-                : "text-primary dark:text-primary"
+                : "text-primary dark:text-accent"
             )}>
+              {item.icon && item.icon}
               {item.name}
             </span>
           </Link>

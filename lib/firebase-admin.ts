@@ -3,6 +3,14 @@ import { getAuth } from "firebase-admin/auth";
 
 const COMPANY_DOMAIN = "parkito.app";
 
+/**
+ * Maximum age (in seconds) of a Firebase ID token we are willing to accept.
+ * Firebase issues tokens with `exp = iat + 3600`; reject anything older than
+ * one hour even if Firebase itself still considers it valid, so a stolen
+ * token has a finite blast radius.
+ */
+const MAX_TOKEN_AGE_SECONDS = 60 * 60;
+
 let adminAuth: ReturnType<typeof getAuth> | null = null;
 
 // Initialize Firebase Admin only if service account key is available
@@ -84,13 +92,15 @@ async function verifyTokenViaREST(idToken: string): Promise<{
         }
 
         const user = data.users[0];
-        const email = user.email;
+        const email: string | undefined = user.email;
+        const emailVerified: boolean = Boolean(user.emailVerified);
 
         if (!email) {
-            return {
-                valid: false,
-                error: "No email found in token",
-            };
+            return { valid: false, error: "Authentication failed" };
+        }
+
+        if (!emailVerified) {
+            return { valid: false, error: "Authentication failed" };
         }
 
         // Server-side validation: check email domain
@@ -107,17 +117,13 @@ async function verifyTokenViaREST(idToken: string): Promise<{
             email,
         };
     } catch (error: unknown) {
+        // Log full detail server-side; never forward to the client.
         if (error instanceof Error) {
             console.error("Error verifying token via REST API:", error.message);
-            return {
-                valid: false,
-                error: error.message || "Token verification failed",
-            };
+        } else {
+            console.error("Error verifying token via REST API:", error);
         }
-        return {
-            valid: false,
-            error: "Unknown error verifying token",
-        };
+        return { valid: false, error: "Authentication failed" };
     }
 }
 
@@ -138,14 +144,30 @@ export async function verifyAuthToken(idToken: string): Promise<{
     // Use Admin SDK if available
     if (auth) {
         try {
-            const decodedToken = await auth.verifyIdToken(idToken);
+            // `checkRevoked=true` forces a network check against Firebase so a
+            // sign-out / disable action actually terminates outstanding tokens.
+            const decodedToken = await auth.verifyIdToken(idToken, true);
             const email = decodedToken.email;
+            const emailVerified = decodedToken.email_verified === true;
+            const authTime = typeof decodedToken.auth_time === "number"
+                ? decodedToken.auth_time
+                : 0;
+            const now = Math.floor(Date.now() / 1000);
 
             if (!email) {
-                return {
-                    valid: false,
-                    error: "No email found in token",
-                };
+                return { valid: false, error: "Authentication failed" };
+            }
+
+            if (!emailVerified) {
+                return { valid: false, error: "Authentication failed" };
+            }
+
+            // Reject tokens whose original sign-in happened more than one
+            // hour ago. Firebase's own expiry check is already enforced by
+            // `verifyIdToken`; this adds a second floor tied to the
+            // user-visible auth session, not the rotating token itself.
+            if (authTime && now - authTime > MAX_TOKEN_AGE_SECONDS) {
+                return { valid: false, error: "Authentication failed" };
             }
 
             // Server-side validation: check email domain
@@ -162,21 +184,18 @@ export async function verifyAuthToken(idToken: string): Promise<{
                 email,
             };
         } catch (error: unknown) {
+            // Log full detail server-side only. Do not forward error messages
+            // from the Admin SDK to the client — they can leak internals.
             if (error instanceof Error) {
                 console.error("Error verifying Firebase ID token with Admin SDK:", error.message);
-                // Fall back to REST API if Admin SDK fails
-                if (projectId && process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
-                    return verifyTokenViaREST(idToken);
-                }
-                return {
-                    valid: false,
-                    error: error.message || "Invalid token",
-                };
+            } else {
+                console.error("Error verifying Firebase ID token with Admin SDK:", error);
             }
-            return {
-                valid: false,
-                error: "Unknown error verifying token",
-            };
+            // Fall back to REST API if Admin SDK fails
+            if (projectId && process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
+                return verifyTokenViaREST(idToken);
+            }
+            return { valid: false, error: "Authentication failed" };
         }
     }
 
@@ -196,32 +215,6 @@ export async function verifyAuthToken(idToken: string): Promise<{
     }
 
     return verifyTokenViaREST(idToken);
-}
-
-/**
- * Gets the user's email from a Firebase ID token (without domain validation)
- * Useful for checking auth state without enforcing domain
- */
-export async function getUserEmailFromToken(idToken: string): Promise<string | null> {
-    const auth = initializeAdminAuth();
-
-    if (auth) {
-        try {
-            const decodedToken = await auth.verifyIdToken(idToken);
-            return decodedToken.email || null;
-        } catch {
-            return null;
-        }
-    }
-
-    // Fallback to REST API
-    const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
-    if (projectId && process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
-        const result = await verifyTokenViaREST(idToken);
-        return result.email || null;
-    }
-
-    return null;
 }
 
 export { COMPANY_DOMAIN };

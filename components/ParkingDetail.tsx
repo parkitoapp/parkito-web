@@ -1,6 +1,8 @@
 "use client";
 import { Parking } from "@/types";
 import Link from "next/link";
+import posthog from "posthog-js";
+import { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { AlertCircleIcon, Book, MapPlus, } from "lucide-react";
@@ -20,6 +22,26 @@ interface Props {
 }
 
 export default function ParkingDetail({ citySlug, parking, imageUrl }: Props) {
+
+    useEffect(() => {
+        if (parking) {
+            posthog.capture("parking_detail_viewed", {
+                parking_id: parking.id,
+                parking_name: parking.name,
+                city: parking.city,
+                city_slug: citySlug,
+                parking_type: parking.parking_type,
+            });
+        }
+    }, [parking, citySlug]);
+
+    const handleDirectionsClick = () => {
+        posthog.capture("parking_directions_clicked", {
+            parking_id: parking!.id,
+            parking_name: parking!.name,
+            city: parking!.city,
+        });
+    };
 
     if (!parking)
         return (
@@ -61,7 +83,7 @@ export default function ParkingDetail({ citySlug, parking, imageUrl }: Props) {
                     <CardDescription>
 
                         <div className="flex md:flex-row flex-col w-full justify-evenly items-center mb-4 gap-2 mt-2">
-                            <Button variant={"default"} asChild className="rounded-full bg-green-600 hover:bg-green-900 px-4 text-white">
+                            <Button variant={"default"} asChild className="rounded-full bg-green-600 hover:bg-green-900 px-4 text-white" onClick={handleDirectionsClick}>
                                 <Link href={"https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(parking.address + ", " + parking.city)} target="_blank" rel="noopener noreferrer">
                                     <MapPlus /> Indicazioni
                                 </Link>

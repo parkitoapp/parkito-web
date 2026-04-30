@@ -28,45 +28,45 @@ import { ChevronDown } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useWidth } from "@/hooks/useWidth"
+import { DropdownProps } from "@/types"
 
-interface HostDropdownProps {
-  onLinkClick?: () => void
-}
 
-export default function HostDropdown({ onLinkClick }: HostDropdownProps) {
+export default function HostDropdown({
+  navDropDown,
+  label = "Host",
+  onLinkClick
+}: {
+  navDropDown: DropdownProps[];
+  label?: string;
+  onLinkClick?: () => void;
+}) {
   const pathname: string = usePathname()
   const width = useWidth()
   const isMobile = width <= 1024
   const [open, setOpen] = useState(false)
   const isActive = (path: string) => pathname === path
-  const hostPages = [
-    { name: "Diventa Host", link: "/diventare-host" },
-    { name: "Automatizza il tuo parcheggio", link: "/devices" },
-    { name: "Già host? Accedi qui", link: "https://host.parkito.app" }
 
-  ]
+  const isAnyChildActive = navDropDown.some((item) => isActive(item.link))
 
   // Mobile: Use Collapsible (accordion behavior)
   if (isMobile) {
     return (
       <Collapsible className="w-full">
-        <CollapsibleTrigger className="flex w-full flex-row items-center justify-between text-primary font-bold  py-2">
-          <span>Host</span>
+        <CollapsibleTrigger className="flex w-full flex-row items-center justify-between text-primary dark:text-accent font-bold  py-2">
+          <span className="dark:text-accent">{label}</span>
           <ChevronDown className="h-4 w-4 transition-transform duration-200 data-[state=open]:rotate-180" />
         </CollapsibleTrigger>
         <CollapsibleContent className="flex flex-col gap-2 pt-2 pl-4">
-          {hostPages.map((page, idx) => (
-
+          {navDropDown.map((page, idx) => (
             <Link
               key={idx}
               href={page.link}
               onClick={onLinkClick}
-              className={`text-primary font-bold  ${isActive(page.link) ? "text-chart-2" : ""}`}
+              className={`text-primary dark:text-accent font-bold  ${isActive(page.link) ? "text-chart-2" : ""}`}
             >
               {page.name}
-              {idx < hostPages.length - 1 && <DropdownMenuSeparator className="mt-2" />}
+              {idx < navDropDown.length - 1 && <DropdownMenuSeparator className="mt-2" />}
             </Link>
-
           ))}
         </CollapsibleContent>
       </Collapsible>
@@ -80,18 +80,18 @@ export default function HostDropdown({ onLinkClick }: HostDropdownProps) {
         <Button
           variant={"ghost"}
           size={"sm"}
-          className={`relative hover:bg-transparent hover:cursor-pointer font-bold md:text-xl text-md hover:text-chart-2 flex flex-row justify-center items-center md:py-2 transition-colors ${isActive(hostPages[0].link) || isActive(hostPages[1].link)
+          className={`relative hover:bg-transparent hover:cursor-pointer font-bold md:text-xl text-md hover:text-chart-2 flex flex-row justify-center items-center md:py-2 transition-colors ${isAnyChildActive
             ? "text-white dark:text-white"
-            : "text-primary dark:text-primary"
+            : "text-primary dark:text-accent"
             }`}
         >
-          {(isActive(hostPages[0].link) || isActive(hostPages[1].link)) && (
+          {isAnyChildActive && (
             <motion.div
               layoutId="hovered-host"
               className="absolute inset-0 h-full w-full px-2 rounded-full bg-chart-1/40"
             />
           )}
-          <span className="relative z-20">Host</span>
+          <span className="relative z-20">{label}</span>
           <ChevronDown className={`flex items-center justify-center mx-auto ml-1 transition-transform duration-200 relative z-20 ${open ? 'rotate-180' : ''}`} />
         </Button>
       </DropdownMenuTrigger>
@@ -102,25 +102,24 @@ export default function HostDropdown({ onLinkClick }: HostDropdownProps) {
         side="bottom"
         style={{ zIndex: 9999 }}
       >
-        {hostPages.map((pages, idx) => (
-
+        {navDropDown.map((pages, idx) => (
           <DropdownMenuItem
             key={idx}
-            onClick={() => setOpen(false)}
-            className={`px-4 py-3 transition-all rounded-none duration-200 hover:bg-accent/60 focus:bg-accent/60 active:scale-[0.98] cursor-pointer ${idx < hostPages.length - 1 ? "border-b border-primary/20" : ""}`}
+            onClick={() => {
+              setOpen(false)
+              onLinkClick?.()
+            }}
+            className={`px-4 py-3 transition-all rounded-none duration-200 hover:bg-accent/60  focus:bg-accent/60 active:scale-[0.98] cursor-pointer ${idx < navDropDown.length - 1 ? "border-b border-primary/20" : ""}`}
           >
             <Link
-              className={`w-full text-primary dark:text-white text-lg font-semibold transition-colors ${isActive(pages.link) ? "text-chart-2 dark:text-chart-2" : "hover:text-chart-2 dark:hover:text-chart-2"
+              className={`w-full text-primary dark:text-white text-lg font-semibold transition-colors ${isActive(pages.link) ? "text-chart-2 dark:text-chart-2" : "hover:text-chart-2 dark:hover:text-primary"
                 }`}
               href={pages.link}
               target={pages.link.includes("https://") ? "_blank" : "_self"}
             >
               {pages.name}
             </Link>
-
           </DropdownMenuItem>
-
-
         ))}
       </DropdownMenuContent>
     </DropdownMenu >

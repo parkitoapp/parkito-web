@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { trackEvent } from "@/lib/mixpanel";
+import posthog from "posthog-js";
 import { Button } from "./ui/button";
 import { Download } from "lucide-react";
 import Link from "next/link";
@@ -10,17 +11,19 @@ import { slugify } from "@/lib/slugify";
 export default function DownloadButtons() {
   const pathname = usePathname();
   const prettifiedPathname = slugify(pathname);
-  console.log(prettifiedPathname);
 
   const handleDownloadClick = () => {
     trackEvent("downloadapp_clicked", {
+      page: pathname,
+    });
+    posthog.capture("download_app_clicked", {
       page: pathname,
     });
   };
 
   return (
     <Button
-      variant="default"
+      variant="secondary"
       size={"lg"}
       className="min-w-[200px]"
       onClick={handleDownloadClick}

@@ -7,6 +7,7 @@ import Script from "next/script";
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { ThemeProvider } from "@/hooks/theme-provider";
 import Tracking from "./_tracking/Tracking";
+import { JsonLd } from "@/components/JsonLd";
 const interTight = Inter_Tight(
   {
     subsets: ["latin"],
@@ -16,51 +17,51 @@ const interTight = Inter_Tight(
 );
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://parkito.app'),
   title: {
     default: "Parkito",
     template: "%s | Parkito",
   },
   description: "Trova parcheggio sicuro con un click!",
   keywords: [
-    "parkito",
-    "parcheggio",
-    "parking",
-    "park sharing",
-    "condivisione parcheggio",
-    "app parcheggio",
-    "prenotazione parcheggio",
-    "parcheggi sicuri",
-    "parcheggi economici",
-    "parcheggi privati",
-    "parcheggi riservati",
-    "gestione parcheggi",
-    "affitto parcheggio",
-    "posti auto",
-    "mobilità urbana",
-    "soluzioni parcheggio",
-    "risparmio parcheggio",
-    "parcheggio facile",
-    "parcheggio veloce",
-    "app mobilità",
-    "parcheggi milano",
-    "parcheggi firenze",
-    "parcheggi bologna",
-    "parcheggi centro milano",
-    "parcheggi centro firenze",
-    "parcheggi centro bologna",
-    "parcheggi torino",
-    "parcheggi roma",
+    "parkito", "parcheggio", "parking", "park sharing",
+    "condivisione parcheggio", "app parcheggio", "prenotazione parcheggio",
+    "parcheggi sicuri", "parcheggi economici", "parcheggi privati",
+    "parcheggi riservati", "gestione parcheggi", "affitto parcheggio",
+    "posti auto", "mobilità urbana", "soluzioni parcheggio",
+    "risparmio parcheggio", "parcheggio facile", "parcheggio veloce",
+    "app mobilità", "parcheggi milano", "parcheggi firenze",
+    "parcheggi bologna", "parcheggi centro milano", "parcheggi centro firenze",
+    "parcheggi centro bologna", "parcheggi torino", "parcheggi roma",
     "parcheggi napoli"
   ],
   authors: [{ name: 'Parkito Team', url: 'https://parkito.app' }],
   openGraph: {
-    title: 'Parkito.app',
+    title: 'Parkito - Parcheggi in Viaggio',
     description: 'Trova parcheggio sicuro con un click!',
     url: 'https://parkito.app',
     siteName: 'Parkito.app',
-  }
+    locale: 'it_IT',
+    type: 'website',
+    images: [{ url: '/logo.webp', width: 512, height: 512, alt: 'Parkito logo' }],
+  },
+  twitter: {
+    card: 'summary',
+    site: '@parkitoapp',
+    images: ['/logo.webp'],
+  },
 };
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Parkito',
+  alternateName: 'Parkito - Parcheggi in Viaggio',
+  description: 'Il primo servizio di Park Sharing in Italia. Prenota parcheggi privati verificati nelle principali città italiane.',
+  url: 'https://parkito.app',
+  logo: 'https://parkito.app/logo.webp',
+  foundingLocation: 'Italia',
+}
 
 export default function RootLayout({
   children,
@@ -69,7 +70,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="it" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
@@ -96,6 +97,7 @@ _iub.csLangConfiguration = {"it":{"cookiePolicyId":94483316}};
       {/* <GoogleTagManager gtmId="" /> */}
       <body className={`${interTight.className} bg-background min-h-screen`}>
         <Tracking />
+        <JsonLd data={organizationSchema} />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

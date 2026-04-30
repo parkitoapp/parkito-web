@@ -23,9 +23,10 @@ import HostDropdown from "@/components/HostDropdown";
 import { useTheme } from "next-themes";
 import { useWidth } from "@/hooks/useWidth";
 import { useSnow } from "@/hooks/useSnow";
-import { Snowflake } from "lucide-react";
+import { Building, ExternalLink, Home, Music, Snowflake } from "lucide-react";
 import isChristmas from "@/hooks/isChristmas";
 import { Button } from "./ui/button";
+import { hostDrop } from "@/data/navDropdown";
 
 export default function ResNav() {
 
@@ -60,31 +61,45 @@ export default function ResNav() {
     {
       name: "Home",
       link: "/",
+      icon: <Home />
     },
     {
-      name: "Dove Siamo",
+      name: "Città",
       link: "/citta",
+      icon: <Building />
     },
+    {
+      name: "Concerti",
+      link: "/servizi",
+      icon: <Music />
+    },
+
     // {
     //     name: "Diventa Host",
     //     link: "/diventare-host",
     // },
     {
-      name: "Host",
-      link: "",
+      name: "Area C",
+      link: "https://areac.parkito.app",
+      icon: <ExternalLink />
     },
     // {
     //     name: "Cos'è Parkito",
     //     link: "/about",
     // },
     {
-      name: "Blog",
-      link: "/blog"
+      name: "Diventa Host",
+      link: "",
+      data: hostDrop
     },
-    {
-      name: "Chi siamo",
-      link: "/chi-siamo"
-    }
+    // {
+    //   name: "Blog",
+    //   link: "/blog"
+    // },
+    // {
+    //   name: "Chi siamo",
+    //   link: "/chi-siamo"
+    // }
   ];
 
 
@@ -92,7 +107,7 @@ export default function ResNav() {
     <div className="relative w-full z-99">
       <Navbar>
         {width > 1024 ? (
-          <NavBody className="dark:border">
+          <NavBody className="">
             <NavbarLogo source={finalSrc} />
             <NavItems items={navItems} />
             <div className="flex items-center gap-4">
@@ -129,17 +144,22 @@ export default function ResNav() {
               onClose={() => setIsMobileMenuOpen(false)}
             >
               {navItems.map((item, idx) => (
-                item.name === "Host" ? (
+                item.data ? (
                   <div key={`mobile-link-${idx}`} className="w-full">
-                    <HostDropdown onLinkClick={() => setIsMobileMenuOpen(false)} />
+                    <HostDropdown
+                      label={item.name}
+                      navDropDown={item.data}
+                      onLinkClick={() => setIsMobileMenuOpen(false)}
+                    />
                   </div>
                 ) : (
                   <Link
                     key={`mobile-link-${idx}`}
                     href={item.link}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="relative text-primary font-bold dark:text-neutral-300"
+                    className="relative text-primary font-bold dark:text-neutral-300 flex flex-row items-center gap-2"
                   >
+                    {item.icon && item.icon}
                     <span className="block">{item.name}</span>
                   </Link>
                 )
